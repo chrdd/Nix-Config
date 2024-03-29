@@ -87,19 +87,21 @@
         package = pkgs.gnome.adwaita-icon-theme;
         };
        cursorTheme = {
-         name = "Adwaita";
-         package = pkgs.gnome.adwaita-icon-theme;
+         name = "volantes-cursors";
+         package = pkgs.volantes-cursors;
         };
     };
 
-dconf = {
-    enable = true;
-    settings = {
-      "org/gnome/desktop/interface" = {
-        color-scheme = "prefer-dark";
+  qt.enable = true;
+
+  dconf = {
+      enable = true;
+      settings = {
+        "org/gnome/desktop/interface" = {
+          color-scheme = "prefer-dark";
+        };
       };
     };
-  };
 
 }
 
