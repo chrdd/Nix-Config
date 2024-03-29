@@ -75,10 +75,11 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+
     gtk = {
       enable = true;
       theme={
-        name= "orchis-theme";
+        name= "orchis-theme-dark";
         package = pkgs.orchis-theme; 
         };
        iconTheme = {
