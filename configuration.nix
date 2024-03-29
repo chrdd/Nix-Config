@@ -3,18 +3,27 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      #inputs.home-manager.nixosModules.home-manager
     ];
 
   nix = {
   package = pkgs.nixFlakes;
   extraOptions = ''experimental-features = nix-command flakes'';
   };
+  
+  #Home-manager
+  #home-manager = {
+  #  extraSpecialArgs = { inherit inputs; };
+  #  users = {
+  #    octavian = import ./home.nix;
+  #  };
+  #};
 
 
   # Bootloader.
@@ -280,7 +289,7 @@ environment.sessionVariables = {
   parsec-bin
   plexamp
   flatpak
-  
+  pkgs.home-manager
   ];
   
 

@@ -4,26 +4,31 @@
   description = "flake for octavian";
 
   inputs = {
-    nixpkgs = {
-      url = "github:NixOS/nixpkgs/nixos-unstable";
-    };
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    
+    #home-manager={
+    #   url = "github:nix-community/home-manager";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #  };
     nix-flatpak.url = "github:gmodena/nix-flatpak";  
     };
 
-  outputs = { self, nixpkgs,home-manager,nix-flatpak,... }: {
-    nixosConfigurations = {
+  outputs = { self, nixpkgs,home-manager,nix-flatpak,... }@inputs:
+   let   
+     system= "x86_64-linux";
+     pkgs = import nixpkgs{
+       inherit system;
+       config = {
+         allowUnfree = true;
+       };
+     };
+    in
+  {
+   nixosConfigurations = {
       octavian=nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+      specialArgs = {inherit inputs system;};
         modules = [
           ./configuration.nix
-          home-manager.nixosModules.home-manager
-           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            #home-manager.users.theNameOfTheUser = import ./home.nix;
-           }
           nix-flatpak.nixosModules.nix-flatpak
         ];
       };
