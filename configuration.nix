@@ -85,11 +85,14 @@ services.flatpak.enable=true;
 services.flatpak.packages = [
   { appId = "tv.plex.PlexDesktop"; origin = "flathub";  }
   { appId = "tv.plex.PlexHTPC"; origin = "flathub";  }
-     
+  { appId = "com.github.tchx84.Flatseal"; origin = "flathub";  }   
 ];
 
 # Steam
-programs.steam.enable = true;
+programs.steam={
+  enable = true;
+  remotePlay.openFirewall = true;  
+};
 
 programs.zsh = {
   enable = true;
