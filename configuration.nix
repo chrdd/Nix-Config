@@ -97,6 +97,30 @@ services.flatpak.packages = [
   { appId = "com.github.tchx84.Flatseal"; origin = "flathub";  }   
 ];
 
+# Tailscale
+services.tailscale.enable = true;
+
+
+# Actkbd
+#services.actkbd = {
+#    enable = true;
+#    bindings = [
+#      { keys = [ 439u ]; events = [ "key" ]; command = "neofetch"; }
+#      { keys = [ 438u ]; events = [ "key" ]; command = "btop"; }
+#    ];
+#  };
+
+#  services.actkbd = {
+#    enable = true;
+#    bindings = [
+#      { keys = [ 113 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l octavian -c 'amixer -q set Master toggle'"; }
+#      { keys = [ 114 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l octavian -c 'amixer -q set Master 5%- unmute'"; }
+#      { keys = [ 115 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l octavian -c 'amixer -q set Master 5%+ unmute'"; }
+#    ];
+#  };
+
+
+
 # Steam
 programs.steam={
   enable = true;
@@ -290,6 +314,10 @@ environment.sessionVariables = {
   plexamp
   flatpak
   pkgs.home-manager
+  todoist-electron
+  masterpdfeditor
+  tailscale
+  actkbd
   ];
   
 
