@@ -81,7 +81,13 @@ services.tumbler.enable = true; # Thumbnail support for images
 
 # Flatpak
 services.flatpak.enable=true;
+services.flatpak.packages = [
+  { appId = "tv.plex.PlexDesktop"; origin = "flathub";  }
+  { appId = "tv.plex.PlexHTPC"; origin = "flathub";  }
+     
+];
 
+# Steam
 programs.steam.enable = true;
 
 programs.zsh = {
@@ -270,6 +276,7 @@ environment.sessionVariables = {
   parsec-bin
   plexamp
   flatpak
+  
   ];
   
 

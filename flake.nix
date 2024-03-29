@@ -9,9 +9,10 @@
     };
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-  };
+    nix-flatpak.url = "github:gmodena/nix-flatpak";  
+    };
 
-  outputs = { self, nixpkgs,home-manager,... }: {
+  outputs = { self, nixpkgs,home-manager,nix-flatpak,... }: {
     nixosConfigurations = {
       octavian=nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -23,6 +24,7 @@
             home-manager.useUserPackages = true;
             #home-manager.users.theNameOfTheUser = import ./home.nix;
            }
+          nix-flatpak.nixosModules.nix-flatpak
         ];
       };
     };
