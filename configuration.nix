@@ -80,6 +80,7 @@ services.gvfs.enable = true; # Mount, trash, and other functionalities
 services.tumbler.enable = true; # Thumbnail support for images
 
 # Flatpak
+# https://github.com/gmodena/nix-flatpak
 services.flatpak.enable=true;
 services.flatpak.packages = [
   { appId = "tv.plex.PlexDesktop"; origin = "flathub";  }
