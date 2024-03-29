@@ -34,6 +34,8 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+
+
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -72,4 +74,33 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+    gtk = {
+      enable = true;
+      theme={
+        name= "orchis-theme";
+        package = pkgs.orchis-theme; 
+        };
+       iconTheme = {
+        name = "Adwaita";
+        package = pkgs.gnome.adwaita-icon-theme;
+        };
+       cursorTheme = {
+         name = "Adwaita";
+         package = pkgs.gnome.adwaita-icon-theme;
+        };
+    };
+
+dconf = {
+    enable = true;
+    settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+      };
+    };
+  };
+
 }
+
+
+ 
