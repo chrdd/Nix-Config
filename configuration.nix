@@ -318,6 +318,9 @@ environment.sessionVariables = {
   masterpdfeditor
   tailscale
   actkbd
+  jetbrains-mono
+  emacs
+  tmux
   ];
   
 
