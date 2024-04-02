@@ -318,6 +318,15 @@ environment.sessionVariables = {
   masterpdfeditor
   tailscale
   actkbd
+  #privateGPT dependencies
+  python311
+  stdenv.cc.cc.lib
+  libstdcxx5
+  poetry
+  gnumake
+  cmake
+  ninja
+  gcc
   ];
   
 

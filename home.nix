@@ -86,10 +86,10 @@
         name = "Adwaita";
         package = pkgs.gnome.adwaita-icon-theme;
         };
-       cursorTheme = {
-         name = "Adwaita";
-         package = pkgs.gnome.adwaita-icon-theme;
-        };
+       #cursorTheme = {
+       #  name = "Numix-Cursor-Light";
+       # package = pkgs.numix-cursor-theme;
+       # };
     };
 
 dconf = {
@@ -100,6 +100,13 @@ dconf = {
       };
     };
   };
+
+home.pointerCursor = {
+  gtk.enable = true;
+  package = pkgs.bibata-cursors;
+  name = "Bibata-Modern-Ice";
+  size = 22;
+};
 
 }
 
