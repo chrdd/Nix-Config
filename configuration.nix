@@ -9,6 +9,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      #./apps
       inputs.home-manager.nixosModules.home-manager
     ];
 
@@ -153,6 +154,17 @@ environment.sessionVariables = {
       };
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+
+ 
+    #OBS
+    # https://nixos.wiki/wiki/OBS_Studio
+   boot.extraModulePackages = with config.boot.kernelPackages; [
+     v4l2loopback
+   ];
+   boot.extraModprobeConfig = ''
+     options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+   '';
+   security.polkit.enable = true; 
       
 
    #Load Nvidia drivers 
@@ -318,6 +330,15 @@ environment.sessionVariables = {
   masterpdfeditor
   tailscale
   actkbd
+  bottles
+  arduino-ide
+  pkgs.polkit_gnome
+  vencord
+  #Java
+  maven
+  jdk17
+  
+  #v4l2loopback
   #privateGPT dependencies
   python311
   stdenv.cc.cc.lib
@@ -354,22 +375,23 @@ environment.sessionVariables = {
   #Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+   programs.gnupg.agent = {
+     enable = true;
+     enableSSHSupport = true;
+   };
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+   services.openssh.enable = true;
 
   # Open ports in the firewall.
    networking.firewall = { 
     enable = true;
     allowedTCPPortRanges = [ 
       { from = 1714; to = 1764; } # KDE Connect
-    ];  
+    ];
+    allowedTCPPorts = [22];  
     allowedUDPPortRanges = [ 
       { from = 1714; to = 1764; } # KDE Connect
     ];  
