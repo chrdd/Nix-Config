@@ -289,6 +289,8 @@ environment.sessionVariables = {
   sunshine
   z-lua
   fish
+  sshfs
+  ncdu
   ffmpeg_5
   grim
   slurp
