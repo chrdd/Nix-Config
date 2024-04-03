@@ -165,7 +165,23 @@ environment.sessionVariables = {
      options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
    '';
    security.polkit.enable = true; 
-      
+   
+   # Autostart polkit_gnome
+   systemd = {
+  user.services.polkit-gnome-authentication-agent-1 = {
+    description = "polkit-gnome-authentication-agent-1";
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+        };
+     };
+   };
 
    #Load Nvidia drivers 
    services.xserver.videoDrivers = ["nvidia"]; # or "nvidiaLegacy470 etc.
@@ -269,6 +285,8 @@ environment.sessionVariables = {
   obs-studio
   whatsapp-for-linux
   wayvnc
+  tigervnc
+  sunshine
   z-lua
   fish
   ffmpeg_5
@@ -337,7 +355,8 @@ environment.sessionVariables = {
   #Java
   maven
   jdk17
-  
+  speedtest-cli
+    
   #v4l2loopback
   #privateGPT dependencies
   python311
