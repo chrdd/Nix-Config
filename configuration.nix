@@ -135,7 +135,7 @@ programs.zsh = {
   syntaxHighlighting.enable = true;
   ohMyZsh = {
         enable = true;
-        plugins = [ "git" "zsh-history-substring-search" ];
+        plugins = [ "git" ];
         theme="eastwood";
     }; 
   };
@@ -329,7 +329,7 @@ environment.sessionVariables = {
   pkgs.zsh-completions
   pkgs.zsh-powerlevel10k
   pkgs.zsh-syntax-highlighting
-  pkgs.zsh-history-substring-search
+  #pkgs.zsh-history-substring-search
   sublime
   noto-fonts
   noto-fonts-cjk
@@ -358,6 +358,8 @@ environment.sessionVariables = {
   maven
   jdk17
   speedtest-cli
+  nodejs
+  kwalletmanager
     
   #v4l2loopback
   #privateGPT dependencies
