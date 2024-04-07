@@ -108,7 +108,14 @@ home.pointerCursor = {
   size = 22;
 };
 
+
+#Btop
+programs.btop.settings={
+  color_theme = "everforest-dark-medium";
+  theme_background = false;
+}; 
+
+
 }
 
 
- 
