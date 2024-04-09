@@ -101,6 +101,17 @@ services.flatpak.packages = [
 # Tailscale
 services.tailscale.enable = true;
 
+# Media keys
+sound.mediaKeys.enable = true;
+services.actkbd = {
+    enable = true;
+    bindings = [
+    { keys = [ 123 ]; events = [ "key" ]; command = "amixer set Master 5%+"; }
+    { keys = [ 122 ]; events = [ "key" ]; command = "amixer set Master 5%- "; }
+    { keys = [ 121 ]; events = [ "key" ]; command = "amixer -D pulse set Master 1+ toggle "; }
+  ];
+};
+
 
 # Actkbd
 #services.actkbd = {

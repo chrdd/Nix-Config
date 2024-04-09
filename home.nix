@@ -5,7 +5,14 @@
   # manage.
   home.username = "octavian";
   home.homeDirectory = "/home/octavian";
+  
 
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Ice";
+    size = 22;
+  };
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -101,12 +108,6 @@ dconf = {
     };
   };
 
-home.pointerCursor = {
-  gtk.enable = true;
-  package = pkgs.bibata-cursors;
-  name = "Bibata-Modern-Ice";
-  size = 22;
-};
 
 
 #Btop
