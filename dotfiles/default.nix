@@ -1,6 +1,9 @@
 { config, ... }:
 {
   imports = [
-    ./waybar.nix
+    #./waybar.nix
   ];
+  #home.packages = with pkgs; [
+	#  nerdfonts
+  #];
 }

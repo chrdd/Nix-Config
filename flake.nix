@@ -5,7 +5,12 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    
+    hyprland.url = "github:hyprwm/Hyprland";
+
+    hyprland-plugins = {
+        url = "github:hyprwm/hyprland-plugins";
+        inputs.hyprland.follows = "hyprland"; 
+    };
     home-manager={
        url = "github:nix-community/home-manager";
        inputs.nixpkgs.follows = "nixpkgs";
@@ -29,7 +34,7 @@
       specialArgs = {inherit inputs system;};
         modules = [
           ./configuration.nix
-          #./dotfiles
+          ./dotfiles/default.nix
           ./apps/default.nix
           nix-flatpak.nixosModules.nix-flatpak
         ];

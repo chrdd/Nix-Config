@@ -77,8 +77,10 @@
 # Enable Hyprland
 programs.hyprland = {
   enable = true;
+  package = inputs.hyprland.packages."${pkgs.system}".hyprland;
   xwayland.enable = true;
 };
+
 
 programs.thunar.enable = true;
 programs.thunar.plugins = with pkgs.xfce; [
@@ -271,6 +273,7 @@ environment.sessionVariables = {
     mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
   })
   )
+  #wl-paste
   discord
   bitwarden
   obsidian
@@ -371,6 +374,7 @@ environment.sessionVariables = {
   speedtest-cli
   nodejs
   kwalletmanager
+  nerdfonts
     
   #v4l2loopback
   #privateGPT dependencies

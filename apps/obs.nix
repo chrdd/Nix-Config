@@ -10,15 +10,15 @@ options = {
     obs.enable= lib.mkEnableOption "enables OBS";
 
 };
-config = lib.mkIF config.obs.enable{
+config = lib.mkIf config.obs.enable{
       programs.obs-studio = {
-        enable = true;
+        #enable = true;
         plugins = with pkgs.obs-studio-plugins; [
           wlrobs
           obs-vaapi
           obs-vkcapture
           obs-pipewire-audio-capture
-    ];
+        ];
   };
-}
+};
 }

@@ -1,6 +1,6 @@
 _: {
   imports = [
-    ./obs
+  #  ./obs.nix
   ];
-  obs.enable = true;
+  #obs.enable = true;
 }
