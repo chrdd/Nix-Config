@@ -129,7 +129,7 @@ dconf = {
 
 #Btop
 programs.btop.settings={
-  color_theme = "everforest-dark-medium";
+  color_theme = "gruvbox";
   theme_background = false;
 }; 
 
@@ -424,6 +424,7 @@ wayland.windowManager.hyprland = {
     ];
     windowrulev2 = [
       #OPACITY
+      "opacity 0.75 0.75,class:^(alacritty)$"
       "opacity 0.90 0.90,class:^(floorp)$"
       "opacity 0.80 0.80,class:^(Steam)$"
       "opacity 0.80 0.80,class:^(steam)$"
@@ -609,7 +610,7 @@ wayland.windowManager.hyprland = {
     # "$screenshotarea" = "hyprctl keyword animation "fadeOut,0,0,default" ";
     # "grimblast --notify copysave area"; 
     # "hyprctl keyword animation "fadeOut,1,4,default"";
-    "$term" = "kitty";
+    "$term" = "alacritty";
     "$volume" = "$scriptsDir/volume";
     "$screenshot" = "$scriptsDir/screensht";
     "$colorpicker" = "$scriptsDir/colorpicker";

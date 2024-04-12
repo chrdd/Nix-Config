@@ -397,8 +397,8 @@ environment.sessionVariables = {
   
 
   # ZSH
-  users.defaultUserShell = pkgs.zsh;
-
+  users.defaultUserShell = pkgs.fish;
+  programs.fish.enable = true;
   # Insecure packages
   nixpkgs.config.permittedInsecurePackages = [ "electron-25.9.0" ];
 
