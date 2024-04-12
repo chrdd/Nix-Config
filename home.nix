@@ -1,17 +1,46 @@
-{ config, pkgs,lib, ... }:
+{ config, pkgs,lib,inputs, ... }:
 
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
+  imports = [
+      inputs.nix-colors.homeManagerModules.default
+      ./features/alacritty.nix
+  ];
+  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;  # Home Manager needs a bit of information about you and the paths it should manage
+  
   home.username = "octavian";
   home.homeDirectory = "/home/octavian";
   
+  # Enable GTK and QT
+  gtk.enable = true;
+  qt.enable = true;
+
+  # QT themeing
+  qt.platformTheme = "gtk";
+  #qt.style.name = "colloid-kde";
+  qt.style.package = pkgs.colloid-kde;
+
+  gtk = {
+    theme={
+      name= "adw-gtk3";
+      package = pkgs.adw-gtk3; 
+    };
+      iconTheme = {
+       name = "Colloid";
+       package = pkgs.colloid-icon-theme;
+      };
+      #cursorTheme = {
+      #  name = "Numix-Cursor-Light";
+      # package = pkgs.numix-cursor-theme;
+      # };
+  };
+
+  gtk.cursorTheme.package = pkgs.bibata-cursors;
+  gtk.cursorTheme.name = "Bibata-Modern-Classic";
 
   home.pointerCursor = {
-    gtk.enable = true;
     package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Ice";
-    size = 22;
+    name = "Bibata-Modern-Classic";
+    size = 18;
   };
  
   #This value determines the Home Manager release that your configuration is
@@ -85,21 +114,7 @@
   programs.home-manager.enable = true;
 
 
-    gtk = {
-      enable = true;
-      theme={
-        name= "orchis-theme-dark";
-        package = pkgs.orchis-theme; 
-        };
-       iconTheme = {
-        name = "Adwaita";
-        package = pkgs.gnome.adwaita-icon-theme;
-        };
-       #cursorTheme = {
-       #  name = "Numix-Cursor-Light";
-       # package = pkgs.numix-cursor-theme;
-       # };
-    };
+
 
 dconf = {
     enable = true;

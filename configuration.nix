@@ -368,6 +368,13 @@ environment.sessionVariables = {
   arduino-ide
   pkgs.polkit_gnome
   vencord
+
+  #themes
+  colloid-kde
+  colloid-gtk-theme
+  colloid-icon-theme
+  papirus-icon-theme
+
   #Java
   maven
   jdk17

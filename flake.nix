@@ -16,6 +16,7 @@
        inputs.nixpkgs.follows = "nixpkgs";
       };
     nix-flatpak.url = "github:gmodena/nix-flatpak";  
+    nix-colors.url = "github:misterio77/nix-colors";
     };
 
   outputs = { self, nixpkgs,home-manager,nix-flatpak,... }@inputs:
