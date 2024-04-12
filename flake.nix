@@ -29,6 +29,7 @@
       specialArgs = {inherit inputs system;};
         modules = [
           ./configuration.nix
+          ./dotfiles
           nix-flatpak.nixosModules.nix-flatpak
         ];
       };
