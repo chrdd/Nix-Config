@@ -25,6 +25,7 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
+  
   home.packages = [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
@@ -116,6 +117,129 @@ programs.btop.settings={
   color_theme = "everforest-dark-medium";
   theme_background = false;
 }; 
+
+programs.waybar.settings =  {
+    layer = "top";
+    position = "top";
+    height = "24";
+    width = "1366";
+    modules-left =[
+      "hyprland/workspaces" 
+      "hyprland/mode" 
+      "custom/spotify"
+      ];
+    modules-center = [
+      "hyprland/window"
+      ];
+    modules-right = [
+      "backlight" 
+      "pulseaudio" 
+      "network" 
+      "cpu" 
+      "memory" 
+      "tray" 
+      "clock"
+      ];
+    hyprland.workspaces = {
+        disable-scroll = true;
+        all-outputs = false;
+        format = "{icon}";
+        format-icons = {
+            "1" = "";
+            "2" = "";
+            "3" = "";
+            "4" = "";
+            "5" = "";
+            "urgent" = "";
+            "focused" = "";
+            "default" = "";
+        };
+    };
+    hyprland.mode = {
+        format = "<span style=\"italic\">{}</span>";
+    };
+    tray = {
+      icon-size = 21;
+      spacing = 10;
+    };
+    clock = {
+      format-alt = "{:%Y-%m-%d}";
+    };
+    cpu = {
+      format = "{usage}% ";
+    };
+    memory = {
+      format = "{}% ";
+    };
+    pulseaudio = {
+      scroll-step = 1;
+      format = "{volume}% {icon}";
+      format-muted = "";
+      format-icons = {
+        headphones = "";
+        handsfree ="";
+        headset = "";
+        phone = "";
+        portable ="";
+        car = "";
+        default = [
+          ""
+          ""
+         ];
+      };
+      on-click = "";
+    };
+  };
+  
+  programs.waybar.style = {
+  
+    border = "none";
+    border-radius = 0;
+    font-family = "Ubuntu Nerd Font";
+    font-size = "13px";
+    min-height = 0;
+  };
+
+  # window#waybar {
+  #     background: transparent;
+  #     color: white;
+  # };
+
+  # window {
+  #     font-weight: bold;
+  #     font-family: "Ubuntu";
+  # };
+
+  # workspaces {
+  #     padding: 0 5px;
+  # };
+
+
+  # workspaces button {
+  #     padding: 0 5px;
+  #     background: transparent;
+  #     color: white;
+  #     border-top: 2px solid transparent;
+  # };
+
+  # workspaces button.focused {
+  #   color: #c9545d;
+  #   border-top: 2px solid #c9545d;
+  # };
+
+  # mode {
+  #     background: #64727D;
+  #     border-bottom: 3px solid white;
+  # };
+
+
+  # clock {
+  #   font-weight: bold;
+  # };
+
+
+
+
 
 #Hyprland
 wayland.windowManager.hyprland = {
