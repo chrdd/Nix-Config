@@ -10,38 +10,71 @@
   home.username = "octavian";
   home.homeDirectory = "/home/octavian";
   
-  # Enable GTK and QT
-  gtk.enable = true;
-  qt.enable = true;
+   # Enable GTK and QT
+  # gtk.enable = true;
+  # qt.enable = true;
+
+  # GTK Themeing
+  gtk = {
+    enable = true;
+
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+    theme = {
+      name = "palenight";
+      package = pkgs.palenight-theme;
+    };
+    cursorTheme = {
+      name = "Numix-Cursor";
+      package = pkgs.numix-cursor-theme;
+    };
+    gtk3.extraConfig = {
+      Settings = '' gtk-application-prefer-dark-theme=1'';
+    };
+    gtk4.extraConfig = {
+      Settings = '' gtk-application-prefer-dark-theme=1'';
+    };
+  };
+
+  home.sessionVariables.GTK_THEME = "palenight";
+
 
   # QT themeing
-  qt.platformTheme = "gtk";
-  #qt.style.name = "colloid-kde";
-  qt.style.package = pkgs.colloid-kde;
-
-  gtk = {
-    theme={
-      name= "adw-gtk3";
-      package = pkgs.adw-gtk3; 
-    };
-      iconTheme = {
-       name = "Colloid";
-       package = pkgs.colloid-icon-theme;
-      };
-      #cursorTheme = {
-      #  name = "Numix-Cursor-Light";
-      # package = pkgs.numix-cursor-theme;
-      # };
+  qt = {
+    platformTheme = "gtk";
+    style.name = "colloid-kde";
+    style.package = pkgs.colloid-kde;
   };
+  # # QT themeing
+  # qt.platformTheme = "gtk";
+  # #qt.style.name = "colloid-kde";
+  # qt.style.package = pkgs.colloid-kde;
 
-  gtk.cursorTheme.package = pkgs.bibata-cursors;
-  gtk.cursorTheme.name = "Bibata-Modern-Classic";
+  # gtk = {
+  #   theme={
+  #     name= "adw-gtk3";
+  #     package = pkgs.adw-gtk3; 
+  #   };
+  #     iconTheme = {
+  #      name = "Colloid";
+  #      package = pkgs.colloid-icon-theme;
+  #     };
+  #     cursorTheme = {
+  #      name = "Numix-Cursor-Light";
+  #     package = pkgs.numix-cursor-theme;
+  #     };
+  # };
 
-  home.pointerCursor = {
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Classic";
-    size = 18;
-  };
+  # gtk.cursorTheme.package = pkgs.bibata-cursors;
+  # gtk.cursorTheme.name = "Bibata-Modern-Classic";
+
+  # home.pointerCursor = {
+  #   package = pkgs.bibata-cursors;
+  #   name = "Bibata-Modern-Classic";
+  #   size = 18;
+  # };
  
   #This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
