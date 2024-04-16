@@ -104,35 +104,14 @@ services.flatpak.packages = [
 services.tailscale.enable = true;
 
 # Media keys
-sound.mediaKeys.enable = true;
 services.actkbd = {
     enable = true;
     bindings = [
-    { keys = [ 123 ]; events = [ "key" ]; command = "amixer set Master 5%+"; }
-    { keys = [ 122 ]; events = [ "key" ]; command = "amixer set Master 5%- "; }
-    { keys = [ 121 ]; events = [ "key" ]; command = "amixer -D pulse set Master 1+ toggle "; }
+    { keys = [ 123 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l octavian -c 'amixer set Master 5%+'"; }
+    { keys = [ 122 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l octavian -c 'amixer set Master 5%-'"; }
+    { keys = [ 121 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l octavian -c 'amixer -D pulse set Master 1+ toggle'"; }
   ];
 };
-
-
-# Actkbd
-#services.actkbd = {
-#    enable = true;
-#    bindings = [
-#      { keys = [ 439u ]; events = [ "key" ]; command = "neofetch"; }
-#      { keys = [ 438u ]; events = [ "key" ]; command = "btop"; }
-#    ];
-#  };
-
-#  services.actkbd = {
-#    enable = true;
-#    bindings = [
-#      { keys = [ 113 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l octavian -c 'amixer -q set Master toggle'"; }
-#      { keys = [ 114 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l octavian -c 'amixer -q set Master 5%- unmute'"; }
-#      { keys = [ 115 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l octavian -c 'amixer -q set Master 5%+ unmute'"; }
-#    ];
-#  };
-
 
 
 # Steam
@@ -198,7 +177,10 @@ environment.sessionVariables = {
 
    #Load Nvidia drivers 
    services.xserver.videoDrivers = ["nvidia"]; # or "nvidiaLegacy470 etc.
-     
+   #services.xserver.displayManager.gdm = {
+     #enable = true;
+     #nvidiaWayland = true;
+   #};  
    # Enable the X11 windowing system.
    services.xserver.enable = true;
 
@@ -368,6 +350,8 @@ environment.sessionVariables = {
   arduino-ide
   pkgs.polkit_gnome
   vencord
+  jetbrains-mono
+  libreoffice
 
   #themes
   colloid-kde
@@ -397,7 +381,7 @@ environment.sessionVariables = {
   
 
   # ZSH
-  users.defaultUserShell = pkgs.fish;
+  users.defaultUserShell = pkgs.zsh;
   programs.fish.enable = true;
   # Insecure packages
   nixpkgs.config.permittedInsecurePackages = [ "electron-25.9.0" ];

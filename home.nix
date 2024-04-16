@@ -23,8 +23,8 @@
       package = pkgs.papirus-icon-theme;
     };
     theme = {
-      name = "palenight";
-      package = pkgs.palenight-theme;
+      name = "Gruvbox-Dark-B";
+      package = pkgs.gruvbox-gtk-theme;
     };
     cursorTheme = {
       name = "Numix-Cursor";
@@ -38,7 +38,7 @@
     };
   };
 
-  home.sessionVariables.GTK_THEME = "palenight";
+  home.sessionVariables.GTK_THEME = "Gruvbox-Dark-B";
 
 
   # QT themeing
@@ -285,7 +285,13 @@ programs.waybar.settings =  {
   #   font-weight: bold;
   # };
 
+# programs.kitty{
+#   enable = true;
+#   font.name = Jetbrains Mono;
+#   font.package = jetbrains-mono;
+#   font.size = 12;
 
+# }
 
 
 
@@ -643,7 +649,7 @@ wayland.windowManager.hyprland = {
     # "$screenshotarea" = "hyprctl keyword animation "fadeOut,0,0,default" ";
     # "grimblast --notify copysave area"; 
     # "hyprctl keyword animation "fadeOut,1,4,default"";
-    "$term" = "alacritty";
+    "$term" = "kitty";
     "$volume" = "$scriptsDir/volume";
     "$screenshot" = "$scriptsDir/screensht";
     "$colorpicker" = "$scriptsDir/colorpicker";
