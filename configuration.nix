@@ -231,13 +231,17 @@ environment.sessionVariables = {
   users.users.octavian = {
     isNormalUser = true;
     description = "octavian";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       firefox
       kate
     #  thunderbird
     ];
   };
+
+  #docker
+  virtualisation.docker.enable = true;
+  #users.users.octavian.extraGroups = [ "docker" ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = pkgs.lib.mkForce true;  
@@ -352,7 +356,9 @@ environment.sessionVariables = {
   vencord
   jetbrains-mono
   libreoffice
-
+  fastfetch
+  dos2unix
+  
   #themes
   colloid-kde
   colloid-gtk-theme

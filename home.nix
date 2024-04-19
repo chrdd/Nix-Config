@@ -325,7 +325,7 @@ wayland.windowManager.hyprland = {
       "bitwarden"
       "whatsapp-for-linux"
       "discord"
-      "wayvnc 0.0.0.0"
+      #"wayvnc 0.0.0.0"
       "kdeconnect-cli --refresh"
       "systemctl start --user polkit-gnome-authentication-agent-1"
       "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
@@ -352,26 +352,26 @@ wayland.windowManager.hyprland = {
 
     # INPUTS
     input  = {
-      kb_layout = "us";
-      follow_mouse = 1;
+      "kb_layout" = "us";
+      "follow_mouse" = 1;
       sensitivity = -0.3; # -1.0 - 1.0, 0 means no modification.
     };
     #GENERAL
     general = {
-      gaps_in=5;
-      gaps_out=5;
-      border_size=0;
-      no_border_on_floating = true;
+      "gaps_in"=5;
+      "gaps_out"=5;
+      "border_size"=0;
+      "no_border_on_floating" = true;
       layout = "dwindle";
     };
 
     # MISC
     misc = {
-      disable_hyprland_logo = true;
-      disable_splash_rendering = true;
-      mouse_move_enables_dpms = true;
-      enable_swallow = true;
-      swallow_regex = "^(kitty)$";
+      "disable_hyprland_logo" = true;
+      "disable_splash_rendering" = true;
+      "mouse_move_enables_dpms" = true;
+      "enable_swallow" = true;
+      "swallow_regex" = "^(kitty)$";
     };
 
     decoration = {
@@ -380,7 +380,7 @@ wayland.windowManager.hyprland = {
 
       #OPACITY
       active_opacity = 1.0;
-      inactive_opacity = 1.0;
+      inactive_opacity = 0.9;
 
       #BLUR
       blur = {
@@ -388,7 +388,7 @@ wayland.windowManager.hyprland = {
         size = 3;
         passes = 3;
         new_optimizations = true;
-        ignore_opacity = true;
+        ignore_opacity = false;
       };
       # SHADOW
       "drop_shadow" = true;
@@ -464,17 +464,17 @@ wayland.windowManager.hyprland = {
     windowrulev2 = [
       #OPACITY
       "opacity 0.75 0.75,class:^(alacritty)$"
-      "opacity 0.90 0.90,class:^(floorp)$"
-      "opacity 0.80 0.80,class:^(Steam)$"
-      "opacity 0.80 0.80,class:^(steam)$"
-      "opacity 0.80 0.80,class:^(steamwebhelper)$"
+      "opacity 0.95 0.90,class:^(floorp)$"
+      "opacity 0.95 0.90,class:^(Steam)$"
+      "opacity 0.95 0.90,class:^(steam)$"
+      "opacity 0.95 0.90,class:^(steamwebhelper)$"
       "opacity 0.80 0.80,class:^(plexamp)$"
-      "opacity 0.80 0.80,class:^(Code)$"
+      "opacity 0.95 0.90,class:^(Code)$"
       "opacity 0.80 0.80,class:^(thunar)$"
       "opacity 0.80 0.80,class:^(file-roller)$"
       "opacity 0.80 0.80,class:^(nwg-look)$"
       "opacity 0.80 0.80,class:^(qt5ct)$"
-      "opacity 0.80 0.80,class:^(discord)$" #Discord-Electron
+      "opacity 0.90 0.90,class:^(discord)$" #Discord-Electron
       "opacity 0.80 0.80,class:^(WebCord)$" #WebCord-Electron
       "opacity 0.80 0.70,class:^(pavucontrol)$"
       "opacity 0.80 0.70,class:^(org.kde.polkit-kde-authentication-agent-1)$"
