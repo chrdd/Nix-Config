@@ -300,7 +300,12 @@ wayland.windowManager.hyprland = {
   enable = true;
   settings = {
     #MAIN
-
+    #source = [
+    #  "~/.config/hypr/startup.conf"
+    #  "~/.config/hypr/env.conf"
+    #  "~/.config/hypr/windowrule.conf"
+    #  "~/.config/hypr/keybinds.conf" 
+    #];
     #SOURCES
     #"source" = "~/.config/hypr/startup.conf";
     #"source" = "~/.config/hypr/env.conf";

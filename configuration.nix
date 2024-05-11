@@ -185,15 +185,26 @@ environment.sessionVariables = {
    services.xserver.enable = true;
 
    # Enable the KDE Plasma Desktop Environment.
-   services.xserver.displayManager.sddm.enable = true;
-   services.xserver.desktopManager.plasma5.enable = true;
+   #services.xserver.displayManager.sddm.wayland.enable = true;
+   services.displayManager.sddm.wayland.enable = true;
+   services.xserver.displayManager.gdm.enable = true; 
+   # Sway
+   programs.sway = {
+     enable = true;
+     wrapperFeatures.gtk = true;
+   };
+   # Swaylock
+   #programs.swaylock = {
+   #  enable= true;
+   #};
+   # Swaylock fix
+   security.pam.services.swaylock = {};
+   #services.xserver.desktopManager.plasma5.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
-
+  
+  services.xserver.xkb.variant = "";
+  services.xserver.xkb.layout = "us";
 
   services = {
     syncthing = {
@@ -247,6 +258,20 @@ environment.sessionVariables = {
   nixpkgs.config.allowUnfree = pkgs.lib.mkForce true;  
   nixpkgs.config.allowInsecure = true;
 
+  #Fonts
+  fonts.packages = with pkgs; [
+  noto-fonts
+  noto-fonts-cjk
+  noto-fonts-emoji
+  liberation_ttf
+  fira-code
+  fira-code-symbols
+  mplus-outline-fonts.githubRelease
+  dina-font
+  proggyfonts
+  jetbrains-mono
+  ];
+  
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -263,6 +288,7 @@ environment.sessionVariables = {
   discord
   bitwarden
   obsidian
+  github-desktop
   pkgs.dunst
   syncthing
   libnotify
@@ -378,7 +404,7 @@ environment.sessionVariables = {
   python311
   stdenv.cc.cc.lib
   libstdcxx5
-  poetry
+ # poetry
   gnumake
   cmake
   ninja
