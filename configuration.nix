@@ -288,6 +288,9 @@ environment.sessionVariables = {
   discord
   bitwarden
   obsidian
+  postgresql
+  postman
+  jetbrains.idea-ultimate
   github-desktop
   pkgs.dunst
   syncthing
@@ -411,6 +414,12 @@ environment.sessionVariables = {
   gcc
   ];
   
+  #postgresql
+  services.postgresql = {
+    enable = true;
+  #package = pkgs.postgresql_15;
+  # ...
+  };
 
   # ZSH
   users.defaultUserShell = pkgs.zsh;
