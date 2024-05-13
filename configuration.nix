@@ -183,7 +183,13 @@ environment.sessionVariables = {
    #};  
    # Enable the X11 windowing system.
    services.xserver.enable = true;
+   #RDP
+   #services.xserver.displayManager.sddm.enable = true;
+   #services.xserver.desktopManager.plasma5.enable = true;
 
+   #services.xrdp.enable = true;
+   #services.xrdp.defaultWindowManager = "hyprland";
+   #services.xrdp.openFirewall = true;
    # Enable the KDE Plasma Desktop Environment.
    #services.xserver.displayManager.sddm.wayland.enable = true;
    services.displayManager.sddm.wayland.enable = true;
