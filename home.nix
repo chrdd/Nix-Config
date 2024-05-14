@@ -330,7 +330,7 @@ wayland.windowManager.hyprland = {
       "bitwarden"
       "whatsapp-for-linux"
       "discord"
-      "wayvnc 0.0.0.0"
+      #"wayvnc 0.0.0.0"
       "kdeconnect-cli --refresh"
       "systemctl start --user polkit-gnome-authentication-agent-1"
       "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"

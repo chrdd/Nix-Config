@@ -153,6 +153,7 @@ environment.sessionVariables = {
    boot.extraModulePackages = with config.boot.kernelPackages; [
      v4l2loopback
    ];
+   #boot.kernelModules = [“v4l2loopback”];
    boot.extraModprobeConfig = ''
      options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
    '';
@@ -294,6 +295,8 @@ environment.sessionVariables = {
   discord
   bitwarden
   obsidian
+  droidcam
+  #v4l2loopback
   postgresql
   postman
   jetbrains.idea-ultimate
@@ -467,11 +470,15 @@ environment.sessionVariables = {
     allowedTCPPortRanges = [ 
       { from = 1714; to = 1764; } # KDE Connect
     ];
-    allowedTCPPorts = [22];  
+    allowedTCPPorts = [22 4747 5900 ];  
     allowedUDPPortRanges = [ 
       { from = 1714; to = 1764; } # KDE Connect
     ];  
+    allowedUDPPorts = [ 4747 ];
   }; 
+
+
+  programs.adb.enable = true;
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
