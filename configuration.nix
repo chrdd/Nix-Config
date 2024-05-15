@@ -90,6 +90,8 @@ programs.thunar.plugins = with pkgs.xfce; [
 
 services.gvfs.enable = true; # Mount, trash, and other functionalities
 services.tumbler.enable = true; # Thumbnail support for images
+programs.file-roller.enable = true;
+
 
 # Flatpak
 # https://github.com/gmodena/nix-flatpak
@@ -150,12 +152,24 @@ environment.sessionVariables = {
  
     #OBS
     # https://nixos.wiki/wiki/OBS_Studio
-   boot.extraModulePackages = with config.boot.kernelPackages; [
-     v4l2loopback
-   ];
+   #boot.extraModulePackages = with config.boot.kernelPackages; [
+   #  v4l2loopback
+   #];
    #boot.kernelModules = [“v4l2loopback”];
+    boot.extraModulePackages = with config.boot.kernelPackages;
+    [ v4l2loopback.out ];
+
+    # Activate kernel modules (choose from built-ins and extra ones)
+  boot.kernelModules = [
+    # Virtual Camera
+    "v4l2loopback"
+    # Virtual Microphone, built-in
+    "snd-aloop"
+  ];
+
+
    boot.extraModprobeConfig = ''
-     options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+     options v4l2loopback devices=1 video_nr=1 card_label="Virtual Cam" exclusive_caps=1
    '';
    security.polkit.enable = true; 
    
