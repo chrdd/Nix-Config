@@ -278,6 +278,13 @@ environment.sessionVariables = {
   # Allow unfree packages
   nixpkgs.config.allowUnfree = pkgs.lib.mkForce true;  
   nixpkgs.config.allowInsecure = true;
+  
+  # Vivaldi
+  nixpkgs.config.vivaldi = {
+      proprietaryCodecs = true;
+      enableWideVine = true;
+    };
+
 
   #Fonts
   fonts.packages = with pkgs; [
@@ -299,6 +306,7 @@ environment.sessionVariables = {
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   hyprland
+ # cudaPackages.nvidia_driver
   wget
   pkgs.waybar
   (pkgs.waybar.overrideAttrs (oldAttrs: {
@@ -309,6 +317,19 @@ environment.sessionVariables = {
   discord
   bitwarden
   obsidian
+  tor
+  tor-browser
+  ollama
+  zabbix.web
+  zabbix.agent
+  zabbixctl
+  vivaldi
+
+  
+  net-snmp
+  gparted
+  f3
+  rpi-imager
   droidcam
   #v4l2loopback
   postgresql

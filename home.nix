@@ -659,7 +659,7 @@ wayland.windowManager.hyprland = {
     "$screenshot" = "$scriptsDir/screensht";
     "$colorpicker" = "$scriptsDir/colorpicker";
     "$files" = "thunar";
-    "$browser" = "floorp";
+    "$browser" = "vivaldi";
   };
   };
 }
