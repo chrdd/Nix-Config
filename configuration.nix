@@ -317,6 +317,7 @@ environment.sessionVariables = {
   discord
   bitwarden
   obsidian
+  tmux
   tor
   tor-browser
   ollama
