@@ -87,7 +87,7 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  
+ 
   home.packages = [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
@@ -97,8 +97,19 @@
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
+    (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" "FiraCode" "DroidSansMono" ]; })
+    pkgs.noto-fonts
+    pkgs.noto-fonts-cjk
+    pkgs.noto-fonts-emoji
+    pkgs.liberation_ttf
+    pkgs.fira-code
+    pkgs.fira-code-symbols
+    pkgs.mplus-outline-fonts.githubRelease
+    # pkgs.dina-font
+    pkgs.proggyfonts
+    pkgs.jetbrains-mono
+    pkgs.roboto-serif
+    pkgs.aileron
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
@@ -108,7 +119,7 @@
 
 
   ];
-
+fonts.fontconfig.enable = true;
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {

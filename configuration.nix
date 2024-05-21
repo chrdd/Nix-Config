@@ -287,6 +287,7 @@ environment.sessionVariables = {
 
 
   #Fonts
+  #fonts.fontconfig.enableProfileFonts = true;
   fonts.packages = with pkgs; [
   noto-fonts
   noto-fonts-cjk
