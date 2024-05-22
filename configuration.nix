@@ -263,7 +263,7 @@ environment.sessionVariables = {
   users.users.octavian = {
     isNormalUser = true;
     description = "octavian";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "audio" ];
     packages = with pkgs; [
       firefox
       kate
@@ -284,7 +284,17 @@ environment.sessionVariables = {
       proprietaryCodecs = true;
       enableWideVine = true;
     };
-
+  #Sunshine
+  security.wrappers.sunshine = {
+      owner = "root";
+      group = "root";
+      capabilities = "cap_sys_admin+p";
+      source = "${pkgs.sunshine}/bin/sunshine";
+  };
+  
+  services.avahi.enable = true; 
+  services.avahi.publish.enable = true;
+  services.avahi.publish.userServices = true;
 
   #Fonts
   #fonts.fontconfig.enableProfileFonts = true;
@@ -326,6 +336,7 @@ environment.sessionVariables = {
   zabbix.agent
   zabbixctl
   vivaldi
+  docker-compose
 
   
   net-snmp
@@ -481,6 +492,9 @@ environment.sessionVariables = {
       wantedBy = [ "xdg-desktop-portal.service" ];
       before = [ "xdg-desktop-portal.service" ];
    };
+  #KDEConnect
+  programs.kdeconnect.enable = true;
+
 
   # OpenGL
    hardware.opengl = {
@@ -507,11 +521,13 @@ environment.sessionVariables = {
     allowedTCPPortRanges = [ 
       { from = 1714; to = 1764; } # KDE Connect
     ];
-    allowedTCPPorts = [22 4747 5900 ];  
+    allowedTCPPorts = [22 4747 47984 47989 47990 48010 5900 8085 ];  
     allowedUDPPortRanges = [ 
       { from = 1714; to = 1764; } # KDE Connect
+      { from = 47998; to = 48000; }
+     #{ from = 8000; to = 8010; }
     ];  
-    allowedUDPPorts = [ 4747 ];
+    allowedUDPPorts = [ 4747 8085 ];
   }; 
 
 
