@@ -55,7 +55,7 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  #networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Bucharest";
@@ -139,6 +139,8 @@ environment.sessionVariables = {
   NIXOS_OZONE_WL = "1";
 };
  
+  services.xserver.videoDrivers = ["nvidia"];
+
   # Nvidia settings
   hardware.nvidia = {
     modesetting.enable = true;
@@ -146,6 +148,7 @@ environment.sessionVariables = {
     powerManagement = {
       enable = true;
       };
+    open = false;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
@@ -191,7 +194,7 @@ environment.sessionVariables = {
    };
 
    #Load Nvidia drivers 
-   services.xserver.videoDrivers = ["nvidia"]; # or "nvidiaLegacy470 etc.
+   #services.xserver.videoDrivers = ["nvidia"]; # or "nvidiaLegacy470 etc.
    #services.xserver.displayManager.gdm = {
      #enable = true;
      #nvidiaWayland = true;
@@ -200,7 +203,7 @@ environment.sessionVariables = {
    services.xserver.enable = true;
    #RDP
    #services.xserver.displayManager.sddm.enable = true;
-   #services.xserver.desktopManager.plasma5.enable = true;
+   services.xserver.desktopManager.plasma5.enable = true;
 
    #services.xrdp.enable = true;
    #services.xrdp.defaultWindowManager = "hyprland";
@@ -209,11 +212,14 @@ environment.sessionVariables = {
    #services.xserver.displayManager.sddm.wayland.enable = true;
    services.displayManager.sddm.wayland.enable = true;
    services.xserver.displayManager.gdm.enable = true; 
+   #Default session
+   services.displayManager.defaultSession = "hyprland";
+   
    # Sway
-   programs.sway = {
-     enable = true;
-     wrapperFeatures.gtk = true;
-   };
+   #programs.sway = {
+   #  enable = true;
+   #  wrapperFeatures.gtk = true;
+   #};
    # Swaylock
    #programs.swaylock = {
    #  enable= true;
@@ -271,6 +277,7 @@ environment.sessionVariables = {
     ];
   };
 
+
   #docker
   virtualisation.docker.enable = true;
   #users.users.octavian.extraGroups = [ "docker" ];
@@ -299,16 +306,16 @@ environment.sessionVariables = {
   #Fonts
   #fonts.fontconfig.enableProfileFonts = true;
   fonts.packages = with pkgs; [
-  noto-fonts
-  noto-fonts-cjk
-  noto-fonts-emoji
-  liberation_ttf
-  fira-code
-  fira-code-symbols
-  mplus-outline-fonts.githubRelease
-  dina-font
-  proggyfonts
-  jetbrains-mono
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+    mplus-outline-fonts.githubRelease
+    dina-font
+    proggyfonts
+    jetbrains-mono
   ];
   
   # List packages installed in system profile. To search, run:
@@ -316,159 +323,161 @@ environment.sessionVariables = {
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-  hyprland
- # cudaPackages.nvidia_driver
-  wget
-  pkgs.waybar
-  (pkgs.waybar.overrideAttrs (oldAttrs: {
-    mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-  })
-  )
-  #wl-paste
-  discord
-  bitwarden
-  obsidian
-  tmux
-  tor
-  tor-browser
-  ollama
-  zabbix.web
-  zabbix.agent
-  zabbixctl
-  vivaldi
-  docker-compose
+    hyprland
+  # cudaPackages.nvidia_driver
+    wget
+    pkgs.waybar
+    (pkgs.waybar.overrideAttrs (oldAttrs: {
+      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+    })
+    )
+    #wl-paste
+    discord
+    bitwarden
+    obsidian
+    tmux
+    tor
+    tor-browser
+    ollama
+    zabbix.web
+    zabbix.agent
+    zabbixctl
+    vivaldi
+    docker-compose
 
-  
-  net-snmp
-  gparted
-  f3
-  rpi-imager
-  droidcam
-  #v4l2loopback
-  postgresql
-  postman
-  jetbrains.idea-ultimate
-  github-desktop
-  pkgs.dunst
-  syncthing
-  libnotify
-  hyprpaper
-  kitty
-  git
-  alacritty
-  rofi-wayland
-  floorp
-  vscode
-  swaylock
-  wlogout
-  tailscale
-  btop
-  bottom
-  zathura
-  steam
-  mpv
-  vlc
-  obs-studio
-  whatsapp-for-linux
-  wayvnc
-  tigervnc
-  sunshine
-  z-lua
-  fish
-  sshfs
-  ncdu
-  ffmpeg_5
-  grim
-  slurp
-  wireplumber
-  xdg-desktop-portal-gtk
-  xdg-desktop-portal-hyprland
-  zsh
-  lsd
-  pavucontrol
-  viewnior
-  starship
-  wl-clipboard
-  wf-recorder
-  ffmpegthumbnailer
-  grimblast
-  playerctl
-  xfce.tumbler
-  nwg-look
-  nordic
-  papirus-icon-theme
-  hackgen-nf-font
-  udev-gothic-nf
-  noto-fonts
-  hyprpicker
-  gnome.gnome-keyring
-  imagemagick
-  pamixer
-  libsForQt5.kdeconnect-kde
-  xdotool
-  xbindkeys
-  neofetch
-  electron
-  vscodium
-  ntfs3g
-  pkgs.oh-my-zsh
-  pkgs.zsh-completions
-  pkgs.zsh-powerlevel10k
-  pkgs.zsh-syntax-highlighting
-  #pkgs.zsh-history-substring-search
-  sublime
-  noto-fonts
-  noto-fonts-cjk
-  noto-fonts-emoji
-  font-awesome
-  source-han-sans
-  source-han-sans-japanese
-  source-han-serif-japanese
-  hyprlock
-  nwg-look
-  xbindkeys
-  kdenlive
-  parsec-bin
-  plexamp
-  flatpak
-  pkgs.home-manager
-  todoist-electron
-  masterpdfeditor
-  tailscale
-  actkbd
-  bottles
-  arduino-ide
-  pkgs.polkit_gnome
-  vencord
-  jetbrains-mono
-  libreoffice
-  fastfetch
-  dos2unix
-  
-  #themes
-  colloid-kde
-  colloid-gtk-theme
-  colloid-icon-theme
-  papirus-icon-theme
-
-  #Java
-  maven
-  jdk17
-  speedtest-cli
-  nodejs
-  kwalletmanager
-  nerdfonts
     
-  #v4l2loopback
-  #privateGPT dependencies
-  python311
-  stdenv.cc.cc.lib
-  libstdcxx5
- # poetry
-  gnumake
-  cmake
-  ninja
-  gcc
+    net-snmp
+    gparted
+    f3
+    rpi-imager
+    droidcam
+    #v4l2loopback
+    postgresql
+    postman
+    jetbrains.idea-ultimate
+    github-desktop
+    pkgs.dunst
+    syncthing
+    libnotify
+    hyprpaper
+    kitty
+    git
+    alacritty
+    rofi-wayland
+    floorp
+    vscode
+    swaylock
+    wlogout
+    tailscale
+    btop
+    bottom
+    zathura
+    steam
+    mpv
+    vlc
+    obs-studio
+    whatsapp-for-linux
+    wayvnc
+    tigervnc
+    sunshine
+    z-lua
+    fish
+    sshfs
+    ncdu
+    ffmpeg_5
+    grim
+    slurp
+    wireplumber
+    xdg-desktop-portal-gtk
+    #xdg-dekstop-portal-kde
+    xdg-desktop-portal-hyprland
+    zsh
+    lsd
+    pavucontrol
+    viewnior
+    starship
+    wl-clipboard
+    wf-recorder
+    ffmpegthumbnailer
+    grimblast
+    playerctl
+    xfce.tumbler
+    nwg-look
+    nordic
+    papirus-icon-theme
+    hackgen-nf-font
+    udev-gothic-nf
+    noto-fonts
+    hyprpicker
+    gnome.gnome-keyring
+    imagemagick
+    pamixer
+    libsForQt5.kdeconnect-kde
+   # kdeconnect-kde
+    xdotool
+    xbindkeys
+    neofetch
+    electron
+    vscodium
+    ntfs3g
+    pkgs.oh-my-zsh
+    pkgs.zsh-completions
+    pkgs.zsh-powerlevel10k
+    pkgs.zsh-syntax-highlighting
+    #pkgs.zsh-history-substring-search
+    sublime
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    font-awesome
+    source-han-sans
+    source-han-sans-japanese
+    source-han-serif-japanese
+    hyprlock
+    nwg-look
+    xbindkeys
+    kdenlive
+    parsec-bin
+    plexamp
+    flatpak
+    pkgs.home-manager
+    todoist-electron
+    masterpdfeditor
+    tailscale
+    actkbd
+    bottles
+    arduino-ide
+    pkgs.polkit_gnome
+    vencord
+    jetbrains-mono
+    libreoffice
+    fastfetch
+    dos2unix
+    
+    #themes
+    colloid-kde
+    colloid-gtk-theme
+    colloid-icon-theme
+    papirus-icon-theme
+
+    #Java
+    maven
+    jdk17
+    speedtest-cli
+    nodejs
+    kwalletmanager
+    nerdfonts
+      
+    #v4l2loopback
+    #privateGPT dependencies
+    python311
+    stdenv.cc.cc.lib
+    libstdcxx5
+  # poetry
+    gnumake
+    cmake
+    ninja
+    gcc
   ];
   
   #postgresql
@@ -486,7 +495,10 @@ environment.sessionVariables = {
 
   # XDG desktop portals
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal.extraPortals = [ 
+	pkgs.xdg-desktop-portal-gtk
+	#pkgs.xdg-dekstop-portal-kde
+	 ];
 
   systemd.user.services.xdg-desktop-portal-gtk = {
       wantedBy = [ "xdg-desktop-portal.service" ];
@@ -494,6 +506,10 @@ environment.sessionVariables = {
    };
   #KDEConnect
   programs.kdeconnect.enable = true;
+
+  #GSConnect
+  
+
 
 
   # OpenGL
@@ -515,6 +531,8 @@ environment.sessionVariables = {
   # Enable the OpenSSH daemon.
    services.openssh.enable = true;
 
+  # networking
+  networking.networkmanager.enable = true;
   # Open ports in the firewall.
    networking.firewall = { 
     enable = true;

@@ -14,6 +14,14 @@
   # gtk.enable = true;
   # qt.enable = true;
 
+  #Stylix
+
+  # home-manager.sharedModules = [{
+  #    stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/material-darker.yaml";
+  # }];
+
+ 
+
   # GTK Themeing
   gtk = {
     enable = true;
