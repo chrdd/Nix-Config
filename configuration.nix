@@ -92,6 +92,12 @@ services.gvfs.enable = true; # Mount, trash, and other functionalities
 services.tumbler.enable = true; # Thumbnail support for images
 programs.file-roller.enable = true;
 
+#Bluetooth
+hardware.bluetooth.enable = true; # enables support for Bluetooth
+hardware.bluetooth.powerOnBoot = true; 
+services.blueman.enable = true;
+
+
 
 # Flatpak
 # https://github.com/gmodena/nix-flatpak
@@ -335,6 +341,7 @@ environment.sessionVariables = {
     discord
     bitwarden
     obsidian
+    heroic
     tmux
     tor
     tor-browser
