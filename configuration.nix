@@ -351,7 +351,8 @@ environment.sessionVariables = {
     zabbixctl
     vivaldi
     docker-compose
-
+   # modelsim
+    youtube-music
     
     net-snmp
     gparted
