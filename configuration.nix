@@ -101,12 +101,13 @@ services.blueman.enable = true;
 
 # Flatpak
 # https://github.com/gmodena/nix-flatpak
-services.flatpak.enable=true;
+services.flatpak.enable = true;
 services.flatpak.packages = [
-  { appId = "tv.plex.PlexDesktop"; origin = "flathub";  }
-  { appId = "tv.plex.PlexHTPC"; origin = "flathub";  }
-  { appId = "com.github.tchx84.Flatseal"; origin = "flathub";  }   
+  { appId = "tv.plex.PlexDesktop"; origin = "flathub"; }
+  { appId = "tv.plex.PlexHTPC"; origin = "flathub"; }
+  { appId = "com.github.tchx84.Flatseal"; origin = "flathub"; }
 ];
+
 
 # Tailscale
 services.tailscale.enable = true;
@@ -143,20 +144,24 @@ programs.zsh = {
 environment.sessionVariables = {
   WLR_NO_HARDWARE_CURSORS = "1";
   NIXOS_OZONE_WL = "1";
+  LIBGL_DEBUG = "verbose";
+  EGL_PLATFORM = "wayland";
 };
+
  
   services.xserver.videoDrivers = ["nvidia"];
 
   # Nvidia settings
   hardware.nvidia = {
     modesetting.enable = true;
-    nvidiaSettings= true;
-    powerManagement = {
-      enable = true;
-      };
+    nvidiaSettings = true;
+    powerManagement.enable = true;
     open = false;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+
+  # services.xserver.videoDrivers = [ "nvidia" ];
+
 
  
     #OBS
@@ -275,7 +280,7 @@ environment.sessionVariables = {
   users.users.octavian = {
     isNormalUser = true;
     description = "octavian";
-    extraGroups = [ "networkmanager" "wheel" "docker" "audio" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" ];
     packages = with pkgs; [
       firefox
       kate
@@ -285,7 +290,7 @@ environment.sessionVariables = {
 
 
   #docker
-  virtualisation.docker.enable = true;
+  #virtualisation.docker.enable = true;
   #users.users.octavian.extraGroups = [ "docker" ];
 
   # Allow unfree packages
@@ -372,7 +377,14 @@ environment.sessionVariables = {
     git
     alacritty
     rofi-wayland
-    floorp
+   # floorp
+    libva
+    libvdpau
+    libva-utils
+    vdpauinfo
+    vulkan-tools
+    mesa
+    mesa-demos
     vscode
     swaylock
     wlogout
@@ -522,10 +534,16 @@ environment.sessionVariables = {
 
   # OpenGL
    hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };   
+  enable = true;
+  driSupport = true;
+  driSupport32Bit = true;
+  extraPackages = with pkgs; [
+    pkgs.vulkan-loader
+    pkgs.vulkan-validation-layers
+    #pkgs.nvidia-x11.vulkan-driver
+    ];
+  };  
+ 
   #Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
