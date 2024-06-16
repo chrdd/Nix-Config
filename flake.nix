@@ -1,27 +1,74 @@
+# /etc/nixos/flake.nix
+
 {
-  description = "Octavian's NixOS Configuration";
+  description = "flake for octavian";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
-      inputs.nixpkgs.follows = "nixpkgs";
+    
+   # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+   #  hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      type = "git";
+      url = "https://github.com/hyprwm/Hyprland";
+      submodules = true;
+    }; 
+   
+    stylix.url = "github:danth/stylix";
+    
+    hyprland-plugins = {
+        url = "github:hyprwm/hyprland-plugins";
+        inputs.hyprland.follows = "hyprland"; 
     };
-    hyprland.url = "github:hyprwm/Hyprland";
-  };
+    
+    home-manager={
+       url = "github:nix-community/home-manager";
+       inputs.nixpkgs.follows = "nixpkgs";
+      };
+    
+    nix-flatpak.url = "github:gmodena/nix-flatpak";  
+    
+    nix-colors.url = "github:misterio77/nix-colors";
+    
+    };
 
-  outputs = { nixpkgs, home-manager, hyprland, ... }: let
-    system = "x86_64-linux";
-  in
+  outputs = { self, nixpkgs,home-manager,nix-flatpak,stylix,... }@inputs:
+  #  let   
+  #    system= "x86_64-linux";
+  #    pkgs = import nixpkgs{
+  #      inherit system;
+  #      config = {
+  #        allowUnfree = true;
+  #      };
+  #    };
+  #   in
   {
-    nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs; };
+   nixosConfigurations = {
+      octavian=nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs ;};#system
+      system= "x86_64-linux";
         modules = [
           ./configuration.nix
+          ./dotfiles/default.nix
+          ./apps/default.nix
+          #./home.nix
+          nix-flatpak.nixosModules.nix-flatpak
+          #stylix.nixosModules.stylix
         ];
       };
     };
-  };
+ 
+
+    # homeConfigurations."octavian" = home-manager.lib.homeManagerConfiguration {
+    #   pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    #   modules = [ stylix.homeManagerModules.stylix ./home.nix ];
+    # };
+  # homeConfigurations."octavian" = home-manager.lib.homeManagerConfiguration {
+  #   pkgs = nixpkgs.legacyPackages.x86_64_linux;
+  #   modules = [
+  #     ./home.nix
+  #     stylix.homeManagerModules.stylix
+  #   ];
+  # };
+};
 }
