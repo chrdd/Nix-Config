@@ -557,6 +557,7 @@ environment.sessionVariables = {
   # Enable the OpenSSH daemon.
    services.openssh.enable = true;
 
+ 
   # networking
   networking.networkmanager.enable = true;
   # Open ports in the firewall.
