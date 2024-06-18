@@ -10,11 +10,6 @@
   home.username = "octavian";
   home.homeDirectory = "/home/octavian";
   
-
-   
-
-
-
    # Enable GTK and QT
   # gtk.enable = true;
   # qt.enable = true;

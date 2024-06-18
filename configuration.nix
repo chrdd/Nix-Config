@@ -377,7 +377,7 @@ environment.sessionVariables = {
     git
     alacritty
     rofi-wayland
-    floorp
+   # floorp
     libva
     libvdpau
     libva-utils
@@ -557,7 +557,6 @@ environment.sessionVariables = {
   # Enable the OpenSSH daemon.
    services.openssh.enable = true;
 
- 
   # networking
   networking.networkmanager.enable = true;
   # Open ports in the firewall.
