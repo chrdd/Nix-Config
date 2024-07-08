@@ -148,17 +148,34 @@ environment.sessionVariables = {
   EGL_PLATFORM = "wayland";
 };
 
+## AMD
+
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  services.xserver.videoDrivers = ["amdgpu"];
+
+  systemd.tmpfiles.rules = [
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+  ];
  
-  services.xserver.videoDrivers = ["nvidia"];
+  #hardware.opengl.driSupport = true; # This is already enabled by default
+  #hardware.opengl.driSupport32Bit = true; # For 32 bit applications
+  hardware.opengl.extraPackages = with pkgs; [
+  amdvlk
+  ];
+  # For 32 bit applications 
+  hardware.opengl.extraPackages32 = with pkgs; [
+    driversi686Linux.amdvlk
+  ];
+
 
   # Nvidia settings
-  hardware.nvidia = {
-    modesetting.enable = true;
-    nvidiaSettings = true;
-    powerManagement.enable = true;
-    open = false;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
+  # hardware.nvidia = {
+  #   modesetting.enable = true;
+  #   nvidiaSettings = true;
+  #   powerManagement.enable = true;
+  #   open = false;
+  #   package = config.boot.kernelPackages.nvidiaPackages.stable;
+  # };
 
   # services.xserver.videoDrivers = [ "nvidia" ];
 
@@ -257,7 +274,7 @@ environment.sessionVariables = {
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
+ # sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
