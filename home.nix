@@ -7,8 +7,8 @@
   ];
   colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;  # Home Manager needs a bit of information about you and the paths it should manage
   
-  home.username = "octavian";
-  home.homeDirectory = "/home/octavian";
+   home.username = "octavian";
+   home.homeDirectory = "/home/octavian";
   
    # Enable GTK and QT
   # gtk.enable = true;
@@ -369,7 +369,7 @@ wayland.windowManager.hyprland = {
 
     # MONITOR
     monitor = [
-        "DP-1,1920x1080@144,0x1080,auto"
+        "DP-3,1920x1080@144,0x1080,auto"
         "HDMI-A-1 ,preferred,0x0,auto"
     ]; 
     

@@ -6,14 +6,13 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     
-   # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-   #  hyprland.url = "github:hyprwm/Hyprland";
     hyprland = {
       type = "git";
       url = "https://github.com/hyprwm/Hyprland";
       submodules = true;
     }; 
-   
+    # hyprland.url = "github:hyprwm/Hyprland";
+    
     stylix.url = "github:danth/stylix";
     
     hyprland-plugins = {
@@ -33,42 +32,28 @@
     };
 
   outputs = { self, nixpkgs,home-manager,nix-flatpak,stylix,... }@inputs:
-  #  let   
-  #    system= "x86_64-linux";
-  #    pkgs = import nixpkgs{
-  #      inherit system;
-  #      config = {
-  #        allowUnfree = true;
-  #      };
-  #    };
-  #   in
+   let   
+     system= "x86_64-linux";
+     pkgs = import nixpkgs{
+       inherit system;
+       config = {
+         allowUnfree = true;
+       };
+     };
+    in
   {
    nixosConfigurations = {
       octavian=nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs ;};#system
-      system= "x86_64-linux";
+      specialArgs = {inherit inputs system;};
         modules = [
           ./configuration.nix
           ./dotfiles/default.nix
           ./apps/default.nix
           #./home.nix
           nix-flatpak.nixosModules.nix-flatpak
-          #stylix.nixosModules.stylix
+          #inputs.stylix.nixosModules.stylix
         ];
       };
     };
- 
-
-    # homeConfigurations."octavian" = home-manager.lib.homeManagerConfiguration {
-    #   pkgs = nixpkgs.legacyPackages.x86_64-linux;
-    #   modules = [ stylix.homeManagerModules.stylix ./home.nix ];
-    # };
-  # homeConfigurations."octavian" = home-manager.lib.homeManagerConfiguration {
-  #   pkgs = nixpkgs.legacyPackages.x86_64_linux;
-  #   modules = [
-  #     ./home.nix
-  #     stylix.homeManagerModules.stylix
-  #   ];
-  # };
-};
+  };
 }
