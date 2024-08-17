@@ -74,12 +74,12 @@
     LC_TELEPHONE = "ro_RO.UTF-8";
     LC_TIME = "ro_RO.UTF-8";
   };
-# Enable Hyprland
-programs.hyprland = {
-  enable = true;
-  package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-  xwayland.enable = true;
-};
+  # Enable Hyprland
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+    xwayland.enable = true;
+  };
 
 #VirtualBox
 
@@ -152,14 +152,14 @@ programs.zsh = {
     }; 
   };
 
-environment.sessionVariables = {
-  WLR_NO_HARDWARE_CURSORS = "1";
-  NIXOS_OZONE_WL = "1";
-  LIBGL_DEBUG = "verbose";
-  EGL_PLATFORM = "wayland";
-};
+  environment.sessionVariables = {
+    WLR_NO_HARDWARE_CURSORS = "1";
+    NIXOS_OZONE_WL = "1";
+    LIBGL_DEBUG = "verbose";
+    EGL_PLATFORM = "wayland";
+  };
 
-## AMD
+  ## AMD 
 
   boot.initrd.kernelModules = ["amdgpu"];
   services.xserver.videoDrivers = ["modesetting"];
@@ -198,8 +198,8 @@ environment.sessionVariables = {
    #  v4l2loopback
    #];
    #boot.kernelModules = [“v4l2loopback”];
-    boot.extraModulePackages = with config.boot.kernelPackages;
-    [ v4l2loopback.out ];
+  boot.extraModulePackages = with config.boot.kernelPackages;
+  [ v4l2loopback.out ];
 
     # Activate kernel modules (choose from built-ins and extra ones)
   boot.kernelModules = [
@@ -217,19 +217,19 @@ environment.sessionVariables = {
    
    # Autostart polkit_gnome
    systemd = {
-  user.services.polkit-gnome-authentication-agent-1 = {
-    description = "polkit-gnome-authentication-agent-1";
-    wantedBy = [ "graphical-session.target" ];
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-    serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-        };
-     };
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+          };
+      };
    };
 
    #Load Nvidia drivers 
@@ -285,7 +285,7 @@ environment.sessionVariables = {
   services.printing.enable = true;
 
   # Enable sound with pipewire.
- # sound.enable = true;
+  # sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -360,16 +360,15 @@ environment.sessionVariables = {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
     hyprland
-  # cudaPackages.nvidia_driver
+    # cudaPackages.nvidia_driver
     wget
     pkgs.waybar
     (pkgs.waybar.overrideAttrs (oldAttrs: {
       mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-    })
-    )
+    }))
     hyprcursor
     #wl-paste
     discord
@@ -389,9 +388,8 @@ environment.sessionVariables = {
     zabbixctl
     vivaldi
     docker-compose
-   # modelsim
+    # modelsim
     youtube-music
-    
     net-snmp
     gparted
     f3
@@ -410,7 +408,7 @@ environment.sessionVariables = {
     git
     alacritty
     rofi-wayland
-   # floorp
+    # floorp
     libva
     libvdpau
     libva-utils
@@ -469,7 +467,7 @@ environment.sessionVariables = {
     imagemagick
     pamixer
     libsForQt5.kdeconnect-kde
-   # kdeconnect-kde
+    #kdeconnect-kde
     xdotool
     xbindkeys
     neofetch
@@ -526,10 +524,10 @@ environment.sessionVariables = {
       
     #v4l2loopback
     #privateGPT dependencies
-   # python311
+    # python311
     #stdenv.cc.cc.lib
     #libstdcxx5
-  # poetry
+    #poetry
     #gnumake
     #cmake
     #ninja
@@ -569,36 +567,36 @@ environment.sessionVariables = {
 
 
   # OpenGL
-   hardware.graphics = {
-  enable = true;
-  #driSupport = true;
-  #driSupport32Bit = true;
-  extraPackages = with pkgs; [
-    #pkgs.vulkan-loader
-    #pkgs.vulkan-validation-layers
-    #pkgs.nvidia-x11.vulkan-driver
-    amdvlk
-    mesa
-    ];
+  hardware.graphics = {
+    enable = true;
+    #driSupport = true;
+    #driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      #pkgs.vulkan-loader
+      #pkgs.vulkan-validation-layers
+      #pkgs.nvidia-x11.vulkan-driver
+      amdvlk
+      mesa
+      ];
   };  
  
   #Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-   programs.gnupg.agent = {
-     enable = true;
-     enableSSHSupport = true;
-   };
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-   services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # networking
   networking.networkmanager.enable = true;
   # Open ports in the firewall.
-   networking.firewall = { 
+  networking.firewall = { 
     enable = true;
     allowedTCPPortRanges = [ 
       { from = 1714; to = 1764; } # KDE Connect
