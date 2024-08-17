@@ -91,66 +91,66 @@
 
 
 
-programs.thunar.enable = true;
-programs.thunar.plugins = with pkgs.xfce; [
-  thunar-archive-plugin
-  thunar-volman
-];
-
-services.gvfs.enable = true; # Mount, trash, and other functionalities
-services.tumbler.enable = true; # Thumbnail support for images
-programs.file-roller.enable = true;
-
-#Bluetooth
-hardware.bluetooth.enable = true; # enables support for Bluetooth
-hardware.bluetooth.powerOnBoot = true; 
-services.blueman.enable = true;
-
-#Kernel
-boot.kernelPackages = pkgs.linuxPackages_latest;
-
-
-# Flatpak
-# https://github.com/gmodena/nix-flatpak
-services.flatpak.enable = true;
-services.flatpak.packages = [
-  { appId = "tv.plex.PlexDesktop"; origin = "flathub"; }
-  { appId = "tv.plex.PlexHTPC"; origin = "flathub"; }
-  { appId = "com.github.tchx84.Flatseal"; origin = "flathub"; }
-];
-
-
-# Tailscale
-services.tailscale.enable = true;
-
-# Media keys
-services.actkbd = {
-    enable = true;
-    bindings = [
-    { keys = [ 123 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l octavian -c 'amixer set Master 5%+'"; }
-    { keys = [ 122 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l octavian -c 'amixer set Master 5%-'"; }
-    { keys = [ 121 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l octavian -c 'amixer -D pulse set Master 1+ toggle'"; }
+  programs.thunar.enable = true;
+  programs.thunar.plugins = with pkgs.xfce; [
+    thunar-archive-plugin
+    thunar-volman
   ];
-};
+
+  services.gvfs.enable = true; # Mount, trash, and other functionalities
+  services.tumbler.enable = true; # Thumbnail support for images
+  programs.file-roller.enable = true;
+
+  #Bluetooth
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; 
+  services.blueman.enable = true;
+
+  #Kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
 
-# Steam
-programs.steam={
-  enable = true;
-  remotePlay.openFirewall = true;  
-};
+  # Flatpak
+  # https://github.com/gmodena/nix-flatpak
+  services.flatpak.enable = true;
+  services.flatpak.packages = [
+    { appId = "tv.plex.PlexDesktop"; origin = "flathub"; }
+    { appId = "tv.plex.PlexHTPC"; origin = "flathub"; }
+    { appId = "com.github.tchx84.Flatseal"; origin = "flathub"; }
+  ];
 
-programs.zsh = {
-  enable = true;
-  enableCompletion = true;
-  autosuggestions.enable = true;
-  syntaxHighlighting.enable = true;
-  ohMyZsh = {
-        enable = true;
-        plugins = [ "git" ];
-        theme="eastwood";
-    }; 
+
+  # Tailscale
+  services.tailscale.enable = true;
+
+  # Media keys
+  services.actkbd = {
+      enable = true;
+      bindings = [
+      { keys = [ 123 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l octavian -c 'amixer set Master 5%+'"; }
+      { keys = [ 122 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l octavian -c 'amixer set Master 5%-'"; }
+      { keys = [ 121 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l octavian -c 'amixer -D pulse set Master 1+ toggle'"; }
+    ];
   };
+
+
+  # Steam
+  programs.steam={
+    enable = true;
+    remotePlay.openFirewall = true;  
+  };
+
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+    ohMyZsh = {
+          enable = true;
+          plugins = [ "git" ];
+          theme="eastwood";
+      }; 
+    };
 
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
