@@ -415,7 +415,10 @@ environment.sessionVariables = {
     libvdpau
     libva-utils
     vdpauinfo
+    #vulkan
     vulkan-tools
+    libglvnd
+    #glu
     mesa
     mesa-demos
     vscode
