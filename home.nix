@@ -11,8 +11,8 @@
    home.homeDirectory = "/home/octavian";
   
    # Enable GTK and QT
-  # gtk.enable = true;
-  # qt.enable = true;
+   #gtk.enable = true;
+   qt.enable = true;
 
   #Stylix
 
@@ -35,7 +35,7 @@
       package = pkgs.gruvbox-gtk-theme;
     };
     cursorTheme = {
-      name = "Numix-Cursor";
+      name = "Numix-cursor";
       package = pkgs.numix-cursor-theme;
     };
     gtk3.extraConfig = {
@@ -349,6 +349,7 @@ wayland.windowManager.hyprland = {
       "bitwarden"
       "whatsapp-for-linux"
       "discord"
+      "hyprctl setcursor Numix-Cursor 24"
       #"wayvnc 0.0.0.0"
       "kdeconnect-cli --refresh"
       "systemctl start --user polkit-gnome-authentication-agent-1"
@@ -666,6 +667,8 @@ wayland.windowManager.hyprland = {
 
       "OZONE_PLATFORM,wayland"
 
+      "HYPRCURSOR_THEME,Numix-Cursor"
+      "HYPRCURSOR_SIZE,24"
     ];
     "$scriptsDir" = "$HOME/.config/hypr/scripts";
     "$notifycmd" = "notify-send -h string:x-canonical-private-synchronous:hypr-cfg -u low";

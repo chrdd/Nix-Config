@@ -81,6 +81,15 @@ programs.hyprland = {
   xwayland.enable = true;
 };
 
+#VirtualBox
+
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "octavian"];
+  virtualisation.virtualbox.host.enableExtensionPack = true;
+  virtualisation.virtualbox.guest.enable = true; 
+  virtualisation.virtualbox.guest.dragAndDrop = true;
+
+
 
 programs.thunar.enable = true;
 programs.thunar.plugins = with pkgs.xfce; [
@@ -97,6 +106,8 @@ hardware.bluetooth.enable = true; # enables support for Bluetooth
 hardware.bluetooth.powerOnBoot = true; 
 services.blueman.enable = true;
 
+#Kernel
+boot.kernelPackages = pkgs.linuxPackages_latest;
 
 
 # Flatpak
@@ -150,22 +161,22 @@ environment.sessionVariables = {
 
 ## AMD
 
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  services.xserver.videoDrivers = ["amdgpu"];
+  boot.initrd.kernelModules = ["amdgpu"];
+  services.xserver.videoDrivers = ["modesetting"];
 
-  systemd.tmpfiles.rules = [
-    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
-  ];
+  #systemd.tmpfiles.rules = [
+  #  "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+  #];
  
   #hardware.opengl.driSupport = true; # This is already enabled by default
   #hardware.opengl.driSupport32Bit = true; # For 32 bit applications
-  hardware.opengl.extraPackages = with pkgs; [
-  amdvlk
-  ];
+  #hardware.graphics.extraPackages = with pkgs; [
+  #amdvlk
+  #];
   # For 32 bit applications 
-  hardware.opengl.extraPackages32 = with pkgs; [
-    driversi686Linux.amdvlk
-  ];
+  #hardware.graphics.extraPackages32 = with pkgs; [
+  #  driversi686Linux.amdvlk
+  #];
 
 
   # Nvidia settings
@@ -320,12 +331,12 @@ environment.sessionVariables = {
       enableWideVine = true;
     };
   #Sunshine
-  security.wrappers.sunshine = {
-      owner = "root";
-      group = "root";
-      capabilities = "cap_sys_admin+p";
-      source = "${pkgs.sunshine}/bin/sunshine";
-  };
+  #security.wrappers.sunshine = {
+  #   owner = "root";
+  #   group = "root";
+  #   capabilities = "cap_sys_admin+p";
+  #   source = "${pkgs.sunshine}/bin/sunshine";
+  #};
   
   services.avahi.enable = true; 
   services.avahi.publish.enable = true;
@@ -359,10 +370,15 @@ environment.sessionVariables = {
       mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
     })
     )
+    hyprcursor
     #wl-paste
     discord
     bitwarden
     obsidian
+    #virtualbox
+    signal-desktop
+    moonlight-qt
+    #rocmPackages.rocm-smi
     heroic
     tmux
     tor
@@ -416,12 +432,12 @@ environment.sessionVariables = {
     whatsapp-for-linux
     wayvnc
     tigervnc
-    sunshine
+    #sunshine
     z-lua
     fish
     sshfs
     ncdu
-    ffmpeg_5
+    ffmpeg
     grim
     slurp
     wireplumber
@@ -446,7 +462,7 @@ environment.sessionVariables = {
     udev-gothic-nf
     noto-fonts
     hyprpicker
-    gnome.gnome-keyring
+    pkgs.gnome-keyring
     imagemagick
     pamixer
     libsForQt5.kdeconnect-kde
@@ -507,13 +523,13 @@ environment.sessionVariables = {
       
     #v4l2loopback
     #privateGPT dependencies
-    python311
-    stdenv.cc.cc.lib
-    libstdcxx5
+   # python311
+    #stdenv.cc.cc.lib
+    #libstdcxx5
   # poetry
-    gnumake
-    cmake
-    ninja
+    #gnumake
+    #cmake
+    #ninja
     gcc
   ];
   
@@ -555,9 +571,11 @@ environment.sessionVariables = {
   #driSupport = true;
   #driSupport32Bit = true;
   extraPackages = with pkgs; [
-    pkgs.vulkan-loader
-    pkgs.vulkan-validation-layers
+    #pkgs.vulkan-loader
+    #pkgs.vulkan-validation-layers
     #pkgs.nvidia-x11.vulkan-driver
+    amdvlk
+    mesa
     ];
   };  
  
