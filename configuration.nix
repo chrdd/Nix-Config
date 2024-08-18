@@ -467,7 +467,7 @@
     imagemagick
     pamixer
     libsForQt5.kdeconnect-kde
-    #kdeconnect-kde
+    kdeconnect
     xdotool
     xbindkeys
     neofetch
