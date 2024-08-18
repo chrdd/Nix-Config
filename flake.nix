@@ -46,7 +46,7 @@
       octavian=nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs system;};
         modules = [
-          ./configuration.nix
+          ./hosts/desktop/configuration.nix
           ./dotfiles/default.nix
           ./apps/default.nix
           # ./home.nix
