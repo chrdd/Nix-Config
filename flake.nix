@@ -49,9 +49,9 @@
           ./configuration.nix
           ./dotfiles/default.nix
           ./apps/default.nix
-          #./home.nix
+          # ./home.nix
           nix-flatpak.nixosModules.nix-flatpak
-          #inputs.stylix.nixosModules.stylix
+          inputs.stylix.nixosModules.stylix
         ];
       };
     };

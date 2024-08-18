@@ -10,9 +10,6 @@
    home.username = "octavian";
    home.homeDirectory = "/home/octavian";
   
-   # Enable GTK and QT
-   #gtk.enable = true;
-   qt.enable = true;
 
   #Stylix
 
@@ -51,8 +48,9 @@
 
   # QT themeing
   qt = {
-    platformTheme = "gtk";
-    style.name = "colloid-kde";
+    enable = true;
+    platformTheme.name = "gtk";
+    style.name = "Colloid-dark";
     style.package = pkgs.colloid-kde;
   };
   # # QT themeing
@@ -127,7 +125,7 @@
 
 
   ];
-fonts.fontconfig.enable = true;
+  fonts.fontconfig.enable = true;
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
@@ -168,13 +166,13 @@ fonts.fontconfig.enable = true;
 
 
 
-dconf = {
-    enable = true;
-    settings = {
-      "org/gnome/desktop/interface" = {
-        color-scheme = "prefer-dark";
+  dconf = {
+      enable = true;
+      settings = {
+        "org/gnome/desktop/interface" = {
+          color-scheme = "prefer-dark";
+        };
       };
-    };
   };
 
 

@@ -26,6 +26,9 @@
     };
   };
 
+  # Stylix
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
+  stylix.polarity = "dark";
 
   # Bootloader.
   #boot.loader.grub.efiSupport = true;
@@ -377,6 +380,8 @@
     #virtualbox
     signal-desktop
     moonlight-qt
+    libsForQt5.qt5.qtwayland
+    kdePackages.qtwayland
     #rocmPackages.rocm-smi
     heroic
     tmux
@@ -391,6 +396,8 @@
     # modelsim
     youtube-music
     net-snmp
+    davinci-resolve
+    yt-dlp
     gparted
     f3
     rpi-imager
@@ -577,8 +584,22 @@
       #pkgs.nvidia-x11.vulkan-driver
       amdvlk
       mesa
+      vaapiVdpau
+      libvdpau-va-gl
+      rocmPackages_5.clr.icd
+      rocmPackages_5.rocm-runtime
+      rocmPackages_5.rocminfo
+      # rocm-opencl-icd
+      # rocm-opencl-runtime
+      # rocmPackages.rocm-runtime
       ];
-  };  
+      extraPackages32 = with pkgs; [
+        driversi686Linux.amdvlk 
+      ];
+  };
+  systemd.tmpfiles.rules = [
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages_5.clr}"
+    ];  
  
   #Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
