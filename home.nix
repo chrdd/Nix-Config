@@ -549,6 +549,17 @@ wayland.windowManager.hyprland = {
     # BINDS
     bind = [
         #MISC
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioPrev, exec, playerctl previous"
+        ", XF86AudioNext, exec, playerctl next"
+        # "XF86AudioRaiseVolume, exec, amixer set Master 5%+"
+        # "XF86AudioLowerVolume, exec, amixer set Master 5%-"
+        # "XF86AudioPlay, exec, playerctl play-pause"
+        # "XF86AudioNext, exec, playerctl next"
+        # "XF86AudioPrev, exec, playerctl previous"
         "SUPER, escape, exec, wlogout --protocol layer-shell -b 5 -T 400 -B 400"
         "SUPER , V, exec, $browser"
         "SUPER SHIFT, v, exec, killall -s SIGINT wf-recorder"

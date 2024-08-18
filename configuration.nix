@@ -127,12 +127,14 @@
   services.tailscale.enable = true;
 
   # Media keys
+  # sound.mediaKeys.enable = true;
   services.actkbd = {
       enable = true;
       bindings = [
-      { keys = [ 123 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l octavian -c 'amixer set Master 5%+'"; }
-      { keys = [ 122 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l octavian -c 'amixer set Master 5%-'"; }
-      { keys = [ 121 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l octavian -c 'amixer -D pulse set Master 1+ toggle'"; }
+      #{ keys = [ 115 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/runuser -l octavian -c 'amixer set Master 5%+'"; }
+      { keys = [ 115 ]; events = [ "key" ]; command = "${pkgs.alsa-utils}/bin/amixer -q set Master 5%+"; }
+      { keys = [ 114 ]; events = [ "key" ]; command = "${pkgs.alsa-utils}/bin/amixer -q set Master 5%-"; }
+      { keys = [ 113 ]; events = [ "key" ]; command = "${pkgs.alsa-utils}/bin/amixer -q set Master toggle"; }
     ];
   };
 
@@ -415,6 +417,7 @@
     git
     alacritty
     rofi-wayland
+    alsa-utils
     # floorp
     libva
     libvdpau
