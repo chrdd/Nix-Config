@@ -18,13 +18,13 @@
   extraOptions = ''experimental-features = nix-command flakes'';
   };
   
-  #Home-manager
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      octavian = import ./home.nix;
-    };
-  };
+#   #Home-manager
+#   home-manager = {
+#     extraSpecialArgs = { inherit inputs; };
+#     users = {
+#       octavian = import ./home.nix;
+#     };
+#   };
 
   # Stylix
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";

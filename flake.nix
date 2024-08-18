@@ -31,6 +31,8 @@
     
     };
 
+    
+
   outputs = { self, nixpkgs,home-manager,nix-flatpak,stylix,... }@inputs:
    let   
      system= "x86_64-linux";
@@ -55,5 +57,12 @@
         ];
       };
     };
+    #Home-manager
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      octavian = import ./home.nix;
+    };
+  };
   };
 }
