@@ -401,6 +401,9 @@
     davinci-resolve
     yt-dlp
     gparted
+    ranger
+    pkgs.nemo
+    gnome.nautilus
     f3
     rpi-imager
     droidcam

@@ -28,8 +28,8 @@
       package = pkgs.papirus-icon-theme;
     };
     theme = {
-      name = "Gruvbox-Dark-B";
-      package = pkgs.gruvbox-gtk-theme;
+      name = "orchis-theme";
+      package = pkgs.orchis-theme;
     };
     cursorTheme = {
       name = "Numix-cursor";
@@ -689,7 +689,7 @@ wayland.windowManager.hyprland = {
     "$volume" = "$scriptsDir/volume";
     "$screenshot" = "$scriptsDir/screensht";
     "$colorpicker" = "$scriptsDir/colorpicker";
-    "$files" = "thunar";
+    "$files" = "nemo";
     "$browser" = "vivaldi";
   };
   };
