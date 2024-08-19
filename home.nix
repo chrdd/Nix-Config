@@ -5,6 +5,7 @@
       inputs.nix-colors.homeManagerModules.default
       ./features/alacritty.nix
       ./dotfiles/hyprland.nix
+      ./modules/sunshine.nix
   ];
   colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;  # Home Manager needs a bit of information about you and the paths it should manage
   

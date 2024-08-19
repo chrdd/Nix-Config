@@ -51,6 +51,7 @@
           ./hosts/desktop/configuration.nix
           ./dotfiles/default.nix
           ./apps/default.nix
+          # ./modules/sunshine.nix
           # ./home.nix
           nix-flatpak.nixosModules.nix-flatpak
           inputs.stylix.nixosModules.stylix

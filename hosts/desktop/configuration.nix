@@ -166,7 +166,7 @@
 
   ## AMD 
 
-  boot.initrd.kernelModules = ["amdgpu"];
+  boot.initrd.kernelModules = ["amdgpu" "uinput"];
   services.xserver.videoDrivers = ["modesetting"];
 
   #systemd.tmpfiles.rules = [
@@ -400,10 +400,11 @@
     net-snmp
     davinci-resolve
     yt-dlp
+    flameshot
     gparted
     ranger
     pkgs.nemo
-    gnome.nautilus
+    pkgs.nautilus
     f3
     rpi-imager
     droidcam
@@ -418,10 +419,11 @@
     hyprpaper
     kitty
     git
+    pkgs.wayvnc
     alacritty
     rofi-wayland
     alsa-utils
-    # floorp
+    floorp
     libva
     libvdpau
     libva-utils
@@ -446,7 +448,7 @@
     whatsapp-for-linux
     wayvnc
     tigervnc
-    #sunshine
+    # sunshine
     z-lua
     fish
     sshfs
