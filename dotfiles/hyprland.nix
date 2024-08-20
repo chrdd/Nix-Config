@@ -81,7 +81,7 @@
         "disable_splash_rendering" = true;
         "mouse_move_enables_dpms" = true;
         "enable_swallow" = true;
-        "swallow_regex" = "^(kitty)$";
+        # "swallow_regex" = "^(kitty)$";
       };
 
       decoration = {

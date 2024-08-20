@@ -1,28 +1,40 @@
-{ config, pkgs,lib,inputs, ... }:
+{ pkgs, config, ... }:
 {
-    # GTK Themeing
+  fonts.fontconfig.enable = true;
+  home.packages = [
+    pkgs.nerdfonts
+    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "Noto" ]; })
+    pkgs.twemoji-color-font
+    pkgs.noto-fonts-emoji
+  ];
+
   gtk = {
     enable = true;
-
+    font = {
+      name = "JetBrainsMono Nerd Font";
+      size = 11;
+    };
     iconTheme = {
       name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
+      package = pkgs.catppuccin-papirus-folders.override {
+        flavor = "mocha";
+        accent = "lavender";
+      };
     };
     theme = {
-      name = "orchis-theme";
-      package = pkgs.orchis-theme;
+      name = "Dracula";
+      package = pkgs.dracula-theme;
     };
     cursorTheme = {
-      name = "Numix-cursor";
-      package = pkgs.numix-cursor-theme;
-    };
-    gtk3.extraConfig = {
-      Settings = '' gtk-application-prefer-dark-theme=1'';
-    };
-    gtk4.extraConfig = {
-      Settings = '' gtk-application-prefer-dark-theme=1'';
+      name = "Nordzy-cursors";
+      package = pkgs.nordzy-cursor-theme;
+      size = 22;
     };
   };
-
-  home.sessionVariables.GTK_THEME = "Gruvbox-Dark-B";
+  
+  home.pointerCursor = {
+    name = "Nordzy-cursors";
+    package = pkgs.nordzy-cursor-theme;
+    size = 22;
+  };
 }

@@ -3,7 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 
-{ inputs, config, pkgs, ... }:
+{ inputs, config, pkgs,lib, ... }:
 
 {
   imports =
@@ -13,10 +13,12 @@
       inputs.home-manager.nixosModules.home-manager
     ];
 
-  nix = {
-  package = pkgs.nixFlakes;
-  extraOptions = ''experimental-features = nix-command flakes'';
-  };
+  # nix = {
+  # package = pkgs.nixFlakes;
+  # extraOptions = ''experimental-features = nix-command flakes'';
+  # };
+
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   
 #   #Home-manager
 #   home-manager = {
@@ -50,7 +52,7 @@
     };
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "octavian"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -120,6 +122,7 @@
     { appId = "tv.plex.PlexDesktop"; origin = "flathub"; }
     { appId = "tv.plex.PlexHTPC"; origin = "flathub"; }
     { appId = "com.github.tchx84.Flatseal"; origin = "flathub"; }
+    { appId = "dev.vencord.Vesktop"; origin = "flathub"; }
   ];
 
 
@@ -167,7 +170,11 @@
   ## AMD 
 
   boot.initrd.kernelModules = ["amdgpu" "uinput"];
-  services.xserver.videoDrivers = ["modesetting"];
+  services.xserver.videoDrivers = ["amdgpu"];
+  # systemd.tmpfiles.rules = [
+  #  "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.hip}"
+  # ];
+ 
 
   #systemd.tmpfiles.rules = [
   #  "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
@@ -259,6 +266,12 @@
    #Default session
    services.displayManager.defaultSession = "hyprland";
    
+
+  #  Nix Helper
+  environment.sessionVariables = {
+    FLAKE = "/etc/nixos/flake.nix";
+    };
+
    # Sway
    #programs.sway = {
    #  enable = true;
@@ -336,12 +349,51 @@
       enableWideVine = true;
     };
   #Sunshine
-  #security.wrappers.sunshine = {
-  #   owner = "root";
-  #   group = "root";
-  #   capabilities = "cap_sys_admin+p";
-  #   source = "${pkgs.sunshine}/bin/sunshine";
-  #};
+  services.sunshine = {
+    enable = true;
+    capSysAdmin = true;
+    openFirewall = true;
+    applications = {
+      env = {
+        PATH = "$(PATH):$(HOME)/.local/bin";
+      };
+      apps = [
+        {
+          name = "1440p Desktop";
+          prep-cmd = [
+            {
+              do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.2560x1440@144";
+              undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.3440x1440@144";
+            }
+          ];
+          exclude-global-prep-cmd = "false";
+          auto-detach = "true";
+        }
+        {
+          name = "1080p Desktop";
+          prep-cmd = [
+            {
+              do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.1920x1080@120";
+              undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.3440x1440@144";
+            }
+          ];
+          exclude-global-prep-cmd = "false";
+          auto-detach = "true";
+        }
+        {
+          name = "800p Desktop";
+          prep-cmd = [
+            {
+              do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.1280x800@144";
+              undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.3440x1440@144";
+            }
+          ];
+          exclude-global-prep-cmd = "false";
+          auto-detach = "true";
+        }
+      ];
+    };
+  };
   
   services.avahi.enable = true; 
   services.avahi.publish.enable = true;
@@ -370,6 +422,7 @@
     hyprland
     # cudaPackages.nvidia_driver
     wget
+    lact
     pkgs.waybar
     (pkgs.waybar.overrideAttrs (oldAttrs: {
       mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
@@ -377,8 +430,12 @@
     hyprcursor
     #wl-paste
     discord
+    vencord
     bitwarden
     obsidian
+    nh
+    nix-output-monitor
+    nvd
     #virtualbox
     signal-desktop
     moonlight-qt
@@ -406,6 +463,7 @@
     pkgs.nemo
     pkgs.nautilus
     f3
+    clinfo
     rpi-imager
     droidcam
     #v4l2loopback
@@ -448,7 +506,7 @@
     whatsapp-for-linux
     wayvnc
     tigervnc
-    # sunshine
+    sunshine
     z-lua
     fish
     sshfs
@@ -537,6 +595,9 @@
     kwalletmanager
     nerdfonts
       
+    #Sunshine
+    libsForQt5.libkscreen
+
     #v4l2loopback
     #privateGPT dependencies
     # python311
@@ -573,71 +634,77 @@
       wantedBy = [ "xdg-desktop-portal.service" ];
       before = [ "xdg-desktop-portal.service" ];
    };
-  #KDEConnect
-  programs.kdeconnect.enable = true;
 
-  #GSConnect
+    #AMD
+    systemd.packages = with pkgs; [ lact ];
+    systemd.services.lactd.wantedBy = ["multi-user.target"];
+    #KDEConnect
+   programs.kdeconnect.enable = true;
+
+   #GSConnect
   
 
 
 
-  # OpenGL
-  hardware.graphics = {
-    enable = true;
-    #driSupport = true;
-    #driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      #pkgs.vulkan-loader
-      #pkgs.vulkan-validation-layers
-      #pkgs.nvidia-x11.vulkan-driver
-      amdvlk
-      mesa
-      vaapiVdpau
-      libvdpau-va-gl
-      rocmPackages_5.clr.icd
-      rocmPackages_5.rocm-runtime
-      rocmPackages_5.rocminfo
-      # rocm-opencl-icd
-      # rocm-opencl-runtime
-      # rocmPackages.rocm-runtime
-      ];
-      extraPackages32 = with pkgs; [
-        driversi686Linux.amdvlk 
-      ];
+    # OpenGL
+    hardware.graphics = {
+      enable = true;
+      #driSupport = true;
+      #driSupport32Bit = true;
+      extraPackages = with pkgs; [
+        #pkgs.vulkan-loader
+        #pkgs.vulkan-validation-layers
+        #pkgs.nvidia-x11.vulkan-driver
+        amdvlk
+        mesa
+        vaapiVdpau
+        libvdpau-va-gl
+        rocmPackages_5.clr.icd
+        rocmPackages_5.rocm-runtime
+        rocmPackages_5.rocminfo
+        pkgs.mesa.opencl
+        # rocm-opencl-icd
+        # rocm-opencl-runtime
+        # rocmPackages.rocm-runtime
+        ];
+        extraPackages32 = with pkgs; [
+          driversi686Linux.amdvlk 
+        ];
   };
+  hardware.opengl.enable = true;
   systemd.tmpfiles.rules = [
     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages_5.clr}"
     ];  
- 
-  #Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
+  
+    #Some programs need SUID wrappers, can be configured further or are
+    # started in user sessions.
+    # programs.mtr.enable = true;
+    programs.gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
 
-  # List services that you want to enable:
+    # List services that you want to enable:
 
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+    # Enable the OpenSSH daemon.
+    services.openssh.enable = true;
 
-  # networking
-  networking.networkmanager.enable = true;
-  # Open ports in the firewall.
-  networking.firewall = { 
-    enable = true;
-    allowedTCPPortRanges = [ 
-      { from = 1714; to = 1764; } # KDE Connect
-    ];
-    allowedTCPPorts = [22 4747 47984 47989 47990 48010 5900 8085 ];  
-    allowedUDPPortRanges = [ 
-      { from = 1714; to = 1764; } # KDE Connect
-      { from = 47998; to = 48000; }
-     #{ from = 8000; to = 8010; }
-    ];  
-    allowedUDPPorts = [ 4747 8085 ];
-  }; 
+    # networking
+    networking.networkmanager.enable = true;
+    # Open ports in the firewall.
+    networking.firewall = { 
+      enable = false;
+      allowedTCPPortRanges = [ 
+        { from = 1714; to = 1764; } # KDE Connect
+      ];
+      allowedTCPPorts = [22 4747 47984 47989 47990 48010 5900 8085 ];  
+      allowedUDPPortRanges = [ 
+        { from = 1714; to = 1764; } # KDE Connect
+        { from = 47998; to = 48000; }
+        { from = 8000; to = 8010; }
+      ];  
+      allowedUDPPorts = [ 4747 8085 ];
+    }; 
 
 
   programs.adb.enable = true;

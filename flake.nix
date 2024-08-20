@@ -49,7 +49,7 @@
       specialArgs = {inherit inputs system;};
         modules = [
           ./hosts/desktop/configuration.nix
-          ./dotfiles/default.nix
+          # ./dotfiles/default.nix
           ./apps/default.nix
           # ./modules/sunshine.nix
           # ./home.nix
