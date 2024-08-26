@@ -2,16 +2,15 @@
 
 {
   imports = [
-      inputs.nix-colors.homeManagerModules.default
+      # inputs.nix-colors.homeManagerModules.default
       ./features/alacritty.nix
-      # ./dotfiles/hyprland.nix
-      ./dotfiles/default.nix
+      ./dotfiles/hyprland.nix
       # ./modules/sunshine.nix
   ];
-  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;  # Home Manager needs a bit of information about you and the paths it should manage
+  # colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;  # Home Manager needs a bit of information about you and the paths it should manage
   
-   home.username = "octavian";
-   home.homeDirectory = "/home/octavian";
+  home.username = "octavian";
+  home.homeDirectory = "/home/octavian";
   
 
   #Stylix
@@ -71,7 +70,7 @@
   #      package = pkgs.colloid-icon-theme;
   #     };
   #     cursorTheme = {
-  #      name = "Numix-Cursor-Light";
+  #      name = "Numix-Cursor-Light";"gtk"
   #     package = pkgs.numix-cursor-theme;
   #     };
   # };
@@ -313,8 +312,4 @@ programs.waybar.settings =  {
 
 # }
 
-
-
-#Hyprland
-# 
 }

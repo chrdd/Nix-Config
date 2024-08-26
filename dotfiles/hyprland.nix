@@ -33,7 +33,6 @@
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "bitwarden"
         "whatsapp-for-linux"
-        "discord"
         "hyprctl setcursor Numix-Cursor 24"
         "wayvnc 0.0.0.0"
         "kdeconnect-cli --refresh"

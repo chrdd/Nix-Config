@@ -1,15 +1,15 @@
 # /etc/nixos/flake.nix
-
 {
   description = "flake for octavian";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     
     hyprland = {
       type = "git";
       url = "https://github.com/hyprwm/Hyprland";
       submodules = true;
+      inputs.nixpkgs.follows = "nixpkgs";
     }; 
     # hyprland.url = "github:hyprwm/Hyprland";
     
@@ -51,6 +51,7 @@
           ./hosts/desktop/configuration.nix
           # ./dotfiles/default.nix
           ./apps/default.nix
+          ./modules/suspend.nix
           # ./modules/sunshine.nix
           # ./home.nix
           nix-flatpak.nixosModules.nix-flatpak
