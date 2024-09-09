@@ -3,7 +3,7 @@
   description = "flake for octavian";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     
     hyprland = {
       type = "git";

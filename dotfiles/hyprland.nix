@@ -3,6 +3,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
+      
       #MAIN
       #source = [
       #  "~/.config/hypr/startup.conf"
@@ -342,6 +343,8 @@
       ];
       #ENVIROMENT
       env = [
+        "no_hardware_cursors,true"
+
         "XDG_CURRENT_DESKTOP,Hyprland" 
         "XDG_SESSION_TYPE,wayland" 
         "XDG_SESSION_DESKTOP,Hyprland" 

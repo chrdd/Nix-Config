@@ -82,7 +82,7 @@
   # Enable Hyprland
   programs.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+    # package = inputs.hyprland.packages."${pkgs.system}".hyprland;
     xwayland.enable = true;
   };
 
@@ -166,6 +166,19 @@
     LIBGL_DEBUG = "verbose";
     EGL_PLATFORM = "wayland";
   };
+
+
+
+  #Samba
+  fileSystems."/mnt/share/media" = {
+    device = "192.168.3.8:/mnt/Media/Media";
+    fsType = "nfs";
+    options = [ "rw" "nconnect=16" "x-systemd.automount" "noauto"];
+  };
+
+# networking.firewall.enable = true;
+networking.firewall.allowPing = true;
+
 
   ## AMD 
 
@@ -256,7 +269,9 @@
    services.xserver.enable = true;
    #RDP
    #services.xserver.displayManager.sddm.enable = true;
-   services.xserver.desktopManager.plasma5.enable = true;
+   services.desktopManager.plasma6.enable = true;
+   services.xserver.desktopManager.gnome.enable = true;
+     programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
 
    #services.xrdp.enable = true;
    #services.xrdp.defaultWindowManager = "hyprland";
@@ -322,7 +337,7 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.octavian = {
@@ -335,6 +350,7 @@
     #  thunderbird
     ];
   };
+
 
   # Tmux
   programs.tmux = {
@@ -488,6 +504,8 @@
     nh
     nix-output-monitor
     nvd
+    pkgs.cifs-utils
+    aquamarine
     #virtualbox
     signal-desktop
     moonlight-qt
@@ -512,12 +530,15 @@
     flameshot
     gparted
     ranger
-    cinnamon.nemo-with-extensions
+    pkgs.nemo-with-extensions
     # pkgs.nautilus
     f3
     clinfo
     rpi-imager
     droidcam
+    xwaylandvideobridge
+    xwayland
+    qbittorrent
     #v4l2loopback
     postgresql
     postman
@@ -526,7 +547,7 @@
     pkgs.dunst
     syncthing
     libnotify
-    hyprpaper
+    # hyprpaper
     kitty
     git
     pkgs.wayvnc
@@ -568,8 +589,8 @@
     slurp
     wireplumber
     xdg-desktop-portal-gtk
-    #xdg-dekstop-portal-kde
-    xdg-desktop-portal-hyprland
+    # xdg-dekstop-portal-kde
+    #xdg-desktop-portal-hyprland
     zsh
     lsd
     pavucontrol
@@ -588,7 +609,7 @@
     udev-gothic-nf
     noto-fonts
     hyprpicker
-    gnome.gnome-keyring
+    pkgs.gnome-keyring
     imagemagick
     pamixer
     libsForQt5.kdeconnect-kde
@@ -618,6 +639,9 @@
     kdenlive
     parsec-bin
     plexamp
+    plex-desktop
+    plex-media-player
+    # tautulli
     flatpak
     pkgs.home-manager
     todoist-electron
@@ -632,6 +656,7 @@
     libreoffice
     fastfetch
     dos2unix
+    blender
     
     #themes
     colloid-kde
@@ -675,11 +700,15 @@
   # Insecure packages
   nixpkgs.config.permittedInsecurePackages = [ "electron-25.9.0" ];
 
+  
+    
+
+
   # XDG desktop portals
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ 
-	pkgs.xdg-desktop-portal-gtk
-	#pkgs.xdg-dekstop-portal-kde
+	# pkgs.xdg-desktop-portal-gtk
+	# xdg-dekstop-portal-hyprland
 	 ];
 
   systemd.user.services.xdg-desktop-portal-gtk = {
@@ -699,10 +728,10 @@
 
 
     # OpenGL
-    hardware.opengl = {
+    hardware.graphics = {
       enable = true;
-      #driSupport = true;
-      #driSupport32Bit = true;
+      # driSupport = true;
+      # driSupport32Bit = true;
       extraPackages = with pkgs; [
         #pkgs.vulkan-loader
         #pkgs.vulkan-validation-layers
@@ -720,13 +749,13 @@
         # rocmPackages.rocm-runtime
         ];
         extraPackages32 = with pkgs; [
-          driversi686Linux.amdvlk 
+          # driversi686Linux.amdvlk 
         ];
   };
   # hardware.opengl.enable = true;
-  # systemd.tmpfiles.rules = [
-  #   "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages_5.clr}"
-  #   ];  
+  systemd.tmpfiles.rules = [
+     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages_5.clr}"
+        ];  
   
     #Some programs need SUID wrappers, can be configured further or are
     # started in user sessions.
@@ -744,18 +773,20 @@
     # networking
     networking.networkmanager.enable = true;
     # Open ports in the firewall.
+    # networking.firewall.enable = false;
+    networking.useDHCP = false;
     networking.firewall = { 
       enable = true;
       allowedTCPPortRanges = [ 
         { from = 1714; to = 1764; } # KDE Connect
       ];
-      allowedTCPPorts = [22 4747 47984 47989 47990 48010 5900 8085 ];  
+      allowedTCPPorts = [22 4747 32400 47984 47989 47990 48010 5900 8085 ];  
       allowedUDPPortRanges = [ 
         { from = 1714; to = 1764; } # KDE Connect
         { from = 47998; to = 48000; }
         { from = 8000; to = 8010; }
       ];  
-      allowedUDPPorts = [ 4747 8085 ];
+      allowedUDPPorts = [ 4747 8085 32400 ];
     }; 
 
 
