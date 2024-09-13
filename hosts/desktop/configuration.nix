@@ -121,6 +121,7 @@
   services.flatpak.packages = [
     { appId = "tv.plex.PlexDesktop"; origin = "flathub"; }
     { appId = "tv.plex.PlexHTPC"; origin = "flathub"; }
+    { appId = "com.plexamp.Plexamp"; origin = "flathub"; }
     { appId = "com.github.tchx84.Flatseal"; origin = "flathub"; }
     { appId = "dev.vencord.Vesktop"; origin = "flathub"; }
   ];
@@ -184,7 +185,7 @@ networking.firewall.allowPing = true;
 
   boot.initrd.kernelModules = ["amdgpu"];
   # services.xserver.videoDrivers = ["amdgpu"];
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "modesetting" ];
 
   # systemd.tmpfiles.rules = [
   #  "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.hip}"
@@ -270,8 +271,8 @@ networking.firewall.allowPing = true;
    #RDP
    #services.xserver.displayManager.sddm.enable = true;
    services.desktopManager.plasma6.enable = true;
-   services.xserver.desktopManager.gnome.enable = true;
-     programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
+  #  services.xserver.desktopManager.gnome.enable = true;
+    programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
 
    #services.xrdp.enable = true;
    #services.xrdp.defaultWindowManager = "hyprland";
@@ -279,9 +280,9 @@ networking.firewall.allowPing = true;
    # Enable the KDE Plasma Desktop Environment.
    #services.xserver.displayManager.sddm.wayland.enable = true;
    services.displayManager.sddm.wayland.enable = true;
-   services.xserver.displayManager.gdm.enable = true; 
+   services.xserver.displayManager.sddm.enable = true; 
    #Default session
-   services.displayManager.defaultSession = "hyprland";
+   services.displayManager.defaultSession = "plasma";
    
 
   #  Nix Helper
@@ -502,6 +503,7 @@ networking.firewall.allowPing = true;
     bitwarden
     obsidian
     nh
+    jamesdsp
     nix-output-monitor
     nvd
     pkgs.cifs-utils
@@ -638,9 +640,9 @@ networking.firewall.allowPing = true;
     xbindkeys
     kdenlive
     parsec-bin
-    plexamp
-    plex-desktop
-    plex-media-player
+    # plexamp
+    # plex-desktop
+    # plex-media-player
     # tautulli
     flatpak
     pkgs.home-manager
@@ -774,9 +776,9 @@ networking.firewall.allowPing = true;
     networking.networkmanager.enable = true;
     # Open ports in the firewall.
     # networking.firewall.enable = false;
-    networking.useDHCP = false;
+    # networking.useDHCP = false;
     networking.firewall = { 
-      enable = true;
+      enable = false;
       allowedTCPPortRanges = [ 
         { from = 1714; to = 1764; } # KDE Connect
       ];
