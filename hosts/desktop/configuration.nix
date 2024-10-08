@@ -82,7 +82,7 @@
   # Enable Hyprland
   programs.hyprland = {
     enable = true;
-    # package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
     xwayland.enable = true;
   };
 
@@ -502,6 +502,7 @@ networking.firewall.allowPing = true;
     vencord
     bitwarden
     obsidian
+    easyeffects
     nh
     jamesdsp
     nix-output-monitor
