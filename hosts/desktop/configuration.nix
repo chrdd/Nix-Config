@@ -88,11 +88,11 @@
 
 #VirtualBox
 
-  # virtualisation.virtualbox.host.enable = true;
-  # users.extraGroups.vboxusers.members = [ "octavian"];
-  # virtualisation.virtualbox.host.enableExtensionPack = true;
-  # virtualisation.virtualbox.guest.enable = true; 
-  # virtualisation.virtualbox.guest.dragAndDrop = true;
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "octavian"];
+  virtualisation.virtualbox.host.enableExtensionPack = true;
+  virtualisation.virtualbox.guest.enable = true; 
+  virtualisation.virtualbox.guest.dragAndDrop = true;
 
 
 
@@ -344,7 +344,7 @@ networking.firewall.allowPing = true;
   users.users.octavian = {
     isNormalUser = true;
     description = "octavian";
-    extraGroups = [ "networkmanager" "wheel" "audio" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" "vboxusers" "dialout"];
     packages = with pkgs; [
       firefox
       kate
@@ -404,6 +404,9 @@ networking.firewall.allowPing = true;
     '';
   };
 
+  #XRDP
+  services.xrdp.enable = true;
+  services.xrdp.openFirewall = true;
   #docker
   #virtualisation.docker.enable = true;
   #users.users.octavian.extraGroups = [ "docker" ];
@@ -472,7 +475,7 @@ networking.firewall.allowPing = true;
   #fonts.fontconfig.enableProfileFonts = true;
   fonts.packages = with pkgs; [
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-emoji
     liberation_ttf
     fira-code
@@ -490,6 +493,9 @@ networking.firewall.allowPing = true;
     #  wget
     hyprland
     # cudaPackages.nvidia_driver
+    thunderbird
+    mathpix-snipping-tool
+    rquickshare
     wget
     lact
     pkgs.waybar
@@ -509,31 +515,38 @@ networking.firewall.allowPing = true;
     nvd
     pkgs.cifs-utils
     aquamarine
-    #virtualbox
+    # virtualbox
     signal-desktop
     moonlight-qt
     libsForQt5.qt5.qtwayland
     kdePackages.qtwayland
-    #rocmPackages.rocm-smi
+    rocmPackages.rocm-smi
     heroic
+    tailscale
     tmux
+    zoxide
+    arduino-ide
     tor
     tor-browser
-    ollama
-    zabbix.web
-    zabbix.agent
-    zabbixctl
+    #ollama
+    # wayvnc
+    # guacamole-server
+    #zabbix.web
+    #zabbix.agent
+    #zabbixctl
     vivaldi
     docker-compose
     # modelsim
     youtube-music
     net-snmp
+    protonup-qt
     davinci-resolve
     yt-dlp
     flameshot
     gparted
     ranger
     pkgs.nemo-with-extensions
+    prismlauncher
     # pkgs.nautilus
     f3
     clinfo
@@ -553,7 +566,7 @@ networking.firewall.allowPing = true;
     # hyprpaper
     kitty
     git
-    pkgs.wayvnc
+    # pkgs.wayvnc
     alacritty
     rofi-wayland
     alsa-utils
@@ -580,11 +593,12 @@ networking.firewall.allowPing = true;
     vlc
     obs-studio
     whatsapp-for-linux
-    wayvnc
-    tigervnc
+    # wayvnc
+    # tigervnc
     sunshine
     z-lua
-    fish
+    # fish
+    # neatvnc
     sshfs
     ncdu
     ffmpeg
@@ -616,7 +630,7 @@ networking.firewall.allowPing = true;
     imagemagick
     pamixer
     libsForQt5.kdeconnect-kde
-    kdeconnect
+    plasma5Packages.kdeconnect-kde
     xdotool
     xbindkeys
     neofetch
@@ -630,7 +644,7 @@ networking.firewall.allowPing = true;
     #pkgs.zsh-history-substring-search
     sublime
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-emoji
     font-awesome
     source-han-sans
@@ -699,7 +713,7 @@ networking.firewall.allowPing = true;
 
   # ZSH
   users.defaultUserShell = pkgs.zsh;
-  programs.fish.enable = true;
+  # programs.fish.enable = true;
   # Insecure packages
   nixpkgs.config.permittedInsecurePackages = [ "electron-25.9.0" ];
 
@@ -779,7 +793,7 @@ networking.firewall.allowPing = true;
     # networking.firewall.enable = false;
     # networking.useDHCP = false;
     networking.firewall = { 
-      enable = false;
+      enable = true;
       allowedTCPPortRanges = [ 
         { from = 1714; to = 1764; } # KDE Connect
       ];
