@@ -29,8 +29,8 @@
 #   };
 
   # Stylix
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
-  stylix.polarity = "dark";
+  # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
+  # stylix.polarity = "dark";
 
   # Bootloader.
   #boot.loader.grub.efiSupport = true;
@@ -80,11 +80,11 @@
     LC_TIME = "ro_RO.UTF-8";
   };
   # Enable Hyprland
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-    xwayland.enable = true;
-  };
+  # programs.hyprland = {
+  #   enable = true;
+  #   package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+  #   xwayland.enable = true;
+  # };
 
 #VirtualBox
 
@@ -92,7 +92,7 @@
   users.extraGroups.vboxusers.members = [ "octavian"];
   virtualisation.virtualbox.host.enableExtensionPack = true;
   virtualisation.virtualbox.guest.enable = true; 
-  virtualisation.virtualbox.guest.dragAndDrop = true;
+  virtualisation.virtualbox.guest.draganddrop = true;
 
 
 
@@ -267,16 +267,16 @@ networking.firewall.allowPing = true;
      #nvidiaWayland = true;
    #};  
    # Enable the X11 windowing system.
-   services.xserver.enable = true;
+    services.xserver.enable = true;
    #RDP
    #services.xserver.displayManager.sddm.enable = true;
-   services.desktopManager.plasma6.enable = true;
-  #  services.xserver.desktopManager.gnome.enable = true;
+    services.desktopManager.plasma6.enable = true;
+    services.xserver.desktopManager.gnome.enable = true;
     programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
 
-   #services.xrdp.enable = true;
-   #services.xrdp.defaultWindowManager = "hyprland";
-   #services.xrdp.openFirewall = true;
+   services.xrdp.enable = true;
+   services.xrdp.defaultWindowManager = "plasma";
+   services.xrdp.openFirewall = true;
    # Enable the KDE Plasma Desktop Environment.
    #services.xserver.displayManager.sddm.wayland.enable = true;
    services.displayManager.sddm.wayland.enable = true;
@@ -316,6 +316,21 @@ networking.firewall.allowPing = true;
         configDir = "/home/octavian/Documents/.config/syncthing";   # Folder for Syncthing's settings and keys
       };
   };
+
+
+  # Optimization & Garbage Collection
+
+  # Optimize Nix-Store During Rebuilds
+    # NOTE: Optimizes during builds - results in slower builds
+  nix.settings.auto-optimise-store = true;
+
+  # Purge Unused Nix-Store Entries
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -405,8 +420,8 @@ networking.firewall.allowPing = true;
   };
 
   #XRDP
-  services.xrdp.enable = true;
-  services.xrdp.openFirewall = true;
+  # services.xrdp.enable = true;
+  # services.xrdp.openFirewall = true;
   #docker
   #virtualisation.docker.enable = true;
   #users.users.octavian.extraGroups = [ "docker" ];
@@ -425,52 +440,61 @@ networking.firewall.allowPing = true;
     enable = true;
     capSysAdmin = true;
     openFirewall = true;
-    applications = {
-      env = {
-        PATH = "$(PATH):$(HOME)/.local/bin";
-      };
-      apps = [
-        {
-          name = "1440p Desktop";
-          prep-cmd = [
-            {
-              do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.2560x1440@144";
-              undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.3440x1440@144";
-            }
-          ];
-          exclude-global-prep-cmd = "false";
-          auto-detach = "true";
-        }
-        {
-          name = "1080p Desktop";
-          prep-cmd = [
-            {
-              do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.1920x1080@120";
-              undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.3440x1440@144";
-            }
-          ];
-          exclude-global-prep-cmd = "false";
-          auto-detach = "true";
-        }
-        {
-          name = "800p Desktop";
-          prep-cmd = [
-            {
-              do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.1280x800@144";
-              undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.3440x1440@144";
-            }
-          ];
-          exclude-global-prep-cmd = "false";
-          auto-detach = "true";
-        }
-      ];
-    };
+    # applications = {
+    #   env = {
+    #     PATH = "$(PATH):$(HOME)/.local/bin";
+    #   };
+    #   apps = [
+    #     {
+    #       name = "1440p Desktop";
+    #       prep-cmd = [
+    #         {
+    #           do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.2560x1440@144";
+    #           undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.3440x1440@144";
+    #         }
+    #       ];
+    #       exclude-global-prep-cmd = "false";
+    #       auto-detach = "true";
+    #     }
+    #     {
+    #       name = "1080p Desktop";
+    #       prep-cmd = [
+    #         {
+    #           do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.1920x1080@120";
+    #           undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.3440x1440@144";
+    #         }
+    #       ];
+    #       exclude-global-prep-cmd = "false";
+    #       auto-detach = "true";
+    #     }
+    #     {
+    #       name = "800p Desktop";
+    #       prep-cmd = [
+    #         {
+    #           do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.1280x800@144";
+    #           undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.3440x1440@144";
+    #         }
+    #       ];
+    #       exclude-global-prep-cmd = "false";
+    #       auto-detach = "true";
+    #     }
+    #   ];
+    # };
   };
+
+  # security.wrappers.sunshine = {
+  #       owner = "root";
+  #       group = "root";
+  #       capabilities = "cap_sys_admin+p";
+  #       source = "${pkgs.sunshine}/bin/sunshine";
+  # };
   
   services.avahi.enable = true; 
   services.avahi.publish.enable = true;
   services.avahi.publish.userServices = true;
 
+
+  services.gnome.gnome-remote-desktop.enable = true;
   #Fonts
   #fonts.fontconfig.enableProfileFonts = true;
   fonts.packages = with pkgs; [
@@ -485,24 +509,29 @@ networking.firewall.allowPing = true;
     proggyfonts
     jetbrains-mono
   ];
-  
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+
+  # let
+  #   unstable = import
+  #     (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/<branch or commit>)
+  #     # reuse the current configuration
+  #     { config = config.nixpkgs.config; };
+  # in
+  # {
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
-    hyprland
+    # hyprland
     # cudaPackages.nvidia_driver
     thunderbird
-    mathpix-snipping-tool
-    rquickshare
+    # mathpix-snipping-tool
+    # rquickshare
     wget
     lact
-    pkgs.waybar
-    (pkgs.waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-    }))
-    hyprcursor
+    # pkgs.waybar
+    # (pkgs.waybar.overrideAttrs (oldAttrs: {
+    #   mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+    # }))
+    # hyprcursor
     #wl-paste
     discord
     vencord
@@ -514,22 +543,24 @@ networking.firewall.allowPing = true;
     nix-output-monitor
     nvd
     pkgs.cifs-utils
-    aquamarine
+    # aquamarine
     # virtualbox
     signal-desktop
-    moonlight-qt
+    # moonlight-qt
     libsForQt5.qt5.qtwayland
     kdePackages.qtwayland
     rocmPackages.rocm-smi
-    heroic
+    # heroic
     tailscale
     tmux
-    zoxide
-    arduino-ide
+    # zoxide
+    # arduino-ide
     tor
     tor-browser
     #ollama
-    # wayvnc
+    audacity
+    wayvnc
+    pkgs.libsForQt5.krfb
     # guacamole-server
     #zabbix.web
     #zabbix.agent
@@ -538,28 +569,28 @@ networking.firewall.allowPing = true;
     docker-compose
     # modelsim
     youtube-music
-    net-snmp
+    # net-snmp
     protonup-qt
-    davinci-resolve
+    # davinci-resolve
     yt-dlp
-    flameshot
+    # flameshot
     gparted
     ranger
-    pkgs.nemo-with-extensions
+    # pkgs.nemo-with-extensions
     prismlauncher
     # pkgs.nautilus
     f3
     clinfo
     rpi-imager
-    droidcam
+    # droidcam
     xwaylandvideobridge
     xwayland
-    qbittorrent
+    pkgs.deluged
     #v4l2loopback
     postgresql
     postman
-    jetbrains.idea-ultimate
-    github-desktop
+    # jetbrains.idea-ultimate
+    # github-desktop
     pkgs.dunst
     syncthing
     libnotify
@@ -581,8 +612,9 @@ networking.firewall.allowPing = true;
     #glu
     mesa
     mesa-demos
+    pkgs.wlroots
     vscode
-    swaylock
+    # swaylock
     wlogout
     tailscale
     btop
@@ -594,8 +626,7 @@ networking.firewall.allowPing = true;
     obs-studio
     whatsapp-for-linux
     # wayvnc
-    # tigervnc
-    sunshine
+    tigervnc
     z-lua
     # fish
     # neatvnc
@@ -608,6 +639,8 @@ networking.firewall.allowPing = true;
     xdg-desktop-portal-gtk
     # xdg-dekstop-portal-kde
     #xdg-desktop-portal-hyprland
+    pkgs.xorg.xinit
+    pkgs.sx
     zsh
     lsd
     pavucontrol
@@ -625,15 +658,15 @@ networking.firewall.allowPing = true;
     hackgen-nf-font
     udev-gothic-nf
     noto-fonts
-    hyprpicker
-    pkgs.gnome-keyring
+    # hyprpicker
+    pkgs.gnome.gnome-keyring
     imagemagick
     pamixer
     libsForQt5.kdeconnect-kde
     plasma5Packages.kdeconnect-kde
     xdotool
     xbindkeys
-    neofetch
+    # neofetch
     electron
     vscodium
     ntfs3g
@@ -650,19 +683,21 @@ networking.firewall.allowPing = true;
     source-han-sans
     source-han-sans-japanese
     source-han-serif-japanese
-    hyprlock
+    # hyprlock
     nwg-look
     xbindkeys
     kdenlive
     parsec-bin
-    # plexamp
+    plexamp
     # plex-desktop
     # plex-media-player
     # tautulli
     flatpak
+    pkgs.gnome.gnome-remote-desktop
+    openssl
     pkgs.home-manager
     todoist-electron
-    masterpdfeditor
+    # masterpdfeditor
     tailscale
     actkbd
     bottles
@@ -682,7 +717,7 @@ networking.firewall.allowPing = true;
     papirus-icon-theme
 
     #Java
-    maven
+    # maven
     jdk17
     speedtest-cli
     nodejs
@@ -703,6 +738,7 @@ networking.firewall.allowPing = true;
     #ninja
     gcc
   ];
+  
   
   #postgresql
   services.postgresql = {
@@ -745,7 +781,7 @@ networking.firewall.allowPing = true;
 
 
     # OpenGL
-    hardware.graphics = {
+    hardware.opengl = {
       enable = true;
       # driSupport = true;
       # driSupport32Bit = true;

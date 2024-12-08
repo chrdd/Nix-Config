@@ -3,22 +3,22 @@
   description = "flake for octavian";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    
-    hyprland = {
-      type = "git";
-      url = "https://github.com/hyprwm/Hyprland";
-      submodules = true;
-      inputs.nixpkgs.follows = "nixpkgs";
-    }; 
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # hyprland = {
+    #   type = "git";
+    #   url = "https://github.com/hyprwm/Hyprland";
+    #   submodules = true;
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # }; 
     # hyprland.url = "github:hyprwm/Hyprland";
     
     stylix.url = "github:danth/stylix";
     
-    hyprland-plugins = {
-        url = "github:hyprwm/hyprland-plugins";
-        inputs.hyprland.follows = "hyprland"; 
-    };
+    # hyprland-plugins = {
+    #     url = "github:hyprwm/hyprland-plugins";
+    #     inputs.hyprland.follows = "hyprland"; 
+    # };
     
     home-manager={
        url = "github:nix-community/home-manager";
@@ -55,7 +55,7 @@
           # ./modules/sunshine.nix
           # ./home.nix
           nix-flatpak.nixosModules.nix-flatpak
-          inputs.stylix.nixosModules.stylix
+          # inputs.stylix.nixosModules.stylix
         ];
       };
     };

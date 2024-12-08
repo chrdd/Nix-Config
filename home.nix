@@ -4,7 +4,7 @@
   imports = [
       # inputs.nix-colors.homeManagerModules.default
       ./features/alacritty.nix
-      ./dotfiles/hyprland.nix
+      # ./dotfiles/hyprland.nix
       # ./modules/sunshine.nix
   ];
   # colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;  # Home Manager needs a bit of information about you and the paths it should manage
@@ -33,10 +33,10 @@
       name = "orchis-theme";
       package = pkgs.orchis-theme;
     };
-    cursorTheme = {
-      name = "Numix-cursor";
-      package = pkgs.numix-cursor-theme;
-    };
+    # cursorTheme = {
+    #   name = "Numix-cursor";
+    #   package = pkgs.numix-cursor-theme;
+    # };
     gtk3.extraConfig = {
       Settings = '' gtk-application-prefer-dark-theme=1'';
     };
@@ -185,87 +185,87 @@ programs.btop.settings={
   theme_background = false;
 }; 
 
-programs.waybar.settings =  {
-    layer = "top";
-    position = "top";
-    height = "24";
-    width = "1366";
-    modules-left =[
-      "hyprland/workspaces" 
-      "hyprland/mode" 
-      "custom/spotify"
-      ];
-    modules-center = [
-      "hyprland/window"
-      ];
-    modules-right = [
-      "backlight" 
-      "pulseaudio" 
-      "network" 
-      "cpu" 
-      "memory" 
-      "tray" 
-      "clock"
-      ];
-    hyprland.workspaces = {
-        disable-scroll = true;
-        all-outputs = false;
-        format = "{icon}";
-        format-icons = {
-            "1" = "";
-            "2" = "";
-            "3" = "";
-            "4" = "";
-            "5" = "";
-            "urgent" = "";
-            "focused" = "";
-            "default" = "";
-        };
-    };
-    hyprland.mode = {
-        format = "<span style=\"italic\">{}</span>";
-    };
-    tray = {
-      icon-size = 21;
-      spacing = 10;
-    };
-    clock = {
-      format-alt = "{:%Y-%m-%d}";
-    };
-    cpu = {
-      format = "{usage}% ";
-    };
-    memory = {
-      format = "{}% ";
-    };
-    pulseaudio = {
-      scroll-step = 1;
-      format = "{volume}% {icon}";
-      format-muted = "";
-      format-icons = {
-        headphones = "";
-        handsfree ="";
-        headset = "";
-        phone = "";
-        portable ="";
-        car = "";
-        default = [
-          ""
-          ""
-         ];
-      };
-      on-click = "";
-    };
-  };
+# programs.waybar.settings =  {
+#     layer = "top";
+#     position = "top";
+#     height = "24";
+#     width = "1366";
+#     modules-left =[
+#       "hyprland/workspaces" 
+#       "hyprland/mode" 
+#       "custom/spotify"
+#       ];
+#     modules-center = [
+#       "hyprland/window"
+#       ];
+#     modules-right = [
+#       "backlight" 
+#       "pulseaudio" 
+#       "network" 
+#       "cpu" 
+#       "memory" 
+#       "tray" 
+#       "clock"
+#       ];
+#     hyprland.workspaces = {
+#         disable-scroll = true;
+#         all-outputs = false;
+#         format = "{icon}";
+#         format-icons = {
+#             "1" = "";
+#             "2" = "";
+#             "3" = "";
+#             "4" = "";
+#             "5" = "";
+#             "urgent" = "";
+#             "focused" = "";
+#             "default" = "";
+#         };
+#     };
+#     hyprland.mode = {
+#         format = "<span style=\"italic\">{}</span>";
+#     };
+#     tray = {
+#       icon-size = 21;
+#       spacing = 10;
+#     };
+#     clock = {
+#       format-alt = "{:%Y-%m-%d}";
+#     };
+#     cpu = {
+#       format = "{usage}% ";
+#     };
+#     memory = {
+#       format = "{}% ";
+#     };
+#     pulseaudio = {
+#       scroll-step = 1;
+#       format = "{volume}% {icon}";
+#       format-muted = "";
+#       format-icons = {
+#         headphones = "";
+#         handsfree ="";
+#         headset = "";
+#         phone = "";
+#         portable ="";
+#         car = "";
+#         default = [
+#           ""
+#           ""
+#          ];
+#       };
+#       on-click = "";
+#     };
+#   };
   
-  programs.waybar.style = {
+#   programs.waybar.style = {
   
-    border = "none";
-    border-radius = 0;
-    font-family = "Ubuntu Nerd Font";
-    font-size = "13px";
-    min-height = 0;
-  };
+#     border = "none";
+#     border-radius = 0;
+#     font-family = "Ubuntu Nerd Font";
+#     font-size = "13px";
+#     min-height = 0;
+#   };
 
   # window#waybar {
   #     background: transparent;
