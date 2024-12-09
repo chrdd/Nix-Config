@@ -91,8 +91,8 @@
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "octavian"];
   virtualisation.virtualbox.host.enableExtensionPack = true;
-  virtualisation.virtualbox.guest.enable = true; 
-  virtualisation.virtualbox.guest.draganddrop = true;
+  # virtualisation.virtualbox.guest.enable = true; 
+  # virtualisation.virtualbox.guest.draganddrop = true;
 
 
 
@@ -110,6 +110,19 @@
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; 
   services.blueman.enable = true;
+  hardware.bluetooth.settings = {
+    General={
+      FastConnectable = true;
+      JustWorksRepairing = "always";
+      Privacy = "device";
+      Class = "0x000100";
+    };
+    # Policy={
+    #   AutoEnable = "true";
+    # };
+
+  };
+
 
   #Kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -227,7 +240,7 @@ networking.firewall.allowPing = true;
    #];
    #boot.kernelModules = [“v4l2loopback”];
   boot.extraModulePackages = with config.boot.kernelPackages;
-  [ v4l2loopback.out ];
+  [ v4l2loopback.out xpadneo];
 
     # Activate kernel modules (choose from built-ins and extra ones)
   boot.kernelModules = [
@@ -367,7 +380,8 @@ networking.firewall.allowPing = true;
     ];
   };
 
-
+  hardware.xpadneo.enable = true;
+  hardware.steam-hardware.enable = true;
   # Tmux
   programs.tmux = {
   enable = true;
@@ -440,6 +454,11 @@ networking.firewall.allowPing = true;
     enable = true;
     capSysAdmin = true;
     openFirewall = true;
+    autoStart = true;
+    settings= {
+      capture = "kms";
+    };
+    
     # applications = {
     #   env = {
     #     PATH = "$(PATH):$(HOME)/.local/bin";
@@ -550,6 +569,7 @@ networking.firewall.allowPing = true;
     libsForQt5.qt5.qtwayland
     kdePackages.qtwayland
     rocmPackages.rocm-smi
+    linuxKernel.packages.linux_zen.xpadneo
     # heroic
     tailscale
     tmux
@@ -612,7 +632,8 @@ networking.firewall.allowPing = true;
     #glu
     mesa
     mesa-demos
-    pkgs.wlroots
+    wlroots
+    wlr-randr
     vscode
     # swaylock
     wlogout
