@@ -580,6 +580,7 @@ networking.firewall.allowPing = true;
     #ollama
     audacity
     wayvnc
+    kdePackages.krdp
     pkgs.libsForQt5.krfb
     # guacamole-server
     #zabbix.web
@@ -729,7 +730,7 @@ networking.firewall.allowPing = true;
     libreoffice
     fastfetch
     dos2unix
-    blender
+    # blender
     
     #themes
     colloid-kde
