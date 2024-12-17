@@ -364,6 +364,62 @@ networking.firewall.allowPing = true;
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+  # Mic over mumble
+  services.pipewire.extraConfig.pipewire."97-null-sink" = {
+    "context.objects" = [
+      {
+        factory = "adapter";
+        args = {
+          "factory.name" = "support.null-audio-sink";
+          "node.name" = "Null-Sink";
+          "node.description" = "Null Sink";
+          "media.class" = "Audio/Sink";
+          "audio.position" = "FL,FR";
+        };
+      }
+      {
+        factory = "adapter";
+        args = {
+          "factory.name" = "support.null-audio-sink";
+          "node.name" = "Null-Source";
+          "node.description" = "Null Source";
+          "media.class" = "Audio/Source";
+          "audio.position" = "FL,FR";
+        };
+      }
+    ];
+  };
+  services.pipewire.extraConfig.pipewire."98-virtual-mic" = {
+    "context.modules" = [
+      {
+        name = "libpipewire-module-loopback";
+        args = {
+          "audio.position" = "FL,FR";
+          "node.description" = "Mumble as Microphone";
+          "capture.props" = {
+            # Mumble's output node name.
+            "node.target" = "Mumble";
+            "node.passive" = true;
+          };
+          "playback.props" = {
+            "node.name" = "Virtual-Mumble-Microphone";
+            "media.class" = "Audio/Source";
+          };
+        };
+      }
+    ];
+  };
+  
+  # Mumble server.
+  services.murmur = {
+    enable = true;
+    bandwidth = 540000;
+    bonjour = true;
+    password = "password";
+    autobanTime = 0;
+  };
+ 
+
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
@@ -587,6 +643,7 @@ networking.firewall.allowPing = true;
     #zabbix.agent
     #zabbixctl
     vivaldi
+    mumble
     docker-compose
     # modelsim
     youtube-music
@@ -855,13 +912,13 @@ networking.firewall.allowPing = true;
       allowedTCPPortRanges = [ 
         { from = 1714; to = 1764; } # KDE Connect
       ];
-      allowedTCPPorts = [22 4747 32400 47984 47989 47990 48010 5900 8085 ];  
+      allowedTCPPorts = [22 4747 32400 47984 47989 47990 48010 5900 8085 64738];  
       allowedUDPPortRanges = [ 
         { from = 1714; to = 1764; } # KDE Connect
         { from = 47998; to = 48000; }
         { from = 8000; to = 8010; }
       ];  
-      allowedUDPPorts = [ 4747 8085 32400 ];
+      allowedUDPPorts = [ 4747 8085 32400 64738];
     }; 
 
 
