@@ -621,7 +621,8 @@ networking.firewall.allowPing = true;
     # aquamarine
     # virtualbox
     signal-desktop
-    # moonlight-qt
+    qbittorrent-enhanced
+    moonlight-qt
     libsForQt5.qt5.qtwayland
     kdePackages.qtwayland
     rocmPackages.rocm-smi
