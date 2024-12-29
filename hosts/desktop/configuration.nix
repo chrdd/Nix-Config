@@ -627,7 +627,7 @@ networking.firewall.allowPing = true;
     kdePackages.qtwayland
     rocmPackages.rocm-smi
     linuxKernel.packages.linux_zen.xpadneo
-    # heroic
+    heroic
     tailscale
     tmux
     # zoxide
@@ -670,12 +670,13 @@ networking.firewall.allowPing = true;
     postman
     # jetbrains.idea-ultimate
     # github-desktop
-    pkgs.dunst
+    # pkgs.dunst
     syncthing
     libnotify
     # hyprpaper
     kitty
     git
+    
     # pkgs.wayvnc
     alacritty
     rofi-wayland
@@ -802,6 +803,7 @@ networking.firewall.allowPing = true;
     speedtest-cli
     nodejs
     kwalletmanager
+    lutris
     nerdfonts
       
     #Sunshine

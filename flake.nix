@@ -15,6 +15,10 @@
     
     stylix.url = "github:danth/stylix";
     
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+    };
+    
     # hyprland-plugins = {
     #     url = "github:hyprwm/hyprland-plugins";
     #     inputs.hyprland.follows = "hyprland"; 
@@ -28,12 +32,12 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak";  
     
     nix-colors.url = "github:misterio77/nix-colors";
-    
     };
+    
 
     
 
-  outputs = { self, nixpkgs,home-manager,nix-flatpak,stylix,... }@inputs:
+  outputs = { self, nixpkgs,ghostty,home-manager,nix-flatpak,stylix,... }@inputs:
    let   
      system= "x86_64-linux";
      pkgs = import nixpkgs{
@@ -53,6 +57,11 @@
           ./apps/default.nix
           ./modules/suspend.nix
           # ./modules/sunshine.nix
+          {
+            environment.systemPackages = [
+              ghostty.packages.x86_64-linux.default
+            ];
+          }
           # ./home.nix
           nix-flatpak.nixosModules.nix-flatpak
           # inputs.stylix.nixosModules.stylix
