@@ -698,7 +698,8 @@ networking.firewall.allowPing = true;
     # swaylock
     wlogout
     tailscale
-    btop
+    #btop
+    btop-rocm
     bottom
     zathura
     steam
