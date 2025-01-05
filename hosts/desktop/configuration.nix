@@ -608,6 +608,7 @@ networking.firewall.allowPing = true;
     # }))
     # hyprcursor
     #wl-paste
+    gh
     discord
     vencord
     bitwarden
