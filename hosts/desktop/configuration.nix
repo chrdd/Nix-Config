@@ -95,6 +95,8 @@
   # virtualisation.virtualbox.guest.draganddrop = true;
 
 
+# Waydroid
+  virtualisation.waydroid.enable = true;
 
   programs.thunar.enable = true;
   programs.thunar.plugins = with pkgs.xfce; [
@@ -127,6 +129,9 @@
   #Kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  #Matlab
+  boot.kernelParams = [ "kvm.enable_virt_at_load=0" ];
+
 
   # Flatpak
   # https://github.com/gmodena/nix-flatpak
@@ -137,6 +142,7 @@
     { appId = "com.plexamp.Plexamp"; origin = "flathub"; }
     { appId = "com.github.tchx84.Flatseal"; origin = "flathub"; }
     { appId = "dev.vencord.Vesktop"; origin = "flathub"; }
+    { appId = "io.github.zen_browser.zen"; origin = "flathub"; }
   ];
 
 
@@ -677,7 +683,8 @@ networking.firewall.allowPing = true;
     # hyprpaper
     kitty
     git
-    
+    python3
+    scrcpy
     # pkgs.wayvnc
     alacritty
     rofi-wayland
