@@ -347,7 +347,7 @@ networking.firewall.allowPing = true;
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 14d";
+    options = "--delete-older-than 30d";
   };
 
 
@@ -613,6 +613,9 @@ networking.firewall.allowPing = true;
     #   mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
     # }))
     # hyprcursor
+    kdePackages.kasts
+    localsend
+    unrar
     #wl-paste
     gh
     discord
