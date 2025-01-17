@@ -644,6 +644,7 @@ networking.firewall.allowPing = true;
     # arduino-ide
     kodi-wayland
     plex-desktop
+    git-crypt
 
     tor
     tor-browser
