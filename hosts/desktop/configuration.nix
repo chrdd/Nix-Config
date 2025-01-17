@@ -642,6 +642,9 @@ networking.firewall.allowPing = true;
     tmux
     # zoxide
     # arduino-ide
+    kodi-wayland
+    plex-desktop
+
     tor
     tor-browser
     #ollama
