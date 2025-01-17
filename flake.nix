@@ -40,6 +40,7 @@
   outputs = { self, nixpkgs,ghostty,home-manager,nix-flatpak,stylix,... }@inputs:
    let   
      system= "x86_64-linux";
+     secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
      pkgs = import nixpkgs{
        inherit system;
        config = {
@@ -50,7 +51,7 @@
   {
    nixosConfigurations = {
       octavian=nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs system;};
+      specialArgs = {inherit inputs system secrets;};
         modules = [
           ./hosts/desktop/configuration.nix
           # ./dotfiles/default.nix
