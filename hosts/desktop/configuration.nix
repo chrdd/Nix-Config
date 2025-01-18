@@ -710,6 +710,7 @@ networking.firewall.allowPing = true;
     wlroots
     wlr-randr
     vscode
+    vscodium
     # swaylock
     wlogout
     tailscale
