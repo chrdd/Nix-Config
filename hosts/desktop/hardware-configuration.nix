@@ -35,6 +35,13 @@
       options = [ "username=chr" "password=${secrets.truenas.password}" "x-systemd.automount" "noauto" ];
     };
 
+  fileSystems."Media(NFS)" =
+    { device = "//192.168.3.8/Media";
+      fsType = "nfs";
+      options = [ "username=chr" "password=${secrets.truenas.password}" "x-systemd.automount" "noauto" ];
+    };
+
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/a1b61fd2-f34d-4e2a-9167-ddd1ad331826"; }
     ];

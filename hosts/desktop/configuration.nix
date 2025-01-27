@@ -852,16 +852,17 @@ networking.firewall.allowPing = true;
   # Insecure packages
   nixpkgs.config.permittedInsecurePackages = [ "electron-25.9.0" ];
 
-  
-    
+
+
 
 
   # XDG desktop portals
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ 
-	# pkgs.xdg-desktop-portal-gtk
+	pkgs.xdg-desktop-portal-gtk
 	# xdg-dekstop-portal-hyprland
 	 ];
+   xdg.portal.xdgOpenUsePortal = true;
 
   systemd.user.services.xdg-desktop-portal-gtk = {
       wantedBy = [ "xdg-desktop-portal.service" ];
