@@ -13,6 +13,7 @@
       inputs.home-manager.nixosModules.home-manager
     ];
 
+  # Flakes
   # nix = {
   # package = pkgs.nixFlakes;
   # extraOptions = ''experimental-features = nix-command flakes'';
@@ -32,7 +33,7 @@
   # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
   # stylix.polarity = "dark";
 
-  # Bootloader.
+  # Bootloader
   #boot.loader.grub.efiSupport = true;
   #boot.loader.grub.useOSProber = true;
  
@@ -50,17 +51,73 @@
       };
       timeout = 300;
     };
+    kernelPackages = pkgs.linuxPackages_latest;
+    extraModulePackages = with config.boot.kernelPackages;[ 
+      v4l2loopback.out 
+      xpadneo];
+    kernelModules = [
+      # Virtual Camera
+      "v4l2loopback"
+      # Virtual Microphone, built-in
+      "snd-aloop"];
+    initrd.kernelModules = ["amdgpu"];
+    extraModprobeConfig = ''options v4l2loopback devices=1 video_nr=1 card_label="Virtual Cam" exclusive_caps=1'';
   };
 
+#  #Kernel
+#   boot.kernelPackages = pkgs.linuxPackages_latest;
+  
+#   # Boot packages
+#   boot.extraModulePackages = with config.boot.kernelPackages;
+#   [ v4l2loopback.out xpadneo];
+
+#     # Activate kernel modules (choose from built-ins and extra ones)
+#   boot.kernelModules = [
+#     # Virtual Camera
+#     "v4l2loopback"
+#     # Virtual Microphone, built-in
+#     "snd-aloop"
+#   ];
+#     # AMD 
+#   boot.initrd.kernelModules = ["amdgpu"];
+  # boot.extraModprobeConfig = ''
+  #   options v4l2loopback devices=1 video_nr=1 card_label="Virtual Cam" exclusive_caps=1
+  #  '';
+
+  security.polkit.enable = true; 
+
+
+  #Networking
   networking.hostName = "octavian"; # Define your hostname.
+  networking.firewall.allowPing = true;
+  networking.networkmanager.enable = true;
+    # Open ports in the firewall.
+    # networking.firewall.enable = false;
+    # networking.useDHCP = false;
+  networking.firewall = { 
+    enable = true;
+    allowedTCPPortRanges = [ 
+      { from = 1714; to = 1764; } # KDE Connect
+    ];
+    allowedTCPPorts = [22 4747 32400 47984 47989 47990 48010 5900 8085 64738];  
+    allowedUDPPortRanges = [ 
+      { from = 1714; to = 1764; } # KDE Connect
+      { from = 47998; to = 48000; }
+      { from = 8000; to = 8010; }
+    ];  
+    allowedUDPPorts = [ 4747 8085 32400 64738];
+  }; 
+
+  # Tailscale
+  services.tailscale.enable = true;
+
+  
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
-  #networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Bucharest";
@@ -79,21 +136,25 @@
     LC_TELEPHONE = "ro_RO.UTF-8";
     LC_TIME = "ro_RO.UTF-8";
   };
-  # Enable Hyprland
-  # programs.hyprland = {
-  #   enable = true;
-  #   package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-  #   xwayland.enable = true;
-  # };
+    # Enable Hyprland
+    # programs.hyprland = {
+    #   enable = true;
+    #   package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+    #   xwayland.enable = true;
+    # };
 
 #VirtualBox
-
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "octavian"];
-  virtualisation.virtualbox.host.enableExtensionPack = true;
-  # virtualisation.virtualbox.guest.enable = true; 
-  # virtualisation.virtualbox.guest.draganddrop = true;
-
+# virtualisation.virtualbox.host.enable = true;
+# virtualisation.virtualbox.host.enableExtensionPack = true;
+# virtualisation.virtualbox.guest.enable = true; 
+# virtualisation.virtualbox.guest.draganddrop = true;
+ 
+  # virtualisation.virtualbox={
+  #   enable = true;
+  #   host.enableExtensionPack = true;
+  # };
+  #  users.extraGroups.vboxusers.members = [ "octavian"];
+  
 
 # Waydroid
   virtualisation.waydroid.enable = true;
@@ -109,28 +170,41 @@
   programs.file-roller.enable = true;
 
   #Bluetooth
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true; 
-  services.blueman.enable = true;
-  hardware.bluetooth.settings = {
-    General={
-      FastConnectable = true;
-      JustWorksRepairing = "always";
-      Privacy = "device";
-      Class = "0x000100";
+  hardware.bluetooth={
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General={
+        FastConnectable = true;
+        JustWorksRepairing = "always";
+        Privacy = "device";
+        Class = "0x000100";
+      };
     };
-    # Policy={
-    #   AutoEnable = "true";
+  };
+  
+  # Blueman
+  services.blueman.enable = true;
+
+    # hardware.bluetooth.enable = true; # enables support for Bluetooth
+    # hardware.bluetooth.powerOnBoot = true; 
+    # hardware.bluetooth.settings = {
+    #   General={
+    #     FastConnectable = true;
+    #     JustWorksRepairing = "always";
+    #     Privacy = "device";
+    #     Class = "0x000100";
+    #   };
+    #   # Policy={
+    #   #   AutoEnable = "true";
+    #   # };
+
     # };
 
-  };
+  services.xserver.videoDrivers = [ "modesetting" ];
 
-
-  #Kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  #Matlab
-  boot.kernelParams = [ "kvm.enable_virt_at_load=0" ];
+  # #Matlab
+  # boot.kernelParams = [ "kvm.enable_virt_at_load=0" ];
 
 
   # Flatpak
@@ -139,15 +213,11 @@
   services.flatpak.packages = [
     { appId = "tv.plex.PlexDesktop"; origin = "flathub"; }
     { appId = "tv.plex.PlexHTPC"; origin = "flathub"; }
-    { appId = "com.plexamp.Plexamp"; origin = "flathub"; }
     { appId = "com.github.tchx84.Flatseal"; origin = "flathub"; }
     { appId = "dev.vencord.Vesktop"; origin = "flathub"; }
     { appId = "io.github.zen_browser.zen"; origin = "flathub"; }
   ];
 
-
-  # Tailscale
-  services.tailscale.enable = true;
 
   # Media keys
   # sound.mediaKeys.enable = true;
@@ -168,6 +238,8 @@
     remotePlay.openFirewall = true;  
   };
 
+
+  # ZSH
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -196,71 +268,46 @@
     options = [ "rw" "nconnect=16" "x-systemd.automount" "noauto"];
   };
 
-# networking.firewall.enable = true;
-networking.firewall.allowPing = true;
+    # services.xserver.videoDrivers = ["amdgpu"];
+    # systemd.tmpfiles.rules = [
+    #  "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.hip}"
+    # ];
+  
+    #systemd.tmpfiles.rules = [
+    #  "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+    #];
+  
+    #hardware.opengl.driSupport = true; # This is already enabled by default
+    #hardware.opengl.driSupport32Bit = true; # For 32 bit applications
+    #hardware.graphics.extraPackages = with pkgs; [
+    #amdvlk
+    #];
+    # For 32 bit applications 
+    #hardware.graphics.extraPackages32 = with pkgs; [
+    #  driversi686Linux.amdvlk
+    #];
 
 
-  ## AMD 
+    # Nvidia settings
+    # hardware.nvidia = {
+    #   modesetting.enable = true;
+    #   nvidiaSettings = true;
+    #   powerManagement.enable = true;
+    #   open = false;
+    #   package = config.boot.kernelPackages.nvidiaPackages.stable;
+    # };
 
-  boot.initrd.kernelModules = ["amdgpu"];
-  # services.xserver.videoDrivers = ["amdgpu"];
-  services.xserver.videoDrivers = [ "modesetting" ];
-
-  # systemd.tmpfiles.rules = [
-  #  "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.hip}"
-  # ];
- 
-
-  #systemd.tmpfiles.rules = [
-  #  "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
-  #];
- 
-  #hardware.opengl.driSupport = true; # This is already enabled by default
-  #hardware.opengl.driSupport32Bit = true; # For 32 bit applications
-  #hardware.graphics.extraPackages = with pkgs; [
-  #amdvlk
-  #];
-  # For 32 bit applications 
-  #hardware.graphics.extraPackages32 = with pkgs; [
-  #  driversi686Linux.amdvlk
-  #];
-
-
-  # Nvidia settings
-  # hardware.nvidia = {
-  #   modesetting.enable = true;
-  #   nvidiaSettings = true;
-  #   powerManagement.enable = true;
-  #   open = false;
-  #   package = config.boot.kernelPackages.nvidiaPackages.stable;
-  # };
-
-  # services.xserver.videoDrivers = [ "nvidia" ];
+    # services.xserver.videoDrivers = [ "nvidia" ];
 
 
  
     #OBS
     # https://nixos.wiki/wiki/OBS_Studio
-   #boot.extraModulePackages = with config.boot.kernelPackages; [
-   #  v4l2loopback
-   #];
-   #boot.kernelModules = [“v4l2loopback”];
-  boot.extraModulePackages = with config.boot.kernelPackages;
-  [ v4l2loopback.out xpadneo];
+    #boot.extraModulePackages = with config.boot.kernelPackages; [
+    #  v4l2loopback
+    #];
+    #boot.kernelModules = [“v4l2loopback”];
 
-    # Activate kernel modules (choose from built-ins and extra ones)
-  boot.kernelModules = [
-    # Virtual Camera
-    "v4l2loopback"
-    # Virtual Microphone, built-in
-    "snd-aloop"
-  ];
-
-
-   boot.extraModprobeConfig = ''
-     options v4l2loopback devices=1 video_nr=1 card_label="Virtual Cam" exclusive_caps=1
-   '';
-   security.polkit.enable = true; 
    
    # Autostart polkit_gnome
    systemd = {
@@ -279,53 +326,77 @@ networking.firewall.allowPing = true;
       };
    };
 
-   #Load Nvidia drivers 
-   #services.xserver.videoDrivers = ["nvidia"]; # or "nvidiaLegacy470 etc.
-   #services.xserver.displayManager.gdm = {
-     #enable = true;
-     #nvidiaWayland = true;
-   #};  
-   # Enable the X11 windowing system.
-    services.xserver.enable = true;
-   #RDP
+    #Load Nvidia drivers 
+    #services.xserver.videoDrivers = ["nvidia"]; # or "nvidiaLegacy470 etc.
+    #services.xserver.displayManager.gdm = {
+      #enable = true;
+      #nvidiaWayland = true;
+    #};  
+   # X11
+   services.xserver={
+      enable = true;
+      desktopManager.gnome.enable = true;
+      # Configure keymap in X11
+      xkb={
+        variant = "";
+        layout = "us";
+      };
+   };
+  services.desktopManager.plasma6.enable = true;
+    # services.xserver.enable = true;
    #services.xserver.displayManager.sddm.enable = true;
-    services.desktopManager.plasma6.enable = true;
-    services.xserver.desktopManager.gnome.enable = true;
-    programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
+    # services.xserver.desktopManager.gnome.enable = true;
 
-   services.xrdp.enable = true;
-   services.xrdp.defaultWindowManager = "plasma";
-   services.xrdp.openFirewall = true;
+  #RDP
+  programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
+
+  # XDRP
+  services.xrdp.enable = true;
+  services.xrdp.defaultWindowManager = "plasma";
+  services.xrdp.openFirewall = true;
+  # services.xdrp={
+  #   enable = true;
+  #   defaultWindowManager = "plasma";
+  #   openFirewall = true;
+  # };
+  
    # Enable the KDE Plasma Desktop Environment.
    #services.xserver.displayManager.sddm.wayland.enable = true;
-   services.displayManager.sddm.wayland.enable = true;
-   services.xserver.displayManager.sddm.enable = true; 
-   #Default session
-   services.displayManager.defaultSession = "plasma";
    
 
-  #  Nix Helper
+  #  Display Manager
+   services.displayManager={
+    sddm.enable = true;
+    sddm.wayland.enable = true;
+    defaultSession = "plasma";
+   };
+    #  services.displayManager.sddm.wayland.enable = true;
+    #  services.displayManager.sddm.enable = true; 
+    #  #Default session
+    #  services.displayManager.defaultSession = "plasma";
+   
+
+  #  Nix Helper (nh)
   environment.sessionVariables = {
-    FLAKE = "/etc/nixos/flake.nix";
-    };
+    FLAKE = "/etc/nixos";
+  };
 
-   # Sway
-   #programs.sway = {
-   #  enable = true;
-   #  wrapperFeatures.gtk = true;
-   #};
-   # Swaylock
-   #programs.swaylock = {
-   #  enable= true;
-   #};
-   # Swaylock fix
-   security.pam.services.swaylock = {};
-   #services.xserver.desktopManager.plasma5.enable = true;
+    # Sway
+    #programs.sway = {
+    #  enable = true;
+    #  wrapperFeatures.gtk = true;
+    #};
+    # Swaylock
+    #programs.swaylock = {
+    #  enable= true;
+    #};
+    # Swaylock fix
+  security.pam.services.swaylock = {};
+    #services.xserver.desktopManager.plasma5.enable = true;
 
-  # Configure keymap in X11
   
-  services.xserver.xkb.variant = "";
-  services.xserver.xkb.layout = "us";
+    # services.xserver.xkb.variant = "";
+    # services.xserver.xkb.layout = "us";
 
   services = {
     syncthing = {
@@ -340,9 +411,8 @@ networking.firewall.allowPing = true;
   # Optimization & Garbage Collection
 
   # Optimize Nix-Store During Rebuilds
-    # NOTE: Optimizes during builds - results in slower builds
+  # NOTE: Optimizes during builds - results in slower builds
   nix.settings.auto-optimise-store = true;
-
   # Purge Unused Nix-Store Entries
   nix.gc = {
     automatic = true;
@@ -496,15 +566,19 @@ networking.firewall.allowPing = true;
   };
 
   #XRDP
-  # services.xrdp.enable = true;
-  # services.xrdp.openFirewall = true;
-  #docker
-  #virtualisation.docker.enable = true;
-  #users.users.octavian.extraGroups = [ "docker" ];
+    # services.xrdp.enable = true;
+    # services.xrdp.openFirewall = true;
+    #docker
+    #virtualisation.docker.enable = true;
+    #users.users.octavian.extraGroups = [ "docker" ];
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = pkgs.lib.mkForce true;  
-  nixpkgs.config.allowInsecure = true;
+  nixpkgs.config={
+      allowUnfree = pkgs.lib.mkForce true;
+      allowInsecure = true;
+  };
+  # nixpkgs.config.allowUnfree = pkgs.lib.mkForce true;  
+  # nixpkgs.config.allowInsecure = true;
   
   # Vivaldi
   nixpkgs.config.vivaldi = {
@@ -520,64 +594,69 @@ networking.firewall.allowPing = true;
     settings= {
       capture = "kms";
     };
-    
-    # applications = {
-    #   env = {
-    #     PATH = "$(PATH):$(HOME)/.local/bin";
-    #   };
-    #   apps = [
-    #     {
-    #       name = "1440p Desktop";
-    #       prep-cmd = [
-    #         {
-    #           do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.2560x1440@144";
-    #           undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.3440x1440@144";
-    #         }
-    #       ];
-    #       exclude-global-prep-cmd = "false";
-    #       auto-detach = "true";
-    #     }
-    #     {
-    #       name = "1080p Desktop";
-    #       prep-cmd = [
-    #         {
-    #           do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.1920x1080@120";
-    #           undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.3440x1440@144";
-    #         }
-    #       ];
-    #       exclude-global-prep-cmd = "false";
-    #       auto-detach = "true";
-    #     }
-    #     {
-    #       name = "800p Desktop";
-    #       prep-cmd = [
-    #         {
-    #           do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.1280x800@144";
-    #           undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.3440x1440@144";
-    #         }
-    #       ];
-    #       exclude-global-prep-cmd = "false";
-    #       auto-detach = "true";
-    #     }
-    #   ];
-    # };
+      # applications = {
+      #   env = {
+      #     PATH = "$(PATH):$(HOME)/.local/bin";
+      #   };
+      #   apps = [
+      #     {
+      #       name = "1440p Desktop";
+      #       prep-cmd = [
+      #         {
+      #           do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.2560x1440@144";
+      #           undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.3440x1440@144";
+      #         }
+      #       ];
+      #       exclude-global-prep-cmd = "false";
+      #       auto-detach = "true";
+      #     }
+      #     {
+      #       name = "1080p Desktop";
+      #       prep-cmd = [
+      #         {
+      #           do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.1920x1080@120";
+      #           undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.3440x1440@144";
+      #         }
+      #       ];
+      #       exclude-global-prep-cmd = "false";
+      #       auto-detach = "true";
+      #     }
+      #     {
+      #       name = "800p Desktop";
+      #       prep-cmd = [
+      #         {
+      #           do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.1280x800@144";
+      #           undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.3440x1440@144";
+      #         }
+      #       ];
+      #       exclude-global-prep-cmd = "false";
+      #       auto-detach = "true";
+      #     }
+      #   ];
+      # };
   };
 
-  # security.wrappers.sunshine = {
-  #       owner = "root";
-  #       group = "root";
-  #       capabilities = "cap_sys_admin+p";
-  #       source = "${pkgs.sunshine}/bin/sunshine";
-  # };
+    # security.wrappers.sunshine = {
+    #       owner = "root";
+    #       group = "root";
+    #       capabilities = "cap_sys_admin+p";
+    #       source = "${pkgs.sunshine}/bin/sunshine";
+    # };
   
-  services.avahi.enable = true; 
-  services.avahi.publish.enable = true;
-  services.avahi.publish.userServices = true;
+
+  services.avahi={
+      enable = true;
+      publish.enable = true;
+      publish.userServices = true;
+  };
+  # services.avahi.enable = true; 
+  # services.avahi.publish.enable = true;
+  # services.avahi.publish.userServices = true;
 
 
   services.gnome.gnome-remote-desktop.enable = true;
   #Fonts
-  #fonts.fontconfig.enableProfileFonts = true;
+   #fonts.fontconfig.enableProfileFonts = true;
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
@@ -591,13 +670,13 @@ networking.firewall.allowPing = true;
     jetbrains-mono
   ];
 
-  # let
-  #   unstable = import
-  #     (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/<branch or commit>)
-  #     # reuse the current configuration
-  #     { config = config.nixpkgs.config; };
-  # in
-  # {
+    # let
+    #   unstable = import
+    #     (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/<branch or commit>)
+    #     # reuse the current configuration
+    #     { config = config.nixpkgs.config; };
+    # in
+    # {
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
@@ -757,7 +836,7 @@ networking.firewall.allowPing = true;
     udev-gothic-nf
     noto-fonts
     # hyprpicker
-    pkgs.gnome.gnome-keyring
+    gnome-keyring
     imagemagick
     pamixer
     libsForQt5.kdeconnect-kde
@@ -791,7 +870,7 @@ networking.firewall.allowPing = true;
     # plex-media-player
     # tautulli
     flatpak
-    pkgs.gnome.gnome-remote-desktop
+    gnome-remote-desktop
     openssl
     pkgs.home-manager
     todoist-electron
@@ -881,7 +960,7 @@ networking.firewall.allowPing = true;
 
 
     # OpenGL
-    hardware.opengl = {
+    hardware.graphics = {
       enable = true;
       # driSupport = true;
       # driSupport32Bit = true;
@@ -923,24 +1002,7 @@ networking.firewall.allowPing = true;
     # Enable the OpenSSH daemon.
     services.openssh.enable = true;
 
-    # networking
-    networking.networkmanager.enable = true;
-    # Open ports in the firewall.
-    # networking.firewall.enable = false;
-    # networking.useDHCP = false;
-    networking.firewall = { 
-      enable = true;
-      allowedTCPPortRanges = [ 
-        { from = 1714; to = 1764; } # KDE Connect
-      ];
-      allowedTCPPorts = [22 4747 32400 47984 47989 47990 48010 5900 8085 64738];  
-      allowedUDPPortRanges = [ 
-        { from = 1714; to = 1764; } # KDE Connect
-        { from = 47998; to = 48000; }
-        { from = 8000; to = 8010; }
-      ];  
-      allowedUDPPorts = [ 4747 8085 32400 64738];
-    }; 
+
 
 
   programs.adb.enable = true;
