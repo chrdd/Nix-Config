@@ -4,6 +4,7 @@
   imports = [
       # inputs.nix-colors.homeManagerModules.default
       ./features/alacritty.nix
+      ./modules/plasma.nix
       # ./dotfiles/hyprland.nix
       # ./modules/sunshine.nix
   ];
