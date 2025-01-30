@@ -10,48 +10,51 @@
     #   url = "https://github.com/hyprwm/Hyprland";
     #   submodules = true;
     #   inputs.nixpkgs.follows = "nixpkgs";
-    # }; 
+    # };
     # hyprland.url = "github:hyprwm/Hyprland";
-    
+
     stylix.url = "github:danth/stylix";
-    
+
     ghostty = {
       url = "github:ghostty-org/ghostty";
     };
-    
+
     # hyprland-plugins = {
     #     url = "github:hyprwm/hyprland-plugins";
-    #     inputs.hyprland.follows = "hyprland"; 
+    #     inputs.hyprland.follows = "hyprland";
     # };
-    
-    home-manager={
-       url = "github:nix-community/home-manager";
-       inputs.nixpkgs.follows = "nixpkgs";
-      };
-    
-    nix-flatpak.url = "github:gmodena/nix-flatpak";  
-    
-    nix-colors.url = "github:misterio77/nix-colors";
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-    
 
-    
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
 
-  outputs = { self, nixpkgs,ghostty,home-manager,nix-flatpak,stylix,... }@inputs:
-   let   
-     system= "x86_64-linux";
-     secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
-     pkgs = import nixpkgs{
-       inherit system;
-       config = {
-         allowUnfree = true;
-       };
-     };
-    in
-  {
-   nixosConfigurations = {
-      octavian=nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs system secrets;};
+    nix-colors.url = "github:misterio77/nix-colors";
+  };
+
+  outputs = {
+    self,
+    nixpkgs,
+    ghostty,
+    home-manager,
+    nix-flatpak,
+    stylix,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
+    secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
+    pkgs = import nixpkgs {
+      inherit system;
+      config = {
+        allowUnfree = true;
+      };
+    };
+  in {
+    nixosConfigurations = {
+      octavian = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs system secrets;};
         modules = [
           ./hosts/desktop/configuration.nix
           # ./dotfiles/default.nix
@@ -70,11 +73,11 @@
       };
     };
     #Home-manager
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      octavian = import ./home.nix;
+    home-manager = {
+      extraSpecialArgs = {inherit inputs;};
+      users = {
+        octavian = import ./home.nix;
+      };
     };
-  };
   };
 }
