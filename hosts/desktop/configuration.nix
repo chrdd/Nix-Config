@@ -65,7 +65,7 @@
       "snd-aloop"
     ];
     initrd.kernelModules = ["amdgpu"];
-    extraModprobeConfig = ''options v4l2loopback devices=1 video_nr=1 card_label="Virtual Cam" exclusive_caps=1'';
+    extraModprobeConfig = ''options v4l2loopback devices=1 video_nr=1 card_label="Virtual Cam" exclusive_caps=1 ''+''options bluetooth disable_ertm=Y'';
   };
 
   #  #Kernel
@@ -719,6 +719,7 @@
     unrar
     #wl-paste
     gh
+    fluent-reader
     discord
     vencord
     bitwarden
@@ -819,7 +820,7 @@
     btop-rocm
     bottom
     zathura
-    steam
+    # steam
     mpv
     vlc
     obs-studio
@@ -840,7 +841,7 @@
     #xdg-desktop-portal-hyprland
     pkgs.xorg.xinit
     pkgs.sx
-    zsh
+    # zsh
     lsd
     pavucontrol
     viewnior
@@ -891,7 +892,7 @@
     # plex-desktop
     # plex-media-player
     # tautulli
-    flatpak
+    # flatpak
     gnome-remote-desktop
     openssl
     pkgs.home-manager
