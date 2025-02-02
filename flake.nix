@@ -60,6 +60,7 @@
           # ./dotfiles/default.nix
           ./apps/default.nix
           ./modules/suspend.nix
+          ./modules/default.nix
           # ./modules/sunshine.nix
           {
             environment.systemPackages = [
