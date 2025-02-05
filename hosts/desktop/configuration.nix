@@ -68,6 +68,9 @@
     extraModprobeConfig = ''options v4l2loopback devices=1 video_nr=1 card_label="Virtual Cam" exclusive_caps=1 ''+''options bluetooth disable_ertm=Y'';
   };
 
+  hardware.amdgpu.opencl.enable = true;
+  hardware.amdgpu.amdvlk.enable = true;
+
   #  #Kernel
   #   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -301,6 +304,15 @@
     fsType = "nfs";
     options = ["rw" "nconnect=16" "x-systemd.automount" "noauto"];
   };
+
+
+  # ollama
+  services.ollama = {
+  enable = true;
+  loadModels = [ "codellama" "llama3.2" "deepseek-r1" ];
+  acceleration = "rocm";
+  rocmOverrideGfx = "10.3.0";
+};
 
   # services.xserver.videoDrivers = ["amdgpu"];
   # systemd.tmpfiles.rules = [
@@ -724,6 +736,7 @@
     vencord
     bitwarden
     obsidian
+    anki
     easyeffects
     nh
     jamesdsp
@@ -750,7 +763,7 @@
 
     tor
     tor-browser
-    #ollama
+    # ollama-rocm
     audacity
     wayvnc
     kdePackages.krdp
@@ -987,10 +1000,10 @@
       mesa
       vaapiVdpau
       libvdpau-va-gl
-      rocmPackages_5.clr.icd
-      rocmPackages_5.rocm-runtime
-      rocmPackages_5.rocminfo
-      pkgs.mesa.opencl
+      # rocmPackages_5.clr.icd
+      # rocmPackages_5.rocm-runtime
+      # rocmPackages_5.rocminfo
+      # pkgs.mesa.opencl
       # rocm-opencl-icd
       # rocm-opencl-runtime
       # rocmPackages.rocm-runtime
