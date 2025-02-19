@@ -763,6 +763,7 @@
 
     tor
     tor-browser
+    yad
     # ollama-rocm
     audacity
     wayvnc
@@ -794,6 +795,8 @@
     xwaylandvideobridge
     xwayland
     pkgs.deluged
+    wineWowPackages.waylandFull
+    winetricks
     #v4l2loopback
     postgresql
     postman
