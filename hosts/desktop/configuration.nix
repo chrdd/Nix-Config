@@ -995,18 +995,18 @@
   };
 
   #VNC
-  systemd.services.krfb-virtualmonitor = {
-  description = "Virtual Monitor for Wireless Display";
-  wantedBy = [ "multi-user.target" ]; # Ensure it runs at boot
-  after = [ "network.target" "display-manager.service" ]; # Start after network and display manager
+  # systemd.services.krfb-virtualmonitor = {
+  # description = "Virtual Monitor for Wireless Display";
+  # wantedBy = [ "multi-user.target" ]; # Ensure it runs at boot
+  # after = [ "network.target" "display-manager.service" ]; # Start after network and display manager
 
-  serviceConfig = {
-    ExecStart = "/run/current-system/sw/bin/krfb-virtualmonitor --name WirelessDisplay --resolution 2048x1536 --password deadbeef --port 5900";
-    Restart = "always"; # Restart if it crashes
-    User = "octavian"; # Replace with your actual username
-    Environment = "DISPLAY=:0"; # Ensures it runs in the graphical session
-  };
-  };
+  # serviceConfig = {
+  #   ExecStart = "/run/current-system/sw/bin/krfb-virtualmonitor --name WirelessDisplay --resolution 2048x1536 --password deadbeef --port 5900";
+  #   Restart = "always"; # Restart if it crashes
+  #   User = "octavian"; # Replace with your actual username
+  #   Environment = "DISPLAY=:0"; # Ensures it runs in the graphical session
+  # };
+  # };
 
   #AMD
   systemd.packages = with pkgs; [lact];
