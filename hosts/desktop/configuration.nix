@@ -158,97 +158,20 @@
   #   xwayland.enable = true;
   # };
 
-  #VirtualBox
-  # virtualisation.virtualbox.host.enable = true;
-  # virtualisation.virtualbox.host.enableExtensionPack = true;
-  # virtualisation.virtualbox.guest.enable = true;
-  # virtualisation.virtualbox.guest.draganddrop = true;
-
-  # virtualisation.virtualbox={
-  #   enable = true;
-  #   host.enableExtensionPack = true;
-  # };
-  #  users.extraGroups.vboxusers.members = [ "octavian"];
+  
 
   # Waydroid
   virtualisation.waydroid.enable = true;
-
-  # programs.thunar.enable = true;
-  # programs.thunar.plugins = with pkgs.xfce; [
-  #   thunar-archive-plugin
-  #   thunar-volman
-  # ];
 
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
   programs.file-roller.enable = true;
 
-  # #Bluetooth
-  # hardware.bluetooth = {
-  #   enable = true;
-  #   powerOnBoot = true;
-  #   settings = {
-  #     General = {
-  #       FastConnectable = true;
-  #       JustWorksRepairing = "always";
-  #       Privacy = "device";
-  #       Class = "0x000100";
-  #     };
-  #   };
-  # };
-
-  # # Blueman
-  # services.blueman.enable = true;
-
   nix.nixPath=[ "nixpkgs=${inputs.nixpkgs}" ];
-  # hardware.bluetooth.enable = true; # enables support for Bluetooth
-  # hardware.bluetooth.powerOnBoot = true;
-  # hardware.bluetooth.settings = {
-  #   General={
-  #     FastConnectable = true;
-  #     JustWorksRepairing = "always";
-  #     Privacy = "device";
-  #     Class = "0x000100";
-  #   };
-  #   # Policy={
-  #   #   AutoEnable = "true";
-  #   # };
-
-  # };
-
+  
   services.xserver.videoDrivers = ["modesetting"];
-
-  # #Matlab
-  # boot.kernelParams = [ "kvm.enable_virt_at_load=0" ];
-
-  # Flatpak
-  # https://github.com/gmodena/nix-flatpak
-  # services.flatpak.enable = true;
-  # services.flatpak.packages = [
-  #   {
-  #     appId = "tv.plex.PlexDesktop";
-  #     origin = "flathub";
-  #   }
-  #   {
-  #     appId = "tv.plex.PlexHTPC";
-  #     origin = "flathub";
-  #   }
-  #   {
-  #     appId = "com.github.tchx84.Flatseal";
-  #     origin = "flathub";
-  #   }
-  #   {
-  #     appId = "dev.vencord.Vesktop";
-  #     origin = "flathub";
-  #   }
-  #   {
-  #     appId = "io.github.zen_browser.zen";
-  #     origin = "flathub";
-  #   }
-  # ];
-
+ 
   # Media keys
-  # sound.mediaKeys.enable = true;
   services.actkbd = {
     enable = true;
     bindings = [
@@ -270,12 +193,6 @@
       }
     ];
   };
-
-  # Steam
-  # programs.steam = {
-  #   enable = true;
-  #   remotePlay.openFirewall = true;
-  # };
 
   # ZSH
   programs.zsh = {
@@ -303,52 +220,6 @@
     fsType = "nfs";
     options = ["rw" "nconnect=16" "x-systemd.automount" "noauto"];
   };
-
-
-  # ollama
-  # services.ollama = {
-  # enable = true;
-  # loadModels = [ "codellama" "llama3.2" "deepseek-r1" ];
-  # acceleration = "rocm";
-  # rocmOverrideGfx = "10.3.0";
-  # };
-
-  # services.xserver.videoDrivers = ["amdgpu"];
-  # systemd.tmpfiles.rules = [
-  #  "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.hip}"
-  # ];
-
-  #systemd.tmpfiles.rules = [
-  #  "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
-  #];
-
-  #hardware.opengl.driSupport = true; # This is already enabled by default
-  #hardware.opengl.driSupport32Bit = true; # For 32 bit applications
-  #hardware.graphics.extraPackages = with pkgs; [
-  #amdvlk
-  #];
-  # For 32 bit applications
-  #hardware.graphics.extraPackages32 = with pkgs; [
-  #  driversi686Linux.amdvlk
-  #];
-
-  # Nvidia settings
-  # hardware.nvidia = {
-  #   modesetting.enable = true;
-  #   nvidiaSettings = true;
-  #   powerManagement.enable = true;
-  #   open = false;
-  #   package = config.boot.kernelPackages.nvidiaPackages.stable;
-  # };
-
-  # services.xserver.videoDrivers = [ "nvidia" ];
-
-  #OBS
-  # https://nixos.wiki/wiki/OBS_Studio
-  #boot.extraModulePackages = with config.boot.kernelPackages; [
-  #  v4l2loopback
-  #];
-  #boot.kernelModules = [“v4l2loopback”];
 
   # Autostart polkit_gnome
   systemd = {
@@ -435,27 +306,7 @@
 
   # services.xserver.xkb.variant = "";
   # services.xserver.xkb.layout = "us";
-
-  services = {
-    syncthing = {
-      enable = true;
-      user = "octavian";
-      dataDir = "/home/octavian/Documents"; # Default folder for new synced folders
-      configDir = "/home/octavian/Documents/.config/syncthing"; # Folder for Syncthing's settings and keys
-    };
-  };
-
-  # Optimization & Garbage Collection
-
-  # Optimize Nix-Store During Rebuilds
-  # NOTE: Optimizes during builds - results in slower builds
-  nix.settings.auto-optimise-store = true;
-  # Purge Unused Nix-Store Entries
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
-  };
+  
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -475,60 +326,6 @@
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
-  };
-  # Mic over mumble
-  services.pipewire.extraConfig.pipewire."97-null-sink" = {
-    "context.objects" = [
-      {
-        factory = "adapter";
-        args = {
-          "factory.name" = "support.null-audio-sink";
-          "node.name" = "Null-Sink";
-          "node.description" = "Null Sink";
-          "media.class" = "Audio/Sink";
-          "audio.position" = "FL,FR";
-        };
-      }
-      {
-        factory = "adapter";
-        args = {
-          "factory.name" = "support.null-audio-sink";
-          "node.name" = "Null-Source";
-          "node.description" = "Null Source";
-          "media.class" = "Audio/Source";
-          "audio.position" = "FL,FR";
-        };
-      }
-    ];
-  };
-  services.pipewire.extraConfig.pipewire."98-virtual-mic" = {
-    "context.modules" = [
-      {
-        name = "libpipewire-module-loopback";
-        args = {
-          "audio.position" = "FL,FR";
-          "node.description" = "Mumble as Microphone";
-          "capture.props" = {
-            # Mumble's output node name.
-            "node.target" = "Mumble";
-            "node.passive" = true;
-          };
-          "playback.props" = {
-            "node.name" = "Virtual-Mumble-Microphone";
-            "media.class" = "Audio/Source";
-          };
-        };
-      }
-    ];
-  };
-
-  # Mumble server.
-  services.murmur = {
-    enable = true;
-    bandwidth = 540000;
-    bonjour = true;
-    password = "password";
-    autobanTime = 0;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -598,10 +395,7 @@
     '';
   };
 
-  #XRDP
-  # services.xrdp.enable = true;
-  # services.xrdp.openFirewall = true;
-  #docker
+  # Docker
   #virtualisation.docker.enable = true;
   #users.users.octavian.extraGroups = [ "docker" ];
 
@@ -610,71 +404,12 @@
     allowUnfree = pkgs.lib.mkForce true;
     allowInsecure = true;
   };
-  # nixpkgs.config.allowUnfree = pkgs.lib.mkForce true;
-  # nixpkgs.config.allowInsecure = true;
 
   # Vivaldi
   nixpkgs.config.vivaldi = {
     proprietaryCodecs = true;
     enableWideVine = true;
   };
-  #Sunshine
-  # services.sunshine = {
-  #   enable = true;
-  #   capSysAdmin = true;
-  #   openFirewall = true;
-  #   autoStart = true;
-  #   settings = {
-  #     capture = "kms";
-  #   };
-    # applications = {
-    #   env = {
-    #     PATH = "$(PATH):$(HOME)/.local/bin";
-    #   };
-    #   apps = [
-    #     {
-    #       name = "1440p Desktop";
-    #       prep-cmd = [
-    #         {
-    #           do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.2560x1440@144";
-    #           undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.3440x1440@144";
-    #         }
-    #       ];
-    #       exclude-global-prep-cmd = "false";
-    #       auto-detach = "true";
-    #     }
-    #     {
-    #       name = "1080p Desktop";
-    #       prep-cmd = [
-    #         {
-    #           do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.1920x1080@120";
-    #           undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.3440x1440@144";
-    #         }
-    #       ];
-    #       exclude-global-prep-cmd = "false";
-    #       auto-detach = "true";
-    #     }
-    #     {
-    #       name = "800p Desktop";
-    #       prep-cmd = [
-    #         {
-    #           do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.1280x800@144";
-    #           undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-4.mode.3440x1440@144";
-    #         }
-    #       ];
-    #       exclude-global-prep-cmd = "false";
-    #       auto-detach = "true";
-    #     }
-    #   ];
-    # };
-    #};
-
-  # security.wrappers.sunshine = {
-  #       owner = "root";
-  #       group = "root";
-  #       capabilities = "cap_sys_admin+p";
-  #       source = "${pkgs.sunshine}/bin/sunshine";
-  # };
 
   services.avahi = {
     enable = true;
