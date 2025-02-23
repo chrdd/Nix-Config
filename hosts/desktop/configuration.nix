@@ -56,7 +56,6 @@
     kernelPackages = pkgs.linuxPackages_latest;
     extraModulePackages = with config.boot.kernelPackages; [
       v4l2loopback.out
-      xpadneo
     ];
     kernelModules = [
       # Virtual Camera
@@ -65,7 +64,7 @@
       "snd-aloop"
     ];
     initrd.kernelModules = ["amdgpu"];
-    extraModprobeConfig = ''options v4l2loopback devices=1 video_nr=1 card_label="Virtual Cam" exclusive_caps=1 ''+''options bluetooth disable_ertm=Y'';
+    extraModprobeConfig = ''options v4l2loopback devices=1 video_nr=1 card_label="Virtual Cam" exclusive_caps=1 '';
   };
 
   hardware.amdgpu.opencl.enable = true;
@@ -174,32 +173,32 @@
   # Waydroid
   virtualisation.waydroid.enable = true;
 
-  programs.thunar.enable = true;
-  programs.thunar.plugins = with pkgs.xfce; [
-    thunar-archive-plugin
-    thunar-volman
-  ];
+  # programs.thunar.enable = true;
+  # programs.thunar.plugins = with pkgs.xfce; [
+  #   thunar-archive-plugin
+  #   thunar-volman
+  # ];
 
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
   programs.file-roller.enable = true;
 
-  #Bluetooth
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    settings = {
-      General = {
-        FastConnectable = true;
-        JustWorksRepairing = "always";
-        Privacy = "device";
-        Class = "0x000100";
-      };
-    };
-  };
+  # #Bluetooth
+  # hardware.bluetooth = {
+  #   enable = true;
+  #   powerOnBoot = true;
+  #   settings = {
+  #     General = {
+  #       FastConnectable = true;
+  #       JustWorksRepairing = "always";
+  #       Privacy = "device";
+  #       Class = "0x000100";
+  #     };
+  #   };
+  # };
 
-  # Blueman
-  services.blueman.enable = true;
+  # # Blueman
+  # services.blueman.enable = true;
 
   nix.nixPath=[ "nixpkgs=${inputs.nixpkgs}" ];
   # hardware.bluetooth.enable = true; # enables support for Bluetooth
@@ -224,29 +223,29 @@
 
   # Flatpak
   # https://github.com/gmodena/nix-flatpak
-  services.flatpak.enable = true;
-  services.flatpak.packages = [
-    {
-      appId = "tv.plex.PlexDesktop";
-      origin = "flathub";
-    }
-    {
-      appId = "tv.plex.PlexHTPC";
-      origin = "flathub";
-    }
-    {
-      appId = "com.github.tchx84.Flatseal";
-      origin = "flathub";
-    }
-    {
-      appId = "dev.vencord.Vesktop";
-      origin = "flathub";
-    }
-    {
-      appId = "io.github.zen_browser.zen";
-      origin = "flathub";
-    }
-  ];
+  # services.flatpak.enable = true;
+  # services.flatpak.packages = [
+  #   {
+  #     appId = "tv.plex.PlexDesktop";
+  #     origin = "flathub";
+  #   }
+  #   {
+  #     appId = "tv.plex.PlexHTPC";
+  #     origin = "flathub";
+  #   }
+  #   {
+  #     appId = "com.github.tchx84.Flatseal";
+  #     origin = "flathub";
+  #   }
+  #   {
+  #     appId = "dev.vencord.Vesktop";
+  #     origin = "flathub";
+  #   }
+  #   {
+  #     appId = "io.github.zen_browser.zen";
+  #     origin = "flathub";
+  #   }
+  # ];
 
   # Media keys
   # sound.mediaKeys.enable = true;
@@ -273,10 +272,10 @@
   };
 
   # Steam
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-  };
+  # programs.steam = {
+  #   enable = true;
+  #   remotePlay.openFirewall = true;
+  # };
 
   # ZSH
   programs.zsh = {
@@ -307,12 +306,12 @@
 
 
   # ollama
-  services.ollama = {
-  enable = true;
-  loadModels = [ "codellama" "llama3.2" "deepseek-r1" ];
-  acceleration = "rocm";
-  rocmOverrideGfx = "10.3.0";
-};
+  # services.ollama = {
+  # enable = true;
+  # loadModels = [ "codellama" "llama3.2" "deepseek-r1" ];
+  # acceleration = "rocm";
+  # rocmOverrideGfx = "10.3.0";
+  # };
 
   # services.xserver.videoDrivers = ["amdgpu"];
   # systemd.tmpfiles.rules = [
@@ -389,18 +388,18 @@
   #services.xserver.displayManager.sddm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
 
-  #RDP
-  programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
+  # #RDP
+  # programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
 
-  # XDRP
-  services.xrdp.enable = true;
-  services.xrdp.defaultWindowManager = "plasma";
-  services.xrdp.openFirewall = true;
-  # services.xdrp={
-  #   enable = true;
-  #   defaultWindowManager = "plasma";
-  #   openFirewall = true;
-  # };
+  # # XDRP
+  # services.xrdp.enable = true;
+  # services.xrdp.defaultWindowManager = "plasma";
+  # services.xrdp.openFirewall = true;
+  # # services.xdrp={
+  # #   enable = true;
+  # #   defaultWindowManager = "plasma";
+  # #   openFirewall = true;
+  # # };
 
   # Enable the KDE Plasma Desktop Environment.
   #services.xserver.displayManager.sddm.wayland.enable = true;
@@ -547,8 +546,8 @@
     ];
   };
 
-  hardware.xpadneo.enable = true;
-  hardware.steam-hardware.enable = true;
+  # hardware.xpadneo.enable = true;
+  # hardware.steam-hardware.enable = true;
   # Tmux
   programs.tmux = {
     enable = true;
@@ -620,14 +619,14 @@
     enableWideVine = true;
   };
   #Sunshine
-  services.sunshine = {
-    enable = true;
-    capSysAdmin = true;
-    openFirewall = true;
-    autoStart = true;
-    settings = {
-      capture = "kms";
-    };
+  # services.sunshine = {
+  #   enable = true;
+  #   capSysAdmin = true;
+  #   openFirewall = true;
+  #   autoStart = true;
+  #   settings = {
+  #     capture = "kms";
+  #   };
     # applications = {
     #   env = {
     #     PATH = "$(PATH):$(HOME)/.local/bin";
@@ -668,7 +667,7 @@
     #     }
     #   ];
     # };
-  };
+    #};
 
   # security.wrappers.sunshine = {
   #       owner = "root";

@@ -43,15 +43,25 @@
     stylix,
     ...
   } @ inputs: let
-    system = "x86_64-linux";
+    inherit (self) system outputs;
+    systems = [
+      "aarch64-linux"
+      "i686-linux"
+      "x86_64-linux"
+      "aarch64-darwin"
+      "x86_64-darwin"
+    ];
     secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
-    pkgs = import nixpkgs {
-      inherit system;
-      config = {
-        allowUnfree = true;
-      };
-    };
+    forAllSystems = nixpkgs.lib.genAttrs systems;
+    # pkgs = import nixpkgs {
+    #   inherit system;
+    #   config = {
+    #     allowUnfree = true;
+    #   };
+    # };
   in {
+    nixosModules = import ./modules/nixos;  
+    homeManagerModules = import ./modules/home-manager;
     nixosConfigurations = {
       octavian = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs system secrets;};
@@ -59,8 +69,7 @@
           ./hosts/desktop/configuration.nix
           # ./dotfiles/default.nix
           ./apps/default.nix
-          ./modules/suspend.nix
-          ./modules/default.nix
+          ./modules/nixos/default.nix
           # ./modules/sunshine.nix
           {
             environment.systemPackages = [
@@ -74,10 +83,14 @@
       };
     };
     #Home-manager
-    home-manager = {
-      extraSpecialArgs = {inherit inputs;};
-      users = {
-        octavian = import ./home.nix;
+    homeConfigurations = {
+      "octavian@octavian" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [
+          # > Our main home-manager configuration file <
+          ./home.nix
+        ];
       };
     };
   };
