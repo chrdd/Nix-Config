@@ -1,20 +1,19 @@
 { config, pkgs, ... }:
 {
-  # Enable Bluetooth
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
-    settings.General = {
-      experimental = true; # show battery
-
-      # https://www.reddit.com/r/NixOS/comments/1ch5d2p/comment/lkbabax/
-      # for pairing bluetooth controller
-      Privacy = "device";
-      JustWorksRepairing = "always";
-      Class = "0x000100";
-      FastConnectable = true;
+    settings = {
+      General = {
+        FastConnectable = true;
+        JustWorksRepairing = "always";
+        Privacy = "device";
+        Class = "0x000100";
+      };
     };
   };
+
+  # Blueman
   services.blueman.enable = true;
 
   hardware.xpadneo.enable = true; # Enable the xpadneo driver for Xbox One wireless controllers
