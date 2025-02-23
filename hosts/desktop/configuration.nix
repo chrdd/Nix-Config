@@ -108,7 +108,7 @@
         to = 1764;
       } # KDE Connect
     ];
-    allowedTCPPorts = [22 4747 32400 47984 47989 47990 48010 5900 8085 64738];
+    allowedTCPPorts = [22 4747 32400 32500 47984 47989 47990 48010 5900 8085 64738];
     allowedUDPPortRanges = [
       {
         from = 1714;
@@ -123,7 +123,7 @@
         to = 8010;
       }
     ];
-    allowedUDPPorts = [4747 8085 32400 64738];
+    allowedUDPPorts = [4747 8085 32400 32500 64738];
   };
 
   # Tailscale
@@ -539,7 +539,7 @@
   users.users.octavian = {
     isNormalUser = true;
     description = "octavian";
-    extraGroups = ["networkmanager" "wheel" "audio" "vboxusers" "dialout"];
+    extraGroups = ["networkmanager" "wheel" "audio" "vboxusers" "dialout" "scanner" "lp"];
     packages = with pkgs; [
       firefox
       kate
@@ -686,6 +686,16 @@
   # services.avahi.publish.enable = true;
   # services.avahi.publish.userServices = true;
 
+  # SANE scanner
+      hardware.sane =
+      { enable = true;
+      extraBackends = [ pkgs.sane-airscan ];
+    };
+
+    hardware.sane.drivers.scanSnap.enable = true;
+    # environment.etc."sane/gt68xx/PS1fw.usb".source = /home/octavian/Documents/sane/gt68xx/PS1fw.usb;
+    
+
   services.gnome.gnome-remote-desktop.enable = true;
   #Fonts
   #fonts.fontconfig.enableProfileFonts = true;
@@ -768,7 +778,9 @@
     audacity
     wayvnc
     kdePackages.krdp
-    pkgs.libsForQt5.krfb
+    kdePackages.krfb
+    libGL
+    rustdesk
     # guacamole-server
     #zabbix.web
     #zabbix.agent
@@ -819,6 +831,7 @@
     libvdpau
     libva-utils
     vdpauinfo
+    pkgs.sane-backends
     #vulkan
     vulkan-tools
     libglvnd
@@ -980,6 +993,20 @@
   systemd.user.services.xdg-desktop-portal-gtk = {
     wantedBy = ["xdg-desktop-portal.service"];
     before = ["xdg-desktop-portal.service"];
+  };
+
+  #VNC
+  systemd.services.krfb-virtualmonitor = {
+  description = "Virtual Monitor for Wireless Display";
+  wantedBy = [ "multi-user.target" ]; # Ensure it runs at boot
+  after = [ "network.target" "display-manager.service" ]; # Start after network and display manager
+
+  serviceConfig = {
+    ExecStart = "/run/current-system/sw/bin/krfb-virtualmonitor --name WirelessDisplay --resolution 2048x1536 --password deadbeef --port 5900";
+    Restart = "always"; # Restart if it crashes
+    User = "octavian"; # Replace with your actual username
+    Environment = "DISPLAY=:0"; # Ensures it runs in the graphical session
+  };
   };
 
   #AMD
