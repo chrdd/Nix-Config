@@ -32,6 +32,8 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
     nix-colors.url = "github:misterio77/nix-colors";
+
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
   outputs = {
@@ -45,11 +47,7 @@
   } @ inputs: let
     inherit (self) system outputs;
     systems = [
-      "aarch64-linux"
-      "i686-linux"
       "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
     ];
     secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
     forAllSystems = nixpkgs.lib.genAttrs systems;

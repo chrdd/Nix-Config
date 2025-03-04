@@ -496,6 +496,7 @@
     kdePackages.qtwayland
     rocmPackages.rocm-smi
     linuxKernel.packages.linux_zen.xpadneo
+    inputs.zen-browser.packages."${system}".default
     heroic
     tailscale
     tmux
@@ -531,6 +532,7 @@
     # flameshot
     gparted
     ranger
+    zotero
     # pkgs.nemo-with-extensions
     prismlauncher
     # pkgs.nautilus
