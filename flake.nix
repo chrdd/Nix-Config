@@ -15,9 +15,9 @@
 
     stylix.url = "github:danth/stylix";
 
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-    };
+    # ghostty = {
+    #   url = "github:ghostty-org/ghostty";
+    # };
 
     # hyprland-plugins = {
     #     url = "github:hyprwm/hyprland-plugins";
@@ -39,7 +39,6 @@
   outputs = {
     self,
     nixpkgs,
-    ghostty,
     home-manager,
     nix-flatpak,
     stylix,
@@ -70,9 +69,9 @@
           ./modules/nixos/default.nix
           # ./modules/sunshine.nix
           {
-            environment.systemPackages = [
-              ghostty.packages.x86_64-linux.default
-            ];
+            # environment.systemPackages = [
+            #   ghostty.packages.x86_64-linux.default
+            # ];
           }
           # ./home.nix
           nix-flatpak.nixosModules.nix-flatpak
