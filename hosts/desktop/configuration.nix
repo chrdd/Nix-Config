@@ -498,6 +498,8 @@
     linuxKernel.packages.linux_zen.xpadneo
     inputs.zen-browser.packages."${system}".default
     heroic
+    gogdl
+    itch
     tailscale
     tmux
     # zoxide
