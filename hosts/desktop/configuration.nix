@@ -465,6 +465,7 @@
     lact
     alejandra
     nixd
+    filezilla
     # pkgs.waybar
     # (pkgs.waybar.overrideAttrs (oldAttrs: {
     #   mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
@@ -487,6 +488,7 @@
     nix-output-monitor
     nvd
     pkgs.cifs-utils
+    samba
     # aquamarine
     # virtualbox
     signal-desktop

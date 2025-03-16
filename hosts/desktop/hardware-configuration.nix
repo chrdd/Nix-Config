@@ -23,23 +23,23 @@
       fsType = "vfat";
     };
   
-  fileSystems."/mnt/Media" =
+  fileSystems."/mnt/share" =
     { device = "//192.168.3.8/Media";
       fsType = "cifs";
-      options = [ "username=chr" "password=${secrets.truenas.password}" "x-systemd.automount" "noauto" ];
+      options = [ "username=${secrets.truenas.username}" "password=${secrets.truenas.password}" "x-systemd.automount" "noauto""x-systemd.idle-timeout=60""x-systemd.device-timeout=5s""x-systemd.mount-timeout=5s"];
     };
 
-    fileSystems."/mnt/Configs" =
-    { device = "//192.168.3.8/Configs";
-      fsType = "cifs";
-      options = [ "username=chr" "password=${secrets.truenas.password}" "x-systemd.automount" "noauto" ];
-    };
+  #   fileSystems."/mnt/Configs" =
+  #   { device = "//192.168.3.8/Configs";
+  #     fsType = "cifs";
+  #     options = [ "username=chr" "password=${secrets.truenas.password}" "x-systemd.automount" "noauto" ];
+  #   };
 
-  fileSystems."Media(NFS)" =
-    { device = "//192.168.3.8/Media";
-      fsType = "nfs";
-      options = [ "username=chr" "password=${secrets.truenas.password}" "x-systemd.automount" "noauto" ];
-    };
+  # fileSystems."Media(NFS)" =
+  #   { device = "//192.168.3.8/Media";
+  #     fsType = "nfs";
+  #     options = [ "username=chr" "password=${secrets.truenas.password}" "x-systemd.automount" "noauto" ];
+  #   };
 
 
   swapDevices =
