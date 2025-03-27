@@ -3,8 +3,8 @@
 {
   imports = [
       # inputs.nix-colors.homeManagerModules.default
-      ./features/alacritty.nix
-      ./modules/plasma.nix
+      # ./features/alacritty.nix
+      # ./modules/plasma.nix
       # ./dotfiles/hyprland.nix
       # ./modules/sunshine.nix
   ];
@@ -50,12 +50,16 @@
 
 
   # QT themeing
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk";
-    style.name = "Colloid-dark";
-    style.package = pkgs.colloid-kde;
-  };
+  # qt = {
+  #   enable = true;
+  #   platformTheme = "qtct";
+  #   style = "kvantum";
+  # };
+
+  # xdg.configFile = {
+  #   "Kvantum/Catpuccin".source = "${pkgs.catppuccin-kde}/share/Kvantum/Catpuccin";
+  #   "Kvantum/kvantum.kvconfig".text = "[General]\ntheme=Catpuccin";
+  # };
   # # QT themeing
   # qt.platformTheme = "gtk";
   # #qt.style.name = "colloid-kde";
@@ -108,7 +112,7 @@
     # # fonts?
     (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" "FiraCode" "DroidSansMono" ]; })
     pkgs.noto-fonts
-    pkgs.noto-fonts-cjk
+    pkgs.noto-fonts-cjk-sans
     pkgs.noto-fonts-emoji
     pkgs.liberation_ttf
     pkgs.fira-code
@@ -259,14 +263,14 @@ programs.btop.settings={
 #     };
 #   };
   
-#   programs.waybar.style = {
+  # programs.waybar.style = {
   
-#     border = "none";
-#     border-radius = 0;
-#     font-family = "Ubuntu Nerd Font";
-#     font-size = "13px";
-#     min-height = 0;
-#   };
+  #   border = "none";
+  #   border-radius = 0;
+  #   font-family = "Ubuntu Nerd Font";
+  #   font-size = "13px";
+  #   min-height = 0;
+  # };
 
   # window#waybar {
   #     background: transparent;
