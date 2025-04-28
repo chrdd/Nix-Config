@@ -1,10 +1,11 @@
 { config, pkgs,lib,inputs, ... }:
 {
     imports = [
+    # ./appimage.nix
     ./bluetooth.nix
     ./mumblemic.nix
     ./flatpak.nix
-    ./ollama.nix
+    # ./ollama.nix
     ./optimisation.nix
     ./rdp.nix
     ./steam.nix

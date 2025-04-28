@@ -576,7 +576,18 @@
     #vulkan
     vulkan-tools
     libglvnd
-    #glu
+    libGLU
+    libglibutil
+    glfw-wayland-minecraft
+    glfw-wayland
+    glfw
+    glew
+    cmake
+    mesa
+    libGL
+    # libglvnd
+    # libGLU
+    meson    #glu
     mesa
     mesa-demos
     wlroots
@@ -659,7 +670,7 @@
     kdenlive
     parsec-bin
     plexamp
-    # plex-desktop
+    plex-desktop
     # plex-media-player
     # tautulli
     # flatpak
@@ -689,6 +700,7 @@
     #Java
     # maven
     jdk17
+    jdk8
     speedtest-cli
     nodejs
     kwalletmanager
@@ -761,6 +773,7 @@
   # OpenGL
   hardware.graphics = {
     enable = true;
+    enable32Bit = true;
     # driSupport = true;
     # driSupport32Bit = true;
     extraPackages = with pkgs; [
@@ -783,6 +796,10 @@
       # driversi686Linux.amdvlk
     ];
   };
+  hardware.amdgpu.amdvlk = {
+        # enable = true;
+        support32Bit.enable = true;
+    };
   # hardware.opengl.enable = true;
   systemd.tmpfiles.rules = [
     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages_5.clr}"
