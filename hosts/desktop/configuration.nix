@@ -460,8 +460,9 @@
     # hyprland
     # cudaPackages.nvidia_driver
     thunderbird
-    # mathpix-snipping-tool
-    # rquickshare
+    mathpix-snipping-tool
+    rquickshare
+    nexusmods-app
     wget
     lact
     alejandra
@@ -482,6 +483,7 @@
     vencord
     bitwarden
     obsidian
+    code-cursor
     anki
     easyeffects
     nh
@@ -686,7 +688,7 @@
     pkgs.polkit_gnome
     vencord
     jetbrains-mono
-    libreoffice
+    # libreoffice
     fastfetch
     dos2unix
     # blender
