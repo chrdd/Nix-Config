@@ -492,6 +492,21 @@
     nvd
     pkgs.cifs-utils
     samba
+    rustup
+    rustc
+    xorg.libXrandr
+    tesseract4
+    jq
+    cargo
+    pkg-config
+    freetype
+    gnumake
+    expat
+    openssl
+    openssl_legacy
+    openssl_3
+    fontconfig
+    ocamlPackages.ssl
     # aquamarine
     # virtualbox
     signal-desktop
