@@ -1,7 +1,7 @@
 {
-  description = "flake for octavian";
+  description = "flake for Orion";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     hyprland = {
       type = "git";
@@ -15,7 +15,7 @@
       inputs.hyprland.follows = "hyprland";
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak";
@@ -31,7 +31,7 @@
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home-manager;
       nixosConfigurations = {
-        octavian = nixpkgs.lib.nixosSystem {
+        Orion = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs system secrets;};
           modules = [
             ./hosts/desktop/configuration.nix

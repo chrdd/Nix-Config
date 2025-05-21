@@ -11,6 +11,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    
     #./apps
     inputs.home-manager.nixosModules.home-manager
   ];
@@ -22,6 +23,8 @@
   # };
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
+
+  
 
   #   #Home-manager
   #   home-manager = {
@@ -93,7 +96,7 @@
   security.polkit.enable = true;
 
   #Networking
-  networking.hostName = "octavian"; # Define your hostname.
+  networking.hostName = "Orion"; # Define your hostname.
   networking.firewall.allowPing = true;
   networking.networkmanager.enable = true;
   # Open ports in the firewall.
@@ -339,10 +342,13 @@
     extraGroups = ["networkmanager" "wheel" "audio" "vboxusers" "dialout" "scanner" "lp"];
     packages = with pkgs; [
       firefox
-      kate
+      kdePackages.kate
       #  thunderbird
     ];
   };
+
+
+  programs.ssh.askPassword = lib.mkForce "/nix/store/03h3nhgks61l3szfpii9la6y1kqqdq6k-ksshaskpass-6.3.5/bin/ksshaskpass";
 
   # hardware.xpadneo.enable = true;
   # hardware.steam-hardware.enable = true;
@@ -404,6 +410,9 @@
   nixpkgs.config = {
     allowUnfree = pkgs.lib.mkForce true;
     allowInsecure = true;
+    # packageOverrides = pkgs: {
+    # unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+    # };
   };
 
   # Vivaldi
@@ -431,6 +440,26 @@
     # environment.etc."sane/gt68xx/PS1fw.usb".source = /home/octavian/Documents/sane/gt68xx/PS1fw.usb;
     
 
+  #Manga
+  services.suwayomi-server = {
+    enable = true;
+
+    dataDir = "/var/lib/suwayomi"; # Default is "/var/lib/suwayomi-server"
+    openFirewall = true;
+
+    settings = {
+      server = {
+        port = 4567;
+        autoDownloadNewChapters = false;
+        maxSourcesInParallel = 6;
+        extensionRepos = [
+          "https://raw.githubusercontent.com/suwayomi/tachiyomi-extension/repo/index.min.json"
+        ];
+      };
+    };
+    
+  };
+
   services.gnome.gnome-remote-desktop.enable = true;
   #Fonts
   #fonts.fontconfig.enableProfileFonts = true;
@@ -447,13 +476,7 @@
     jetbrains-mono
   ];
 
-  # let
-  #   unstable = import
-  #     (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/<branch or commit>)
-  #     # reuse the current configuration
-  #     { config = config.nixpkgs.config; };
-  # in
-  # {
+  
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
@@ -509,6 +532,9 @@
     ocamlPackages.ssl
     # aquamarine
     # virtualbox
+    qemu
+    quickemu
+    virtio-win
     signal-desktop
     qbittorrent-enhanced
     moonlight-qt
@@ -531,6 +557,7 @@
     tor
     tor-browser
     yad
+    dysk
     # ollama-rocm
     audacity
     wayvnc
@@ -562,7 +589,7 @@
     clinfo
     rpi-imager
     # droidcam
-    xwaylandvideobridge
+    kdePackages.xwaylandvideobridge
     xwayland
     pkgs.deluged
     wineWowPackages.waylandFull
@@ -684,7 +711,7 @@
     # hyprlock
     nwg-look
     xbindkeys
-    kdenlive
+    kdePackages.kdenlive
     parsec-bin
     plexamp
     plex-desktop
@@ -720,9 +747,9 @@
     jdk8
     speedtest-cli
     nodejs
-    kwalletmanager
+    kdePackages.kwalletmanager
     lutris
-    nerdfonts
+    # nerdfonts
 
     #Sunshine
     libsForQt5.libkscreen
@@ -738,7 +765,6 @@
     #ninja
     gcc
   ];
-
   #postgresql
   services.postgresql = {
     enable = true;
@@ -750,7 +776,9 @@
   users.defaultUserShell = pkgs.zsh;
   # programs.fish.enable = true;
   # Insecure packages
-  nixpkgs.config.permittedInsecurePackages = ["electron-25.9.0"];
+  nixpkgs.config.permittedInsecurePackages = ["electron-25.9.0" "electron-33.4.11"];
+
+  
 
   # XDG desktop portals
   xdg.portal.enable = true;
@@ -785,7 +813,9 @@
   #KDEConnect
   programs.kdeconnect.enable = true;
 
-  #GSConnect
+  #UEFI Firmware support for virtual machines
+  systemd.tmpfiles.rules = [ "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware" ];
+
 
   # OpenGL
   hardware.graphics = {
@@ -801,6 +831,7 @@
       mesa
       vaapiVdpau
       libvdpau-va-gl
+      pkgs.mesa.drivers
       # rocmPackages_5.clr.icd
       # rocmPackages_5.rocm-runtime
       # rocmPackages_5.rocminfo
@@ -813,14 +844,15 @@
       # driversi686Linux.amdvlk
     ];
   };
+  
   hardware.amdgpu.amdvlk = {
         # enable = true;
         support32Bit.enable = true;
     };
-  # hardware.opengl.enable = true;
-  systemd.tmpfiles.rules = [
-    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages_5.clr}"
-  ];
+  hardware.opengl.enable = true;
+  # systemd.tmpfiles.rules = [
+  #   "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages_5.clr}"
+  # ];
 
   #Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
