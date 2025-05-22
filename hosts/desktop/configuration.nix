@@ -831,7 +831,7 @@
       mesa
       vaapiVdpau
       libvdpau-va-gl
-      pkgs.mesa.drivers
+      #pkgs.mesa.drivers
       # rocmPackages_5.clr.icd
       # rocmPackages_5.rocm-runtime
       # rocmPackages_5.rocminfo
