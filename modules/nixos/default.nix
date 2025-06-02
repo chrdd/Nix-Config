@@ -14,5 +14,6 @@
     ./syncthing.nix
     ./thunar.nix
     # ./virtualbox.nix
+    # ./manga.nix
   ];
 }

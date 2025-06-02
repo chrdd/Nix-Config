@@ -26,7 +26,7 @@
 
   
 
-  #   #Home-manager
+  #   #Home-ma/home/octavian/Downloads/Untitled Sketch_bb.pngnager
   #   home-manager = {
   #     extraSpecialArgs = { inherit inputs; };
   #     users = {
@@ -56,10 +56,12 @@
       };
       timeout = 300;
     };
-    kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_6_12;
     extraModulePackages = with config.boot.kernelPackages; [
       v4l2loopback.out
     ];
+    # kernelParams = [ "amdgpu.dc=0" ];
     kernelModules = [
       # Virtual Camera
       "v4l2loopback"
@@ -155,11 +157,11 @@
     LC_TIME = "ro_RO.UTF-8";
   };
   # Enable Hyprland
-  # programs.hyprland = {
-  #   enable = true;
-  #   package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-  #   xwayland.enable = true;
-  # };
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+    xwayland.enable = true;
+  };
 
   
 
@@ -217,12 +219,12 @@
     EGL_PLATFORM = "wayland";
   };
 
-  #Samba
-  fileSystems."/mnt/share/media" = {
-    device = "192.168.3.8:/mnt/Media/Media";
-    fsType = "nfs";
-    options = ["rw" "nconnect=16" "x-systemd.automount" "noauto"];
-  };
+  #Nfs
+  # fileSystems."/mnt/share/media" = {
+  #   device = "192.168.3.8:/mnt/Media/Media";
+  #   fsType = "nfs";
+  #   options = ["rw" "nconnect=16" "x-systemd.automount" "noauto"];
+  # };
 
   # Autostart polkit_gnome
   systemd = {
@@ -441,24 +443,7 @@
     
 
   #Manga
-  services.suwayomi-server = {
-    enable = true;
-
-    dataDir = "/var/lib/suwayomi"; # Default is "/var/lib/suwayomi-server"
-    openFirewall = true;
-
-    settings = {
-      server = {
-        port = 4567;
-        autoDownloadNewChapters = false;
-        maxSourcesInParallel = 6;
-        extensionRepos = [
-          "https://raw.githubusercontent.com/suwayomi/tachiyomi-extension/repo/index.min.json"
-        ];
-      };
-    };
-    
-  };
+  
 
   services.gnome.gnome-remote-desktop.enable = true;
   #Fonts
@@ -491,15 +476,15 @@
     alejandra
     nixd
     filezilla
-    # pkgs.waybar
-    # (pkgs.waybar.overrideAttrs (oldAttrs: {
-    #   mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-    # }))
-    # hyprcursor
+    pkgs.waybar
+    (pkgs.waybar.overrideAttrs (oldAttrs: {
+      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+    }))
+    hyprcursor
     kdePackages.kasts
     localsend
     unrar
-    #wl-paste
+    # wl-paste
     gh
     fluent-reader
     discord
@@ -569,7 +554,7 @@
     #zabbix.web
     #zabbix.agent
     #zabbixctl
-    vivaldi
+    # vivaldi
     mumble
     docker-compose
     # modelsim
@@ -578,7 +563,7 @@
     protonup-qt
     # davinci-resolve
     yt-dlp
-    # flameshot
+    flameshot
     gparted
     ranger
     zotero
@@ -594,20 +579,20 @@
     pkgs.deluged
     wineWowPackages.waylandFull
     winetricks
-    #v4l2loopback
+    # v4l2loopback
     postgresql
     postman
     # jetbrains.idea-ultimate
     # github-desktop
-    # pkgs.dunst
+    pkgs.dunst
     syncthing
     libnotify
-    # hyprpaper
+    hyprpaper
     kitty
     git
     python3
     scrcpy
-    # pkgs.wayvnc
+    pkgs.wayvnc
     alacritty
     rofi-wayland
     alsa-utils
@@ -643,13 +628,14 @@
     tailscale
     #btop
     btop-rocm
+    nvtopPackages.amd
     bottom
     zathura
     # steam
     mpv
     vlc
     obs-studio
-    whatsapp-for-linux
+    whatsie
     # wayvnc
     tigervnc
     z-lua
@@ -663,7 +649,7 @@
     wireplumber
     xdg-desktop-portal-gtk
     # xdg-dekstop-portal-kde
-    #xdg-desktop-portal-hyprland
+    xdg-desktop-portal-hyprland
     pkgs.xorg.xinit
     pkgs.sx
     # zsh
@@ -683,7 +669,7 @@
     hackgen-nf-font
     udev-gothic-nf
     noto-fonts
-    # hyprpicker
+    hyprpicker
     gnome-keyring
     imagemagick
     pamixer
@@ -708,14 +694,14 @@
     source-han-sans
     source-han-sans-japanese
     source-han-serif-japanese
-    # hyprlock
+    hyprlock
     nwg-look
     xbindkeys
-    kdePackages.kdenlive
+    # kdePackages.kdenlive
     parsec-bin
     plexamp
     plex-desktop
-    # plex-media-player
+    plex-media-player
     # tautulli
     # flatpak
     gnome-remote-desktop
@@ -783,8 +769,7 @@
   # XDG desktop portals
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [
-    pkgs.xdg-desktop-portal-gtk
-    # xdg-dekstop-portal-hyprland
+   
   ];
   xdg.portal.xdgOpenUsePortal = true;
 
