@@ -21,6 +21,7 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     nix-colors.url = "github:misterio77/nix-colors";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    nix-proton-cachyos.url = "github:kimjongbing/nix-proton-cachyos";
   };
   outputs = { self, nixpkgs, home-manager, nix-flatpak, stylix, hyprland, ... } @ inputs:
     let
