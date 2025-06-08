@@ -3,10 +3,10 @@
   # https://github.com/gmodena/nix-flatpak
   services.flatpak.enable = true;
   services.flatpak.packages = [
-    {
-      appId = "tv.plex.PlexDesktop";
-      origin = "flathub";
-    }
+    # {
+    #   appId = "tv.plex.PlexDesktop";
+    #   origin = "flathub";
+    # }
     {
       appId = "tv.plex.PlexHTPC";
       origin = "flathub";
