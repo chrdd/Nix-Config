@@ -53,5 +53,7 @@
     bonjour = true;
     password = "password";
     autobanTime = 0;
+    # autobanAttempts = 10;     # default: 10
+    # autobanTimeframe = 120;   # default: 120
   };
 }

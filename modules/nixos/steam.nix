@@ -6,7 +6,9 @@
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server  
     gamescopeSession.enable = true;
-    extraCompatPackages = [inputs.nix-proton-cachyos.packages.${system}.proton-cachyos pkgs.proton-ge-bin];
+    extraCompatPackages = [
+      # inputs.nix-proton-cachyos.packages.${system}.proton-cachyos 
+      pkgs.proton-ge-bin];
   };
   programs.gamemode.enable = true;
 }

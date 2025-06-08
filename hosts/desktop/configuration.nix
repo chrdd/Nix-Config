@@ -56,8 +56,8 @@
       };
       timeout = 300;
     };
-    # kernelPackages = pkgs.linuxPackages_latest;
-    kernelPackages = pkgs.linuxPackages_6_12;
+    kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.linuxPackages_6_12;
     extraModulePackages = with config.boot.kernelPackages; [
       v4l2loopback.out
     ];
@@ -701,7 +701,6 @@
     parsec-bin
     plexamp
     plex-desktop
-    plex-media-player
     # tautulli
     # flatpak
     gnome-remote-desktop
