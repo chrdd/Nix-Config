@@ -470,7 +470,7 @@
     thunderbird
     mathpix-snipping-tool
     rquickshare
-    nexusmods-app
+    # nexusmods-app
     wget
     lact
     alejandra
@@ -486,6 +486,7 @@
     unrar
     # wl-paste
     gh
+    smartmontools
     fluent-reader
     discord
     vencord
@@ -535,8 +536,8 @@
     tmux
     # zoxide
     # arduino-ide
-    kodi-wayland
-    plex-desktop
+    # kodi-wayland
+    # plex-desktop
     git-crypt
 
     tor
@@ -584,7 +585,7 @@
     postman
     # jetbrains.idea-ultimate
     # github-desktop
-    pkgs.dunst
+    # pkgs.dunst
     syncthing
     libnotify
     hyprpaper
@@ -700,7 +701,7 @@
     # kdePackages.kdenlive
     parsec-bin
     plexamp
-    plex-desktop
+    # plex-desktop
     # tautulli
     # flatpak
     gnome-remote-desktop

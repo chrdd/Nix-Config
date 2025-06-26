@@ -3,6 +3,7 @@
     imports = [
     # ./appimage.nix
     ./bluetooth.nix
+    ./smartd.nix
     ./mumblemic.nix
     ./flatpak.nix
     # ./ollama.nix
