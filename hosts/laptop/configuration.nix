@@ -63,9 +63,6 @@
     variant = "";
   };
 
-  # Disable verification for remote builds
-  nix.settings.require-sigs = false;
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -247,8 +244,6 @@
   # Tailscale
   services.tailscale.enable = true;
 
-  #KDEConnect
-  programs.kdeconnect.enable = true;
   # Enable Hyprland
 #   programs.hyprland = {
 #     enable = true;
