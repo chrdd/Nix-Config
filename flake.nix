@@ -55,5 +55,29 @@
           ];
         };
       };
+      nixosConfigurations = {
+        Acer = nixpkgs.lib.nixosSystem {
+          specialArgs = {inherit inputs system secrets;};
+          modules = [
+            ./hosts/laptop/configuration.nix
+            ./apps/default.nix
+            ./modules/nixos/default.nix
+            {
+              # Import home-manager as a NixOS module
+             # home-manager.useGlobalPkgs = true;
+             # home-manager.useUserPackages = true;
+             # home-manager.backupFileExtension = "backup"; # Added backup option
+             # home-manager.users.octavian = import ./home.nix;
+             # home-manager.extraSpecialArgs = {
+              #  inherit inputs;
+              #  inherit (self) outputs;
+              #};
+            }
+            nix-flatpak.nixosModules.nix-flatpak
+            # Uncomment if you want to use stylix
+            # stylix.nixosModules.stylix
+          ];
+        };
+      };
     };
 }
