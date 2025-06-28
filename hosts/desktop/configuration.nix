@@ -531,7 +531,7 @@
     heroic
     gogdl
     itch
-    tailscale
+    # tailscale
     tmux
     # zoxide
     # arduino-ide
@@ -624,7 +624,7 @@
     vscodium
     # swaylock
     wlogout
-    tailscale
+    # tailscale
     #btop
     btop-rocm
     nvtopPackages.amd
@@ -678,7 +678,6 @@
     xbindkeys
     # neofetch
     electron
-    vscodium
     ntfs3g
     pkgs.oh-my-zsh
     pkgs.zsh-completions
@@ -707,7 +706,7 @@
     pkgs.home-manager
     todoist-electron
     # masterpdfeditor
-    tailscale
+    # tailscale
     actkbd
     bottles
     arduino-ide

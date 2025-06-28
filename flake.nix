@@ -37,7 +37,7 @@
           modules = [
             ./hosts/desktop/configuration.nix
             ./apps/default.nix
-            ./modules/nixos/default.nix
+            ./modules/nixos/default_Orion.nix
             {
               # Import home-manager as a NixOS module
              # home-manager.useGlobalPkgs = true;
@@ -61,7 +61,7 @@
           modules = [
             ./hosts/laptop/configuration.nix
             ./apps/default.nix
-            ./modules/nixos/default.nix
+            ./modules/nixos/default_Acer.nix
             {
               # Import home-manager as a NixOS module
              # home-manager.useGlobalPkgs = true;
