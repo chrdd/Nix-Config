@@ -492,7 +492,6 @@
     vencord
     bitwarden
     obsidian
-    code-cursor
     anki
     easyeffects
     nh
@@ -537,7 +536,6 @@
     # zoxide
     # arduino-ide
     # kodi-wayland
-    # plex-desktop
     git-crypt
 
     tor
@@ -701,7 +699,7 @@
     # kdePackages.kdenlive
     parsec-bin
     plexamp
-    # plex-desktop
+    plex-desktop
     # tautulli
     # flatpak
     gnome-remote-desktop
