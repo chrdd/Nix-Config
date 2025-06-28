@@ -187,6 +187,8 @@
     plex-desktop
     bottles
     git
+    inputs.zen-browser.packages."${system}".default
+    lutris
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
