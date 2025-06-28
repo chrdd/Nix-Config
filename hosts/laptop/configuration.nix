@@ -189,6 +189,11 @@
     git
     inputs.zen-browser.packages."${system}".default
     lutris
+    alacritty
+    floorp
+    vscodium
+    btop
+    tigervnc
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -202,7 +207,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   networking.hostName = "Acer"; # Define your hostname.
   networking.firewall.allowPing = true;
