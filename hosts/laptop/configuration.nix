@@ -194,6 +194,9 @@
     vscodium
     btop
     tigervnc
+    todoist-electron
+    nh
+    fastfetch
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
