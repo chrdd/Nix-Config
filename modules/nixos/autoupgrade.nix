@@ -13,6 +13,7 @@
       if ! git diff --quiet || ! git diff --cached --quiet; then
         git add -A
         git commit -m "Auto-commit before pull: $(date -Iseconds)" || true
+        git push
       fi
 
       # Now pull latest changes
