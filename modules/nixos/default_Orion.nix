@@ -2,6 +2,7 @@
 {
     imports = [
     # ./appimage.nix
+    ./autoupgrade.nix
     ./bluetooth.nix
     ./smartd.nix
     ./mumblemic.nix
