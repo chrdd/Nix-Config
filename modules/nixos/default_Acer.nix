@@ -4,6 +4,7 @@
     # ./appimage.nix
     ./bluetooth.nix
 #     ./smartd.nix
+    ./autoupgrade.nix
     ./mumblemic.nix
     ./flatpak.nix
     # ./ollama.nix
