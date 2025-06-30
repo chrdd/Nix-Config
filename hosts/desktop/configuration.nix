@@ -343,10 +343,11 @@
     description = "octavian";
     extraGroups = ["networkmanager" "wheel" "audio" "vboxusers" "dialout" "scanner" "lp"];
     packages = with pkgs; [
-      firefox
-      kdePackages.kate
+      # firefox
+      # kdePackages.kate
       #  thunderbird
     ];
+    # openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2etc/etc/etcjwrsh8e596z6J0l7 example@host" "ssh-ed25519 AAAAC3NzaCetcetera/etceteraJZMfk3QPfQ foo@bar" ];
   };
 
 
