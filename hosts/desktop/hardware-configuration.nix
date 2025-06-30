@@ -23,11 +23,11 @@
       fsType = "vfat";
     };
   
-  fileSystems."/mnt/share" =
-    { device = "//192.168.3.8/Media";
-      fsType = "cifs";
-      options = [ "username=${secrets.truenas.username}" "password=${secrets.truenas.password}" "x-systemd.automount" "noauto""x-systemd.idle-timeout=60""x-systemd.device-timeout=5s""x-systemd.mount-timeout=5s"];
-    };
+  # fileSystems."/mnt/share" =
+  #   { device = "//192.168.3.8/Media";
+  #     fsType = "cifs";
+  #     options = [ "username=${secrets.truenas.username}" "password=${secrets.truenas.password}" "x-systemd.automount" "noauto""x-systemd.idle-timeout=60""x-systemd.device-timeout=5s""x-systemd.mount-timeout=5s"];
+  #   };
 
   #   fileSystems."/mnt/Configs" =
   #   { device = "//192.168.3.8/Configs";
