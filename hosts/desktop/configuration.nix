@@ -11,8 +11,6 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    
-    #./apps
     inputs.home-manager.nixosModules.home-manager
   ];
 
@@ -712,7 +710,7 @@
     bottles
     arduino-ide
     pkgs.polkit_gnome
-    vencord
+    # vencord
     jetbrains-mono
     # libreoffice
     fastfetch
