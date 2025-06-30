@@ -18,12 +18,14 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    deploy-rs.url = "github:serokell/deploy-rs";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     nix-colors.url = "github:misterio77/nix-colors";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     nix-proton-cachyos.url = "github:kimjongbing/nix-proton-cachyos";
   };
-  outputs = { self, nixpkgs, home-manager, nix-flatpak, stylix, hyprland, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, nix-flatpak, stylix, hyprland,deploy-rs, ... } @ inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -78,6 +80,24 @@
             # stylix.nixosModules.stylix
           ];
         };
+      };
+       deploy.nodes.Orion = {
+        hostname = "octavian";
+        profiles.system = {
+          sshUser = "octavian";
+          user = "root";
+          interactiveSudo = true;
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.Orion;
+        };
+        deploy.nodes.Acer = {
+        hostname = "octavian";
+        profiles.system = {
+          sshUser = "octavian";
+          user = "root";
+          interactiveSudo = true;
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.Acer;
+        };
+       };
       };
     };
 }
