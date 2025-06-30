@@ -9,16 +9,25 @@
       cd /etc/nixos
       test "$(git branch --show-current)" = "main" || exit 0
 
-      echo "Pulling latest changes..."
-      git pull --ff-only
-
+      # Commit local changes if any (unstaged or staged)
       if ! git diff --quiet || ! git diff --cached --quiet; then
-        echo "Changes detected, committing and pushing..."
         git add -A
-        git commit -m "Auto-commit: $(date -Iseconds)"
+        git commit -m "Auto-commit before pull: $(date -Iseconds)" || true
+      fi
+
+      # Now pull latest changes
+      git pull --ff-only || {
+        echo "Pull failed. Exiting."
+        exit 1
+      }
+
+      # Commit and push again if pull introduced changes or if local changed since last push
+      if ! git diff --quiet || ! git diff --cached --quiet; then
+        git add -A
+        git commit -m "Auto-commit after pull: $(date -Iseconds)" || true
         git push
       else
-        echo "No changes to commit."
+        echo "No changes to commit after pull."
       fi
     '';
     serviceConfig = {
@@ -36,6 +45,8 @@
     };
   };
 }
+
+# Test for script
 
 # systemd.services.rebuild = {
 #   description = "Rebuilds and activates system config";
