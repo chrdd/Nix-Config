@@ -247,6 +247,7 @@
   # Tailscale
   services.tailscale.enable = true;
 
+  programs.kdeconnect.enable = true;
   # Enable Hyprland
 #   programs.hyprland = {
 #     enable = true;
@@ -266,7 +267,8 @@
       theme = "eastwood";
     };
   };
-
+  users.defaultUserShell = pkgs.zsh;
+  
   environment.sessionVariables = {
     FLAKE = "/etc/nixos";
   };
