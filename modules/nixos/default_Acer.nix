@@ -5,6 +5,7 @@
     ./bluetooth.nix
 #     ./smartd.nix
     ./autoupgrade.nix
+    ./git.nix
     ./mumblemic.nix
     ./flatpak.nix
     # ./ollama.nix

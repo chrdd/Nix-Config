@@ -7,6 +7,7 @@
     ./smartd.nix
     ./mumblemic.nix
     ./flatpak.nix
+    ./git.nix
     # ./ollama.nix
     ./optimisation.nix
     # ./rdp.nix
