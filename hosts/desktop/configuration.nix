@@ -441,7 +441,16 @@
     # environment.etc."sane/gt68xx/PS1fw.usb".source = /home/octavian/Documents/sane/gt68xx/PS1fw.usb;
     
 
-  #Manga
+  #Git
+  programs.git = {
+    enable = true;
+    config = { 
+      user.name = "Octavian"; 
+      user.email = "soctavianstefan@gmail.com";
+      init.defaultBranch = "main";
+      pull.rebase = true;
+      };
+  };
   
 
   services.gnome.gnome-remote-desktop.enable = true;
@@ -587,7 +596,7 @@
     libnotify
     hyprpaper
     kitty
-    git
+    # git
     python3
     scrcpy
     pkgs.wayvnc
