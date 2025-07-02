@@ -3,7 +3,9 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   inputs,
+  config,
   pkgs,
+  lib,
   ...
 }: {
   imports = [
@@ -155,6 +157,20 @@
     publish.userServices = true;
   };
 
+  # Fonts
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-emoji
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+    mplus-outline-fonts.githubRelease
+    dina-font
+    proggyfonts
+    jetbrains-mono
+  ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -189,12 +205,14 @@
     lutris
     alacritty
     floorp
-    # vscodium
+    vscodium
     btop
     tigervnc
     todoist-electron
     nh
     fastfetch
+    git-crypt
+    ffmpeg
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -285,8 +303,8 @@
   # If simply enabling fprintd is not enough, try enabling fprintd.tod...
   services.fprintd.tod.enable = true;
   # ...and use one of the next four drivers
-  services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix; # Goodix driver module
-  # services.fprintd.tod.driver = pkgs.libfprint-2-tod1-elan; # Elan(04f3:0c4b) driver
+  # services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix; # Goodix driver module
+  services.fprintd.tod.driver = pkgs.libfprint-2-tod1-elan; # Elan(04f3:0c4b) driver
   # services.fprintd.tod.driver = pkgs.libfprint-2-tod1-vfs0090; # (Marked as broken as of 2025/04/23!) driver for 2016 ThinkPads
   # services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix-550a; # Goodix 550a driver (from Lenovo)
 
