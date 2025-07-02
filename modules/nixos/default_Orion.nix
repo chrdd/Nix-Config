@@ -1,6 +1,5 @@
-{ config, pkgs,lib,inputs, ... }:
-{
-    imports = [
+{...}: {
+  imports = [
     # ./appimage.nix
     ./autoupgrade.nix
     ./bluetooth.nix

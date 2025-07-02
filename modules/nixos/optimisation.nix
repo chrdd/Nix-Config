@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{...}: {
   # Optimization & Garbage Collection
 
   # Optimize Nix-Store During Rebuilds
@@ -11,4 +10,4 @@
     dates = "weekly";
     options = "--delete-older-than 30d";
   };
-} 
+}

@@ -1,16 +1,21 @@
-{ config, lib, pkgs, plasma-manager, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  plasma-manager,
+  ...
+}: {
   programs.plasma = {
     enable = true;
     shortcuts = {
-      "ActivityManager"."switch-to-activity-50cf6b35-e207-493b-87e2-d28f7f75dc52" = [ ];
+      "ActivityManager"."switch-to-activity-50cf6b35-e207-493b-87e2-d28f7f75dc52" = [];
       "KDE Keyboard Layout Switcher"."Switch to Last-Used Keyboard Layout" = "Meta+Alt+L";
       "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Meta+Alt+K";
       "kaccess"."Toggle Screen Reader On and Off" = "Meta+Alt+S";
       "kcm_touchpad"."Disable Touchpad" = "Touchpad Off";
       "kcm_touchpad"."Enable Touchpad" = "Touchpad On";
       "kcm_touchpad"."Toggle Touchpad" = ["Touchpad Toggle,Touchpad Toggle" "Meta+Ctrl+Zenkaku Hankaku,Toggle Touchpad"];
-      "khotkeys"."{d03619b6-9b3c-48cc-9d9c-a2aadb485550}" = [ ];
+      "khotkeys"."{d03619b6-9b3c-48cc-9d9c-a2aadb485550}" = [];
       "kmix"."decrease_microphone_volume" = "Microphone Volume Down";
       "kmix"."decrease_volume" = "Volume Down";
       "kmix"."decrease_volume_small" = "Shift+Volume Down";
@@ -28,24 +33,24 @@
       "ksmserver"."Reboot Without Confirmation" = "none,,Reboot Without Confirmation";
       "ksmserver"."Shut Down" = "none,,Shut Down";
       "kwin"."Activate Window Demanding Attention" = "Meta+Ctrl+A";
-      "kwin"."Cycle Overview" = [ ];
-      "kwin"."Cycle Overview Opposite" = [ ];
+      "kwin"."Cycle Overview" = [];
+      "kwin"."Cycle Overview Opposite" = [];
       "kwin"."Decrease Opacity" = "none,,Decrease Opacity of Active Window by 5%";
       "kwin"."Edit Tiles" = "Meta+T";
       "kwin"."Expose" = "Ctrl+F9";
       "kwin"."ExposeAll" = ["Ctrl+F10" "Launch (C),Ctrl+F10" "Launch (C),Toggle Present Windows (All desktops)"];
       "kwin"."ExposeClass" = "Ctrl+F7";
-      "kwin"."ExposeClassCurrentDesktop" = [ ];
+      "kwin"."ExposeClassCurrentDesktop" = [];
       "kwin"."Grid View" = "Meta+G";
       "kwin"."Increase Opacity" = "none,,Increase Opacity of Active Window by 5%";
       "kwin"."Kill Window" = "Meta+Ctrl+Esc";
-      "kwin"."Move Tablet to Next Output" = [ ];
+      "kwin"."Move Tablet to Next Output" = [];
       "kwin"."MoveMouseToCenter" = "Meta+F6";
       "kwin"."MoveMouseToFocus" = "Meta+F5";
-      "kwin"."MoveZoomDown" = [ ];
-      "kwin"."MoveZoomLeft" = [ ];
-      "kwin"."MoveZoomRight" = [ ];
-      "kwin"."MoveZoomUp" = [ ];
+      "kwin"."MoveZoomDown" = [];
+      "kwin"."MoveZoomLeft" = [];
+      "kwin"."MoveZoomRight" = [];
+      "kwin"."MoveZoomUp" = [];
       "kwin"."Overview" = "Meta+W";
       "kwin"."Setup Window Shortcut" = "none,,Setup Window Shortcut";
       "kwin"."Show Desktop" = "Meta+D";
@@ -95,12 +100,12 @@
       "kwin"."Switch to Screen Below" = "none,,Switch to Screen Below";
       "kwin"."Switch to Screen to the Left" = "none,,Switch to Screen to the Left";
       "kwin"."Switch to Screen to the Right" = "none,,Switch to Screen to the Right";
-      "kwin"."Toggle Night Color" = [ ];
+      "kwin"."Toggle Night Color" = [];
       "kwin"."Toggle Window Raise/Lower" = "none,,Toggle Window Raise/Lower";
-      "kwin"."Walk Through Desktop List" = [ ];
-      "kwin"."Walk Through Desktop List (Reverse)" = [ ];
-      "kwin"."Walk Through Desktops" = [ ];
-      "kwin"."Walk Through Desktops (Reverse)" = [ ];
+      "kwin"."Walk Through Desktop List" = [];
+      "kwin"."Walk Through Desktop List (Reverse)" = [];
+      "kwin"."Walk Through Desktops" = [];
+      "kwin"."Walk Through Desktops (Reverse)" = [];
       "kwin"."Walk Through Windows" = "Alt+Tab";
       "kwin"."Walk Through Windows (Reverse)" = "Alt+Shift+Backtab,Alt+Shift+Tab,Walk Through Windows (Reverse)";
       "kwin"."Walk Through Windows Alternative" = "none,,Walk Through Windows Alternative";
@@ -157,7 +162,8 @@
       "kwin"."Window to Desktop 13" = "none,,Window to Desktop 13";
       "kwin"."Window to Desktop 14" = "none,,Window to Desktop 14";
       "kwin"."Window to Desktop 15" = "none,,Window to Desktop 15";
-      "kwin"."Window to Desktop 16" = "none,,Window to Desktop 16";                                                                                                                                  "kwin"."Window to Desktop 17" = "none,,Window to Desktop 17";
+      "kwin"."Window to Desktop 16" = "none,,Window to Desktop 16";
+      "kwin"."Window to Desktop 17" = "none,,Window to Desktop 17";
       "kwin"."Window to Desktop 18" = "none,,Window to Desktop 18";
       "kwin"."Window to Desktop 19" = "none,,Window to Desktop 19";
       "kwin"."Window to Desktop 2" = "none,,Window to Desktop 2";
@@ -186,7 +192,8 @@
       "kwin"."view_zoom_out" = "Meta+-";
       "mediacontrol"."mediavolumedown" = "none,,Media volume down";
       "mediacontrol"."mediavolumeup" = "none,,Media volume up";
-      "mediacontrol"."nextmedia" = "Media Next";                                                                                                                                                     "mediacontrol"."pausemedia" = "Media Pause";
+      "mediacontrol"."nextmedia" = "Media Next";
+      "mediacontrol"."pausemedia" = "Media Pause";
       "mediacontrol"."playmedia" = "none,,Play media playback";
       "mediacontrol"."playpausemedia" = "Media Play";
       "mediacontrol"."previousmedia" = "Media Previous";
@@ -202,7 +209,7 @@
       "org_kde_powerdevil"."PowerOff" = "Power Off";
       "org_kde_powerdevil"."Sleep" = "Sleep";
       "org_kde_powerdevil"."Toggle Keyboard Backlight" = "Keyboard Light On/Off";
-      "org_kde_powerdevil"."Turn Off Screen" = [ ];
+      "org_kde_powerdevil"."Turn Off Screen" = [];
       "org_kde_powerdevil"."powerProfile" = ["Battery" "Meta+B,Battery" "Meta+B,Switch Power Profile"];
       "plasmashell"."activate application launcher" = ["Meta,Meta" "Alt+F1,Activate Application Launcher"];
       "plasmashell"."activate task manager entry 1" = "Meta+1";
@@ -220,7 +227,7 @@
       "plasmashell"."cycle-panels" = "Meta+Alt+P";
       "plasmashell"."cycleNextAction" = "none,,Next History Item";
       "plasmashell"."cyclePrevAction" = "none,,Previous History Item";
-      "plasmashell"."edit_clipboard" = [ ];
+      "plasmashell"."edit_clipboard" = [];
       "plasmashell"."manage activities" = "Meta+Q";
       "plasmashell"."next activity" = "Meta+Tab,none,Walk through activities";
       "plasmashell"."previous activity" = "Meta+Shift+Tab,none,Walk through activities (Reverse)";
@@ -234,7 +241,7 @@
       "plasmashell"."toggle do not disturb" = "none,,Toggle do not disturb";
       "services/com.mitchellh.ghostty.desktop"."_launch" = "Ctrl+Shift+X";
       "services/floorp.desktop"."_launch" = "Ctrl+Shift+B";
-      "services/org.kde.spectacle.desktop"."RecordWindow" = [ ];
+      "services/org.kde.spectacle.desktop"."RecordWindow" = [];
     };
     configFile = {
       "baloofilerc"."General"."dbVersion" = 2;

@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{...}: {
   # https://github.com/gmodena/nix-flatpak
   services.flatpak.enable = true;
   services.flatpak.packages = [
@@ -22,7 +21,6 @@
     {
       appId = "org.libreoffice.LibreOffice";
       origin = "flathub";
-
     }
     # {
     #   appId = "io.github.zen_browser.zen";

@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{...}: {
   services.suwayomi-server = {
     enable = true;
 
@@ -16,6 +15,5 @@
         ];
       };
     };
-    
   };
 }
