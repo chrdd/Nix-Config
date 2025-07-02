@@ -189,7 +189,7 @@
     lutris
     alacritty
     floorp
-    vscodium
+    # vscodium
     btop
     tigervnc
     todoist-electron
