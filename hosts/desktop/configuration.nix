@@ -22,8 +22,6 @@
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  
-
   #   #Home-ma/home/octavian/Downloads/Untitled Sketch_bb.pngnager
   #   home-manager = {
   #     extraSpecialArgs = { inherit inputs; };
@@ -161,8 +159,6 @@
     xwayland.enable = true;
   };
 
-  
-
   # Waydroid
   virtualisation.waydroid.enable = true;
 
@@ -170,10 +166,10 @@
   services.tumbler.enable = true; # Thumbnail support for images
   programs.file-roller.enable = true;
 
-  nix.nixPath=[ "nixpkgs=${inputs.nixpkgs}" ];
-  
+  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+
   services.xserver.videoDrivers = ["modesetting"];
- 
+
   # Media keys
   services.actkbd = {
     enable = true;
@@ -310,7 +306,6 @@
 
   # services.xserver.xkb.variant = "";
   # services.xserver.xkb.layout = "us";
-  
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -347,7 +342,6 @@
     ];
     # openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2etc/etc/etcjwrsh8e596z6J0l7 example@host" "ssh-ed25519 AAAAC3NzaCetcetera/etceteraJZMfk3QPfQ foo@bar" ];
   };
-
 
   programs.ssh.askPassword = lib.mkForce "/nix/store/03h3nhgks61l3szfpii9la6y1kqqdq6k-ksshaskpass-6.3.5/bin/ksshaskpass";
 
@@ -432,26 +426,24 @@
   # services.avahi.publish.userServices = true;
 
   # SANE scanner
-      hardware.sane =
-      { enable = true;
-      extraBackends = [ pkgs.sane-airscan ];
-    };
+  hardware.sane = {
+    enable = true;
+    extraBackends = [pkgs.sane-airscan];
+  };
 
-    hardware.sane.drivers.scanSnap.enable = true;
-    # environment.etc."sane/gt68xx/PS1fw.usb".source = /home/octavian/Documents/sane/gt68xx/PS1fw.usb;
-    
+  hardware.sane.drivers.scanSnap.enable = true;
+  # environment.etc."sane/gt68xx/PS1fw.usb".source = /home/octavian/Documents/sane/gt68xx/PS1fw.usb;
 
   #Git
   programs.git = {
     enable = true;
-    config = { 
-      user.name = "Octavian"; 
+    config = {
+      user.name = "Octavian";
       user.email = "soctavianstefan@gmail.com";
       init.defaultBranch = "main";
       pull.rebase = true;
-      };
+    };
   };
-  
 
   services.gnome.gnome-remote-desktop.enable = true;
   #Fonts
@@ -469,7 +461,6 @@
     jetbrains-mono
   ];
 
-  
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
@@ -486,7 +477,7 @@
     filezilla
     pkgs.waybar
     (pkgs.waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+      mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
     }))
     hyprcursor
     kdePackages.kasts
@@ -623,7 +614,7 @@
     libGL
     # libglvnd
     # libGLU
-    meson    #glu
+    meson #glu
     mesa
     mesa-demos
     wlroots
@@ -769,12 +760,9 @@
   # Insecure packages
   nixpkgs.config.permittedInsecurePackages = ["electron-25.9.0" "electron-33.4.11"];
 
-  
-
   # XDG desktop portals
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [
-   
   ];
   xdg.portal.xdgOpenUsePortal = true;
 
@@ -804,8 +792,7 @@
   programs.kdeconnect.enable = true;
 
   #UEFI Firmware support for virtual machines
-  systemd.tmpfiles.rules = [ "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware" ];
-
+  systemd.tmpfiles.rules = ["L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware"];
 
   # OpenGL
   hardware.graphics = {
@@ -834,11 +821,11 @@
       # driversi686Linux.amdvlk
     ];
   };
-  
+
   hardware.amdgpu.amdvlk = {
-        # enable = true;
-        support32Bit.enable = true;
-    };
+    # enable = true;
+    support32Bit.enable = true;
+  };
   hardware.opengl.enable = true;
   # systemd.tmpfiles.rules = [
   #   "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages_5.clr}"
