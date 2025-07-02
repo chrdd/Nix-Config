@@ -25,71 +25,79 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     nix-proton-cachyos.url = "github:kimjongbing/nix-proton-cachyos";
   };
-  outputs = { self, nixpkgs, home-manager, nix-flatpak, stylix, hyprland,deploy-rs, ... } @ inputs:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-      secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
-    in {
-      nixosModules = import ./modules/nixos;
-      homeManagerModules = import ./modules/home-manager;
-      nixosConfigurations = {
-        Orion = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs system secrets;};
-          modules = [
-            ./hosts/desktop/configuration.nix
-            ./apps/default.nix
-            ./modules/nixos/default_Orion.nix
-            {
-              # Import home-manager as a NixOS module
-             # home-manager.useGlobalPkgs = true;
-             # home-manager.useUserPackages = true;
-             # home-manager.backupFileExtension = "backup"; # Added backup option
-             # home-manager.users.octavian = import ./home.nix;
-             # home-manager.extraSpecialArgs = {
-              #  inherit inputs;
-              #  inherit (self) outputs;
-              #};
-            }
-            nix-flatpak.nixosModules.nix-flatpak
-            # Uncomment if you want to use stylix
-            # stylix.nixosModules.stylix
-          ];
-        };
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    nix-flatpak,
+    stylix,
+    hyprland,
+    deploy-rs,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+    secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
+  in {
+    nixosModules = import ./modules/nixos;
+    homeManagerModules = import ./modules/home-manager;
+    nixosConfigurations = {
+      Orion = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs system secrets;};
+        modules = [
+          ./hosts/desktop/configuration.nix
+          ./apps/default.nix
+          ./modules/nixos/default_Orion.nix
+          {
+            # Import home-manager as a NixOS module
+            # home-manager.useGlobalPkgs = true;
+            # home-manager.useUserPackages = true;
+            # home-manager.backupFileExtension = "backup"; # Added backup option
+            # home-manager.users.octavian = import ./home.nix;
+            # home-manager.extraSpecialArgs = {
+            #  inherit inputs;
+            #  inherit (self) outputs;
+            #};
+          }
+          nix-flatpak.nixosModules.nix-flatpak
+          # Uncomment if you want to use stylix
+          # stylix.nixosModules.stylix
+        ];
       };
-      nixosConfigurations = {
-        Acer = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs system secrets;};
-          modules = [
-            ./hosts/laptop/configuration.nix
-            ./apps/default.nix
-            ./modules/nixos/default_Acer.nix
-            {
-              # Import home-manager as a NixOS module
-             # home-manager.useGlobalPkgs = true;
-             # home-manager.useUserPackages = true;
-             # home-manager.backupFileExtension = "backup"; # Added backup option
-             # home-manager.users.octavian = import ./home.nix;
-             # home-manager.extraSpecialArgs = {
-              #  inherit inputs;
-              #  inherit (self) outputs;
-              #};
-            }
-            nix-flatpak.nixosModules.nix-flatpak
-            # Uncomment if you want to use stylix
-            # stylix.nixosModules.stylix
-          ];
-        };
+    };
+    nixosConfigurations = {
+      Acer = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs system secrets;};
+        modules = [
+          ./hosts/laptop/configuration.nix
+          ./apps/default.nix
+          ./modules/nixos/default_Acer.nix
+          {
+            # Import home-manager as a NixOS module
+            # home-manager.useGlobalPkgs = true;
+            # home-manager.useUserPackages = true;
+            # home-manager.backupFileExtension = "backup"; # Added backup option
+            # home-manager.users.octavian = import ./home.nix;
+            # home-manager.extraSpecialArgs = {
+            #  inherit inputs;
+            #  inherit (self) outputs;
+            #};
+          }
+          nix-flatpak.nixosModules.nix-flatpak
+          # Uncomment if you want to use stylix
+          # stylix.nixosModules.stylix
+        ];
       };
-       deploy.nodes.Orion = {
-        hostname = "octavian";
-        profiles.system = {
-          sshUser = "octavian";
-          user = "root";
-          interactiveSudo = true;
-          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.Orion;
-        };
-        deploy.nodes.Acer = {
+    };
+    deploy.nodes.Orion = {
+      hostname = "octavian";
+      profiles.system = {
+        sshUser = "octavian";
+        user = "root";
+        interactiveSudo = true;
+        path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.Orion;
+      };
+      deploy.nodes.Acer = {
         hostname = "octavian";
         profiles.system = {
           sshUser = "octavian";
@@ -97,7 +105,7 @@
           interactiveSudo = true;
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.Acer;
         };
-       };
       };
     };
+  };
 }

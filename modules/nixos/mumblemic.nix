@@ -1,6 +1,5 @@
-{ config, pkgs, ... }:
-{
-    # Mic over mumble
+{...}: {
+  # Mic over mumble
   services.pipewire.extraConfig.pipewire."97-null-sink" = {
     "context.objects" = [
       {

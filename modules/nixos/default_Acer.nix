@@ -1,9 +1,8 @@
-{ config, pkgs,lib,inputs, ... }:
-{
-    imports = [
+{...}: {
+  imports = [
     # ./appimage.nix
     ./bluetooth.nix
-#     ./smartd.nix
+    #     ./smartd.nix
     ./autoupgrade.nix
     ./git.nix
     ./mumblemic.nix

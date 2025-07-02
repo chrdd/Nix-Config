@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{...}: {
   services = {
     syncthing = {
       enable = true;
@@ -8,5 +7,4 @@
       configDir = "/home/octavian/Documents/.config/syncthing"; # Folder for Syncthing's settings and keys
     };
   };
-
 }

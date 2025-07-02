@@ -1,26 +1,27 @@
-{ config, pkgs,lib,inputs, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: {
   imports = [
-      # inputs.nix-colors.homeManagerModules.default
-      # ./features/alacritty.nix
-      # ./modules/plasma.nix
-      # ./dotfiles/hyprland.nix
-      # ./modules/sunshine.nix
+    # inputs.nix-colors.homeManagerModules.default
+    # ./features/alacritty.nix
+    # ./modules/plasma.nix
+    # ./dotfiles/hyprland.nix
+    # ./modules/sunshine.nix
   ];
   # colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;  # Home Manager needs a bit of information about you and the paths it should manage
-  
+
   home.username = "octavian";
   home.homeDirectory = "/home/octavian";
-  
 
   #Stylix
 
   # home-manager.sharedModules = [{
   #    stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/material-darker.yaml";
   # }];
-
- 
 
   # GTK Themeing
   gtk = {
@@ -39,15 +40,14 @@
     #   package = pkgs.numix-cursor-theme;
     # };
     gtk3.extraConfig = {
-      Settings = '' gtk-application-prefer-dark-theme=1'';
+      Settings = ''gtk-application-prefer-dark-theme=1'';
     };
     gtk4.extraConfig = {
-      Settings = '' gtk-application-prefer-dark-theme=1'';
+      Settings = ''gtk-application-prefer-dark-theme=1'';
     };
   };
 
   home.sessionVariables.GTK_THEME = "Gruvbox-Dark-B";
-
 
   # QT themeing
   # qt = {
@@ -68,7 +68,7 @@
   # gtk = {
   #   theme={
   #     name= "adw-gtk3";
-  #     package = pkgs.adw-gtk3; 
+  #     package = pkgs.adw-gtk3;
   #   };
   #     iconTheme = {
   #      name = "Colloid";
@@ -88,7 +88,7 @@
   #   name = "Bibata-Modern-Classic";
   #   size = 18;
   # };
- 
+
   #This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -100,7 +100,7 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
- 
+
   home.packages = [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
@@ -110,7 +110,7 @@
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
-    (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" "FiraCode" "DroidSansMono" ]; })
+    (pkgs.nerdfonts.override {fonts = ["FantasqueSansMono" "FiraCode" "DroidSansMono"];})
     pkgs.noto-fonts
     pkgs.noto-fonts-cjk-sans
     pkgs.noto-fonts-emoji
@@ -129,8 +129,6 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-
-
   ];
   fonts.fontconfig.enable = true;
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -170,101 +168,96 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-
-
-
   dconf = {
-      enable = true;
-      settings = {
-        "org/gnome/desktop/interface" = {
-          color-scheme = "prefer-dark";
-        };
+    enable = true;
+    settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
       };
+    };
   };
 
+  #Btop
+  programs.btop.settings = {
+    color_theme = "gruvbox";
+    theme_background = false;
+  };
 
+  # programs.waybar.settings =  {
+  #     layer = "top";
+  #     position = "top";
+  #     height = "24";
+  #     width = "1366";
+  #     modules-left =[
+  #       "hyprland/workspaces"
+  #       "hyprland/mode"
+  #       "custom/spotify"
+  #       ];
+  #     modules-center = [
+  #       "hyprland/window"
+  #       ];
+  #     modules-right = [
+  #       "backlight"
+  #       "pulseaudio"
+  #       "network"
+  #       "cpu"
+  #       "memory"
+  #       "tray"
+  #       "clock"
+  #       ];
+  #     hyprland.workspaces = {
+  #         disable-scroll = true;
+  #         all-outputs = false;
+  #         format = "{icon}";
+  #         format-icons = {
+  #             "1" = "";
+  #             "2" = "";
+  #             "3" = "";
+  #             "4" = "";
+  #             "5" = "";
+  #             "urgent" = "";
+  #             "focused" = "";
+  #             "default" = "";
+  #         };
+  #     };
+  #     hyprland.mode = {
+  #         format = "<span style=\"italic\">{}</span>";
+  #     };
+  #     tray = {
+  #       icon-size = 21;
+  #       spacing = 10;
+  #     };
+  #     clock = {
+  #       format-alt = "{:%Y-%m-%d}";
+  #     };
+  #     cpu = {
+  #       format = "{usage}% ";
+  #     };
+  #     memory = {
+  #       format = "{}% ";
+  #     };
+  #     pulseaudio = {
+  #       scroll-step = 1;
+  #       format = "{volume}% {icon}";
+  #       format-muted = "";
+  #       format-icons = {
+  #         headphones = "";
+  #         handsfree ="";
+  #         headset = "";
+  #         phone = "";
+  #         portable ="";
+  #         car = "";
+  #         default = [
+  #           ""
+  #           ""
+  #          ];
+  #       };
+  #       on-click = "";
+  #     };
+  #   };
 
-#Btop
-programs.btop.settings={
-  color_theme = "gruvbox";
-  theme_background = false;
-}; 
-
-# programs.waybar.settings =  {
-#     layer = "top";
-#     position = "top";
-#     height = "24";
-#     width = "1366";
-#     modules-left =[
-#       "hyprland/workspaces" 
-#       "hyprland/mode" 
-#       "custom/spotify"
-#       ];
-#     modules-center = [
-#       "hyprland/window"
-#       ];
-#     modules-right = [
-#       "backlight" 
-#       "pulseaudio" 
-#       "network" 
-#       "cpu" 
-#       "memory" 
-#       "tray" 
-#       "clock"
-#       ];
-#     hyprland.workspaces = {
-#         disable-scroll = true;
-#         all-outputs = false;
-#         format = "{icon}";
-#         format-icons = {
-#             "1" = "";
-#             "2" = "";
-#             "3" = "";
-#             "4" = "";
-#             "5" = "";
-#             "urgent" = "";
-#             "focused" = "";
-#             "default" = "";
-#         };
-#     };
-#     hyprland.mode = {
-#         format = "<span style=\"italic\">{}</span>";
-#     };
-#     tray = {
-#       icon-size = 21;
-#       spacing = 10;
-#     };
-#     clock = {
-#       format-alt = "{:%Y-%m-%d}";
-#     };
-#     cpu = {
-#       format = "{usage}% ";
-#     };
-#     memory = {
-#       format = "{}% ";
-#     };
-#     pulseaudio = {
-#       scroll-step = 1;
-#       format = "{volume}% {icon}";
-#       format-muted = "";
-#       format-icons = {
-#         headphones = "";
-#         handsfree ="";
-#         headset = "";
-#         phone = "";
-#         portable ="";
-#         car = "";
-#         default = [
-#           ""
-#           ""
-#          ];
-#       };
-#       on-click = "";
-#     };
-#   };
-  
   # programs.waybar.style = {
-  
+
   #   border = "none";
   #   border-radius = 0;
   #   font-family = "Ubuntu Nerd Font";
@@ -286,7 +279,6 @@ programs.btop.settings={
   #     padding: 0 5px;
   # };
 
-
   # workspaces button {
   #     padding: 0 5px;
   #     background: transparent;
@@ -304,17 +296,15 @@ programs.btop.settings={
   #     border-bottom: 3px solid white;
   # };
 
-
   # clock {
   #   font-weight: bold;
   # };
 
-# programs.kitty{
-#   enable = true;
-#   font.name = Jetbrains Mono;
-#   font.package = jetbrains-mono;
-#   font.size = 12;
+  # programs.kitty{
+  #   enable = true;
+  #   font.name = Jetbrains Mono;
+  #   font.package = jetbrains-mono;
+  #   font.size = 12;
 
-# }
-
+  # }
 }
