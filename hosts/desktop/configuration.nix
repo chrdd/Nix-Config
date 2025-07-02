@@ -166,8 +166,6 @@
   services.tumbler.enable = true; # Thumbnail support for images
   programs.file-roller.enable = true;
 
-  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
-
   services.xserver.videoDrivers = ["modesetting"];
 
   # Media keys
@@ -473,7 +471,7 @@
     wget
     lact
     alejandra
-    nixd
+    # nixd
     filezilla
     pkgs.waybar
     (pkgs.waybar.overrideAttrs (oldAttrs: {
