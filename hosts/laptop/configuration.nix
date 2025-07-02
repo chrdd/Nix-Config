@@ -1,17 +1,17 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ inputs,
+{
+  inputs,
   config,
   pkgs,
-  lib, ... }:
-
-{
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  lib,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # Bootloader.
@@ -21,7 +21,7 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-#   networking.hostName = "nixos"; # Define your hostname.
+  #   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -29,7 +29,7 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-#   networking.networkmanager.enable = true;
+  #   networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Bucharest";
@@ -92,7 +92,7 @@
     extraGroups = ["networkmanager" "wheel" "audio" "vboxusers" "dialout" "scanner" "lp"];
     packages = with pkgs; [
       kdePackages.kate
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -160,7 +160,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     thunderbird
     nixd
@@ -249,11 +249,11 @@
 
   programs.kdeconnect.enable = true;
   # Enable Hyprland
-#   programs.hyprland = {
-#     enable = true;
-#     package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-#     xwayland.enable = true;
-#   };
+  #   programs.hyprland = {
+  #     enable = true;
+  #     package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+  #     xwayland.enable = true;
+  #   };
 
   # ZSH
   programs.zsh = {
@@ -268,7 +268,7 @@
     };
   };
   users.defaultUserShell = pkgs.zsh;
-  
+
   environment.sessionVariables = {
     FLAKE = "/etc/nixos";
   };
@@ -278,7 +278,7 @@
   #Fingerprint sensor
   # Start the driver at boot
   systemd.services.fprintd = {
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
     serviceConfig.Type = "simple";
   };
 
@@ -304,5 +304,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
 }
