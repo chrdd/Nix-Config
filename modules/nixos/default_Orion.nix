@@ -17,5 +17,6 @@
     ./thunar.nix
     # ./virtualbox.nix
     # ./manga.nix
+    ./vscodium.nix
   ];
 }
