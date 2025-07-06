@@ -1,19 +1,27 @@
 {
   description = "flake for Orion";
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    # Fix typo: nixpkgs-old instead of nixpksg-old
+    nixpkgs-old.url = "github:NixOS/nixpkgs/c5dd43934613ae0f8ff37c59f61c507c2e8f980d";
+
     hyprland = {
       type = "git";
       url = "https://github.com/hyprwm/Hyprland";
       submodules = true;
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     stylix.url = "github:danth/stylix";
+
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -25,9 +33,11 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     nix-proton-cachyos.url = "github:kimjongbing/nix-proton-cachyos";
   };
+
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-old,
     home-manager,
     nix-flatpak,
     stylix,
@@ -41,6 +51,7 @@
   in {
     nixosModules = import ./modules/nixos;
     homeManagerModules = import ./modules/home-manager;
+
     nixosConfigurations = {
       Orion = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs system secrets;};
@@ -48,47 +59,25 @@
           ./hosts/desktop/configuration.nix
           ./apps/default.nix
           ./modules/nixos/default_Orion.nix
-          {
-            # Import home-manager as a NixOS module
-            # home-manager.useGlobalPkgs = true;
-            # home-manager.useUserPackages = true;
-            # home-manager.backupFileExtension = "backup"; # Added backup option
-            # home-manager.users.octavian = import ./home.nix;
-            # home-manager.extraSpecialArgs = {
-            #  inherit inputs;
-            #  inherit (self) outputs;
-            #};
-          }
+          # home-manager module can be enabled here if needed
           nix-flatpak.nixosModules.nix-flatpak
-          # Uncomment if you want to use stylix
-          # stylix.nixosModules.stylix
+          # stylix.nixosModules.stylix # Uncomment if using stylix
         ];
       };
-    };
-    nixosConfigurations = {
+
       Acer = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs system secrets;};
         modules = [
           ./hosts/laptop/configuration.nix
           ./apps/default.nix
           ./modules/nixos/default_Acer.nix
-          {
-            # Import home-manager as a NixOS module
-            # home-manager.useGlobalPkgs = true;
-            # home-manager.useUserPackages = true;
-            # home-manager.backupFileExtension = "backup"; # Added backup option
-            # home-manager.users.octavian = import ./home.nix;
-            # home-manager.extraSpecialArgs = {
-            #  inherit inputs;
-            #  inherit (self) outputs;
-            #};
-          }
+          # home-manager module can be enabled here if needed
           nix-flatpak.nixosModules.nix-flatpak
-          # Uncomment if you want to use stylix
-          # stylix.nixosModules.stylix
+          # stylix.nixosModules.stylix # Uncomment if using stylix
         ];
       };
     };
+
     deploy.nodes.Orion = {
       hostname = "octavian";
       profiles.system = {
@@ -97,15 +86,24 @@
         interactiveSudo = true;
         path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.Orion;
       };
-      deploy.nodes.Acer = {
-        hostname = "octavian";
-        profiles.system = {
-          sshUser = "octavian";
-          user = "root";
-          interactiveSudo = true;
-          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.Acer;
-        };
+    };
+
+    deploy.nodes.Acer = {
+      hostname = "octavian";
+      profiles.system = {
+        sshUser = "octavian";
+        user = "root";
+        interactiveSudo = true;
+        path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.Acer;
       };
     };
+
+    # ✅ Add shadps4 version 0.6.0 from old nixpkgs revision
+    packages.x86_64-linux.shadps4-0_6_0 = let
+      pkgs-old = import nixpkgs-old {
+        system = "x86_64-linux";
+      };
+    in
+      pkgs-old.shadps4;
   };
 }

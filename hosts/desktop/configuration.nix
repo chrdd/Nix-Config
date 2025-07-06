@@ -714,6 +714,7 @@
     fastfetch
     dos2unix
     # blender
+    inputs.self.packages.${pkgs.system}.shadps4-0_6_0
 
     #themes
     colloid-kde
