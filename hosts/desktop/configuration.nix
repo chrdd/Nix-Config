@@ -550,7 +550,7 @@
     #zabbix.web
     #zabbix.agent
     #zabbixctl
-    # vivaldi
+    vivaldi
     mumble
     docker-compose
     # modelsim
