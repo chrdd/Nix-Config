@@ -551,6 +551,7 @@
     #zabbix.agent
     #zabbixctl
     vivaldi
+    kdePackages.plasma-browser-integration
     mumble
     docker-compose
     # modelsim

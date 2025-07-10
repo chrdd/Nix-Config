@@ -213,6 +213,8 @@
     fastfetch
     git-crypt
     ffmpeg
+    vivaldi
+    kdePackages.plasma-browser-integration
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -290,6 +292,12 @@
   };
 
   nix.settings.require-sigs = false;
+
+  # Vivaldi
+  nixpkgs.config.vivaldi = {
+    proprietaryCodecs = true;
+    enableWideVine = true;
+  };
 
   #Fingerprint sensor
   # Start the driver at boot
