@@ -443,6 +443,9 @@
     };
   };
 
+  # Samba
+  services.sambaClient.enable = true;
+
   services.gnome.gnome-remote-desktop.enable = true;
   #Fonts
   #fonts.fontconfig.enableProfileFonts = true;

@@ -18,5 +18,6 @@
     # ./virtualbox.nix
     # ./manga.nix
     ./vscodium.nix
+    ./samba.nix
   ];
 }
