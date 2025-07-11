@@ -4,47 +4,63 @@
   pkgs,
   ...
 }: let
-  secretsFile = "/run/secrets/secrets.json";
-  credentialsFile = "/etc/nixos/smb-secrets"; # This is what mount.cifs expects
+  secretsFile = "/etc/nixos/secrets/secrets.json";
+  credentialsFile = "/etc/nixos/smb-secrets";
 in {
-  imports = [];
-
-  options.services.sambaClient.enable = lib.mkEnableOption "Enable Samba client with CIFS mount";
+  options.services.sambaClient.enable = lib.mkEnableOption "Enable Samba CIFS client";
 
   config = lib.mkIf config.services.sambaClient.enable {
     environment.systemPackages = [pkgs.cifs-utils pkgs.jq];
 
-    # Ensure mount point exists
     systemd.tmpfiles.rules = [
       "d /mnt/share 0755 root root -"
     ];
 
-    # Write the credentials file at boot
     systemd.services.generate-smb-credentials = {
       description = "Generate CIFS credentials from secrets.json";
-      wantedBy = ["multi-user.target"];
-      before = ["mnt-share.mount"];
+      wantedBy = ["remote-fs-pre.target"];
+      before = ["remote-fs-pre.target"];
+      after = ["network-online.target"];
+      wants = ["network-online.target"];
       script = ''
         set -eu
-        USER=$(jq -r '.truenas.username' ${secretsFile})
-        PASS=$(jq -r '.truenas.password' ${secretsFile})
 
-        echo "username=$USER" > ${credentialsFile}
-        echo "password=$PASS" >> ${credentialsFile}
-        chmod 0400 ${credentialsFile}
+        # Check if secrets file exists and is readable
+        if [ ! -f "${secretsFile}" ]; then
+          echo "Error: Secrets file ${secretsFile} not found"
+          exit 1
+        fi
+
+        # Extract credentials from JSON
+        USER=$(${pkgs.jq}/bin/jq -r '.truenas.username' "${secretsFile}")
+        PASS=$(${pkgs.jq}/bin/jq -r '.truenas.password' "${secretsFile}")
+
+        # Validate that we got actual values (not null)
+        if [ "$USER" = "null" ] || [ "$PASS" = "null" ]; then
+          echo "Error: Could not extract username or password from secrets file"
+          exit 1
+        fi
+
+        # Generate credentials file
+        echo "username=$USER" > "${credentialsFile}"
+        echo "password=$PASS" >> "${credentialsFile}"
+        chmod 0400 "${credentialsFile}"
+
+        echo "SMB credentials generated successfully"
       '';
       serviceConfig = {
         Type = "oneshot";
+        RemainAfterExit = true;
       };
     };
 
-    # Mount config
     fileSystems."/mnt/share" = {
       device = "//192.168.3.8/Media";
       fsType = "cifs";
       options = let
         automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-      in ["${automount_opts},credentials=${credentialsFile},vers=3.0"];
+        cifs_opts = "credentials=${credentialsFile},vers=3.0,uid=1000,gid=100,file_mode=0644,dir_mode=0755";
+      in ["${automount_opts},${cifs_opts}"];
     };
   };
 }
