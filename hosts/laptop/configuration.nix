@@ -215,6 +215,7 @@
     ffmpeg
     vivaldi
     kdePackages.plasma-browser-integration
+    rustdesk
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
