@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-
+    nixpkgs-25.url = "github:NixOS/nixpkgs/nixos-25.05";
     # Fix typo: nixpkgs-old instead of nixpksg-old
     nixpkgs-old.url = "github:NixOS/nixpkgs/c5dd43934613ae0f8ff37c59f61c507c2e8f980d";
 
@@ -98,7 +98,6 @@
       };
     };
 
-    # ✅ Add shadps4 version 0.6.0 from old nixpkgs revision
     packages.x86_64-linux.shadps4-0_6_0 = let
       pkgs-old = import nixpkgs-old {
         system = "x86_64-linux";
