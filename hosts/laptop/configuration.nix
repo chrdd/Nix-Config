@@ -289,7 +289,7 @@
   users.defaultUserShell = pkgs.zsh;
 
   environment.sessionVariables = {
-    FLAKE = "/etc/nixos";
+    NH_FLAKE = "/etc/nixos";
   };
 
   nix.settings.require-sigs = false;

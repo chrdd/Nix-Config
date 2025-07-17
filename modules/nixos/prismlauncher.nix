@@ -4,7 +4,6 @@
   inputs,
   ...
 }: let
-  # Import the 23.11 nixpkgs
   pkgs-25 = import inputs.nixpkgs-25 {
     system = "x86_64-linux";
   };

@@ -287,7 +287,7 @@
 
   #  Nix Helper (nh)
   environment.sessionVariables = {
-    FLAKE = "/etc/nixos";
+    NH_FLAKE = "/etc/nixos";
   };
 
   # Sway
@@ -403,7 +403,7 @@
   # Allow unfree packages
   nixpkgs.config = {
     allowUnfree = pkgs.lib.mkForce true;
-    allowInsecure = true;
+    # allowInsecure = true;
     # packageOverrides = pkgs: {
     # unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
     # };
@@ -764,7 +764,7 @@
   users.defaultUserShell = pkgs.zsh;
   # programs.fish.enable = true;
   # Insecure packages
-  nixpkgs.config.permittedInsecurePackages = ["electron-25.9.0" "electron-33.4.11"];
+  # nixpkgs.config.permittedInsecurePackages = ["electron-25.9.0" "electron-33.4.11"];
 
   # XDG desktop portals
   xdg.portal.enable = true;
