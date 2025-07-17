@@ -193,7 +193,7 @@
     tmux
     mumble
     gparted
-    prismlauncher
+    # prismlauncher
     syncthing
     obs-studio
     lsd
