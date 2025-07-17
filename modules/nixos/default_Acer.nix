@@ -15,6 +15,7 @@
     ./suspend.nix
     ./syncthing.nix
     ./thunar.nix
+    ./prismlauncher.nix
     # ./virtualbox.nix
     # ./manga.nix
     ./vscodium.nix

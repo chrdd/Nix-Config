@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  secretsFile = "/etc/nixos/secrets/secrets.json";
+  secretsFile = "/etc/nixos/secrets/smbsecrets.json";
   credentialsFile = "/etc/nixos/smb-secrets";
 in {
   options.services.sambaClient.enable = lib.mkEnableOption "Enable Samba CIFS client";
@@ -32,8 +32,9 @@ in {
         fi
 
         # Extract credentials from JSON
-        USER=$(${pkgs.jq}/bin/jq -r '.truenas.username' "${secretsFile}")
-        PASS=$(${pkgs.jq}/bin/jq -r '.truenas.password' "${secretsFile}")
+        USER=$(${pkgs.jq}/bin/jq -r '.username' "${secretsFile}")
+        PASS=$(${pkgs.jq}/bin/jq -r '.password' "${secretsFile}")
+        DOMAIN=$(${pkgs.jq}/bin/jq -r '.domain // "WORKGROUP"' "${secretsFile}")
 
         # Validate that we got actual values (not null)
         if [ "$USER" = "null" ] || [ "$PASS" = "null" ]; then
@@ -44,6 +45,7 @@ in {
         # Generate credentials file
         echo "username=$USER" > "${credentialsFile}"
         echo "password=$PASS" >> "${credentialsFile}"
+        echo "domain=$DOMAIN" >> "${credentialsFile}"
         chmod 0400 "${credentialsFile}"
 
         echo "SMB credentials generated successfully"

@@ -277,6 +277,7 @@
   services.displayManager = {
     sddm.enable = true;
     sddm.wayland.enable = true;
+    sddm.theme = "sddm-astronaut-theme";
     defaultSession = "plasma";
   };
   #  services.displayManager.sddm.wayland.enable = true;
@@ -484,6 +485,8 @@
     kdePackages.kasts
     localsend
     unrar
+    sddm-astronaut
+    kdePackages.qtmultimedia
     # wl-paste
     gh
     smartmontools
@@ -568,7 +571,7 @@
     ranger
     zotero
     # pkgs.nemo-with-extensions
-    prismlauncher
+    # prismlauncher
     # pkgs.nautilus
     f3
     clinfo
@@ -729,7 +732,7 @@
     #Java
     # maven
     jdk17
-    jdk8
+    # jdk8
     speedtest-cli
     nodejs
     kdePackages.kwalletmanager
