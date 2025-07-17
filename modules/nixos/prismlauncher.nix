@@ -19,7 +19,7 @@ in {
         zulu8
         zulu17
         zulu
-        pkgs-25.jdk8 # Use jdk8 from nixpkgs-23.11
+        # pkgs-25.jdk8 # Use jdk8 from nixpkgs-23.11
       ];
     })
   ];
