@@ -12,12 +12,13 @@
     # ./rdp.nix
     ./steam.nix
     ./sunshine.nix
-    ./suspend.nix
+    # ./suspend.nix
     ./syncthing.nix
     ./thunar.nix
     ./prismlauncher.nix
     # ./virtualbox.nix
     # ./manga.nix
     ./vscodium.nix
+    # ./auto-cpufreq.nix
   ];
 }

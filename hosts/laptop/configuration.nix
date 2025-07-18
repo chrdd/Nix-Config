@@ -300,6 +300,12 @@
     enableWideVine = true;
   };
 
+  # Overheating prevention
+  services.thermald.enable = true;
+
+  # Powertop
+  powerManagement.powertop.enable = true;
+
   #Fingerprint sensor
   # # Start the driver at boot
   # systemd.services.fprintd = {
