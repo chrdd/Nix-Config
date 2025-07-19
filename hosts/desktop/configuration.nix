@@ -512,6 +512,7 @@
     pkg-config
     freetype
     gnumake
+    lact
     expat
     openssl
     openssl_legacy
@@ -570,6 +571,7 @@
     gparted
     ranger
     zotero
+    tldr
     # pkgs.nemo-with-extensions
     # prismlauncher
     # pkgs.nautilus
@@ -615,7 +617,7 @@
     glfw
     glew
     cmake
-    mesa
+    # mesa
     libGL
     # libglvnd
     # libGLU
@@ -713,7 +715,7 @@
     # tailscale
     actkbd
     bottles
-    arduino-ide
+    # arduino-ide
     pkgs.polkit_gnome
     # vencord
     jetbrains-mono
