@@ -473,7 +473,7 @@
     rquickshare
     # nexusmods-app
     wget
-    lact
+    # lact
     alejandra
     # nixd
     filezilla
