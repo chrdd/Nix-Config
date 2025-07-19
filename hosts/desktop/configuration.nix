@@ -512,7 +512,7 @@
     pkg-config
     freetype
     gnumake
-    lact
+    # lact
     expat
     openssl
     openssl_legacy
@@ -794,8 +794,8 @@
   # };
 
   #AMD
-  systemd.packages = with pkgs; [lact];
-  systemd.services.lactd.wantedBy = ["multi-user.target"];
+  # systemd.packages = with pkgs; [lact];
+  # systemd.services.lactd.wantedBy = ["multi-user.target"];
   #KDEConnect
   programs.kdeconnect.enable = true;
 
