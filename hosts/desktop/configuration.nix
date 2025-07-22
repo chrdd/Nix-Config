@@ -425,12 +425,12 @@
   # services.avahi.publish.userServices = true;
 
   # SANE scanner
-  hardware.sane = {
-    enable = true;
-    extraBackends = [pkgs.sane-airscan];
-  };
+  # hardware.sane = {
+  #   enable = true;
+  #   extraBackends = [pkgs.sane-airscan];
+  # };
 
-  hardware.sane.drivers.scanSnap.enable = true;
+  # hardware.sane.drivers.scanSnap.enable = true;
   # environment.etc."sane/gt68xx/PS1fw.usb".source = /home/octavian/Documents/sane/gt68xx/PS1fw.usb;
 
   #Git
