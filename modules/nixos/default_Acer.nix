@@ -20,5 +20,6 @@
     # ./manga.nix
     ./vscodium.nix
     # ./auto-cpufreq.nix
+    ./nh.nix
   ];
 }

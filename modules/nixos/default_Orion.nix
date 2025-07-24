@@ -21,5 +21,6 @@
     # ./manga.nix
     ./vscodium.nix
     ./samba.nix
+    ./nh.nix
   ];
 }
