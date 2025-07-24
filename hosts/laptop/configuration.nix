@@ -209,7 +209,7 @@
     btop
     tigervnc
     todoist-electron
-    nh
+    # nh
     fastfetch
     git-crypt
     ffmpeg
@@ -287,10 +287,6 @@
     };
   };
   users.defaultUserShell = pkgs.zsh;
-
-  environment.sessionVariables = {
-    NH_FLAKE = "/etc/nixos";
-  };
 
   nix.settings.require-sigs = false;
 
