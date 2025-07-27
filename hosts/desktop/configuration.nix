@@ -244,7 +244,7 @@
   # X11
   services.xserver = {
     enable = true;
-    desktopManager.gnome.enable = true;
+    # desktopManager.gnome.enable = true;
     # Configure keymap in X11
     xkb = {
       variant = "";
@@ -286,9 +286,6 @@
   #  services.displayManager.defaultSession = "plasma";
 
   #  Nix Helper (nh)
-  environment.sessionVariables = {
-    NH_FLAKE = "/etc/nixos";
-  };
 
   # Sway
   #programs.sway = {
@@ -311,7 +308,7 @@
 
   # Enable sound with pipewire.
   # sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -497,7 +494,6 @@
     obsidian
     anki
     easyeffects
-    nh
     jamesdsp
     nix-output-monitor
     nvd
@@ -834,7 +830,6 @@
     # enable = true;
     support32Bit.enable = true;
   };
-  hardware.opengl.enable = true;
   # systemd.tmpfiles.rules = [
   #   "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages_5.clr}"
   # ];
