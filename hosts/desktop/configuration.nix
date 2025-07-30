@@ -543,7 +543,7 @@
     yad
     dysk
     # ollama-rocm
-    audacity
+    # audacity
     wayvnc
     kdePackages.krdp
     kdePackages.krfb
