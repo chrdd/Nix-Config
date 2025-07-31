@@ -554,7 +554,9 @@
     mpv
     mumble
     ncdu
+    nix-diff
     nix-output-monitor
+    nix-tree
     nodejs
     noto-fonts
     noto-fonts
@@ -622,7 +624,6 @@
     thunderbird
     tigervnc
     tldr
-    tmux
     todoist-electron
     tor
     tor-browser
@@ -715,6 +716,7 @@
     # tailscale
     # tailscale
     # tailscale
+    # tmux
     # v4l2loopback
     # vencord
     # vencord
