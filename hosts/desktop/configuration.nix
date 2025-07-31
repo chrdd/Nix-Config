@@ -466,7 +466,7 @@
     # hyprland
     # cudaPackages.nvidia_driver
     thunderbird
-    mathpix-snipping-tool
+    # mathpix-snipping-tool
     rquickshare
     # nexusmods-app
     wget
@@ -549,6 +549,7 @@
     kdePackages.krfb
     libGL
     rustdesk
+    caligula
     # guacamole-server
     #zabbix.web
     #zabbix.agent
@@ -558,7 +559,7 @@
     mumble
     docker-compose
     # modelsim
-    youtube-music
+    # youtube-music
     # net-snmp
     protonup-qt
     # davinci-resolve
