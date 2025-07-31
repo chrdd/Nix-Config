@@ -1,25 +1,25 @@
 {...}: {
   imports = [
-    # ./appimage.nix
-    ./bluetooth.nix
-    #     ./smartd.nix
     ./autoupgrade.nix
+    ./bluetooth.nix
+    ./flatpak.nix
     ./git.nix
     ./mumblemic.nix
-    ./flatpak.nix
-    # ./ollama.nix
+    ./nh.nix
     ./optimisation.nix
-    # ./rdp.nix
+    ./prismlauncher.nix
     ./steam.nix
     ./sunshine.nix
-    # ./suspend.nix
     ./syncthing.nix
     ./thunar.nix
-    ./prismlauncher.nix
-    # ./virtualbox.nix
-    # ./manga.nix
     ./vscodium.nix
+    #     ./smartd.nix
+    # ./appimage.nix
     # ./auto-cpufreq.nix
-    ./nh.nix
+    # ./manga.nix
+    # ./ollama.nix
+    # ./rdp.nix
+    # ./suspend.nix
+    # ./virtualbox.nix
   ];
 }
