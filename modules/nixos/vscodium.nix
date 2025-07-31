@@ -11,12 +11,12 @@
       vscode = vscodium;
       vscodeExtensions = with vscode-extensions;
         [
-          kamadorueda.alejandra
           jnoortheen.nix-ide
+          kamadorueda.alejandra
+          mhutchie.git-graph
+          ms-python.debugpy
           ms-python.python
           redhat.vscode-yaml
-          ms-python.debugpy
-          mhutchie.git-graph
         ]
         ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
           {

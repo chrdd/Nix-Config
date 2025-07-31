@@ -68,8 +68,8 @@
     extraModprobeConfig = ''options v4l2loopback devices=1 video_nr=1 card_label="Virtual Cam" exclusive_caps=1 '';
   };
 
-  hardware.amdgpu.opencl.enable = true;
   hardware.amdgpu.amdvlk.enable = true;
+  hardware.amdgpu.opencl.enable = true;
 
   #  #Kernel
   #   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -162,9 +162,9 @@
   # Waydroid
   virtualisation.waydroid.enable = true;
 
+  programs.file-roller.enable = true;
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
-  programs.file-roller.enable = true;
 
   services.xserver.videoDrivers = ["modesetting"];
 
@@ -194,8 +194,8 @@
   # ZSH
   programs.zsh = {
     enable = true;
-    enableCompletion = true;
     autosuggestions.enable = true;
+    enableCompletion = true;
     syntaxHighlighting.enable = true;
     ohMyZsh = {
       enable = true;
@@ -275,10 +275,10 @@
 
   #  Display Manager
   services.displayManager = {
-    sddm.enable = true;
-    sddm.wayland.enable = true;
-    sddm.theme = "sddm-astronaut-theme";
     defaultSession = "plasma";
+    sddm.enable = true;
+    sddm.theme = "sddm-astronaut-theme";
+    sddm.wayland.enable = true;
   };
   #  services.displayManager.sddm.wayland.enable = true;
   #  services.displayManager.sddm.enable = true;
@@ -448,309 +448,305 @@
   #Fonts
   #fonts.fontconfig.enableProfileFonts = true;
   fonts.packages = with pkgs; [
+    dina-font
+    fira-code
+    fira-code-symbols
+    jetbrains-mono
+    liberation_ttf
+    mplus-outline-fonts.githubRelease
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
-    liberation_ttf
-    fira-code
-    fira-code-symbols
-    mplus-outline-fonts.githubRelease
-    dina-font
     proggyfonts
-    jetbrains-mono
   ];
 
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
-    # hyprland
-    # cudaPackages.nvidia_driver
-    thunderbird
-    # mathpix-snipping-tool
-    rquickshare
-    # nexusmods-app
-    wget
-    # lact
+    actkbd
+    alacritty
     alejandra
-    # nixd
+    alsa-utils
+    anki
+    bitwarden
+    bottles
+    bottom
+    btop-rocm
+    caligula
+    cargo
+    clinfo
+    cmake
+    colloid-gtk-theme
+    colloid-icon-theme
+    colloid-kde
+    discord
+    docker-compose
+    dos2unix
+    dysk
+    easyeffects
+    electron
+    expat
+    f3
+    fastfetch
+    ffmpeg
+    ffmpegthumbnailer
     filezilla
+    flameshot
+    floorp
+    fluent-reader
+    font-awesome
+    fontconfig
+    freetype
+    gcc
+    gh
+    git-crypt
+    glew
+    glfw
+    glfw-wayland
+    glfw-wayland-minecraft
+    gnome-keyring
+    gnumake
+    gogdl
+    gparted
+    grim
+    grimblast
+    hackgen-nf-font
+    heroic
+    hyprcursor
+    hyprlock
+    hyprpaper
+    hyprpicker
+    imagemagick
+    inputs.self.packages.${pkgs.system}.shadps4-0_6_0
+    inputs.zen-browser.packages."${system}".default
+    itch
+    jamesdsp
+    jdk17
+    jetbrains-mono
+    jq
+    kdePackages.kasts
+    kdePackages.krdp
+    kdePackages.krfb
+    kdePackages.kwalletmanager
+    kdePackages.plasma-browser-integration
+    kdePackages.qtmultimedia
+    kdePackages.qtwayland
+    kdePackages.xwaylandvideobridge
+    kitty
+    libGL
+    libGL
+    libglibutil
+    libGLU
+    libglvnd
+    libnotify
+    libsForQt5.libkscreen
+    libsForQt5.qt5.qtwayland
+    libva
+    libva-utils
+    libvdpau
+    linuxKernel.packages.linux_zen.xpadneo
+    localsend
+    lsd
+    lutris
+    mesa
+    mesa-demos
+    meson
+    moonlight-qt
+    mpv
+    mumble
+    ncdu
+    nix-output-monitor
+    nodejs
+    noto-fonts
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-emoji
+    ntfs3g
+    nvd
+    nvtopPackages.amd
+    nwg-look
+    nwg-look
+    obs-studio
+    obsidian
+    ocamlPackages.ssl
+    openssl
+    openssl
+    openssl_3
+    openssl_legacy
+    pamixer
+    papirus-icon-theme
+    papirus-icon-theme
+    pavucontrol
+    pkg-config
+    pkgs.cifs-utils
+    pkgs.deluged
+    pkgs.home-manager
+    pkgs.oh-my-zsh
+    pkgs.polkit_gnome
+    pkgs.sane-backends
+    pkgs.sx
+    pkgs.wayvnc
+    pkgs.xorg.xinit
+    pkgs.zsh-completions
+    pkgs.zsh-powerlevel10k
+    pkgs.zsh-syntax-highlighting
+    playerctl
+    plex-desktop
+    plexamp
+    postgresql
+    postman
+    protonup-qt
+    python3
+    qbittorrent-enhanced
+    qemu
+    quickemu
+    ranger
+    rocmPackages.rocm-smi
+    rofi-wayland
+    rpi-imager
+    rustdesk
+    samba
+    scrcpy
+    sddm-astronaut
+    signal-desktop
+    slurp
+    smartmontools
+    source-han-sans
+    source-han-sans-japanese
+    source-han-serif-japanese
+    speedtest-cli
+    sshfs
+    starship
+    syncthing
+    tautulli
+    tesseract4
+    thunderbird
+    tigervnc
+    tldr
+    tmux
+    todoist-electron
+    tor
+    tor-browser
+    udev-gothic-nf
+    unrar
+    vdpauinfo
+    viewnior
+    virtio-win
+    vivaldi
+    vlc
+    vulkan-tools
     pkgs.waybar
     (pkgs.waybar.overrideAttrs (oldAttrs: {
       mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
     }))
-    hyprcursor
-    kdePackages.kasts
-    localsend
-    unrar
-    sddm-astronaut
-    kdePackages.qtmultimedia
-    # wl-paste
-    gh
-    smartmontools
-    fluent-reader
-    discord
-    vencord
-    bitwarden
-    obsidian
-    anki
-    easyeffects
-    jamesdsp
-    nix-output-monitor
-    nvd
-    pkgs.cifs-utils
-    samba
-    rustup
-    rustc
-    xorg.libXrandr
-    tesseract4
-    jq
-    cargo
-    pkg-config
-    freetype
-    gnumake
-    # lact
-    expat
-    openssl
-    openssl_legacy
-    openssl_3
-    fontconfig
-    ocamlPackages.ssl
-    # aquamarine
-    # virtualbox
-    qemu
-    quickemu
-    virtio-win
-    signal-desktop
-    qbittorrent-enhanced
-    moonlight-qt
-    libsForQt5.qt5.qtwayland
-    kdePackages.qtwayland
-    rocmPackages.rocm-smi
-    linuxKernel.packages.linux_zen.xpadneo
-    inputs.zen-browser.packages."${system}".default
-    heroic
-    gogdl
-    itch
-    # tailscale
-    tmux
-    # zoxide
-    # arduino-ide
-    # kodi-wayland
-    git-crypt
-
-    tor
-    tor-browser
-    yad
-    dysk
-    # ollama-rocm
-    # audacity
     wayvnc
-    kdePackages.krdp
-    kdePackages.krfb
-    libGL
-    rustdesk
-    caligula
-    # guacamole-server
-    #zabbix.web
-    #zabbix.agent
-    #zabbixctl
-    vivaldi
-    kdePackages.plasma-browser-integration
-    mumble
-    docker-compose
-    # modelsim
-    # youtube-music
-    # net-snmp
-    protonup-qt
-    # davinci-resolve
-    yt-dlp
-    flameshot
-    gparted
-    ranger
-    zotero
-    tldr
-    # pkgs.nemo-with-extensions
-    # prismlauncher
-    # pkgs.nautilus
-    f3
-    clinfo
-    rpi-imager
-    # droidcam
-    kdePackages.xwaylandvideobridge
-    xwayland
-    pkgs.deluged
-    wineWowPackages.waylandFull
-    winetricks
-    # v4l2loopback
-    postgresql
-    postman
-    # jetbrains.idea-ultimate
-    # github-desktop
-    # pkgs.dunst
-    syncthing
-    libnotify
-    hyprpaper
-    kitty
-    # git
-    python3
-    scrcpy
-    pkgs.wayvnc
-    alacritty
-    rofi-wayland
-    alsa-utils
-    floorp
-    libva
-    libvdpau
-    libva-utils
-    vdpauinfo
-    pkgs.sane-backends
-    #vulkan
-    vulkan-tools
-    libglvnd
-    libGLU
-    libglibutil
-    glfw-wayland-minecraft
-    glfw-wayland
-    glfw
-    glew
-    cmake
-    # mesa
-    libGL
-    # libglvnd
-    # libGLU
-    meson #glu
-    mesa
-    mesa-demos
-    wlroots
-    wlr-randr
-    vscode
-    vscodium
-    # swaylock
-    wlogout
-    # tailscale
-    #btop
-    btop-rocm
-    nvtopPackages.amd
-    bottom
-    zathura
-    # steam
-    mpv
-    vlc
-    obs-studio
-    whatsie
-    # wayvnc
-    tigervnc
-    z-lua
-    # fish
-    # neatvnc
-    sshfs
-    ncdu
-    ffmpeg
-    grim
-    slurp
-    wireplumber
-    xdg-desktop-portal-gtk
-    # xdg-dekstop-portal-kde
-    xdg-desktop-portal-hyprland
-    pkgs.xorg.xinit
-    pkgs.sx
-    # zsh
-    lsd
-    pavucontrol
-    viewnior
-    starship
-    wl-clipboard
     wf-recorder
-    ffmpegthumbnailer
-    grimblast
-    playerctl
-    xfce.tumbler
-    nwg-look
-    nordic
-    papirus-icon-theme
-    hackgen-nf-font
-    udev-gothic-nf
-    noto-fonts
-    hyprpicker
-    gnome-keyring
-    imagemagick
-    pamixer
-    libsForQt5.kdeconnect-kde
-    plasma5Packages.kdeconnect-kde
+    wget
+    winetricks
+    wineWowPackages.waylandFull
+    wireplumber
+    wl-clipboard
+    wlogout
+    wlr-randr
+    wlroots
+    xbindkeys
+    xbindkeys
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-hyprland
     xdotool
-    xbindkeys
-    # neofetch
-    electron
-    ntfs3g
-    pkgs.oh-my-zsh
-    pkgs.zsh-completions
-    pkgs.zsh-powerlevel10k
-    pkgs.zsh-syntax-highlighting
-    #pkgs.zsh-history-substring-search
-    sublime
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-emoji
-    font-awesome
-    source-han-sans
-    source-han-sans-japanese
-    source-han-serif-japanese
-    hyprlock
-    nwg-look
-    xbindkeys
-    # kdePackages.kdenlive
-    parsec-bin
-    plexamp
-    plex-desktop
-    # tautulli
-    # flatpak
-    gnome-remote-desktop
-    openssl
-    pkgs.home-manager
-    todoist-electron
-    # masterpdfeditor
-    # tailscale
-    actkbd
-    bottles
+    xfce.tumbler
+    xorg.libXrandr
+    xwayland
+    yad
+    yt-dlp
+    zapzap
+    zotero
+
+    #  wget
+    # aquamarine
     # arduino-ide
-    pkgs.polkit_gnome
-    # vencord
-    jetbrains-mono
-    # libreoffice
-    fastfetch
-    dos2unix
+    # arduino-ide
+    # audacity
     # blender
-    inputs.self.packages.${pkgs.system}.shadps4-0_6_0
-
-    #themes
-    colloid-kde
-    colloid-gtk-theme
-    colloid-icon-theme
-    papirus-icon-theme
-
-    #Java
-    # maven
-    jdk17
+    # cudaPackages.nvidia_driver
+    # davinci-resolve
+    # droidcam
+    # fish
+    # flatpak
+    # git
+    # github-desktop
+    # gnome-remote-desktop
+    # guacamole-server
+    # hyprland
     # jdk8
-    speedtest-cli
-    nodejs
-    kdePackages.kwalletmanager
-    lutris
+    # jetbrains.idea-ultimate
+    # kdePackages.kdenlive
+    # kodi-wayland
+    # lact
+    # lact
+    # libGLU
+    # libglvnd
+    # libreoffice
+    # libsForQt5.kdeconnect-kde
+    # masterpdfeditor
+    # mathpix-snipping-tool
+    # maven
+    # mesa
+    # modelsim
+    # neatvnc
     # nerdfonts
-
-    #Sunshine
-    libsForQt5.libkscreen
-
-    #v4l2loopback
-    #privateGPT dependencies
+    # net-snmp
+    # nexusmods-app
+    # nixd
+    # nordic
+    # ollama-rocm
+    # parsec-bin
+    # pkgs.dunst
+    # pkgs.nautilus
+    # pkgs.nemo-with-extensions
+    # plasma5Packages.kdeconnect-kde
+    # prismlauncher
     # python311
-    #stdenv.cc.cc.lib
-    #libstdcxx5
-    #poetry
-    #gnumake
+    # rquickshare
+    # rustc
+    # rustup
+    # steam
+    # sublime
+    # swaylock
+    # tailscale
+    # tailscale
+    # tailscale
+    # v4l2loopback
+    # vencord
+    # vencord
+    # virtualbox
+    # vscode
+    # vscodium
+    # wayvnc
+    # whatsie
+    # wl-paste
+    # xdg-dekstop-portal-kde
+    # youtube-music
+    # z-lua
+    # zathura
+    # zoxide
+    #btop
     #cmake
+    #glu
+    #gnumake
+    #Java
+    #libstdcxx5
     #ninja
-    gcc
+    #pkgs.zsh-history-substring-search
+    #poetry
+    #privateGPT dependencies
+    #stdenv.cc.cc.lib
+    #Sunshine
+    #themes
+    #v4l2loopback
+    #vulkan
+    #zabbix.agent
+    #zabbix.web
+    #zabbixctl
   ];
   #postgresql
   services.postgresql = {
@@ -806,21 +802,21 @@
     # driSupport = true;
     # driSupport32Bit = true;
     extraPackages = with pkgs; [
-      #pkgs.vulkan-loader
-      #pkgs.vulkan-validation-layers
-      #pkgs.nvidia-x11.vulkan-driver
-      amdvlk
-      mesa
       vaapiVdpau
+      mesa
       libvdpau-va-gl
+      amdvlk
+      #pkgs.vulkan-validation-layers
+      #pkgs.vulkan-loader
+      #pkgs.nvidia-x11.vulkan-driver
       #pkgs.mesa.drivers
-      # rocmPackages_5.clr.icd
-      # rocmPackages_5.rocm-runtime
-      # rocmPackages_5.rocminfo
-      # pkgs.mesa.opencl
-      # rocm-opencl-icd
-      # rocm-opencl-runtime
       # rocmPackages.rocm-runtime
+      # rocmPackages_5.rocminfo
+      # rocmPackages_5.rocm-runtime
+      # rocmPackages_5.clr.icd
+      # rocm-opencl-runtime
+      # rocm-opencl-icd
+      # pkgs.mesa.opencl
     ];
     extraPackages32 = with pkgs; [
       # driversi686Linux.amdvlk
