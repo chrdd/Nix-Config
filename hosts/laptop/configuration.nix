@@ -206,6 +206,7 @@
     alacritty
     floorp
     vscodium
+    heroic
     btop
     tigervnc
     todoist-electron
