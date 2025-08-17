@@ -498,6 +498,7 @@
     freetype
     gcc
     gh
+    ghostty
     git-crypt
     glew
     glfw
