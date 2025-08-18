@@ -662,6 +662,7 @@
     yt-dlp
     zapzap
     zotero
+    zoxide
 
     #  wget
     # aquamarine
