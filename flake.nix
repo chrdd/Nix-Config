@@ -27,6 +27,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    winapps = {
+      url = "github:winapps-org/winapps";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     deploy-rs.url = "github:serokell/deploy-rs";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     nix-colors.url = "github:misterio77/nix-colors";
@@ -43,6 +48,7 @@
     stylix,
     hyprland,
     deploy-rs,
+    winapps,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -62,6 +68,18 @@
           # home-manager module can be enabled here if needed
           nix-flatpak.nixosModules.nix-flatpak
           # stylix.nixosModules.stylix # Uncomment if using stylix
+          (
+            {
+              pkgs,
+              system ? pkgs.system,
+              ...
+            }: {
+              environment.systemPackages = [
+                winapps.packages."${system}".winapps
+                winapps.packages."${system}".winapps-launcher # optional
+              ];
+            }
+          )
         ];
       };
 
