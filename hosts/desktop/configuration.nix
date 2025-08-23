@@ -6,6 +6,7 @@
   config,
   pkgs,
   lib,
+  winapps,
   ...
 }: {
   imports = [
@@ -330,7 +331,7 @@
   users.users.octavian = {
     isNormalUser = true;
     description = "octavian";
-    extraGroups = ["networkmanager" "wheel" "audio" "vboxusers" "dialout" "scanner" "lp"];
+    extraGroups = ["networkmanager" "wheel" "audio" "vboxusers" "dialout" "scanner" "lp" "docker"];
     packages = with pkgs; [
       # firefox
       # kdePackages.kate
@@ -394,8 +395,7 @@
   };
 
   # Docker
-  #virtualisation.docker.enable = true;
-  #users.users.octavian.extraGroups = [ "docker" ];
+  virtualisation.docker.enable = true;
 
   # Allow unfree packages
   nixpkgs.config = {
@@ -665,6 +665,8 @@
     zotero
     zoxide
 
+    # winapps.packages."${system}".winapps
+    # winapps.packages."${system}".winapps-launcher # optional
     #  wget
     # aquamarine
     # arduino-ide
