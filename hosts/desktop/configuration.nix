@@ -665,6 +665,8 @@
     zotero
     zoxide
 
+    freerdp
+
     # winapps.packages."${system}".winapps
     # winapps.packages."${system}".winapps-launcher # optional
     #  wget
