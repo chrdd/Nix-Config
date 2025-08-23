@@ -496,6 +496,7 @@
     font-awesome
     fontconfig
     freetype
+    fzf
     gcc
     gh
     ghostty
