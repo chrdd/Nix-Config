@@ -475,9 +475,9 @@
     cargo
     clinfo
     cmake
-    colloid-gtk-theme
-    colloid-icon-theme
-    colloid-kde
+    # colloid-gtk-theme
+    # colloid-icon-theme
+    # colloid-kde
     discord
     docker-compose
     dos2unix
@@ -540,7 +540,7 @@
     libGLU
     libglvnd
     libnotify
-    libsForQt5.libkscreen
+    # libsForQt5.libkscreen
     libsForQt5.qt5.qtwayland
     libva
     libva-utils
