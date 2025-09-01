@@ -2,10 +2,10 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
-  inputs,
   config,
-  pkgs,
+  inputs,
   lib,
+  pkgs,
   ...
 }: {
   imports = [
@@ -159,64 +159,67 @@
 
   # Fonts
   fonts.packages = with pkgs; [
+    dina-font
+    fira-code
+    fira-code-symbols
+    jetbrains-mono
+    liberation_ttf
+    mplus-outline-fonts.githubRelease
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
-    liberation_ttf
-    fira-code
-    fira-code-symbols
-    mplus-outline-fonts.githubRelease
-    dina-font
     proggyfonts
-    jetbrains-mono
   ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    thunderbird
-    nixd
-    localsend
-    unrar
-    gh
-    smartmontools
-    discord
-    obsidian
-    bitwarden
-    anki
-    nix-output-monitor
-    qbittorrent-enhanced
-    moonlight-qt
-    tailscale
-    tmux
-    mumble
-    gparted
-    # prismlauncher
-    syncthing
-    obs-studio
-    lsd
-    plexamp
-    plex-desktop
-    bottles
-    git
-    inputs.zen-browser.packages."${system}".default
-    lutris
-    alacritty
-    floorp
-    vscodium
-    heroic
-    btop
-    tigervnc
-    todoist-electron
     # nh
+    # prismlauncher
+    alacritty
+    anki
+    bitwarden
+    bottles
+    btop
+    discord
     fastfetch
-    git-crypt
     ffmpeg
-    vivaldi
+    floorp
+    gh
+    ghostty
+    git
+    git-crypt
+    gparted
+    heroic
+    inputs.zen-browser.packages."${system}".default
     kdePackages.plasma-browser-integration
+    localsend
+    lsd
+    lutris
+    moonlight-qt
+    mumble
+    nix-output-monitor
+    nixd
+    obs-studio
+    obsidian
+    plex-desktop
+    plexamp
+    qbittorrent-enhanced
     rustdesk
+    smartmontools
+    syncthing
+    tailscale
+    thunderbird
+    tigervnc
+    tmux
+    todoist-electron
+    unrar
+    vivaldi
+    vlc
+    vscodium
+    wget
+    zoxide
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
