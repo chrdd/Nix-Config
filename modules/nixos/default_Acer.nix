@@ -2,6 +2,7 @@
   imports = [
     ./autoupgrade.nix
     ./bluetooth.nix
+    # ./fingerprint.nix
     ./flatpak.nix
     ./git.nix
     ./mumblemic.nix
@@ -13,7 +14,6 @@
     ./syncthing.nix
     ./thunar.nix
     ./vscodium.nix
-    ./fingerprint.nix
     #     ./smartd.nix
     # ./appimage.nix
     # ./auto-cpufreq.nix
