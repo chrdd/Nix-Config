@@ -475,9 +475,6 @@
     cargo
     clinfo
     cmake
-    # colloid-gtk-theme
-    # colloid-icon-theme
-    # colloid-kde
     discord
     docker-compose
     dos2unix
@@ -495,6 +492,7 @@
     fluent-reader
     font-awesome
     fontconfig
+    freerdp
     freetype
     fzf
     gcc
@@ -540,7 +538,6 @@
     libGLU
     libglvnd
     libnotify
-    # libsForQt5.libkscreen
     libsForQt5.qt5.qtwayland
     libva
     libva-utils
@@ -549,6 +546,7 @@
     localsend
     lsd
     lutris
+    mailspring
     mesa
     mesa-demos
     meson
@@ -665,14 +663,16 @@
     zotero
     zoxide
 
-    freerdp
-
     # winapps.packages."${system}".winapps
     # winapps.packages."${system}".winapps-launcher # optional
     #  wget
     # aquamarine
     # arduino-ide
     # arduino-ide
+    # colloid-gtk-theme
+    # colloid-icon-theme
+    # colloid-kde
+    # libsForQt5.libkscreen
     # audacity
     # blender
     # cudaPackages.nvidia_driver

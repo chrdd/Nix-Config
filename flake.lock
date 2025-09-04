@@ -410,11 +410,27 @@
         "xdph": "xdph"
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1757180583,
         "narHash": "sha256-Ms2/f+vzcYezat/uaYjdnhTb00dtZ81qGvsNGLAE3h0=",
         "ref": "refs/heads/main",
         "rev": "bce43f74eb8e4570d0d043f5fc8257eef7a57399",
         "revCount": 6411,
+=======
+<<<<<<< HEAD
+        "lastModified": 1756811803,
+        "narHash": "sha256-MuR2EcPnJ7VOhK1ipdOcyRvGgRFZbRWA1fl27Gzrie0=",
+        "ref": "refs/heads/main",
+        "rev": "127aab815908ecbd3db4d23f127d2e96b79855f9",
+        "revCount": 6408,
+=======
+        "lastModified": 1756977414,
+        "narHash": "sha256-HBiLw2Ev+eKOjfwPa0nyL8jIXkSQcwyWP/QPAlWdks8=",
+        "ref": "refs/heads/main",
+        "rev": "4e785d12a91117cd5b255052799d1a051d9976c0",
+        "revCount": 6409,
+>>>>>>> 9ac2eac (Auto-commit before pull: 2025-09-04T18:00:04+03:00)
+>>>>>>> 25700b5 (Auto-commit before pull: 2025-09-04T18:00:04+03:00)
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -1104,11 +1120,27 @@
         ]
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1756989875,
         "narHash": "sha256-BP50EzLDbl9Jc61q/TTE7ja3oP9Oi1x9q1la49S7Zx0=",
         "owner": "winapps-org",
         "repo": "winapps",
         "rev": "5104e0d4009cac508a3748783fd02ea735b892a1",
+=======
+<<<<<<< HEAD
+        "lastModified": 1756897654,
+        "narHash": "sha256-2F5YKXP5ZFR63V9BIcoBap8+zRsSTX3ygQdD2bj/+bA=",
+        "owner": "winapps-org",
+        "repo": "winapps",
+        "rev": "97d10a57240cf462bfa30a11806c72b09701dc8e",
+=======
+        "lastModified": 1756989875,
+        "narHash": "sha256-BP50EzLDbl9Jc61q/TTE7ja3oP9Oi1x9q1la49S7Zx0=",
+        "owner": "winapps-org",
+        "repo": "winapps",
+        "rev": "5104e0d4009cac508a3748783fd02ea735b892a1",
+>>>>>>> 9ac2eac (Auto-commit before pull: 2025-09-04T18:00:04+03:00)
+>>>>>>> 25700b5 (Auto-commit before pull: 2025-09-04T18:00:04+03:00)
         "type": "github"
       },
       "original": {
