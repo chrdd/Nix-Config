@@ -1,8 +1,8 @@
 {...}: {
   imports = [
+    ./adb.nix
     ./autoupgrade.nix
     ./bluetooth.nix
-    # ./fingerprint.nix
     ./flatpak.nix
     ./git.nix
     ./mumblemic.nix
@@ -14,9 +14,10 @@
     ./syncthing.nix
     ./thunar.nix
     ./vscodium.nix
-    #     ./smartd.nix
+    # ./smartd.nix
     # ./appimage.nix
     # ./auto-cpufreq.nix
+    # ./fingerprint.nix
     # ./manga.nix
     # ./ollama.nix
     # ./rdp.nix
