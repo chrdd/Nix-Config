@@ -441,6 +441,9 @@
     };
   };
 
+  #TeamViewer
+  services.teamviewer.enable = true;
+
   # Samba
   services.sambaClient.enable = true;
 
@@ -663,7 +666,6 @@
     zotero
     zoxide
 
-    teamviewer
     anydesk
     # winapps.packages."${system}".winapps
     # winapps.packages."${system}".winapps-launcher # optional
