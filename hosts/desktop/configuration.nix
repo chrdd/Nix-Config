@@ -663,6 +663,8 @@
     zotero
     zoxide
 
+    teamviewer
+    anydesk
     # winapps.packages."${system}".winapps
     # winapps.packages."${system}".winapps-launcher # optional
     #  wget
