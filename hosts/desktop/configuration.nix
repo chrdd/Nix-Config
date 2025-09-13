@@ -350,7 +350,7 @@
     extraConfig = ''      set-option -sa terminal-overrides ",xterm*:Tc"
              set -g mouse on
 
-             unbind C-b
+             unbind C-bff
              set -g prefix C-Space
              bind C-Space send-prefix
 
@@ -625,7 +625,7 @@
     tautulli
     tesseract4
     thunderbird
-    tigervnc
+    # tigervnc
     tldr
     todoist-electron
     tor
