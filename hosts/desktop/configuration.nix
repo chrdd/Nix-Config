@@ -154,11 +154,11 @@
     LC_TIME = "ro_RO.UTF-8";
   };
   # Enable Hyprland
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-    xwayland.enable = true;
-  };
+  # programs.hyprland = {
+  #   enable = true;
+  #   package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+  #   xwayland.enable = true;
+  # };
 
   # Waydroid
   virtualisation.waydroid.enable = true;
@@ -491,7 +491,7 @@
     ffmpegthumbnailer
     filezilla
     flameshot
-    floorp
+    floorp-bin
     fluent-reader
     font-awesome
     fontconfig
@@ -606,7 +606,7 @@
     quickemu
     ranger
     rocmPackages.rocm-smi
-    rofi-wayland
+    # rofi
     rpi-imager
     rustdesk
     samba
@@ -625,7 +625,6 @@
     tautulli
     tesseract4
     thunderbird
-    # tigervnc
     tldr
     todoist-electron
     tor
@@ -638,10 +637,10 @@
     vivaldi
     vlc
     vulkan-tools
-    pkgs.waybar
-    (pkgs.waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
-    }))
+    # pkgs.waybar
+    # (pkgs.waybar.overrideAttrs (oldAttrs: {
+    #   mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
+    # }))
     wayvnc
     wf-recorder
     wget
@@ -655,7 +654,7 @@
     xbindkeys
     xbindkeys
     xdg-desktop-portal-gtk
-    xdg-desktop-portal-hyprland
+    # xdg-desktop-portal-hyprland
     xdotool
     xfce.tumbler
     xorg.libXrandr
@@ -755,6 +754,7 @@
     #stdenv.cc.cc.lib
     #Sunshine
     #themes
+    # tigervnc
     #v4l2loopback
     #vulkan
     #zabbix.agent
