@@ -185,7 +185,7 @@
     discord
     fastfetch
     ffmpeg
-    floorp
+    floorp-bin
     gh
     ghostty
     git
@@ -212,7 +212,7 @@
     syncthing
     tailscale
     thunderbird
-    tigervnc
+    # tigervnc
     tmux
     todoist-electron
     unrar
