@@ -221,6 +221,7 @@
     vscodium
     wget
     zoxide
+    anydesk
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
