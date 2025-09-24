@@ -223,6 +223,7 @@
     wget
     zoxide
     anydesk
+    wireguard-tools
     wireguard-ui
   ];
 

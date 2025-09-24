@@ -14,7 +14,7 @@
     ./syncthing.nix
     ./thunar.nix
     ./vscodium.nix
-    ./wireguard.nix
+    # ./wireguard.nix
     # ./smartd.nix
     # ./appimage.nix
     # ./auto-cpufreq.nix
