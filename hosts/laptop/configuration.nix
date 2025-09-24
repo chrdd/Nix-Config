@@ -6,6 +6,7 @@
   inputs,
   lib,
   pkgs,
+  winapps,
   ...
 }: {
   imports = [
@@ -207,7 +208,7 @@
     plex-desktop
     plexamp
     qbittorrent-enhanced
-    rustdesk
+    # rustdesk
     smartmontools
     syncthing
     tailscale
@@ -222,6 +223,7 @@
     wget
     zoxide
     anydesk
+    wireguard-ui
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
