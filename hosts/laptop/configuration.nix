@@ -97,80 +97,11 @@
     ];
   };
 
-  programs.tmux = {
-    enable = true;
-    extraConfig = ''      set-option -sa terminal-overrides ",xterm*:Tc"
-             set -g mouse on
-
-             unbind C-b
-             set -g prefix C-Space
-             bind C-Space send-prefix
-
-             # Vim style pane selection
-             bind h select-pane -L
-             bind j select-pane -D
-             bind k select-pane -U
-             bind l select-pane -R
-
-             # Start windows and panes at 1, not 0
-             set -g base-index 1
-             set -g pane-base-index 1
-             set-window-option -g pane-base-index 1
-             set-option -g renumber-windows on
-
-             # Use Alt-arrow keys without prefix key to switch panes
-             bind -n M-Left select-pane -L
-             bind -n M-Right select-pane -R
-             bind -n M-Up select-pane -U
-             bind -n M-Down select-pane -D
-
-             # Shift arrow to switch windows
-             bind -n S-Left  previous-window
-             bind -n S-Right next-window
-
-             # Shift Alt vim keys to switch windows
-             bind -n M-H previous-window
-             bind -n M-L next-window
-
-             set -g @plugin '${pkgs.tmuxPlugins.sensible}'
-             set -g @plugin '${pkgs.tmuxPlugins.sensible}'
-
-
-             # keybindings
-             bind-key -T copy-mode-vi v send-keys -X begin-selection
-             bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
-             bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
-
-             bind '"' split-window -v -c "#{pane_current_path}"
-             bind % split-window -h -c "#{pane_current_path}"
-    '';
-  };
-
   # Install firefox.
   programs.firefox.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  services.avahi = {
-    enable = true;
-    publish.enable = true;
-    publish.userServices = true;
-  };
-
-  # Fonts
-  fonts.packages = with pkgs; [
-    dina-font
-    fira-code
-    fira-code-symbols
-    jetbrains-mono
-    liberation_ttf
-    mplus-outline-fonts.githubRelease
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-emoji
-    proggyfonts
-  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -236,45 +167,7 @@
   #   enableSSHSupport = true;
   # };
 
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
   networking.hostName = "Acer"; # Define your hostname.
-  networking.firewall.allowPing = true;
-  networking.networkmanager.enable = true;
-  # Open ports in the firewall.
-  # networking.firewall.enable = false;
-  # networking.useDHCP = false;
-  networking.firewall = {
-    enable = true;
-    allowedTCPPortRanges = [
-      {
-        from = 1714;
-        to = 1764;
-      } # KDE Connect
-    ];
-    allowedTCPPorts = [22 4747 32400 32500 47984 47989 47990 48010 5900 8085 64738];
-    allowedUDPPortRanges = [
-      {
-        from = 1714;
-        to = 1764;
-      } # KDE Connect
-      {
-        from = 47998;
-        to = 48000;
-      }
-      {
-        from = 8000;
-        to = 8010;
-      }
-    ];
-    allowedUDPPorts = [4747 8085 32400 32500 64738];
-  };
-
-  # Tailscale
-  services.tailscale.enable = true;
 
   programs.kdeconnect.enable = true;
   # Enable Hyprland
@@ -284,27 +177,7 @@
   #     xwayland.enable = true;
   #   };
 
-  # ZSH
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestions.enable = true;
-    syntaxHighlighting.enable = true;
-    ohMyZsh = {
-      enable = true;
-      plugins = ["git"];
-      theme = "eastwood";
-    };
-  };
-  users.defaultUserShell = pkgs.zsh;
-
   nix.settings.require-sigs = false;
-
-  # Vivaldi
-  nixpkgs.config.vivaldi = {
-    proprietaryCodecs = true;
-    enableWideVine = true;
-  };
 
   # Overheating prevention
   services.thermald.enable = true;
