@@ -1,8 +1,8 @@
 {...}: {
   imports = [
     ./adb.nix
-    ./avahi.nix
     ./autoupgrade.nix
+    ./avahi.nix
     ./bluetooth.nix
     ./docker.nix
     ./flatpak.nix
@@ -18,9 +18,9 @@
     ./syncthing.nix
     ./thunar.nix
     ./tmux.nix
+    ./vivaldi.nix
     ./vscodium.nix
     ./zsh.nix
-    ./vivaldi.nix
     # ./appimage.nix
     # ./auto-cpufreq.nix
     # ./fingerprint.nix
@@ -32,4 +32,11 @@
     # ./virtualbox.nix
     # ./wireguard.nix
   ];
+  vivaldi.enable = lib.mkDefault true;
+  zsh.enable = lib.mkDefault true;
+  docker.enable = lib.mkDefault true;
+  adb.enable = lib.mkDefault true;
+  autoupgrade.enable = lib.mkDefault true;
+  git.enable = lib.mkDefault true;
+  fonts.enable = lib.mkDefault true;
 }

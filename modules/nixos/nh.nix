@@ -4,16 +4,19 @@
   pkgs,
   ...
 }: {
-  environment.sessionVariables = {
-    NH_FLAKE = "/etc/nixos";
+  options = {
+    nh.enable = lib.mkEnableOption "Enables Nix Helper";
   };
-
-  programs.nh = {
-    enable = true;
-
-    clean = {
+  config = lib.mkIf config.nh.enable {
+    environment.sessionVariables = {
+      NH_FLAKE = "/etc/nixos";
+    };
+    programs.nh = {
       enable = true;
-      extraArgs = "--keep 10";
+      clean = {
+        enable = true;
+        extraArgs = "--keep 10";
+      };
     };
   };
 }
