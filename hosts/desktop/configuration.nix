@@ -96,39 +96,6 @@
 
   #Networking
   networking.hostName = "Orion"; # Define your hostname.
-  networking.firewall.allowPing = true;
-  networking.networkmanager.enable = true;
-  # Open ports in the firewall.
-  # networking.firewall.enable = false;
-  # networking.useDHCP = false;
-  networking.firewall = {
-    enable = true;
-    allowedTCPPortRanges = [
-      {
-        from = 1714;
-        to = 1764;
-      } # KDE Connect
-    ];
-    allowedTCPPorts = [22 4747 32400 32500 47984 47989 47990 48010 5900 8085 64738];
-    allowedUDPPortRanges = [
-      {
-        from = 1714;
-        to = 1764;
-      } # KDE Connect
-      {
-        from = 47998;
-        to = 48000;
-      }
-      {
-        from = 8000;
-        to = 8010;
-      }
-    ];
-    allowedUDPPorts = [4747 8085 32400 32500 64738];
-  };
-
-  # Tailscale
-  services.tailscale.enable = true;
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -190,19 +157,6 @@
         command = "${pkgs.alsa-utils}/bin/amixer -q set Master toggle";
       }
     ];
-  };
-
-  # ZSH
-  programs.zsh = {
-    enable = true;
-    autosuggestions.enable = true;
-    enableCompletion = true;
-    syntaxHighlighting.enable = true;
-    ohMyZsh = {
-      enable = true;
-      plugins = ["git"];
-      theme = "eastwood";
-    };
   };
 
   environment.sessionVariables = {
@@ -331,7 +285,7 @@
   users.users.octavian = {
     isNormalUser = true;
     description = "octavian";
-    extraGroups = ["networkmanager" "wheel" "audio" "vboxusers" "dialout" "scanner" "lp" "docker"];
+    extraGroups = ["networkmanager" "wheel" "audio" "vboxusers" "dialout" "scanner" "lp"];
     packages = with pkgs; [
       # firefox
       # kdePackages.kate
@@ -344,58 +298,6 @@
 
   # hardware.xpadneo.enable = true;
   # hardware.steam-hardware.enable = true;
-  # Tmux
-  programs.tmux = {
-    enable = true;
-    extraConfig = ''      set-option -sa terminal-overrides ",xterm*:Tc"
-             set -g mouse on
-
-             unbind C-bff
-             set -g prefix C-Space
-             bind C-Space send-prefix
-
-             # Vim style pane selection
-             bind h select-pane -L
-             bind j select-pane -D
-             bind k select-pane -U
-             bind l select-pane -R
-
-             # Start windows and panes at 1, not 0
-             set -g base-index 1
-             set -g pane-base-index 1
-             set-window-option -g pane-base-index 1
-             set-option -g renumber-windows on
-
-             # Use Alt-arrow keys without prefix key to switch panes
-             bind -n M-Left select-pane -L
-             bind -n M-Right select-pane -R
-             bind -n M-Up select-pane -U
-             bind -n M-Down select-pane -D
-
-             # Shift arrow to switch windows
-             bind -n S-Left  previous-window
-             bind -n S-Right next-window
-
-             # Shift Alt vim keys to switch windows
-             bind -n M-H previous-window
-             bind -n M-L next-window
-
-             set -g @plugin '${pkgs.tmuxPlugins.sensible}'
-             set -g @plugin '${pkgs.tmuxPlugins.sensible}'
-
-
-             # keybindings
-             bind-key -T copy-mode-vi v send-keys -X begin-selection
-             bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
-             bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
-
-             bind '"' split-window -v -c "#{pane_current_path}"
-             bind % split-window -h -c "#{pane_current_path}"
-    '';
-  };
-
-  # Docker
-  virtualisation.docker.enable = true;
 
   # Allow unfree packages
   nixpkgs.config = {
@@ -404,18 +306,6 @@
     # packageOverrides = pkgs: {
     # unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
     # };
-  };
-
-  # Vivaldi
-  nixpkgs.config.vivaldi = {
-    proprietaryCodecs = true;
-    enableWideVine = true;
-  };
-
-  services.avahi = {
-    enable = true;
-    publish.enable = true;
-    publish.userServices = true;
   };
   # services.avahi.enable = true;
   # services.avahi.publish.enable = true;
@@ -430,17 +320,6 @@
   # hardware.sane.drivers.scanSnap.enable = true;
   # environment.etc."sane/gt68xx/PS1fw.usb".source = /home/octavian/Documents/sane/gt68xx/PS1fw.usb;
 
-  #Git
-  programs.git = {
-    enable = true;
-    config = {
-      user.name = "Octavian";
-      user.email = "soctavianstefan@gmail.com";
-      init.defaultBranch = "main";
-      pull.rebase = true;
-    };
-  };
-
   #TeamViewer
   services.teamviewer.enable = true;
 
@@ -448,28 +327,17 @@
   services.sambaClient.enable = true;
 
   services.gnome.gnome-remote-desktop.enable = true;
-  #Fonts
-  #fonts.fontconfig.enableProfileFonts = true;
-  fonts.packages = with pkgs; [
-    dina-font
-    fira-code
-    fira-code-symbols
-    jetbrains-mono
-    liberation_ttf
-    mplus-outline-fonts.githubRelease
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-emoji
-    proggyfonts
-  ];
 
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    # docker-compose
+    # rofi
     actkbd
     alacritty
     alejandra
     alsa-utils
     anki
+    anydesk
     bitwarden
     bottles
     bottom
@@ -479,7 +347,6 @@
     clinfo
     cmake
     discord
-    docker-compose
     dos2unix
     dysk
     easyeffects
@@ -606,7 +473,6 @@
     quickemu
     ranger
     rocmPackages.rocm-smi
-    # rofi
     rpi-imager
     rustdesk
     samba
@@ -637,10 +503,6 @@
     vivaldi
     vlc
     vulkan-tools
-    # pkgs.waybar
-    # (pkgs.waybar.overrideAttrs (oldAttrs: {
-    #   mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
-    # }))
     wayvnc
     wf-recorder
     wget
@@ -654,7 +516,6 @@
     xbindkeys
     xbindkeys
     xdg-desktop-portal-gtk
-    # xdg-desktop-portal-hyprland
     xdotool
     xfce.tumbler
     xorg.libXrandr
@@ -664,8 +525,11 @@
     zapzap
     zotero
     zoxide
-
-    anydesk
+    #   mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
+    # (pkgs.waybar.overrideAttrs (oldAttrs: {
+    # }))
+    # pkgs.waybar
+    # xdg-desktop-portal-hyprland
     # winapps.packages."${system}".winapps
     # winapps.packages."${system}".winapps-launcher # optional
     #  wget
@@ -761,15 +625,8 @@
     #zabbix.web
     #zabbixctl
   ];
-  #postgresql
-  services.postgresql = {
-    enable = true;
-    #package = pkgs.postgresql_15;
-    # ...
-  };
 
   # ZSH
-  users.defaultUserShell = pkgs.zsh;
   # programs.fish.enable = true;
   # Insecure packages
   # nixpkgs.config.permittedInsecurePackages = ["electron-25.9.0" "electron-33.4.11"];
@@ -853,9 +710,6 @@
   };
 
   # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
 
   programs.adb.enable = true;
   # networking.firewall.allowedTCPPorts = [ ... ];
