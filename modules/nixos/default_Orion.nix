@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./adb.nix
     ./autoupgrade.nix
     ./avahi.nix
     ./bluetooth.nix
@@ -30,4 +31,13 @@
     # ./rdp.nix
     # ./virtualbox.nix
   ];
+
+  vivaldi.enable = lib.mkDefault true;
+  zsh.enable = lib.mkDefault true;
+  docker.enable = lib.mkDefault true;
+  adb.enable = lib.mkDefault true;
+  autoupgrade.enable = lib.mkDefault true;
+  git.enable = lib.mkDefault true;
+  fonts.enable = lib.mkDefault true;
+  nh.enable = lib.mkDefault true;
 }
