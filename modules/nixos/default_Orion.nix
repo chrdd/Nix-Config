@@ -21,9 +21,9 @@
     ./syncthing.nix
     ./thunar.nix
     ./tmux.nix
+    ./vivaldi.nix
     ./vscodium.nix
     ./zsh.nix
-    ./vivaldi.nix
     # ./appimage.nix
     # ./manga.nix
     # ./ollama.nix

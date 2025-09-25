@@ -15,7 +15,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix.url = "github:danth/stylix";
+    # stylix.url = "github:danth/stylix";
 
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
@@ -45,7 +45,7 @@
     nixpkgs-old,
     home-manager,
     nix-flatpak,
-    stylix,
+    # stylix,
     hyprland,
     deploy-rs,
     winapps,
