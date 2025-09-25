@@ -178,11 +178,15 @@
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     # nh
     # prismlauncher
+    # rustdesk
+    # tigervnc
     alacritty
     anki
+    anydesk
     bitwarden
     bottles
     btop
+    dig
     discord
     fastfetch
     ffmpeg
@@ -208,12 +212,10 @@
     plex-desktop
     plexamp
     qbittorrent-enhanced
-    # rustdesk
     smartmontools
     syncthing
     tailscale
     thunderbird
-    # tigervnc
     tmux
     todoist-electron
     unrar
@@ -221,10 +223,9 @@
     vlc
     vscodium
     wget
-    zoxide
-    anydesk
     wireguard-tools
     wireguard-ui
+    zoxide
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
