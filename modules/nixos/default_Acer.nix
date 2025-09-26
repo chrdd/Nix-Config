@@ -32,11 +32,11 @@
     # ./virtualbox.nix
     # ./wireguard.nix
   ];
-  vivaldi.enable = lib.mkDefault true;
-  zsh.enable = lib.mkDefault true;
-  docker.enable = lib.mkDefault true;
-  adb.enable = lib.mkDefault true;
-  autoupgrade.enable = lib.mkDefault true;
-  git.enable = lib.mkDefault true;
-  fonts.enable = lib.mkDefault true;
+  vivaldi.enable = true;
+  zsh.enable = true;
+  docker.enable = true;
+  adb.enable = true;
+  autoupgrade.enable = true;
+  git.enable = true;
+  fonts.enable = true;
 }
