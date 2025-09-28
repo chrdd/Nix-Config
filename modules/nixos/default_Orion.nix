@@ -1,4 +1,9 @@
-{...}: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ./adb.nix
     ./autoupgrade.nix
@@ -31,17 +36,6 @@
     # ./rdp.nix
     # ./virtualbox.nix
   ];
-
-<<<<<<< HEAD
-  vivaldi.enable = true;
-  zsh.enable = true;
-  docker.enable = true;
-  adb.enable = true;
-  autoupgrade.enable = true;
-  git.enable = true;
-  fonts.enable = true;
-  nh.enable = true;
-=======
   vivaldi.enable = lib.mkDefault true;
   zsh.enable = lib.mkDefault true;
   docker.enable = lib.mkDefault true;
@@ -52,5 +46,4 @@
   nh.enable = lib.mkDefault true;
   tmux.enable = lib.mkDefault true;
   vscodium.enable = lib.mkDefault true;
->>>>>>> cd966dd (Auto-commit before pull: 2025-09-26T08:35:36+03:00)
 }

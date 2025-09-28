@@ -1,4 +1,9 @@
-{...}: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ./adb.nix
     ./autoupgrade.nix
@@ -32,14 +37,14 @@
     # ./virtualbox.nix
     # ./wireguard.nix
   ];
-  vivaldi.enable = true;
-  zsh.enable = true;
-  docker.enable = true;
-  adb.enable = true;
-  autoupgrade.enable = true;
-  git.enable = true;
-  fonts.enable = true;
-  nh.enable = true;
-  tmux.enable = true;
-  vscodium.enable = true;
+  vivaldi.enable = lib.mkDefault true;
+  zsh.enable = lib.mkDefault true;
+  docker.enable = lib.mkDefault true;
+  adb.enable = lib.mkDefault true;
+  autoupgrade.enable = lib.mkDefault true;
+  git.enable = lib.mkDefault true;
+  fonts.enable = lib.mkDefault true;
+  nh.enable = lib.mkDefault true;
+  tmux.enable = lib.mkDefault true;
+  vscodium.enable = lib.mkDefault true;
 }
