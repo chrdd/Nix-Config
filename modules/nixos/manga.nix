@@ -1,18 +1,28 @@
-{...}: {
-  services.suwayomi-server = {
-    enable = true;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  options = {
+    manga.enable = lib.mkEnableOption "Enables Suwayomi";
+  };
+  config = lib.mkIf config.manga.enable {
+    services.suwayomi-server = {
+      enable = true;
 
-    dataDir = "/var/lib/suwayomi"; # Default is "/var/lib/suwayomi-server"
-    openFirewall = true;
+      dataDir = "/var/lib/suwayomi"; # Default is "/var/lib/suwayomi-server"
+      openFirewall = true;
 
-    settings = {
-      server = {
-        port = 4567;
-        autoDownloadNewChapters = false;
-        maxSourcesInParallel = 6;
-        extensionRepos = [
-          "https://raw.githubusercontent.com/suwayomi/tachiyomi-extension/repo/index.min.json"
-        ];
+      settings = {
+        server = {
+          port = 4567;
+          autoDownloadNewChapters = false;
+          maxSourcesInParallel = 6;
+          extensionRepos = [
+            "https://raw.githubusercontent.com/suwayomi/tachiyomi-extension/repo/index.min.json"
+          ];
+        };
       };
     };
   };

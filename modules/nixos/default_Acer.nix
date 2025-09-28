@@ -37,15 +37,19 @@
     # ./virtualbox.nix
     # ./wireguard.nix
   ];
-  vivaldi.enable = lib.mkDefault true;
-  zsh.enable = lib.mkDefault true;
-  docker.enable = lib.mkDefault true;
   adb.enable = lib.mkDefault true;
   autoupgrade.enable = lib.mkDefault true;
-  git.enable = lib.mkDefault true;
+  bluetooth.enable = lib.mkDefault true;
+  docker.enable = lib.mkDefault true;
   fonts.enable = lib.mkDefault true;
+  git.enable = lib.mkDefault true;
   nh.enable = lib.mkDefault true;
-  tmux.enable = lib.mkDefault true;
-  vscodium.enable = lib.mkDefault true;
   syncthing.enable = lib.mkDefault true;
+  tmux.enable = lib.mkDefault true;
+  vivaldi.enable = lib.mkDefault true;
+  vscodium.enable = lib.mkDefault true;
+  zsh.enable = lib.mkDefault true;
+  steam.enable = lib.mkDefault true;
+  sunshine.enable = lib.mkDefault true;
+  thunar.enable = lib.mkDefault true;
 }
