@@ -1,22 +1,25 @@
-{ config, pkgs,lib,inputs, ... }:
 {
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: {
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      
       #MAIN
       #source = [
       #  "~/.config/hypr/startup.conf"
       #  "~/.config/hypr/env.conf"
       #  "~/.config/hypr/windowrule.conf"
-      #  "~/.config/hypr/keybinds.conf" 
+      #  "~/.config/hypr/keybinds.conf"
       #];
       #SOURCES
       #"source" = "~/.config/hypr/startup.conf";
       #"source" = "~/.config/hypr/env.conf";
       #"source" = "~/.config/hypr/windowrule.conf";
       #"source" = "~/.config/hypr/keybinds.conf";
-
 
       #execs
       # exec-once = hyprpaper;
@@ -55,22 +58,21 @@
 
       # MONITOR
       monitor = [
-          "DP-3,1920x1080@144,0x1080,auto"
-          "HDMI-A-1 ,preferred,0x0,auto"
-      ]; 
-      
+        "DP-3,1920x1080@144,0x1080,auto"
+        "HDMI-A-1 ,preferred,0x0,auto"
+      ];
 
       # INPUTS
-      input  = {
+      input = {
         "kb_layout" = "us";
         "follow_mouse" = 1;
         sensitivity = -0.3; # -1.0 - 1.0, 0 means no modification.
       };
       #GENERAL
       general = {
-        "gaps_in"=5;
-        "gaps_out"=5;
-        "border_size"=0;
+        "gaps_in" = 5;
+        "gaps_out" = 5;
+        "border_size" = 0;
         "no_border_on_floating" = true;
         layout = "dwindle";
       };
@@ -109,10 +111,9 @@
         "col.shadow" = "0x66000000";
 
         blurls = [
-            "gtk-layer-shell"
-            "lockscreen"
+          "gtk-layer-shell"
+          "lockscreen"
         ];
-        
       };
 
       animations = {
@@ -122,7 +123,7 @@
           "overshot, 0.05, 0.9, 0.1, 1.05"
           "smoothOut, 0.36, 0, 0.66, -0.56"
           "smoothIn, 0.25, 1, 0.5, 1"
-        ]; 
+        ];
 
         animation = [
           "windows, 1, 5, overshot, slide"
@@ -235,106 +236,105 @@
       ];
       # BINDS
       bind = [
-          #MISC
-          ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-          ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-          ", XF86AudioPlay, exec, playerctl play-pause"
-          ", XF86AudioPrev, exec, playerctl previous"
-          ", XF86AudioNext, exec, playerctl next"
-          # "XF86AudioRaiseVolume, exec, amixer set Master 5%+"
-          # "XF86AudioLowerVolume, exec, amixer set Master 5%-"
-          # "XF86AudioPlay, exec, playerctl play-pause"
-          # "XF86AudioNext, exec, playerctl next"
-          # "XF86AudioPrev, exec, playerctl previous"
-          "SUPER, escape, exec, wlogout --protocol layer-shell -b 5 -T 400 -B 400"
-          "SUPER , V, exec, $browser"
-          "SUPER SHIFT, v, exec, killall -s SIGINT wf-recorder"
-          "SUPERSHIFT, period, exec, $screenshot full"
-          "SUPER SHIFT, S, exec, $screenshotarea"
-          "SUPER SHIFT, X, exec, $colorpicker"
-          "CTRL ALT, L, exec, swaylock"
-          "SUPER, X, exec, $term"
-          "SUPER, E, exec, $files"
-          "SUPER, D, exec, killall rofi || rofi -show drun -theme ~/.config/rofi/config.rasi"
-          # bind = SUPER, period, exec, killall rofi || rofi -show emoji -emoji-format "{emoji}" -modi emoji -theme ~/.config/rofi/global/emoji
-          "SUPER SHIFT, B, exec, killall -SIGUSR2 waybar" # Reload waybar
-          "SUPER, B, exec, killall -SIGUSR1 waybar"
-          
-          #WINDOW MANAGEMENET
-          "SUPER, Q, killactive,"
-          "SUPER SHIFT, Q, exit,"
-          "SUPER, F, fullscreen,"
-          "SUPER, Space, togglefloating,"
-          "SUPER, P, pseudo," # dwindle
-          "SUPER, S, togglesplit," # dwindle
+        #MISC
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioPrev, exec, playerctl previous"
+        ", XF86AudioNext, exec, playerctl next"
+        # "XF86AudioRaiseVolume, exec, amixer set Master 5%+"
+        # "XF86AudioLowerVolume, exec, amixer set Master 5%-"
+        # "XF86AudioPlay, exec, playerctl play-pause"
+        # "XF86AudioNext, exec, playerctl next"
+        # "XF86AudioPrev, exec, playerctl previous"
+        "SUPER, escape, exec, wlogout --protocol layer-shell -b 5 -T 400 -B 400"
+        "SUPER , V, exec, $browser"
+        "SUPER SHIFT, v, exec, killall -s SIGINT wf-recorder"
+        "SUPERSHIFT, period, exec, $screenshot full"
+        "SUPER SHIFT, S, exec, $screenshotarea"
+        "SUPER SHIFT, X, exec, $colorpicker"
+        "CTRL ALT, L, exec, swaylock"
+        "SUPER, X, exec, $term"
+        "SUPER, E, exec, $files"
+        "SUPER, D, exec, killall rofi || rofi -show drun -theme ~/.config/rofi/config.rasi"
+        # bind = SUPER, period, exec, killall rofi || rofi -show emoji -emoji-format "{emoji}" -modi emoji -theme ~/.config/rofi/global/emoji
+        "SUPER SHIFT, B, exec, killall -SIGUSR2 waybar" # Reload waybar
+        "SUPER, B, exec, killall -SIGUSR1 waybar"
 
-          # WORKSPACE MODE
-          "SUPER SHIFT, Space, workspaceopt, allfloat"
-          "SUPER SHIFT, Space, exec, $notifycmd 'Toggled All Float Mode'"
-          "SUPER SHIFT, P, workspaceopt, allpseudo"
-          "SUPER SHIFT, P, exec, $notifycmd 'Toggled All Pseudo Mode'"
+        #WINDOW MANAGEMENET
+        "SUPER, Q, killactive,"
+        "SUPER SHIFT, Q, exit,"
+        "SUPER, F, fullscreen,"
+        "SUPER, Space, togglefloating,"
+        "SUPER, P, pseudo," # dwindle
+        "SUPER, S, togglesplit," # dwindle
 
-          "SUPER, Tab, cyclenext,"
-          "SUPER, Tab, bringactivetotop,"
+        # WORKSPACE MODE
+        "SUPER SHIFT, Space, workspaceopt, allfloat"
+        "SUPER SHIFT, Space, exec, $notifycmd 'Toggled All Float Mode'"
+        "SUPER SHIFT, P, workspaceopt, allpseudo"
+        "SUPER SHIFT, P, exec, $notifycmd 'Toggled All Pseudo Mode'"
 
-          #FOCUS
-          "SUPER, h, movefocus, l"
-          "SUPER, l, movefocus, r"
-          "SUPER, k, movefocus, u"
-          "SUPER, j, movefocus, d"
+        "SUPER, Tab, cyclenext,"
+        "SUPER, Tab, bringactivetotop,"
 
-          #MOVE
-          "SUPER SHIFT, left, movewindow, l"
-          "SUPER SHIFT, right, movewindow, r"
-          "SUPER SHIFT, up, movewindow, u"
-          "SUPER SHIFT, down, movewindow, d"
+        #FOCUS
+        "SUPER, h, movefocus, l"
+        "SUPER, l, movefocus, r"
+        "SUPER, k, movefocus, u"
+        "SUPER, j, movefocus, d"
 
-          #RESIZE
-          "SUPER CTRL, left, resizeactive, -20 0"
-          "SUPER CTRL, right, resizeactive, 20 0"
-          "SUPER CTRL, up, resizeactive, 0 -20"
-          "SUPER CTRL, down, resizeactive, 0 20"
+        #MOVE
+        "SUPER SHIFT, left, movewindow, l"
+        "SUPER SHIFT, right, movewindow, r"
+        "SUPER SHIFT, up, movewindow, u"
+        "SUPER SHIFT, down, movewindow, d"
 
-          #TABBED
-          "SUPER, g, togglegroup"
-          "SUPER, tab, changegroupactive"
-          "SUPER, G, exec, $notifycmd 'Toggled Group Mode'"
+        #RESIZE
+        "SUPER CTRL, left, resizeactive, -20 0"
+        "SUPER CTRL, right, resizeactive, 20 0"
+        "SUPER CTRL, up, resizeactive, 0 -20"
+        "SUPER CTRL, down, resizeactive, 0 20"
 
-          #SPECIAL
-          "SUPER, a, togglespecialworkspace"
-          "SUPERSHIFT, a, movetoworkspace, special"
-          "SUPER, a, exec, $notifycmd 'Toggled Special Workspace'"
-          "SUPER, c, exec, hyprctl dispatch centerwindow"
+        #TABBED
+        "SUPER, g, togglegroup"
+        "SUPER, tab, changegroupactive"
+        "SUPER, G, exec, $notifycmd 'Toggled Group Mode'"
 
-          #SWITCH
-          "SUPER, 1, workspace, 1"
-          "SUPER, 2, workspace, 2"
-          "SUPER, 3, workspace, 3"
-          "SUPER, 4, workspace, 4"
-          "SUPER, 5, workspace, 5"
-          "SUPER, 6, workspace, 6"
-          "SUPER, 7, workspace, 7"
-          "SUPER, 8, workspace, 8"
-          "SUPER, 9, workspace, 9"
-          "SUPER, 0, workspace, 10"
-          "SUPER ALT, up, workspace, e+1"
-          "SUPER ALT, down, workspace, e-1"
+        #SPECIAL
+        "SUPER, a, togglespecialworkspace"
+        "SUPERSHIFT, a, movetoworkspace, special"
+        "SUPER, a, exec, $notifycmd 'Toggled Special Workspace'"
+        "SUPER, c, exec, hyprctl dispatch centerwindow"
 
-          #MOVE
-          "SUPER SHIFT, 1, movetoworkspace, 1"
-          "SUPER SHIFT, 2, movetoworkspace, 2"
-          "SUPER SHIFT, 3, movetoworkspace, 3"
-          "SUPER SHIFT, 4, movetoworkspace, 4"
-          "SUPER SHIFT, 5, movetoworkspace, 5"
-          "SUPER SHIFT, 6, movetoworkspace, 6"
-          "SUPER SHIFT, 7, movetoworkspace, 7"
-          "SUPER SHIFT, 8, movetoworkspace, 8"
-          "SUPER SHIFT, 9, movetoworkspace, 9"
-          "SUPER SHIFT, 0, movetoworkspace, 10"
+        #SWITCH
+        "SUPER, 1, workspace, 1"
+        "SUPER, 2, workspace, 2"
+        "SUPER, 3, workspace, 3"
+        "SUPER, 4, workspace, 4"
+        "SUPER, 5, workspace, 5"
+        "SUPER, 6, workspace, 6"
+        "SUPER, 7, workspace, 7"
+        "SUPER, 8, workspace, 8"
+        "SUPER, 9, workspace, 9"
+        "SUPER, 0, workspace, 10"
+        "SUPER ALT, up, workspace, e+1"
+        "SUPER ALT, down, workspace, e-1"
 
+        #MOVE
+        "SUPER SHIFT, 1, movetoworkspace, 1"
+        "SUPER SHIFT, 2, movetoworkspace, 2"
+        "SUPER SHIFT, 3, movetoworkspace, 3"
+        "SUPER SHIFT, 4, movetoworkspace, 4"
+        "SUPER SHIFT, 5, movetoworkspace, 5"
+        "SUPER SHIFT, 6, movetoworkspace, 6"
+        "SUPER SHIFT, 7, movetoworkspace, 7"
+        "SUPER SHIFT, 8, movetoworkspace, 8"
+        "SUPER SHIFT, 9, movetoworkspace, 9"
+        "SUPER SHIFT, 0, movetoworkspace, 10"
       ];
-      bindm=[
+      bindm = [
         #MOUSE RESIZING
         "SUPER, mouse:272, movewindow"
         "SUPER, mouse:273, resizewindow"
@@ -345,9 +345,9 @@
       env = [
         "no_hardware_cursors,true"
 
-        "XDG_CURRENT_DESKTOP,Hyprland" 
-        "XDG_SESSION_TYPE,wayland" 
-        "XDG_SESSION_DESKTOP,Hyprland" 
+        "XDG_CURRENT_DESKTOP,Hyprland"
+        "XDG_SESSION_TYPE,wayland"
+        "XDG_SESSION_DESKTOP,Hyprland"
 
         "GDK_BACKEND,wayland"
         "QT_QPA_PLATFORM,wayland"
@@ -372,7 +372,7 @@
       "$notifycmd" = "notify-send -h string:x-canonical-private-synchronous:hypr-cfg -u low";
       #"$screenshotarea" = "hyprctl keyword animation "fadeOut,0,0,default"; grimblast --notify copysave area; hyprctl keyword animation "fadeOut,1,4,default""
       # "$screenshotarea" = "hyprctl keyword animation "fadeOut,0,0,default" ";
-      # "grimblast --notify copysave area"; 
+      # "grimblast --notify copysave area";
       # "hyprctl keyword animation "fadeOut,1,4,default"";
       "$term" = "kitty";
       "$volume" = "$scriptsDir/volume";

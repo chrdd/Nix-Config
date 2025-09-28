@@ -1,6 +1,11 @@
-{ config, pkgs,lib,inputs, ... }:
 {
-    # QT themeing
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: {
+  # QT themeing
   qt = {
     enable = true;
     platformTheme.name = "gtk";
