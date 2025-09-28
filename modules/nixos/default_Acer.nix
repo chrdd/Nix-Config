@@ -47,4 +47,5 @@
   nh.enable = lib.mkDefault true;
   tmux.enable = lib.mkDefault true;
   vscodium.enable = lib.mkDefault true;
+  syncthing.enable = lib.mkDefault true;
 }
