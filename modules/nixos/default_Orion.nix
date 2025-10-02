@@ -45,7 +45,7 @@
   nh.enable = lib.mkDefault true;
   steam.enable = lib.mkDefault true;
   sunshine.enable = lib.mkDefault true;
-  suspend.enable = lib.mkDefault true;
+  # suspend.enable = lib.mkDefault true;
   syncthing.enable = lib.mkDefault true;
   thunar.enable = lib.mkDefault true;
   tmux.enable = lib.mkDefault true;
