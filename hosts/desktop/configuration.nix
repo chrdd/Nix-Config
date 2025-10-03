@@ -69,7 +69,7 @@
     extraModprobeConfig = ''options v4l2loopback devices=1 video_nr=1 card_label="Virtual Cam" exclusive_caps=1 '';
   };
 
-  hardware.amdgpu.amdvlk.enable = true;
+  # hardware.amdgpu.amdvlk.enable = true;
   hardware.amdgpu.opencl.enable = true;
 
   #  #Kernel
@@ -675,7 +675,7 @@
       vaapiVdpau
       mesa
       libvdpau-va-gl
-      amdvlk
+      # amdvlk
       #pkgs.vulkan-validation-layers
       #pkgs.vulkan-loader
       #pkgs.nvidia-x11.vulkan-driver
@@ -693,10 +693,10 @@
     ];
   };
 
-  hardware.amdgpu.amdvlk = {
-    # enable = true;
-    support32Bit.enable = true;
-  };
+  # hardware.amdgpu.amdvlk = {
+  #   # enable = true;
+  #   support32Bit.enable = true;
+  # };
   # systemd.tmpfiles.rules = [
   #   "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages_5.clr}"
   # ];
