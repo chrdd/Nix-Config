@@ -26,6 +26,7 @@
     ./vivaldi.nix
     ./vscodium.nix
     ./zsh.nix
+    ./razer.nix
     # ./appimage.nix
     # ./auto-cpufreq.nix
     # ./fingerprint.nix
@@ -52,4 +53,5 @@
   steam.enable = lib.mkDefault true;
   sunshine.enable = lib.mkDefault true;
   thunar.enable = lib.mkDefault true;
+  razer.enable = lib.mkDefault true;
 }
