@@ -474,7 +474,7 @@
     ranger
     rocmPackages.rocm-smi
     rpi-imager
-    rustdesk
+    # rustdesk
     samba
     scrcpy
     sddm-astronaut
@@ -489,7 +489,7 @@
     starship
     syncthing
     tautulli
-    tesseract4
+    # tesseract4
     thunderbird
     tldr
     todoist-electron
@@ -695,6 +695,8 @@
   };
   environment.variables.AMD_VULKAN_ICD = "RADV";
   services.lact.enable = true;
+
+  services.colord.enable = true;
 
   # hardware.amdgpu.amdvlk = {
   #   # enable = true;
