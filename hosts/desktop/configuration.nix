@@ -675,6 +675,7 @@
       vaapiVdpau
       mesa
       libvdpau-va-gl
+      rocmPackages.clr.icd
       # amdvlk
       #pkgs.vulkan-validation-layers
       #pkgs.vulkan-loader
@@ -688,10 +689,12 @@
       # rocm-opencl-icd
       # pkgs.mesa.opencl
     ];
-    extraPackages32 = with pkgs; [
-      # driversi686Linux.amdvlk
-    ];
+    # extraPackages32 = with pkgs; [
+    #   driversi686Linux.amdvlk
+    # ];
   };
+  environment.variables.AMD_VULKAN_ICD = "RADV";
+  services.lact.enable = true;
 
   # hardware.amdgpu.amdvlk = {
   #   # enable = true;

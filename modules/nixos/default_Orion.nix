@@ -30,6 +30,7 @@
     ./vivaldi.nix
     ./vscodium.nix
     ./zsh.nix
+    ./hip.nix
     # ./appimage.nix
     # ./manga.nix
     # ./ollama.nix
@@ -52,4 +53,5 @@
   vivaldi.enable = lib.mkDefault true;
   vscodium.enable = lib.mkDefault true;
   zsh.enable = lib.mkDefault true;
+  hip.enable = lib.mkDefault true;
 }
