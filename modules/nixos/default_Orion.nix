@@ -31,6 +31,7 @@
     ./vscodium.nix
     ./zsh.nix
     ./hip.nix
+    ./nfs.nix
     # ./appimage.nix
     # ./manga.nix
     # ./ollama.nix
@@ -54,4 +55,5 @@
   vscodium.enable = lib.mkDefault true;
   zsh.enable = lib.mkDefault true;
   hip.enable = lib.mkDefault true;
+  nfs.enable = lib.mkDefault true;
 }
