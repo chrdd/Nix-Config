@@ -472,7 +472,7 @@
     qemu
     quickemu
     ranger
-    rocmPackages.rocm-smi
+    # rocmPackages.rocm-smi
     rpi-imager
     # rustdesk
     samba
@@ -675,7 +675,7 @@
       vaapiVdpau
       mesa
       libvdpau-va-gl
-      rocmPackages.clr.icd
+      # rocmPackages.clr.icd
       # amdvlk
       #pkgs.vulkan-validation-layers
       #pkgs.vulkan-loader
