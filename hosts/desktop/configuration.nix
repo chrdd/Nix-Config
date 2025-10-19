@@ -326,7 +326,7 @@
   # Samba
   services.sambaClient.enable = true;
 
-  services.gnome.gnome-remote-desktop.enable = true;
+  # services.gnome.gnome-remote-desktop.enable = true;
 
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
@@ -429,7 +429,7 @@
     nix-tree
     nodejs
     noto-fonts
-    noto-fonts
+    # noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
     ntfs3g
@@ -440,13 +440,13 @@
     obs-studio
     obsidian
     ocamlPackages.ssl
-    openssl
+    # openssl
     openssl
     openssl_3
     openssl_legacy
     pamixer
     papirus-icon-theme
-    papirus-icon-theme
+    # papirus-icon-theme
     pavucontrol
     pkg-config
     pkgs.cifs-utils
@@ -675,7 +675,7 @@
       vaapiVdpau
       mesa
       libvdpau-va-gl
-      # rocmPackages.clr.icd
+      rocmPackages.clr.icd
       # amdvlk
       #pkgs.vulkan-validation-layers
       #pkgs.vulkan-loader

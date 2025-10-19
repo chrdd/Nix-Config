@@ -54,6 +54,6 @@
   vivaldi.enable = lib.mkDefault true;
   vscodium.enable = lib.mkDefault true;
   zsh.enable = lib.mkDefault true;
-  hip.enable = lib.mkDefault true;
+  hip.enable = lib.mkDefault false;
   nfs.enable = lib.mkDefault true;
 }
