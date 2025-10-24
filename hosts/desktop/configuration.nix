@@ -400,7 +400,7 @@
     kdePackages.plasma-browser-integration
     kdePackages.qtmultimedia
     kdePackages.qtwayland
-    kdePackages.xwaylandvideobridge
+    # kdePackages.xwaylandvideobridge
     kitty
     libGL
     libGL
@@ -473,7 +473,7 @@
     quickemu
     ranger
     # rocmPackages.rocm-smi
-    rpi-imager
+    # rpi-imager
     # rustdesk
     samba
     scrcpy
