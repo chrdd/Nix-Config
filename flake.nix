@@ -5,7 +5,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-25.url = "github:NixOS/nixpkgs/nixos-25.05";
-    # Fix typo: nixpkgs-old instead of nixpksg-old
     nixpkgs-old.url = "github:NixOS/nixpkgs/c5dd43934613ae0f8ff37c59f61c507c2e8f980d";
 
     hyprland = {
