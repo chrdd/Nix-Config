@@ -19,7 +19,7 @@
     ./nh.nix
     ./optimisation.nix
     ./prismlauncher.nix
-    ./samba.nix
+    # ./samba.nix
     ./smartd.nix
     ./steam.nix
     ./sunshine.nix
@@ -54,6 +54,6 @@
   vivaldi.enable = lib.mkDefault true;
   vscodium.enable = lib.mkDefault true;
   zsh.enable = lib.mkDefault true;
-  hip.enable = lib.mkDefault false;
+  hip.enable = lib.mkDefault true;
   nfs.enable = lib.mkDefault true;
 }

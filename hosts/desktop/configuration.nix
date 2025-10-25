@@ -324,7 +324,7 @@
   services.teamviewer.enable = true;
 
   # Samba
-  services.sambaClient.enable = true;
+  # services.sambaClient.enable = true;
 
   # services.gnome.gnome-remote-desktop.enable = true;
 
