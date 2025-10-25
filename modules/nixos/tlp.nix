@@ -7,7 +7,7 @@
   options = {
     tlp.enable = lib.mkEnableOption "Enables TLP";
   };
-  config = mib.mkIf config.tlp.enable {
+  config = lib.mkIf config.tlp.enable {
     services.tlp = {
       enable = true;
       settings = {

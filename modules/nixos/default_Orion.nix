@@ -32,6 +32,7 @@
     ./zsh.nix
     ./hip.nix
     ./nfs.nix
+    ./hyprland.nix
     # ./appimage.nix
     # ./manga.nix
     # ./ollama.nix
@@ -56,4 +57,5 @@
   zsh.enable = lib.mkDefault true;
   hip.enable = lib.mkDefault true;
   nfs.enable = lib.mkDefault true;
+  hyprland.enable = lib.mkDefault true;
 }
