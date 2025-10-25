@@ -16,10 +16,10 @@ in {
       # Change Java runtimes available to Prism Launcher
       jdks = [
         graalvm-ce
-        zulu8
-        zulu17
-        zulu
         pkgs-25.jdk8 # Use jdk8 from nixpkgs-23.11
+        zulu
+        zulu17
+        zulu8
       ];
     })
   ];

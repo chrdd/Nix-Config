@@ -381,10 +381,6 @@
     grimblast
     hackgen-nf-font
     heroic
-    hyprcursor
-    hyprlock
-    hyprpaper
-    hyprpicker
     imagemagick
     inputs.self.packages.${pkgs.system}.shadps4-0_6_0
     inputs.zen-browser.packages."${system}".default
@@ -632,15 +628,15 @@
   # nixpkgs.config.permittedInsecurePackages = ["electron-25.9.0" "electron-33.4.11"];
 
   # XDG desktop portals
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [
-  ];
-  xdg.portal.xdgOpenUsePortal = true;
+  # xdg.portal.enable = true;
+  # xdg.portal.extraPortals = [
+  # ];
+  # xdg.portal.xdgOpenUsePortal = true;
 
-  systemd.user.services.xdg-desktop-portal-gtk = {
-    wantedBy = ["xdg-desktop-portal.service"];
-    before = ["xdg-desktop-portal.service"];
-  };
+  # systemd.user.services.xdg-desktop-portal-gtk = {
+  #   wantedBy = ["xdg-desktop-portal.service"];
+  #   before = ["xdg-desktop-portal.service"];
+  # };
 
   #VNC
   # systemd.services.krfb-virtualmonitor = {
