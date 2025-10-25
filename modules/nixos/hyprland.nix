@@ -19,7 +19,7 @@
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
     environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
 
-    programs.waybar.enable = true;
+    # programs.waybar.enable = true;
     services.hypridle.enable = true;
     environment.systemPackages = with pkgs; [
       hyprcursor

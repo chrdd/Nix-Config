@@ -57,5 +57,5 @@
   zsh.enable = lib.mkDefault true;
   hip.enable = lib.mkDefault true;
   nfs.enable = lib.mkDefault true;
-  hyprland.enable = lib.mkDefault true;
+  hyprland.enable = lib.mkDefault false;
 }
