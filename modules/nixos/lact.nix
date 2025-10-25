@@ -12,9 +12,9 @@
     description = "AMDGPU Control Daemon";
     after = ["multi-user.target"];
     wantedBy = ["multi-user.target"];
-    serviceConfig = {
-      ExecStart = "${pkgs.lact}/bin/lact daemon";
-    };
+    # serviceConfig = {
+    #   ExecStart = "${pkgs.lact}/bin/lact daemon";
+    # };
     enable = true;
   };
 }

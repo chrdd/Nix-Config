@@ -13,7 +13,7 @@
     ./flatpak.nix
     ./fonts.nix
     ./git.nix
-    ./lact.nix
+    # ./lact.nix
     ./mumblemic.nix
     ./network.nix
     ./nh.nix
