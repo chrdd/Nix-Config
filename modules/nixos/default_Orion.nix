@@ -39,7 +39,7 @@
     # ./rdp.nix
     # ./virtualbox.nix
   ];
-  adb.enable = lib.mkDefault true;
+  adb.enable = lib.mkDefault false;
   autoupgrade.enable = lib.mkDefault true;
   bluetooth.enable = lib.mkDefault true;
   docker.enable = lib.mkDefault true;
