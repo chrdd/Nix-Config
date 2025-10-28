@@ -111,6 +111,8 @@
     # prismlauncher
     # rustdesk
     # tigervnc
+    zapzap
+    powershell
     alacritty
     anki
     anydesk
