@@ -111,6 +111,7 @@
     # prismlauncher
     # rustdesk
     # tigervnc
+    splix
     zapzap
     powershell
     alacritty
