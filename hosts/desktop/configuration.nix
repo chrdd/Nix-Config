@@ -338,7 +338,7 @@
     alsa-utils
     anki
     anydesk
-    bitwarden
+    bitwarden-desktop
     bottles
     bottom
     btop-rocm
@@ -371,8 +371,8 @@
     git-crypt
     glew
     glfw
-    glfw-wayland
-    glfw-wayland-minecraft
+    # glfw-wayland
+    glfw3-minecraft
     gnome-keyring
     gnumake
     gogdl
@@ -424,10 +424,6 @@
     nix-output-monitor
     nix-tree
     nodejs
-    noto-fonts
-    # noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-emoji
     ntfs3g
     nvd
     nvtopPackages.amd
@@ -478,8 +474,8 @@
     slurp
     smartmontools
     source-han-sans
-    source-han-sans-japanese
-    source-han-serif-japanese
+    source-han-sans
+    source-han-serif
     speedtest-cli
     sshfs
     starship
@@ -668,7 +664,7 @@
     # driSupport = true;
     # driSupport32Bit = true;
     extraPackages = with pkgs; [
-      vaapiVdpau
+      libva-vdpau-driver
       mesa
       libvdpau-va-gl
       rocmPackages.clr.icd
