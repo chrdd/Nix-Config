@@ -112,12 +112,13 @@
     # rustdesk
     # tigervnc
     splix
+    scrcpy
     zapzap
     powershell
     alacritty
     anki
     anydesk
-    bitwarden
+    bitwarden-desktop
     bottles
     btop
     dig
