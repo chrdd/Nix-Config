@@ -7,7 +7,7 @@
   environment.systemPackages = with pkgs; [
     lact
   ];
-
+  hardware.amdgpu.overdrive.enable = true;
   systemd.services.lact = {
     description = "AMDGPU Control Daemon";
     after = ["multi-user.target"];
