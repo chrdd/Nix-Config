@@ -33,6 +33,7 @@
     ./hip.nix
     ./nfs.nix
     ./hyprland.nix
+    ./cast.nix
     # ./appimage.nix
     # ./manga.nix
     # ./ollama.nix
@@ -58,4 +59,5 @@
   hip.enable = lib.mkDefault true;
   nfs.enable = lib.mkDefault true;
   hyprland.enable = lib.mkDefault false;
+  cast.enable = lib.mkDefault true;
 }
