@@ -34,6 +34,7 @@
     ./nfs.nix
     ./hyprland.nix
     ./cast.nix
+    ./autologin.nix
     # ./appimage.nix
     # ./manga.nix
     # ./ollama.nix
@@ -60,4 +61,5 @@
   nfs.enable = lib.mkDefault true;
   hyprland.enable = lib.mkDefault false;
   cast.enable = lib.mkDefault true;
+  autoLogin.enable = lib.mkDefault true;
 }
