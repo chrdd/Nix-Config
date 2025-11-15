@@ -15,6 +15,7 @@
       autoStart = true;
       settings = {
         capture = "kms";
+        output_name = "1";
       };
     };
   };
