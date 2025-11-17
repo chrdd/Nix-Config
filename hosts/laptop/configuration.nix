@@ -111,6 +111,7 @@
     # prismlauncher
     # rustdesk
     # tigervnc
+    steam-run
     splix
     scrcpy
     zapzap
