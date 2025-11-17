@@ -111,6 +111,7 @@
     # prismlauncher
     # rustdesk
     # tigervnc
+    python315
     steam-run
     splix
     scrcpy
