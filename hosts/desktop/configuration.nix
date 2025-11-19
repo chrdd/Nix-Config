@@ -332,6 +332,7 @@
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     # docker-compose
     # rofi
+    steam-run
     deskreen
     actkbd
     alacritty
@@ -681,6 +682,10 @@
       # rocm-opencl-runtime
       # rocm-opencl-icd
       # pkgs.mesa.opencl
+    ];
+    extraPackages32 = with pkgs.pkgsi686Linux; [
+      mesa
+      libGL
     ];
     # extraPackages32 = with pkgs; [
     #   driversi686Linux.amdvlk
