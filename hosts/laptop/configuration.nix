@@ -127,7 +127,7 @@
     discord
     fastfetch
     ffmpeg
-    floorp-bin
+    # floorp-bin
     gh
     ghostty
     git
