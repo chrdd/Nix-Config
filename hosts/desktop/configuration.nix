@@ -360,7 +360,7 @@
     ffmpegthumbnailer
     filezilla
     flameshot
-    # floorp-bin
+    floorp-bin
     fluent-reader
     font-awesome
     fontconfig
