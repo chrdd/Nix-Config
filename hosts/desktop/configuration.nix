@@ -333,6 +333,7 @@
     # docker-compose
     # rofi
     weylus
+    ticktick
     steam-run
     deskreen
     actkbd
