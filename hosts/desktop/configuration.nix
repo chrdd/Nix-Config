@@ -332,10 +332,14 @@
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     # docker-compose
     # rofi
-    weylus
-    ticktick
-    steam-run
-    deskreen
+    # glfw-wayland
+    # kdePackages.xwaylandvideobridge
+    # openssl
+    # papirus-icon-theme
+    # rocmPackages.rocm-smi
+    # rpi-imager
+    # rustdesk
+    # tesseract4
     actkbd
     alacritty
     alejandra
@@ -350,6 +354,7 @@
     cargo
     clinfo
     cmake
+    deskreen
     discord
     dos2unix
     dysk
@@ -375,7 +380,6 @@
     git-crypt
     glew
     glfw
-    # glfw-wayland
     glfw3-minecraft
     gnome-keyring
     gnumake
@@ -400,7 +404,6 @@
     kdePackages.plasma-browser-integration
     kdePackages.qtmultimedia
     kdePackages.qtwayland
-    # kdePackages.xwaylandvideobridge
     kitty
     libGL
     libGL
@@ -436,13 +439,11 @@
     obs-studio
     obsidian
     ocamlPackages.ssl
-    # openssl
     openssl
     openssl_3
     openssl_legacy
     pamixer
     papirus-icon-theme
-    # papirus-icon-theme
     pavucontrol
     pkg-config
     pkgs.cifs-utils
@@ -468,9 +469,6 @@
     qemu
     quickemu
     ranger
-    # rocmPackages.rocm-smi
-    # rpi-imager
-    # rustdesk
     samba
     scrcpy
     sddm-astronaut
@@ -483,10 +481,11 @@
     speedtest-cli
     sshfs
     starship
+    steam-run
     syncthing
     tautulli
-    # tesseract4
     thunderbird
+    ticktick
     tldr
     todoist-electron
     tor
@@ -500,6 +499,7 @@
     vlc
     vulkan-tools
     wayvnc
+    weylus
     wf-recorder
     wget
     winetricks
