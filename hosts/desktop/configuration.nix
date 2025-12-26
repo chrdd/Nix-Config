@@ -340,6 +340,7 @@
     # rpi-imager
     # rustdesk
     # tesseract4
+    freecad
     actkbd
     alacritty
     alejandra
