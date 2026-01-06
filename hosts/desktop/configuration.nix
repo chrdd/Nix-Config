@@ -340,7 +340,6 @@
     # rpi-imager
     # rustdesk
     # tesseract4
-    freecad
     actkbd
     alacritty
     alejandra
@@ -372,6 +371,7 @@
     fluent-reader
     font-awesome
     fontconfig
+    freecad
     freerdp
     freetype
     fzf
@@ -717,7 +717,7 @@
 
   # List services that you want to enable:
 
-  programs.adb.enable = true;
+  # programs.adb.enable = true;
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
