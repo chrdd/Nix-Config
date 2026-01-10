@@ -36,6 +36,7 @@
     nix-colors.url = "github:misterio77/nix-colors";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     nix-proton-cachyos.url = "github:kimjongbing/nix-proton-cachyos";
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
   };
 
   outputs = {
@@ -48,6 +49,7 @@
     hyprland,
     deploy-rs,
     winapps,
+    nix-cachyos-kernel,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -66,6 +68,13 @@
           ./modules/nixos/default_Orion.nix
           # home-manager module can be enabled here if needed
           nix-flatpak.nixosModules.nix-flatpak
+          (
+            {pkgs, ...}: {
+              nixpkgs.overlays = [
+                nix-cachyos-kernel.overlays.pinned
+              ];
+            }
+          )
           # stylix.nixosModules.stylix # Uncomment if using stylix
           (
             {
