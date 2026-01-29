@@ -418,7 +418,7 @@
     libva
     libva-utils
     libvdpau
-    linuxKernel.packages.linux_zen.xpadneo
+    # linuxKernel.packages.linux_zen.xpadneo
     localsend
     lsd
     lutris
