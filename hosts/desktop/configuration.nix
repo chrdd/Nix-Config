@@ -54,8 +54,8 @@
       timeout = 5;
     };
     # CachyOS Kernel
-    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
-    # kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
+    kernelPackages = pkgs.linuxPackages_latest;
     # kernelPackages = pkgs.linuxPackages_6_12;
     extraModulePackages = with config.boot.kernelPackages; [
       v4l2loopback.out

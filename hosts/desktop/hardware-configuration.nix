@@ -38,10 +38,10 @@
     fsType = "ext4";
   };
 
-  fileSystems."/mnt/Media" = {
-    device = "192.168.3.8:/mnt/Media/Media";
-    fsType = "nfs";
-  };
+  # fileSystems."/mnt/Media" = {
+  #   device = "192.168.3.8:/mnt/Media/Media";
+  #   fsType = "nfs";
+  # };
 
   swapDevices = [
     {device = "/dev/disk/by-uuid/a1b61fd2-f34d-4e2a-9167-ddd1ad331826";}
