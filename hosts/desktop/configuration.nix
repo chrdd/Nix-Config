@@ -51,7 +51,7 @@
         useOSProber = true;
         timeoutStyle = "menu";
       };
-      timeout = 300;
+      timeout = 5;
     };
     # CachyOS Kernel
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
@@ -138,6 +138,26 @@
 
   services.xserver.videoDrivers = ["modesetting"];
 
+  # Garbage collection
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
+
+  nix.settings.auto-optimise-store = true;
+
+  # Build Optimisations
+  nix.settings = {
+    max-jobs = "auto";
+    cores = 0;
+    trusted-users = ["root" "octavian"];
+  };
+
+  # AMD GPU Optimisation
+  boot.kernelParams = ["amdgpu.ppfeaturemask=0xffffffff"];
+  environment.variables.RADV_PERFTEST = "gpl";
+
   # Media keys
   services.actkbd = {
     enable = true;
@@ -208,7 +228,6 @@
       layout = "us";
     };
   };
-  # services.desktopManager.plasma6.enable = true;
   services.desktopManager.plasma6.enable = true;
   # services.xserver.enable = true;
   #services.xserver.displayManager.sddm.enable = true;
@@ -438,7 +457,6 @@
     nvd
     nvtopPackages.amd
     nwg-look
-    nwg-look
     obs-studio
     obsidian
     ocamlPackages.ssl
@@ -479,7 +497,6 @@
     slurp
     smartmontools
     source-han-sans
-    source-han-sans
     source-han-serif
     speedtest-cli
     sshfs
@@ -512,7 +529,6 @@
     wlogout
     wlr-randr
     wlroots
-    xbindkeys
     xbindkeys
     xdg-desktop-portal-gtk
     xdotool
