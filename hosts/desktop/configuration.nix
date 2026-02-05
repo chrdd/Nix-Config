@@ -139,11 +139,11 @@
   services.xserver.videoDrivers = ["modesetting"];
 
   # Garbage collection
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
-  };
+  # nix.gc = {
+  #   automatic = true;
+  #   dates = "weekly";
+  #   options = "--delete-older-than 30d";
+  # };
 
   nix.settings.auto-optimise-store = true;
 
