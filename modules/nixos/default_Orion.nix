@@ -38,7 +38,7 @@
     # ./appimage.nix
     # ./manga.nix
     # ./ollama.nix
-    # ./rdp.nix
+     ./rdp.nix
     # ./virtualbox.nix
   ];
   adb.enable = lib.mkDefault false;
@@ -62,4 +62,5 @@
   hyprland.enable = lib.mkDefault false;
   cast.enable = lib.mkDefault true;
   autoLogin.enable = lib.mkDefault true;
+  rdp.enable = lib.mkDefault true;
 }
