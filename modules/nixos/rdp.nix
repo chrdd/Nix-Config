@@ -9,7 +9,7 @@
   };
   config = lib.mkIf config.rdp.enable {
     #RDP
-    programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
+    #programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
 
     # XDRP
     services.xrdp.enable = true;
