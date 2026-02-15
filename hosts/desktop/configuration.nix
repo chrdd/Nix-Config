@@ -349,6 +349,15 @@
 
   # services.gnome.gnome-remote-desktop.enable = true;
 
+  # Fonts
+  fonts.packages = with pkgs; [
+    fira-code
+    jetbrains-mono
+    meslo-lgs-nf # Meslo Nerd Font
+    dejavu_fonts
+    liberation_ttf
+  ];
+
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     # docker-compose
@@ -359,7 +368,6 @@
     # papirus-icon-theme
     # rocmPackages.rocm-smi
     # rpi-imager
-    # rustdesk
     # tesseract4
     actkbd
     alacritty
@@ -583,7 +591,7 @@
     # mesa
     # modelsim
     # neatvnc
-    # nerdfonts
+    # nerd-fonts
     # net-snmp
     # nexusmods-app
     # nixd
