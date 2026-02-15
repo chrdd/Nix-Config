@@ -155,7 +155,7 @@
   };
 
   # AMD GPU Optimisation
-  boot.kernelParams = ["amdgpu.ppfeaturemask=0xffffffff"];
+  boot.kernelParams = ["amdgpu.ppfeaturemask=0xffffffff" "elevator=none"];
   environment.variables.RADV_PERFTEST = "gpl";
 
   # Media keys
@@ -233,19 +233,8 @@
   #services.xserver.displayManager.sddm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
 
-  # #RDP
-  # programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
-
-  # # XDRP
-  # services.xrdp.enable = true;
-  # services.xrdp.defaultWindowManager = "plasma";
-  # services.xrdp.openFirewall = true;
-  # # services.xdrp={
-  # #   enable = true;
-  # #   defaultWindowManager = "plasma";
-  # #   openFirewall = true;
-  # # };
-
+  # SSD Optimisation
+  services.fstrim.enable = true;
   # Enable the KDE Plasma Desktop Environment.
   #services.xserver.displayManager.sddm.wayland.enable = true;
 
