@@ -163,6 +163,7 @@
     wireguard-tools
     wireguard-ui
     zoxide
+    ticktick
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
