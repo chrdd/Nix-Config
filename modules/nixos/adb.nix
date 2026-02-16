@@ -12,6 +12,10 @@
     users.users.octavian.extraGroups = ["adbusers kvm"];
     services.udev.packages = [
       pkgs.android-tools
+      # pkgs.android-udev-rules
+    ];
+    environment.systemPackages = with pkgs; [
+      pkgs.android-tools
     ];
   };
 }

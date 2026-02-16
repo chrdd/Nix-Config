@@ -45,13 +45,13 @@
   fonts.enable = lib.mkDefault true;
   git.enable = lib.mkDefault true;
   nh.enable = lib.mkDefault true;
+  razer.enable = lib.mkDefault true;
+  steam.enable = lib.mkDefault true;
+  sunshine.enable = lib.mkDefault true;
   syncthing.enable = lib.mkDefault true;
+  thunar.enable = lib.mkDefault true;
   tmux.enable = lib.mkDefault true;
   vivaldi.enable = lib.mkDefault true;
   vscodium.enable = lib.mkDefault true;
   zsh.enable = lib.mkDefault true;
-  steam.enable = lib.mkDefault true;
-  sunshine.enable = lib.mkDefault true;
-  thunar.enable = lib.mkDefault true;
-  razer.enable = lib.mkDefault true;
 }
