@@ -31,6 +31,20 @@
             <param name="port">3389</param>
             <param name="ignore-cert">true</param>
         </connection>
+
+        <connection name="Orion SSH">
+            <protocol>ssh</protocol>
+            <param name="hostname">100.112.45.116</param>
+            <param name="port">22</param>
+        </connection>
+
+        <connection name="Orion RDP">
+            <protocol>rdp</protocol>
+            <param name="hostname">100.112.45.116</param>
+            <param name="port">3389</param>
+            <param name="ignore-cert">true</param>
+        </connection>
+        
     </authorize>
 </user-mapping>
 
