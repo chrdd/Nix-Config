@@ -14,6 +14,7 @@
     ./docker.nix
     ./flatpak.nix
     ./fonts.nix
+    ./guacamole.nix
     ./git.nix
     ./hip.nix
     ./hyprland.nix
@@ -54,7 +55,7 @@
   hyprland.enable = lib.mkDefault false;
   nfs.enable = lib.mkDefault true;
   nh.enable = lib.mkDefault true;
-  rdp.enable = lib.mkDefault true;
+  rdp.enable = lib.mkDefault false;
   steam.enable = lib.mkDefault true;
   sunshine.enable = lib.mkDefault true;
   syncthing.enable = lib.mkDefault true;
@@ -63,4 +64,5 @@
   vivaldi.enable = lib.mkDefault true;
   vscodium.enable = lib.mkDefault true;
   zsh.enable = lib.mkDefault true;
+  guacamole.enable = lib.mkDefault true;
 }
