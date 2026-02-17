@@ -13,11 +13,13 @@
     ./flatpak.nix
     ./fonts.nix
     ./git.nix
+    ./guacamole.nix
     ./mumblemic.nix
     ./network.nix
     ./nh.nix
     ./optimisation.nix
     ./prismlauncher.nix
+    ./razer.nix
     ./steam.nix
     ./sunshine.nix
     ./syncthing.nix
@@ -26,7 +28,6 @@
     ./vivaldi.nix
     ./vscodium.nix
     ./zsh.nix
-    ./razer.nix
     # ./appimage.nix
     # ./auto-cpufreq.nix
     # ./fingerprint.nix
@@ -38,12 +39,14 @@
     # ./virtualbox.nix
     # ./wireguard.nix
   ];
+
   adb.enable = lib.mkDefault true;
   autoupgrade.enable = lib.mkDefault true;
   bluetooth.enable = lib.mkDefault true;
   docker.enable = lib.mkDefault true;
   fonts.enable = lib.mkDefault true;
   git.enable = lib.mkDefault true;
+  guacamole.enable = lib.mkDefault true;
   nh.enable = lib.mkDefault true;
   razer.enable = lib.mkDefault true;
   steam.enable = lib.mkDefault true;
