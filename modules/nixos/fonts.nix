@@ -8,7 +8,7 @@
     fonts.enable = lib.mkEnableOption "Enables additional fonts";
   };
   config = lib.mkIf config.fonts.enable {
-    #fonts.fontconfig.enableProfileFonts = true;
+    # fonts.fontconfig.enableProfileFonts = true;
     fonts.packages = with pkgs; [
       dina-font
       fira-code

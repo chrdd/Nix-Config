@@ -14,10 +14,10 @@
       appId = "com.github.tchx84.Flatseal";
       origin = "flathub";
     }
-    {
-      appId = "dev.vencord.Vesktop";
-      origin = "flathub";
-    }
+    # {
+    #   appId = "dev.vencord.Vesktop";
+    #   origin = "flathub";
+    # }
     {
       appId = "org.libreoffice.LibreOffice";
       origin = "flathub";
