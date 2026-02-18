@@ -127,6 +127,7 @@
     discord
     fastfetch
     ffmpeg
+    freecad
     # floorp-bin
     gh
     ghostty
