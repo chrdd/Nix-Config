@@ -17,7 +17,7 @@
         to = 1764;
       } # KDE Connect
     ];
-    allowedTCPPorts = [22 4747 32400 32500 47984 47989 47990 48010 5900 8085 64738];
+    allowedTCPPorts = [22 4747 32400 32500 47984 47989 47990 48010 5900 8082 8085 64738];
     allowedUDPPortRanges = [
       {
         from = 1714;
@@ -32,7 +32,7 @@
         to = 8010;
       }
     ];
-    allowedUDPPorts = [4747 8085 32400 32500 64738];
+    allowedUDPPorts = [4747 8082 8085 32400 32500 64738];
   };
 
   # Tailscale
