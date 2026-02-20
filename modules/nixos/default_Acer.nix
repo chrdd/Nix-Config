@@ -37,7 +37,7 @@
     # ./smartd.nix
     # ./suspend.nix
     # ./virtualbox.nix
-    # ./wireguard.nix
+    ./wireguard.nix
   ];
 
   adb.enable = lib.mkDefault true;
@@ -57,4 +57,5 @@
   vivaldi.enable = lib.mkDefault true;
   vscodium.enable = lib.mkDefault true;
   zsh.enable = lib.mkDefault true;
+  # wireguard.enable = lib.mkDefault true;
 }
