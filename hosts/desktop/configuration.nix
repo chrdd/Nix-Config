@@ -356,8 +356,8 @@
     # openssl
     # papirus-icon-theme
     # rocmPackages.rocm-smi
-    # rpi-imager
     # tesseract4
+    rpi-imager
     actkbd
     alacritty
     alejandra
