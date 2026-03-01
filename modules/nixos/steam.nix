@@ -18,6 +18,11 @@
         # inputs.nix-proton-cachyos.packages.${system}.proton-cachyos
         pkgs.proton-ge-bin
       ];
+      package = pkgs.steam.override {
+        extraEnv = {
+          GAMEMODERUN = "1";
+        };
+      };
     };
     programs.gamemode.enable = true;
   };
