@@ -38,6 +38,7 @@
     # ./suspend.nix
     # ./virtualbox.nix
     ./wireguard.nix
+    ./wazuh.nix
   ];
 
   adb.enable = lib.mkDefault true;
