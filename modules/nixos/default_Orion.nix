@@ -36,7 +36,7 @@
     ./vivaldi.nix
     ./vscodium.nix
     ./zsh.nix
-    ./zabbix.nix
+    ./zabbix-Orion.nix
     # ./appimage.nix
     # ./manga.nix
     # ./ollama.nix
