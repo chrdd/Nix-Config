@@ -36,6 +36,7 @@
     ./vivaldi.nix
     ./vscodium.nix
     ./zsh.nix
+    ./zabbix.nix
     # ./appimage.nix
     # ./manga.nix
     # ./ollama.nix
@@ -65,4 +66,5 @@
   vscodium.enable = lib.mkDefault true;
   zsh.enable = lib.mkDefault true;
   guacamole.enable = lib.mkDefault true;
+  zabbix-agent.enable = lib.mkDefault true;
 }
