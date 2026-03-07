@@ -39,6 +39,7 @@
     # ./virtualbox.nix
     ./wireguard.nix
     ./wazuh.nix
+    ./zabbix-Acer.nix
   ];
 
   adb.enable = lib.mkDefault true;
@@ -59,4 +60,5 @@
   vscodium.enable = lib.mkDefault true;
   zsh.enable = lib.mkDefault true;
   # wireguard.enable = lib.mkDefault true;
+  zabbix-agent.enable = lib.mkDefault true;
 }
