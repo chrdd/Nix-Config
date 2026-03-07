@@ -37,6 +37,7 @@
     ./vscodium.nix
     ./zsh.nix
     ./zabbix-Orion.nix
+    ./wazuh.nix
     # ./appimage.nix
     # ./manga.nix
     # ./ollama.nix
@@ -67,4 +68,5 @@
   zsh.enable = lib.mkDefault true;
   guacamole.enable = lib.mkDefault true;
   zabbix-agent.enable = lib.mkDefault true;
+  wazuh-agent.enable = lib.mkDefault true;
 }
