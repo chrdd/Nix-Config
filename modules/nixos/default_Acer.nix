@@ -61,4 +61,5 @@
   zsh.enable = lib.mkDefault true;
   # wireguard.enable = lib.mkDefault true;
   zabbix-agent.enable = lib.mkDefault true;
+  wazuh-agent.enable = lib.mkDefault true;
 }
