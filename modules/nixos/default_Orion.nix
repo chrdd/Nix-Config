@@ -38,6 +38,7 @@
     ./zsh.nix
     ./zabbix-Orion.nix
     ./wazuh.nix
+    ./internet.nix
     # ./appimage.nix
     # ./manga.nix
     # ./ollama.nix
@@ -69,4 +70,5 @@
   guacamole.enable = lib.mkDefault true;
   zabbix-agent.enable = lib.mkDefault true;
   wazuh-agent.enable = lib.mkDefault true;
+  internet-sharing.enable = lib.mkDefault true;
 }
