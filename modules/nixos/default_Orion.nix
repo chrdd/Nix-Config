@@ -70,5 +70,5 @@
   guacamole.enable = lib.mkDefault true;
   zabbix-agent.enable = lib.mkDefault true;
   wazuh-agent.enable = lib.mkDefault true;
-  internet-sharing.enable = lib.mkDefault true;
+  internet-sharing.enable = lib.mkDefault false;
 }
