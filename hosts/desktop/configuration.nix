@@ -129,8 +129,11 @@
   #   xwayland.enable = true;
   # };
 
-  # Waydroid
-  virtualisation.waydroid.enable = true;
+  # Virtualization
+  virtualisation = {
+    waydroid.enable = true; # Waydroid
+    docker.enable = true; # Docker
+  };
 
   # pkgs.file-roller.enable = true;
   services.gvfs.enable = true; # Mount, trash, and other functionalities
@@ -295,7 +298,7 @@
   users.users.octavian = {
     isNormalUser = true;
     description = "octavian";
-    extraGroups = ["networkmanager" "wheel" "audio" "vboxusers" "dialout" "scanner" "lp"];
+    extraGroups = ["networkmanager" "wheel" "audio" "vboxusers" "dialout" "scanner" "lp" "docker"];
     packages = with pkgs; [
       # firefox
       # kdePackages.kate
@@ -357,7 +360,7 @@
     # papirus-icon-theme
     # rocmPackages.rocm-smi
     # tesseract4
-    rpi-imager
+    # linuxKernel.packages.linux_zen.xpadneo
     actkbd
     alacritty
     alejandra
@@ -434,7 +437,6 @@
     libva
     libva-utils
     libvdpau
-    # linuxKernel.packages.linux_zen.xpadneo
     localsend
     lsd
     lutris
@@ -487,6 +489,7 @@
     qemu
     quickemu
     ranger
+    rpi-imager
     samba
     scrcpy
     sddm-astronaut
@@ -509,6 +512,7 @@
     tor-browser
     udev-gothic-nf
     unrar
+    unzip
     vdpauinfo
     viewnior
     virtio-win
@@ -519,6 +523,7 @@
     weylus
     wf-recorder
     wget
+    # winboat
     winetricks
     wineWowPackages.waylandFull
     wireplumber
