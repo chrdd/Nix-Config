@@ -350,6 +350,14 @@
     liberation_ttf
   ];
 
+  nixpkgs.overlays = [
+    (final: prev: {
+      winboat = prev.winboat.override {
+        go = prev.go_1_23;
+      };
+    })
+  ];
+
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     # docker-compose
