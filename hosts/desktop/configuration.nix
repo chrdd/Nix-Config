@@ -523,7 +523,7 @@
     weylus
     wf-recorder
     wget
-    # winboat
+    winboat
     winetricks
     wineWowPackages.waylandFull
     wireplumber
