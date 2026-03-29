@@ -352,9 +352,16 @@
 
   nixpkgs.overlays = [
     (final: prev: {
-      winboat = prev.winboat.override {
-        go = prev.go_1_23;
-      };
+      winboat = prev.winboat.overrideAttrs (old: {
+        "guest-server" = old."guest-server".overrideAttrs (gsOld: {
+          nativeBuildInputs = map (
+            dep:
+              if dep.pname or "" == "go"
+              then prev.go_1_26
+              else dep
+          ) (gsOld.nativeBuildInputs or []);
+        });
+      });
     })
   ];
 
