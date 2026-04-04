@@ -114,6 +114,30 @@
           )
         ];
       };
+
+      Thinkpad = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs system secrets;};
+        modules = [
+          ./hosts/thinkpad/configuration.nix
+          ./apps/default.nix
+          ./modules/nixos/default_Thinkpad.nix
+          # home-manager module can be enabled here if needed
+          nix-flatpak.nixosModules.nix-flatpak
+          # stylix.nixosModules.stylix # Uncomment if using stylix
+          (
+            {
+              pkgs,
+              system ? pkgs.system,
+              ...
+            }: {
+              environment.systemPackages = [
+                winapps.packages."${system}".winapps
+                winapps.packages."${system}".winapps-launcher # optional
+              ];
+            }
+          )
+        ];
+      };
     };
 
     deploy.nodes.Orion = {
