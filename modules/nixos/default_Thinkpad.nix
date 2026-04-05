@@ -30,7 +30,7 @@
     ./zsh.nix
     # ./appimage.nix
     # ./auto-cpufreq.nix
-    ./fingerprint.nix
+    # ./fingerprint.nix
     # ./manga.nix
     # ./ollama.nix
     # ./rdp.nix
