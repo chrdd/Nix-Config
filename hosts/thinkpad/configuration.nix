@@ -148,7 +148,7 @@
     wireguard-ui
     zapzap
     zoxide
-    authentik
+    # authentik
   ];
 
   programs.mtr.enable = true;
