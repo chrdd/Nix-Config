@@ -540,7 +540,7 @@
     wget
     winboat
     winetricks
-    wineWowPackages.waylandFull
+    wineWow64Packages.waylandFull
     wireplumber
     wl-clipboard
     wlogout
