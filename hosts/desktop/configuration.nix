@@ -383,7 +383,7 @@
     anki
     anydesk
     bitwarden-desktop
-    bottles
+    # bottles
     bottom
     btop-rocm
     caligula
@@ -454,7 +454,7 @@
     libvdpau
     localsend
     lsd
-    lutris
+    # lutris
     mailspring
     mesa
     mesa-demos
@@ -549,13 +549,13 @@
     xbindkeys
     xdg-desktop-portal-gtk
     xdotool
-    xfce.tumbler
+    tumbler
     xorg.libXrandr
     xwayland
     yad
     yt-dlp
     zapzap
-    zotero
+    # zotero
     zoxide
     #   mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
     # (pkgs.waybar.overrideAttrs (oldAttrs: {
