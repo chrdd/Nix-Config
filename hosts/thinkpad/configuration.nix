@@ -97,7 +97,7 @@
     anki
     anydesk
     bitwarden-desktop
-    bottles
+    # bottles
     btop
     dig
     discord
@@ -114,7 +114,7 @@
     kdePackages.plasma-browser-integration
     localsend
     lsd
-    lutris
+    # lutris
     mailspring
     moonlight-qt
     mumble
