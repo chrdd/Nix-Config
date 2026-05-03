@@ -7,6 +7,8 @@
   pkgs,
   lib,
   winapps,
+  millennium,
+  millennium-steam,
   ...
 }: {
   imports = [
@@ -351,18 +353,19 @@
   ];
 
   nixpkgs.overlays = [
-    (final: prev: {
-      winboat = prev.winboat.overrideAttrs (old: {
-        "guest-server" = old."guest-server".overrideAttrs (gsOld: {
-          nativeBuildInputs = map (
-            dep:
-              if dep.pname or "" == "go"
-              then prev.go_1_26
-              else dep
-          ) (gsOld.nativeBuildInputs or []);
-        });
-      });
-    })
+    inputs.millennium.overlays.default
+    # (final: prev: {
+    #   winboat = prev.winboat.overrideAttrs (old: {
+    #     "guest-server" = old."guest-server".overrideAttrs (gsOld: {
+    #       nativeBuildInputs = map (
+    #         dep:
+    #           if dep.pname or "" == "go"
+    #           then prev.go_1_26
+    #           else dep
+    #       ) (gsOld.nativeBuildInputs or []);
+    #     });
+    #   });
+    # })
   ];
 
   environment.systemPackages = with pkgs; [
