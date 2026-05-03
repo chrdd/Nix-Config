@@ -37,6 +37,7 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     nix-proton-cachyos.url = "github:kimjongbing/nix-proton-cachyos";
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+    millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
   };
 
   outputs = {
