@@ -85,6 +85,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnsupportedSystem = true;
 
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
@@ -147,7 +148,7 @@
     wireguard-ui
     zapzap
     zoxide
-    authentik
+    # authentik
   ];
 
   programs.mtr.enable = true;

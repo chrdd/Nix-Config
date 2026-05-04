@@ -13,7 +13,7 @@
     ./flatpak.nix
     ./fonts.nix
     ./git.nix
-    ./guacamole.nix
+    # ./guacamole.nix
     ./mumblemic.nix
     ./network.nix
     ./nh.nix
@@ -33,7 +33,7 @@
     # ./fingerprint.nix
     # ./manga.nix
     # ./ollama.nix
-    # ./rdp.nix
+    ./rdp.nix
     # ./smartd.nix
     # ./suspend.nix
     # ./virtualbox.nix
@@ -48,7 +48,7 @@
   docker.enable = lib.mkDefault true;
   fonts.enable = lib.mkDefault true;
   git.enable = lib.mkDefault true;
-  guacamole.enable = lib.mkDefault true;
+  # guacamole.enable = lib.mkDefault true;
   nh.enable = lib.mkDefault true;
   razer.enable = lib.mkDefault true;
   # steam.enable = lib.mkDefault true;
@@ -62,4 +62,5 @@
   # wireguard.enable = lib.mkDefault true;
   zabbix-agent.enable = lib.mkDefault true;
   wazuh-agent.enable = lib.mkDefault true;
+  rdp.enable = lib.mkDefault true;
 }
