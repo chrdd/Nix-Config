@@ -20,7 +20,7 @@
     ./optimisation.nix
     ./prismlauncher.nix
     ./razer.nix
-    ./steam.nix
+    # ./steam.nix
     ./sunshine.nix
     ./syncthing.nix
     ./thunar.nix
@@ -51,7 +51,7 @@
   guacamole.enable = lib.mkDefault true;
   nh.enable = lib.mkDefault true;
   razer.enable = lib.mkDefault true;
-  steam.enable = lib.mkDefault true;
+  # steam.enable = lib.mkDefault true;
   sunshine.enable = lib.mkDefault true;
   syncthing.enable = lib.mkDefault true;
   thunar.enable = lib.mkDefault true;
