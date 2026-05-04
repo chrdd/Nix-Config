@@ -37,7 +37,7 @@
     # ./smartd.nix
     # ./suspend.nix
     # ./virtualbox.nix
-    ./wireguard.nix
+    ./wireguard-dev.nix
     ./wazuh.nix
     ./zabbix-Acer.nix
   ];
