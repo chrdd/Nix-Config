@@ -7,8 +7,6 @@
   pkgs,
   lib,
   winapps,
-  millennium,
-  millennium-steam,
   ...
 }: {
   imports = [
@@ -353,7 +351,7 @@
   ];
 
   nixpkgs.overlays = [
-    inputs.millennium.overlays.default
+    # inputs.millennium.overlays.default
     # (final: prev: {
     #   winboat = prev.winboat.overrideAttrs (old: {
     #     "guest-server" = old."guest-server".overrideAttrs (gsOld: {
