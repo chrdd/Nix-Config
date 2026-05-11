@@ -559,6 +559,7 @@
     # zotero
     zoxide
     pineflash
+    bambu-studio
     #   mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
     # (pkgs.waybar.overrideAttrs (oldAttrs: {
     # }))
