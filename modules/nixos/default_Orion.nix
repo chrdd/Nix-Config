@@ -54,7 +54,7 @@
   docker.enable = lib.mkDefault true;
   fonts.enable = lib.mkDefault true;
   git.enable = lib.mkDefault true;
-  hip.enable = lib.mkDefault true;
+  hip.enable = lib.mkDefault false;
   hyprland.enable = lib.mkDefault false;
   nfs.enable = lib.mkDefault true;
   nh.enable = lib.mkDefault true;
@@ -67,7 +67,7 @@
   vivaldi.enable = lib.mkDefault true;
   vscodium.enable = lib.mkDefault true;
   zsh.enable = lib.mkDefault true;
-  guacamole.enable = lib.mkDefault true;
+  guacamole.enable = lib.mkDefault false;
   zabbix-agent.enable = lib.mkDefault true;
   wazuh-agent.enable = lib.mkDefault true;
   internet-sharing.enable = lib.mkDefault false;

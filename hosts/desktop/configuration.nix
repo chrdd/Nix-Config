@@ -711,7 +711,7 @@
       libva-vdpau-driver
       mesa
       libvdpau-va-gl
-      rocmPackages.clr.icd
+      # rocmPackages.clr.icd
       # amdvlk
       #pkgs.vulkan-validation-layers
       #pkgs.vulkan-loader
