@@ -88,7 +88,7 @@
   nixpkgs.config.allowUnsupportedSystem = true;
 
   # VMware
-  virtualisation.vmware.host.enable = true;
+  # virtualisation.vmware.host.enable = true;
 
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
@@ -119,7 +119,7 @@
     localsend
     lsd
     # lutris
-    mailspring
+    # mailspring
     moonlight-qt
     mumble
     nix-output-monitor
