@@ -50,7 +50,7 @@
   git.enable = lib.mkDefault true;
   # guacamole.enable = lib.mkDefault true;
   nh.enable = lib.mkDefault true;
-  razer.enable = lib.mkDefault true;
+  razer.enable = lib.mkDefault false;
   # steam.enable = lib.mkDefault true;
   sunshine.enable = lib.mkDefault true;
   syncthing.enable = lib.mkDefault true;
