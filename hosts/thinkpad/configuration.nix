@@ -59,6 +59,8 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  boot.loader.systemd-boot.configurationLimit = 3;
+
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
