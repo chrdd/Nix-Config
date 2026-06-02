@@ -92,6 +92,10 @@
   # VMware
   # virtualisation.vmware.host.enable = true;
 
+  nixpkgs.config.permittedInsecurePackages = [
+┃                 "electron-39.8.10"
+┃               ];
+
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     # floorp-bin
