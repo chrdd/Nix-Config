@@ -560,7 +560,7 @@
     # zotero
     zoxide
     pineflash
-    bambu-studio
+    # bambu-studio
     orca-slicer
     #   mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
     # (pkgs.waybar.overrideAttrs (oldAttrs: {
