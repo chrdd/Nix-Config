@@ -92,6 +92,22 @@
   # VMware
   # virtualisation.vmware.host.enable = true;
 
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      stdenv.cc.cc.lib
+      zlib
+      libGL
+      libGLU
+      glib
+      gtk3
+      libxkbcommon
+      mesa
+      freetype
+      fontconfig
+    ];
+  };
+
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     # floorp-bin
