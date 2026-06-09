@@ -98,16 +98,19 @@
       stdenv.cc.cc.lib
       zlib
       libGL
-      libGLU
       glib
-      gtk3
       libxkbcommon
-      mesa
+      libxcb
+      xorg.libX11
+      xorg.libXext
+      xorg.libXau
+      xorg.libICE
+      xorg.libSM
       freetype
-      fontconfig
+      gfortran.libc # libgfortran
+      openssl
     ];
   };
-
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     # floorp-bin
