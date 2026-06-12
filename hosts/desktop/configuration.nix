@@ -450,7 +450,7 @@
     libGLU
     libglvnd
     libnotify
-    libsForQt5.qt5.qtwayland
+    qt5.qtwayland
     libva
     libva-utils
     libvdpau
