@@ -759,8 +759,8 @@
   # List services that you want to enable:
 
   # programs.adb.enable = true;
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [8000];
+  networking.firewall.allowedUDPPorts = [8000];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 

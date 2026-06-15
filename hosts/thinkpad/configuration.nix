@@ -194,6 +194,9 @@
   # Overheating prevention
   services.thermald.enable = true;
 
+  networking.firewall.allowedTCPPorts = [8000];
+  networking.firewall.allowedUDPPorts = [8000];
+
   # Powertop
   powerManagement.powertop.enable = true;
 
