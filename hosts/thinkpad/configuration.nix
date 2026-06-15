@@ -178,7 +178,7 @@
     ansible
     winboat
     vagrant
-    virtualbox
+    # virtualbox
   ];
 
   virtualisation.virtualbox.host.enable = true;
