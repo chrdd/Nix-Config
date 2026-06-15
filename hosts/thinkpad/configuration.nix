@@ -175,6 +175,8 @@
     zoxide
     # authentik
     teams-for-linux
+    ansible
+    winboat
   ];
 
   programs.mtr.enable = true;
