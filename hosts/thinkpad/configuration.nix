@@ -177,7 +177,13 @@
     teams-for-linux
     ansible
     winboat
+    vagrant
+    virtualbox
   ];
+
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
+  users.extraGroups.vboxusers.members = ["octavian"];
 
   programs.mtr.enable = true;
   programs.gnupg.agent = {
