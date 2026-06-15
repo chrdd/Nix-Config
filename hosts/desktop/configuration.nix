@@ -562,6 +562,7 @@
     pineflash
     # bambu-studio
     orca-slicer
+    ansible
     #   mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
     # (pkgs.waybar.overrideAttrs (oldAttrs: {
     # }))
