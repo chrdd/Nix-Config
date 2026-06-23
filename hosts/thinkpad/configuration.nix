@@ -75,7 +75,7 @@
   users.users.octavian = {
     isNormalUser = true;
     description = "octavian";
-    extraGroups = ["networkmanager" "wheel" "audio" "vboxusers" "dialout" "scanner" "lp"];
+    extraGroups = ["networkmanager" "wheel" "audio" "vboxusers" "dialout" "scanner" "lp" "samba"];
     packages = with pkgs; [
       kdePackages.kate
       #  thunderbird
@@ -182,7 +182,7 @@
   ];
 
   virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;
+  # virtualisation.virtualbox.host.enableExtensionPack = true;
   users.extraGroups.vboxusers.members = ["octavian"];
 
   programs.mtr.enable = true;
@@ -190,6 +190,27 @@
     enable = true;
     enableSSHSupport = true;
   };
+
+  services.samba = {
+    # The full package is needed to register mDNS records (for discoverability), see discussion in
+    # https://gist.github.com/vy-let/a030c1079f09ecae4135aebf1e121ea6
+    package = pkgs.samba4Full;
+    usershares.enable = true;
+    enable = true;
+    openFirewall = true;
+  };
+
+  # To be discoverable with windows
+  services.samba-wsdd = {
+    enable = true;
+    openFirewall = true;
+  };
+
+  # Make sure your user is in the samba group
+  # users.users.octavian = {
+  #   # isNormalUser = true;
+  #   extraGroups = ["samba"];
+  # };
 
   networking.hostName = "Thinkpad";
 
