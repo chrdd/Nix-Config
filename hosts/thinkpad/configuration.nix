@@ -95,34 +95,39 @@
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [
-      stdenv.cc.cc.lib
-      zlib
-      libGL
-      glib
-      libxkbcommon
-      libxcb
-      xorg.libX11
-      xorg.libXext
-      xorg.libXau
-      xorg.libICE
-      xorg.libSM
       freetype
       gfortran.libc # libgfortran
+      glib
+      libGL
+      libxcb
+      libxkbcommon
       openssl
+      stdenv.cc.cc.lib
+      libICE
+      libSM
+      libX11
+      libXau
+      libXext
+      zlib
     ];
   };
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    # authentik
+    # bottles
     # floorp-bin
+    # lutris
+    # mailspring
     # nh
     # prismlauncher
     # rustdesk
     # tigervnc
+    # virtualbox
     alacritty
     anki
+    ansible
     anydesk
     bitwarden-desktop
-    # bottles
     btop
     dig
     discord
@@ -135,16 +140,14 @@
     git-crypt
     gparted
     heroic
+    howdy
     inputs.zen-browser.packages."${system}".default
     kdePackages.plasma-browser-integration
     localsend
     lsd
-    # lutris
-    # mailspring
     moonlight-qt
     mumble
     nix-output-monitor
-    howdy
     nixd
     obs-studio
     obsidian
@@ -160,6 +163,7 @@
     steam-run
     syncthing
     tailscale
+    teams-for-linux
     thunderbird
     ticktick
     tmux
@@ -169,21 +173,13 @@
     vlc
     vscodium
     wget
+    winboat
     wireguard-tools
     wireguard-ui
     zapzap
     zoxide
-    # authentik
-    teams-for-linux
-    ansible
-    winboat
-    vagrant
-    # virtualbox
+    zip
   ];
-
-  virtualisation.virtualbox.host.enable = true;
-  # virtualisation.virtualbox.host.enableExtensionPack = true;
-  users.extraGroups.vboxusers.members = ["octavian"];
 
   programs.mtr.enable = true;
   programs.gnupg.agent = {
