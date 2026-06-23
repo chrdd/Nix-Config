@@ -216,7 +216,7 @@
   environment.sessionVariables = {
     # WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
-    LIBGL_DEBUG = "verbose";
+    # LIBGL_DEBUG = "verbose";
     EGL_PLATFORM = "wayland";
   };
 
