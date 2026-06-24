@@ -8,58 +8,14 @@
     autoupgrade.enable = lib.mkEnableOption "Enables autoupgrade";
   };
   config = lib.mkIf config.autoupgrade.enable {
-    #   systemd.services.fetch-updates = {
-    #     description = "Fetches changes to system config";
-    #     restartIfChanged = false;
-    #     startAt = "*-*-* *:00:00";  # every hour
-    #     path = [ pkgs.git pkgs.openssh ];
-    #     script = ''
-    #       git fetch --all
-    #     '';
-    #     serviceConfig = {
-    #       WorkingDirectory = "/etc/nixos";
-    #       User = "octavian";
-    #       Type = "oneshot";
-    #     };
-    #   };
+    # Ensure flake.lock conflicts always resolve to remote version
+    environment.etc."gitconfig".text = ''
+      [pull]
+        rebase = false
+      [merge "ours"]
+        driver = true
+    '';
 
-    #   systemd.services.merge-updates = {
-    #     description = "Merges fetched changes if on 'main'";
-    #     restartIfChanged = false;
-    #     onSuccess = [ "rebuild.service" ];
-    #     startAt = "15:10";
-    #     path = [ pkgs.git pkgs.openssh ];
-    #     script = ''
-    #       current_branch="$(git branch --show-current)"
-    #       if [ "$current_branch" = "main" ]; then
-    #         git merge --ff-only origin/main
-    #       fi
-    #     '';
-    #     serviceConfig = {
-    #       WorkingDirectory = "/etc/nixos";
-    #       User = "octavian";
-    #       Type = "oneshot";
-    #     };
-    #   };
-
-    #   systemd.services.rebuild = {
-    #     description = "Rebuilds and activates system config";
-    #     restartIfChanged = false;
-    #     path = [ pkgs.nixos-rebuild pkgs.systemd ];
-    #     script = ''
-    #       nixos-rebuild boot
-    #       booted="$(readlink /run/booted-system/{initrd,kernel,kernel-modules})"
-    #       built="$(readlink /nix/var/nix/profiles/system/{initrd,kernel,kernel-modules})"
-
-    #       if [ "''${booted}" = "''${built}" ]; then
-    #         nixos-rebuild switch
-    #       else
-    #         reboot now
-    #       fi
-    #     '';
-    #     serviceConfig.Type = "oneshot";
-    #   };
-    # }
     systemd.services.pull-updates = {
       description = "Pulls changes to system config and pushes local changes if any";
       restartIfChanged = false;
@@ -67,26 +23,50 @@
       path = [pkgs.git pkgs.openssh];
       script = ''
         cd /etc/nixos
-        test "$(git branch --show-current)" = "main" || exit 0
+
+        # Guard: only run on main branch (not detached HEAD)
+        branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+        if [ "$branch" != "main" ]; then
+          echo "Not on main branch (got: ''${branch:-detached HEAD}), skipping."
+          exit 0
+        fi
+
+        # Guard: abort if a rebase or merge is already in progress
+        if [ -d .git/rebase-merge ] || [ -d .git/rebase-apply ]; then
+          echo "Rebase in progress, skipping auto-commit."
+          exit 0
+        fi
+        if [ -f .git/MERGE_HEAD ]; then
+          echo "Merge in progress, skipping auto-commit."
+          exit 0
+        fi
 
         # Commit local changes if any (unstaged or staged)
         if ! git diff --quiet || ! git diff --cached --quiet; then
           git add -A
           git commit -m "Auto-commit before pull: $(date -Iseconds)" || true
-          git push
         fi
 
-        # Now pull latest changes
-        git pull --ff-only || {
-          echo "Pull failed. Exiting."
+        # Pull using merge (not rebase) so flake.lock conflicts are resolved once
+        # --strategy-option=theirs prefers the remote flake.lock on conflict
+        git fetch origin
+        if ! git merge --no-edit -X theirs origin/main; then
+          echo "Merge failed, aborting."
+          git merge --abort
+          exit 1
+        fi
+
+        # Push merged result
+        git push origin main || {
+          echo "Push failed."
           exit 1
         }
 
-        # Commit and push again if pull introduced changes or if local changed since last push
+        # Commit and push if any local changes remain after merge
         if ! git diff --quiet || ! git diff --cached --quiet; then
           git add -A
           git commit -m "Auto-commit after pull: $(date -Iseconds)" || true
-          git push
+          git push origin main || true
         else
           echo "No changes to commit after pull."
         fi
@@ -105,23 +85,23 @@
         Persistent = true;
       };
     };
+
+    systemd.services.rebuild = {
+      description = "Rebuilds and activates system config";
+      restartIfChanged = false;
+      path = [pkgs.nh pkgs.nixos-rebuild pkgs.systemd];
+      script = ''
+        booted="$(readlink /run/booted-system/{initrd,kernel,kernel-modules})"
+        built="$(readlink /nix/var/nix/profiles/system/{initrd,kernel,kernel-modules})"
+
+        if [ "''${booted}" = "''${built}" ]; then
+          nh os switch /etc/nixos
+        else
+          nixos-rebuild boot
+          reboot
+        fi
+      '';
+      serviceConfig.Type = "oneshot";
+    };
   };
 }
-# Test for script
-# systemd.services.rebuild = {
-#   description = "Rebuilds and activates system config";
-#   restartIfChanged = false;
-#   path = [pkgs.nixos-rebuild pkgs.systemd];
-#   script = ''
-#     nixos-rebuild boot
-#     booted="$(readlink /run/booted-system/{initrd,kernel,kernel-modules})"
-#     built="$(readlink /nix/var/nix/profiles/system/{initrd,kernel,kernel-modules})"
-#     if [ "''${booted}" = "''${built}" ]; then
-#       nixos-rebuild switch
-#     else
-#       reboot now
-#     fi
-#   '';
-#   serviceConfig.Type = "oneshot";
-# };
-
