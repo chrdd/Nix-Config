@@ -15,13 +15,21 @@
     inputs.home-manager.nixosModules.home-manager
   ];
 
+  # Nix Settings
+
+  nix.settings = {
+    max-jobs = "auto";
+    cores = 0;
+    trusted-users = ["root" "octavian"];
+    auto-optimise-store = true;
+    experimental-features = ["nix-command" "flakes"];
+  };
+
   # Flakes
   # nix = {
   # package = pkgs.nixFlakes;
   # extraOptions = ''experimental-features = nix-command flakes'';
   # };
-
-  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   #   #Home-ma/home/octavian/Downloads/Untitled Sketch_bb.pngnager
   #   home-manager = {
@@ -50,6 +58,7 @@
         enable = true;
         useOSProber = true;
         timeoutStyle = "menu";
+        configurationLimit = 10;
       };
       timeout = 5;
     };
@@ -71,8 +80,48 @@
     extraModprobeConfig = ''options v4l2loopback devices=1 video_nr=1 card_label="Virtual Cam" exclusive_caps=1 '';
   };
 
+  # AMD GPU Settings
   # hardware.amdgpu.amdvlk.enable = true;
   hardware.amdgpu.opencl.enable = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [
+      libva-vdpau-driver
+      libvdpau-va-gl
+      mesa
+      rocmPackages.clr.icd # enables ROCm/OpenCL
+    ];
+    extraPackages32 = with pkgs.pkgsi686Linux; [
+      mesa
+      libGL
+    ];
+  };
+
+  environment.variables = {
+    AMD_VULKAN_ICD = "RADV";
+    RADV_PERFTEST = "gpl";
+  };
+
+  boot.kernelParams = [
+    "amdgpu.ppfeaturemask=0xffffffff"
+    "elevator=none"
+    "amd_pstate=active" # enables AMD P-State driver for better CPU freq scaling on Zen CPUs
+    "preempt=full" # full kernel preemption for lower input latency
+  ];
+
+  # Enable CPU Microcode Updates
+  hardware.cpu.amd.updateMicrocode = true;
+
+  # Enable zramSwap
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 25; # 25% of RAM as fast compressed swap
+  };
+
+  # LVFS motherboard update
+  services.fwupd.enable = true;
 
   #  #Kernel
   #   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -141,26 +190,6 @@
 
   services.xserver.videoDrivers = ["modesetting"];
 
-  # Garbage collection
-  # nix.gc = {
-  #   automatic = true;
-  #   dates = "weekly";
-  #   options = "--delete-older-than 30d";
-  # };
-
-  nix.settings.auto-optimise-store = true;
-
-  # Build Optimisations
-  nix.settings = {
-    max-jobs = "auto";
-    cores = 0;
-    trusted-users = ["root" "octavian"];
-  };
-
-  # AMD GPU Optimisation
-  boot.kernelParams = ["amdgpu.ppfeaturemask=0xffffffff" "elevator=none"];
-  environment.variables.RADV_PERFTEST = "gpl";
-
   # Media keys
   services.actkbd = {
     enable = true;
@@ -185,7 +214,7 @@
   };
 
   environment.sessionVariables = {
-    WLR_NO_HARDWARE_CURSORS = "1";
+    # WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
     LIBGL_DEBUG = "verbose";
     EGL_PLATFORM = "wayland";
@@ -199,21 +228,21 @@
   # };
 
   # Autostart polkit_gnome
-  systemd = {
-    user.services.polkit-gnome-authentication-agent-1 = {
-      description = "polkit-gnome-authentication-agent-1";
-      wantedBy = ["graphical-session.target"];
-      wants = ["graphical-session.target"];
-      after = ["graphical-session.target"];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-    };
-  };
+  # systemd = {
+  #   user.services.polkit-gnome-authentication-agent-1 = {
+  #     description = "polkit-gnome-authentication-agent-1";
+  #     wantedBy = ["graphical-session.target"];
+  #     wants = ["graphical-session.target"];
+  #     after = ["graphical-session.target"];
+  #     serviceConfig = {
+  #       Type = "simple";
+  #       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+  #       Restart = "on-failure";
+  #       RestartSec = 1;
+  #       TimeoutStopSec = 10;
+  #     };
+  #   };
+  # };
 
   #Load Nvidia drivers
   #services.xserver.videoDrivers = ["nvidia"]; # or "nvidiaLegacy470 etc.
@@ -265,7 +294,7 @@
   #  enable= true;
   #};
   # Swaylock fix
-  security.pam.services.swaylock = {};
+  # security.pam.services.swaylock = {};
   #services.xserver.desktopManager.plasma5.enable = true;
 
   # services.xserver.xkb.variant = "";
@@ -307,7 +336,7 @@
     # openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2etc/etc/etcjwrsh8e596z6J0l7 example@host" "ssh-ed25519 AAAAC3NzaCetcetera/etceteraJZMfk3QPfQ foo@bar" ];
   };
 
-  programs.ssh.askPassword = lib.mkForce "/nix/store/03h3nhgks61l3szfpii9la6y1kqqdq6k-ksshaskpass-6.3.5/bin/ksshaskpass";
+  programs.ssh.askPassword = lib.mkForce "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass";
 
   # hardware.xpadneo.enable = true;
   # hardware.steam-hardware.enable = true;
@@ -346,9 +375,14 @@
   fonts.packages = with pkgs; [
     fira-code
     jetbrains-mono
-    meslo-lgs-nf # Meslo Nerd Font
+    meslo-lgs-nf
     dejavu_fonts
     liberation_ttf
+    font-awesome
+    hackgen-nf-font
+    udev-gothic-nf
+    source-han-sans
+    source-han-serif
   ];
 
   nixpkgs.overlays = [
@@ -378,7 +412,6 @@
     # rocmPackages.rocm-smi
     # tesseract4
     # linuxKernel.packages.linux_zen.xpadneo
-    actkbd
     alacritty
     alejandra
     alsa-utils
@@ -397,7 +430,6 @@
     dos2unix
     dysk
     easyeffects
-    electron
     expat
     f3
     fastfetch
@@ -407,11 +439,8 @@
     flameshot
     floorp-bin
     fluent-reader
-    font-awesome
-    fontconfig
     freecad
     freerdp
-    freetype
     fzf
     gcc
     gh
@@ -434,7 +463,6 @@
     itch
     jamesdsp
     jdk17
-    jetbrains-mono
     jq
     kdePackages.kasts
     kdePackages.krdp
@@ -444,7 +472,6 @@
     kdePackages.qtmultimedia
     kdePackages.qtwayland
     kitty
-    libGL
     libGL
     libglibutil
     libGLU
@@ -485,7 +512,6 @@
     pkg-config
     pkgs.cifs-utils
     pkgs.deluged
-    pkgs.home-manager
     pkgs.oh-my-zsh
     pkgs.polkit_gnome
     pkgs.sane-backends
@@ -498,7 +524,6 @@
     playerctl
     plex-desktop
     plexamp
-    postgresql
     postman
     protonup-qt
     python3
@@ -524,7 +549,7 @@
     thunderbird
     ticktick
     tldr
-    todoist-electron
+    # todoist-electron
     tor
     tor-browser
     udev-gothic-nf
@@ -552,7 +577,7 @@
     xdg-desktop-portal-gtk
     xdotool
     tumbler
-    xorg.libXrandr
+    libXrandr
     xwayland
     yad
     yt-dlp
@@ -704,39 +729,6 @@
   #UEFI Firmware support for virtual machines
   systemd.tmpfiles.rules = ["L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware"];
 
-  # OpenGL
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-    # driSupport = true;
-    # driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      libva-vdpau-driver
-      mesa
-      libvdpau-va-gl
-      # rocmPackages.clr.icd
-      # amdvlk
-      #pkgs.vulkan-validation-layers
-      #pkgs.vulkan-loader
-      #pkgs.nvidia-x11.vulkan-driver
-      #pkgs.mesa.drivers
-      # rocmPackages.rocm-runtime
-      # rocmPackages_5.rocminfo
-      # rocmPackages_5.rocm-runtime
-      # rocmPackages_5.clr.icd
-      # rocm-opencl-runtime
-      # rocm-opencl-icd
-      # pkgs.mesa.opencl
-    ];
-    extraPackages32 = with pkgs.pkgsi686Linux; [
-      mesa
-      libGL
-    ];
-    # extraPackages32 = with pkgs; [
-    #   driversi686Linux.amdvlk
-    # ];
-  };
-  environment.variables.AMD_VULKAN_ICD = "RADV";
   services.lact.enable = true;
 
   services.colord.enable = true;
