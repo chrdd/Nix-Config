@@ -101,7 +101,7 @@
 
   # Bluetooth (likely needed for a ThinkPad)
   hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
+  hardware.bluetooth.powerOnBoot = false;
 
   # Backlight control
   hardware.acpilight.enable = true;
@@ -269,13 +269,13 @@
   # nix.settings.require-sigs = false;
 
   # Overheating prevention
-  services.thermald.enable = true;
+  # services.thermald.enable = true;
 
   networking.firewall.allowedTCPPorts = [8000];
   networking.firewall.allowedUDPPorts = [8000];
 
   # Powertop
-  powerManagement.powertop.enable = true;
+  # powerManagement.powertop.enable = true;
 
   system.stateVersion = "25.05";
 }
