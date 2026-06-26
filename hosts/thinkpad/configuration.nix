@@ -19,7 +19,7 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
+  # networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -44,7 +44,7 @@
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
@@ -55,6 +55,59 @@
     layout = "us";
     variant = "";
   };
+
+  # Intel CPU microcode
+  hardware.cpu.intel.updateMicrocode = true;
+
+  # Intel GPU / media acceleration
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # VAAPI for 12th gen+ (Arc/Xe graphics)
+      intel-compute-runtime # OpenCL
+      vpl-gpu-rt # Intel VPL for hardware video decode
+    ];
+  };
+
+  # Intel P-State for hybrid core scheduling (essential for 240H)
+  boot.kernelParams = [
+    "intel_pstate=active"
+    "elevator=none"
+  ];
+
+  # Better power management for hybrid Intel CPU
+  services.power-profiles-daemon.enable = false;
+
+  services.auto-cpufreq = {
+    enable = true;
+    settings = {
+      battery = {
+        governor = "powersave";
+        turbo = "auto";
+      };
+      charger = {
+        governor = "performance";
+        turbo = "auto";
+      };
+    };
+  };
+
+  # Firmware updates (ThinkPad E16 is well-supported on LVFS)
+  services.fwupd.enable = true;
+
+  # SSD health
+  services.fstrim.enable = true;
+
+  # Bluetooth (likely needed for a ThinkPad)
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+
+  # Backlight control
+  hardware.acpilight.enable = true;
+
+  # Wayland display manager
+  services.displayManager.sddm.wayland.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -83,7 +136,7 @@
   };
 
   # Install firefox.
-  programs.firefox.enable = true;
+  # programs.firefox.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -123,6 +176,7 @@
     # rustdesk
     # tigervnc
     # virtualbox
+    brightnessctl
     alacritty
     anki
     ansible
@@ -212,7 +266,7 @@
 
   programs.kdeconnect.enable = true;
 
-  nix.settings.require-sigs = false;
+  # nix.settings.require-sigs = false;
 
   # Overheating prevention
   services.thermald.enable = true;
