@@ -3,6 +3,7 @@
   inputs,
   lib,
   pkgs,
+  pkgs-stable,
   winapps,
   ...
 }: {
@@ -19,7 +20,7 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
+  networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -179,7 +180,7 @@
     alacritty
     anki
     ansible
-    anydesk
+    pkgs-stable.anydesk
     bitwarden-desktop
     brightnessctl
     btop
@@ -222,7 +223,7 @@
     thunderbird
     ticktick
     tmux
-    todoist-electron
+    # todoist-electron
     unrar
     vivaldi
     vlc
