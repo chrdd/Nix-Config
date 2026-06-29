@@ -176,12 +176,12 @@
     # rustdesk
     # tigervnc
     # virtualbox
-    brightnessctl
     alacritty
     anki
     ansible
     anydesk
     bitwarden-desktop
+    brightnessctl
     btop
     dig
     discord
@@ -196,6 +196,7 @@
     heroic
     howdy
     inputs.zen-browser.packages."${system}".default
+    inputs.helium.packages.${system}.default
     kdePackages.plasma-browser-integration
     localsend
     lsd
@@ -231,8 +232,8 @@
     wireguard-tools
     wireguard-ui
     zapzap
-    zoxide
     zip
+    zoxide
   ];
 
   programs.mtr.enable = true;
