@@ -449,7 +449,7 @@
     glew
     glfw
     glfw3-minecraft
-    gnome-keyring
+    # gnome-keyring
     gnumake
     gogdl
     gparted
@@ -513,7 +513,7 @@
     pkgs.cifs-utils
     pkgs.deluged
     pkgs.oh-my-zsh
-    pkgs.polkit_gnome
+    # pkgs.polkit_gnome
     pkgs.sane-backends
     pkgs.sx
     pkgs.wayvnc
