@@ -112,11 +112,12 @@
     gparted
     heroic
     inputs.zen-browser.packages."${system}".default
+    inputs.helium.packages.${system}.default
     kdePackages.plasma-browser-integration
     localsend
     lsd
     # lutris
-    mailspring
+    # mailspring
     moonlight-qt
     mumble
     nix-output-monitor
@@ -138,7 +139,7 @@
     thunderbird
     ticktick
     tmux
-    todoist-electron
+    # todoist-electron
     unrar
     vivaldi
     vlc

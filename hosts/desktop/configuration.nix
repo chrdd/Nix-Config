@@ -458,8 +458,9 @@
     hackgen-nf-font
     heroic
     imagemagick
-    inputs.self.packages.${pkgs.system}.shadps4-0_6_0
+    # inputs.self.packages.${pkgs.system}.shadps4-0_6_0
     inputs.zen-browser.packages."${system}".default
+    inputs.helium.packages.${system}.default
     itch
     jamesdsp
     jdk17
@@ -484,7 +485,7 @@
     localsend
     lsd
     # lutris
-    mailspring
+    # mailspring
     mesa
     mesa-demos
     meson
