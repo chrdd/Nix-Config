@@ -6,6 +6,7 @@
   config,
   pkgs,
   lib,
+  pkgs-stable,
   winapps,
   ...
 }: {
@@ -439,7 +440,7 @@
     flameshot
     floorp-bin
     fluent-reader
-    freecad
+    pkgs-stable.freecad
     freerdp
     fzf
     gcc
