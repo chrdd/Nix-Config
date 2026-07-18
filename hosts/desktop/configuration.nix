@@ -349,7 +349,10 @@
     # packageOverrides = pkgs: {
     # unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
     # };
-    permittedInsecurePackages = ["electron-39.8.10"];
+    permittedInsecurePackages = [
+      "electron-39.8.10"
+      "electron-40.10.5"
+    ];
   };
   # services.avahi.enable = true;
   # services.avahi.publish.enable = true;
