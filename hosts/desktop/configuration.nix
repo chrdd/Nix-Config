@@ -591,7 +591,7 @@
     zoxide
     pineflash
     pkgs-stable.bambu-studio
-    pkgs-stable.orca-slicer
+    # pkgs-stable.orca-slicer
     ansible
     nota
     #   mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
