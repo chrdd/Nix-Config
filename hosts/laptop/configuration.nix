@@ -70,6 +70,20 @@
     jack.enable = true;
   };
 
+  services.auto-cpufreq = {
+    enable = true;
+    settings = {
+      battery = {
+        governor = "powersave";
+        turbo = "auto";
+      };
+      charger = {
+        governor = "performance";
+        turbo = "auto";
+      };
+    };
+  };
+
   users.users.octavian = {
     isNormalUser = true;
     description = "octavian";
@@ -116,6 +130,8 @@
     kdePackages.plasma-browser-integration
     localsend
     lsd
+    inputs.helium.packages.${system}.default
+
     # lutris
     # mailspring
     moonlight-qt
@@ -168,7 +184,7 @@
   services.thermald.enable = true;
 
   # Powertop
-  powerManagement.powertop.enable = true;
+  # powerManagement.powertop.enable = true;
 
   system.stateVersion = "25.05";
 }
