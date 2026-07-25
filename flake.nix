@@ -6,19 +6,19 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-old.url = "github:NixOS/nixpkgs/c5dd43934613ae0f8ff37c59f61c507c2e8f980d";
 
-    hyprland = {
-      type = "git";
-      url = "https://github.com/hyprwm/Hyprland";
-      submodules = true;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # hyprland = {
+    #   type = "git";
+    #   url = "https://github.com/hyprwm/Hyprland";
+    #   submodules = true;
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # stylix.url = "github:danth/stylix";
 
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
+    # hyprland-plugins = {
+    #   url = "github:hyprwm/hyprland-plugins";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
@@ -51,7 +51,7 @@
     home-manager,
     nix-flatpak,
     # stylix,
-    hyprland,
+    # hyprland,
     deploy-rs,
     winapps,
     ...
