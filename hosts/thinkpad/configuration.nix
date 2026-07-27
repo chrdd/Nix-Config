@@ -142,7 +142,10 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnsupportedSystem = true;
-  nixpkgs.config.permittedInsecurePackages = ["electron-39.8.10"];
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-39.8.10"
+    "electron-40.10.5"
+  ];
   # VMware
   # virtualisation.vmware.host.enable = true;
 
@@ -181,21 +184,21 @@
     anki
     ansible
     pkgs-stable.anydesk
-    bitwarden-desktop
+    pkgs-stable.bitwarden-desktop
     brightnessctl
     btop
     dig
     discord
     fastfetch
     ffmpeg
-    freecad
+    pkgs-stable.freecad
     gh
     ghostty
     git
     git-crypt
     gparted
     heroic
-    howdy
+    # howdy
     inputs.zen-browser.packages."${system}".default
     inputs.helium.packages.${system}.default
     kdePackages.plasma-browser-integration
@@ -253,10 +256,10 @@
   };
 
   # To be discoverable with windows
-  services.samba-wsdd = {
-    enable = true;
-    openFirewall = true;
-  };
+  # services.samba-wsdd = {
+  #   enable = true;
+  #   openFirewall = true;
+  # };
 
   # Make sure your user is in the samba group
   # users.users.octavian = {
