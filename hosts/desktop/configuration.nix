@@ -416,13 +416,23 @@
     # rocmPackages.rocm-smi
     # tesseract4
     # linuxKernel.packages.linux_zen.xpadneo
+    # bottles
+    # gnome-keyring
+    # inputs.self.packages.${pkgs.system}.shadps4-0_6_0
+    # lutris
+    # mailspring
+    # pkgs-stable.bambu-studio
+    # pkgs-stable.orca-slicer
+    # pkgs.polkit_gnome
+    # todoist-electron
+    # zotero
     alacritty
     alejandra
     alsa-utils
     anki
+    ansible
     anydesk
     bitwarden-desktop
-    # bottles
     bottom
     btop-rocm
     caligula
@@ -443,7 +453,6 @@
     flameshot
     floorp-bin
     fluent-reader
-    pkgs-stable.freecad
     freerdp
     fzf
     gcc
@@ -453,7 +462,6 @@
     glew
     glfw
     glfw3-minecraft
-    # gnome-keyring
     gnumake
     gogdl
     gparted
@@ -462,9 +470,8 @@
     hackgen-nf-font
     heroic
     imagemagick
-    # inputs.self.packages.${pkgs.system}.shadps4-0_6_0
-    inputs.zen-browser.packages."${system}".default
     inputs.helium.packages.${system}.default
+    inputs.zen-browser.packages."${system}".default
     itch
     jamesdsp
     jdk17
@@ -482,14 +489,12 @@
     libGLU
     libglvnd
     libnotify
-    qt5.qtwayland
     libva
     libva-utils
     libvdpau
+    libXrandr
     localsend
     lsd
-    # lutris
-    # mailspring
     mesa
     mesa-demos
     meson
@@ -501,6 +506,7 @@
     nix-output-monitor
     nix-tree
     nodejs
+    nota
     ntfs3g
     nvd
     nvtopPackages.amd
@@ -514,11 +520,12 @@
     pamixer
     papirus-icon-theme
     pavucontrol
+    pineflash
     pkg-config
+    pkgs-stable.freecad
     pkgs.cifs-utils
     pkgs.deluged
     pkgs.oh-my-zsh
-    # pkgs.polkit_gnome
     pkgs.sane-backends
     pkgs.sx
     pkgs.wayvnc
@@ -534,8 +541,10 @@
     python3
     qbittorrent-enhanced
     qemu
+    qt5.qtwayland
     quickemu
     ranger
+    rivalcfg
     rpi-imager
     samba
     scrcpy
@@ -554,9 +563,9 @@
     thunderbird
     ticktick
     tldr
-    # todoist-electron
     tor
     tor-browser
+    tumbler
     udev-gothic-nf
     unrar
     unzip
@@ -581,19 +590,11 @@
     xbindkeys
     xdg-desktop-portal-gtk
     xdotool
-    tumbler
-    libXrandr
     xwayland
     yad
     yt-dlp
     zapzap
-    # zotero
     zoxide
-    pineflash
-    # pkgs-stable.bambu-studio
-    # pkgs-stable.orca-slicer
-    ansible
-    nota
     #   mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
     # (pkgs.waybar.overrideAttrs (oldAttrs: {
     # }))
