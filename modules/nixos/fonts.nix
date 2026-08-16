@@ -13,7 +13,7 @@
       dina-font
       fira-code
       fira-code-symbols
-      jetbrains-mono
+      # jetbrains-mono
       liberation_ttf
       mplus-outline-fonts.githubRelease
       noto-fonts

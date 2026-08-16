@@ -378,7 +378,7 @@
   # Fonts
   fonts.packages = with pkgs; [
     fira-code
-    jetbrains-mono
+    # jetbrains-mono
     meslo-lgs-nf
     dejavu_fonts
     liberation_ttf
@@ -498,7 +498,7 @@
     mesa
     mesa-demos
     meson
-    moonlight-qt
+    pkgs-stable.moonlight-qt
     mpv
     mumble
     ncdu
@@ -577,7 +577,7 @@
     vulkan-tools
     wayvnc
     weylus
-    wf-recorder
+    # wf-recorder
     wget
     winboat
     winetricks
