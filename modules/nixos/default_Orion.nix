@@ -39,6 +39,7 @@
     ./zabbix-Orion.nix
     ./wazuh.nix
     ./internet.nix
+    ./packet-tracer.nix
     # ./appimage.nix
     # ./manga.nix
     # ./ollama.nix
@@ -71,4 +72,5 @@
   zabbix-agent.enable = lib.mkDefault true;
   wazuh-agent.enable = lib.mkDefault true;
   internet-sharing.enable = lib.mkDefault false;
+  packet-tracer.enable = lib.mkDefault true;
 }
