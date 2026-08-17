@@ -125,7 +125,7 @@
 
     # lutris
     # mailspring
-    moonlight-qt
+    #moonlight-qt
     mumble
     nix-output-monitor
     nixd
