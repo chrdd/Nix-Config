@@ -20,7 +20,7 @@
 
   nix.settings = {
     max-jobs = "auto";
-    cores = 0;
+    cores = 4;
     trusted-users = ["root" "octavian"];
     auto-optimise-store = true;
     experimental-features = ["nix-command" "flakes"];
@@ -118,7 +118,7 @@
   zramSwap = {
     enable = true;
     algorithm = "zstd";
-    memoryPercent = 25; # 25% of RAM as fast compressed swap
+    memoryPercent = 30; # 25% of RAM as fast compressed swap
   };
 
   # LVFS motherboard update
@@ -374,6 +374,12 @@
   # services.sambaClient.enable = true;
 
   # services.gnome.gnome-remote-desktop.enable = true;
+
+  # Capping Memory
+  systemd.services.nix-daemon.serviceConfig = {
+    MemoryHigh = "8G"; # soft: kernel starts reclaiming/throttling here
+    MemoryMax = "10G"; # hard: OOM-killer kills processes in this cgroup only
+  };
 
   # Fonts
   fonts.packages = with pkgs; [

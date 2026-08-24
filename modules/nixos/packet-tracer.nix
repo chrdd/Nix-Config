@@ -4,18 +4,13 @@
   pkgs,
   ...
 }: let
-  # nixpkgs' cisco-packet-tracer_9 is pinned to an actual 9.0.0 build.
-  # NetAcad currently serves 9.0.1 under the same "_900_" filename, so
-  # both the hash and the internal desktop-file names need correcting.
+  cfg = config.packet-tracer;
+
   ciscoPacketTracer9 = let
     appimage = pkgs.stdenvNoCC.mkDerivation {
       pname = "cisco-packet-tracer-appimage";
       version = "9.0.0";
-      src = pkgs.requireFile {
-        name = "CiscoPacketTracer_900_Ubuntu_64bit.deb";
-        hash = "sha256-NoPdh+d5iFNyrpo1wabllNEvST5knnxpdAhynBRZR5s=";
-        url = "https://www.netacad.com/resources/lab-downloads";
-      };
+      src = cfg.debPath;
       nativeBuildInputs = [pkgs.dpkg];
       installPhase = ''
         runHook preInstall
@@ -36,8 +31,8 @@
         contents = pkgs.appimageTools.extract {inherit pname version src;};
       in ''
         mv $out/bin/${pname} $out/bin/packettracer9
-        install -Dm444 ${contents}/CiscoPacketTracer-9.0.1.desktop $out/share/applications/cisco-packet-tracer-9.desktop
-        install -Dm444 ${contents}/CiscoPacketTracerPtsa-9.0.1.desktop $out/share/applications/cisco-packet-tracer-ptsa-9.desktop
+        install -Dm444 ${contents}/CiscoPacketTracer-*.desktop $out/share/applications/cisco-packet-tracer-9.desktop
+        install -Dm444 ${contents}/CiscoPacketTracerPtsa-*.desktop $out/share/applications/cisco-packet-tracer-ptsa-9.desktop
         substituteInPlace $out/share/applications/* \
           --replace-fail "Exec=@EXEC_PATH@" "Exec=packettracer9" \
           --replace-fail "Icon=app" "Icon=cisco-packet-tracer-9"
@@ -59,24 +54,30 @@
 in {
   options = {
     packet-tracer.enable = lib.mkEnableOption "Enables Cisco Packet Tracer";
+    packet-tracer.debPath = lib.mkOption {
+      type = lib.types.path;
+      default = /HDD/CiscoPacketTracer_900_Ubuntu_64bit.deb;
+      description = ''
+        Path to the Cisco Packet Tracer Ubuntu .deb, downloaded manually from
+        NetAcad. Overwrite the file at this path with a newer download and
+        rebuild to pick it up — no `nix-store --add-fixed` needed. Reading a
+        path outside the flake tree requires building with `--impure`.
+      '';
+    };
   };
 
-  config = lib.mkIf config.packet-tracer.enable {
-    environment.systemPackages = [
-      ciscoPacketTracer9
-    ];
+  config = lib.mkIf cfg.enable {
+    environment.systemPackages = [ciscoPacketTracer9];
 
     programs.firejail = {
       enable = true;
-      wrappedBinaries = {
-        packettracer9 = {
-          executable = lib.getExe ciscoPacketTracer9;
-          desktop = "${ciscoPacketTracer9}/share/applications/cisco-packet-tracer-9.desktop";
-          extraArgs = [
-            "--net=none"
-            "--noprofile"
-          ];
-        };
+      wrappedBinaries.packettracer9 = {
+        executable = lib.getExe ciscoPacketTracer9;
+        desktop = "${ciscoPacketTracer9}/share/applications/cisco-packet-tracer-9.desktop";
+        extraArgs = [
+          "--net=none"
+          "--noprofile"
+        ];
       };
     };
   };
