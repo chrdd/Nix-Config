@@ -320,6 +320,19 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+  services.pipewire.wireplumber.extraConfig."99-disable-suspend" = {
+    "monitor.alsa.rules" = [
+      {
+        matches = [
+          {"node.name" = "~alsa_input.*";}
+          {"node.name" = "~alsa_output.*";}
+        ];
+        actions.update-props = {
+          "session.suspend-timeout-seconds" = 0;
+        };
+      }
+    ];
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
