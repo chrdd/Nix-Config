@@ -445,6 +445,9 @@
     # pkgs.polkit_gnome
     # todoist-electron
     # zotero
+
+    feishin
+    picard
     alacritty
     alejandra
     alsa-utils
