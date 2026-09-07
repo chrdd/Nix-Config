@@ -239,6 +239,7 @@
     zapzap
     zip
     zoxide
+    feishin
   ];
 
   programs.mtr.enable = true;
