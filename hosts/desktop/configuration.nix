@@ -99,17 +99,17 @@
     ];
   };
 
-  environment.variables = {
-    AMD_VULKAN_ICD = "RADV";
-    RADV_PERFTEST = "gpl";
-  };
+  # environment.variables = {
+  #   AMD_VULKAN_ICD = "RADV";
+  #   RADV_PERFTEST = "gpl";
+  # };
 
-  boot.kernelParams = [
-    "amdgpu.ppfeaturemask=0xffffffff"
-    "elevator=none"
-    "amd_pstate=active" # enables AMD P-State driver for better CPU freq scaling on Zen CPUs
-    "preempt=full" # full kernel preemption for lower input latency
-  ];
+  # boot.kernelParams = [
+  #   # "amdgpu.ppfeaturemask=0xffffffff"
+  #   # "elevator=none"
+  #   # "amd_pstate=active" # enables AMD P-State driver for better CPU freq scaling on Zen CPUs
+  #   # "preempt=full" # full kernel preemption for lower input latency
+  # ];
 
   # Enable CPU Microcode Updates
   hardware.cpu.amd.updateMicrocode = true;
@@ -390,8 +390,8 @@
 
   # Capping Memory
   systemd.services.nix-daemon.serviceConfig = {
-    MemoryHigh = "8G"; # soft: kernel starts reclaiming/throttling here
-    MemoryMax = "10G"; # hard: OOM-killer kills processes in this cgroup only
+    MemoryHigh = "16G"; # soft: kernel starts reclaiming/throttling here
+    MemoryMax = "20G"; # hard: OOM-killer kills processes in this cgroup only
   };
 
   # Fonts
@@ -424,6 +424,37 @@
     # })
   ];
 
+  # Enable nix-ld to run unpatched Linux binaries
+  programs.nix-ld.enable = true;
+
+  # Define the shared libraries that unpatched binaries will have access to
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc.lib
+    zlib
+    glib
+    curl
+    openssl
+
+    # Required for graphical interfaces (X11 / Wayland / GL)
+    xorg.libX11
+    xorg.libXrandr
+    xorg.libXext
+    xorg.libXcursor
+    xorg.libXi
+    xorg.libXfixes
+    libGL
+    vulkan-loader
+    wayland
+
+    # Required for some hardware probers / desktop standards
+    alsa-lib
+    dbus
+    fontconfig
+    freetype
+    libxkbcommon
+    udev
+  ];
+
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     # docker-compose
@@ -445,7 +476,7 @@
     # pkgs.polkit_gnome
     # todoist-electron
     # zotero
-
+    signal-desktop
     feishin
     picard
     alacritty
