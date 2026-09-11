@@ -90,20 +90,22 @@
     extraPackages = with pkgs; [
       libva-vdpau-driver
       libvdpau-va-gl
-      mesa
-      rocmPackages.clr.icd # enables ROCm/OpenCL
+      rocmPackages.clr.icd # OpenCL support
     ];
     extraPackages32 = with pkgs.pkgsi686Linux; [
-      mesa
-      libGL
+      # Remove mesa and libGL from here
     ];
   };
+
+  programs.gamemode.enable = true;
+  powerManagement.cpuFreqGovernor = "performance";
 
   # environment.variables = {
   #   AMD_VULKAN_ICD = "RADV";
   #   RADV_PERFTEST = "gpl";
   # };
 
+  boot.kernelParams = ["amdgpu.ppfeaturemask=0xffffffff"];
   # boot.kernelParams = [
   #   # "amdgpu.ppfeaturemask=0xffffffff"
   #   # "elevator=none"
