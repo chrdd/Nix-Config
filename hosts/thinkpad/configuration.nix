@@ -197,7 +197,7 @@
     git
     git-crypt
     gparted
-    heroic
+    # heroic
     # howdy
     inputs.zen-browser.packages."${system}".default
     inputs.helium.packages.${system}.default
