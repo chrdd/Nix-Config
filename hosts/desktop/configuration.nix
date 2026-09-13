@@ -105,7 +105,8 @@
   #   RADV_PERFTEST = "gpl";
   # };
 
-  boot.kernelParams = ["amdgpu.ppfeaturemask=0xffffffff"];
+  hardware.amdgpu.overdrive.enable = true;
+  # hardware.amdgpu.overdrive.ppfeaturemask = "0xfffd7fff"; # only if you want a specific value; omit to use the default
   # boot.kernelParams = [
   #   # "amdgpu.ppfeaturemask=0xffffffff"
   #   # "elevator=none"
@@ -354,6 +355,8 @@
 
   programs.ssh.askPassword = lib.mkForce "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass";
 
+  hardware.enableRedistributableFirmware = true;
+
   # hardware.xpadneo.enable = true;
   # hardware.steam-hardware.enable = true;
 
@@ -577,7 +580,7 @@
     pavucontrol
     pineflash
     pkg-config
-    pkgs-stable.freecad
+    freecad
     pkgs.cifs-utils
     pkgs.deluged
     pkgs.oh-my-zsh
