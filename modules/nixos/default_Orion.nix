@@ -72,5 +72,5 @@
   zabbix-agent.enable = lib.mkDefault true;
   wazuh-agent.enable = lib.mkDefault true;
   internet-sharing.enable = lib.mkDefault false;
-  packet-tracer.enable = lib.mkDefault true;
+  packet-tracer.enable = lib.mkDefault false;
 }
