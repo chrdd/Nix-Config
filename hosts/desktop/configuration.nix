@@ -580,7 +580,7 @@
     pavucontrol
     pineflash
     pkg-config
-    freecad
+    pkgs-stable.freecad
     pkgs.cifs-utils
     pkgs.deluged
     pkgs.oh-my-zsh
