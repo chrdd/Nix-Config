@@ -270,9 +270,23 @@
   # services.xserver.desktopManager.gnome.enable = true;
 
   # SSD Optimisation
-  services.fstrim.enable = true;
+  # services.fstrim.enable = true;
+  boot.initrd.luks.devices."crypted" = {
+    allowDiscards = true; # let TRIM pass through to the SSD
+    bypassWorkqueues = true; # skips dm-crypt's crypto workqueues — meaningful IOPS win on NVMe
+  };
   # Enable the KDE Plasma Desktop Environment.
   #services.xserver.displayManager.sddm.wayland.enable = true;
+
+  fileSystems."/".options = ["compress=zstd" "noatime" "space_cache=v2"];
+  fileSystems."/home".options = ["compress=zstd" "noatime" "space_cache=v2"];
+  fileSystems."/nix".options = ["compress=zstd" "noatime" "space_cache=v2"];
+  fileSystems."/var/log".options = ["compress=zstd" "noatime" "space_cache=v2"];
+
+  services.btrfs.autoScrub = {
+    enable = true;
+    fileSystems = ["/"];
+  };
 
   #  Display Manager
   services.displayManager = {
