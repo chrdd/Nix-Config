@@ -288,6 +288,18 @@
     fileSystems = ["/"];
   };
 
+  fileSystems."/mnt/ssd" = {
+    device = "/dev/disk/by-uuid/001f7666-11d4-42c9-a9a1-b22610c51cc6";
+    fsType = "ext4";
+    options = ["nofail"];
+  };
+
+  fileSystems."/mnt/games" = {
+    device = "/dev/disk/by-uuid/1140de40-e759-4b96-aec3-8db0b0c98c37";
+    fsType = "ext4";
+    options = ["nofail"];
+  };
+
   #  Display Manager
   services.displayManager = {
     defaultSession = "plasma";
