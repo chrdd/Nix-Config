@@ -92,6 +92,7 @@
             winapps.packages.${system}.winapps-launcher
             deploy-rs.packages.${system}.deploy-rs
           ];
+          nix.settings.trusted-users = ["root" "@wheel"];
         }
       )
     ];
