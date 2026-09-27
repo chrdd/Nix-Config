@@ -90,6 +90,7 @@
           environment.systemPackages = [
             winapps.packages.${system}.winapps
             winapps.packages.${system}.winapps-launcher
+            deploy-rs.packages.${system}.deploy-rs
           ];
         }
       )
@@ -134,7 +135,7 @@
     };
 
     deploy.nodes.Orion = {
-      hostname = "octavian";
+      hostname = "100.117.185.63";
       profiles.system = {
         sshUser = "octavian";
         user = "root";
@@ -144,7 +145,7 @@
     };
 
     deploy.nodes.Acer = {
-      hostname = "octavian";
+      hostname = "100.92.67.16";
       profiles.system = {
         sshUser = "octavian";
         user = "root";
@@ -154,7 +155,7 @@
     };
 
     deploy.nodes.Thinkpad = {
-      hostname = "octavian";
+      hostname = "100.64.111.21";
       profiles.system = {
         sshUser = "octavian";
         user = "root";
