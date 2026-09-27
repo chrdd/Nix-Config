@@ -97,38 +97,38 @@
     ];
   in {
     nixosModules = import ./modules/nixos;
-    homeManagerModules = import ./modules/home-manager;
+    # homeManagerModules = import ./modules/home-manager;
 
     nixosConfigurations = {
       Orion = nixpkgs.lib.nixosSystem {
-        specialArgs = commonArgs;
+        specialArgs = commonArgs // {hostName = "Orion";};
         modules =
           [
             ./hosts/desktop/configuration.nix
             ./apps/default.nix
-            ./modules/nixos/default_Orion.nix
+            ./modules/nixos/hosts.nix
           ]
           ++ commonModules;
       };
 
       Acer = nixpkgs.lib.nixosSystem {
-        specialArgs = commonArgs;
+        specialArgs = commonArgs // {hostName = "Acer";};
         modules =
           [
             ./hosts/laptop/configuration.nix
             ./apps/default.nix
-            ./modules/nixos/default_Acer.nix
+            ./modules/nixos/hosts.nix
           ]
           ++ commonModules;
       };
 
       Thinkpad = nixpkgs.lib.nixosSystem {
-        specialArgs = commonArgs;
+        specialArgs = commonArgs // {hostName = "Thinkpad";};
         modules =
           [
             ./hosts/thinkpad/configuration.nix
             ./apps/default.nix
-            ./modules/nixos/default_Thinkpad.nix
+            ./modules/nixos/hosts.nix
           ]
           ++ commonModules;
       };
