@@ -12,7 +12,7 @@
     ./flatpak.nix
     ./fonts.nix
     ./git.nix
-    ./mumblemic.nix
+    # ./mumblemic.nix
     ./network.nix
     ./nh.nix
     ./optimisation.nix

@@ -584,7 +584,6 @@
     meson
     pkgs-stable.moonlight-qt
     mpv
-    mumble
     ncdu
     nix-diff
     nix-output-monitor
@@ -599,8 +598,8 @@
     obsidian
     ocamlPackages.ssl
     openssl
-    openssl_3
-    openssl_legacy
+    # openssl_3
+    # openssl_legacy
     pamixer
     papirus-icon-theme
     pavucontrol
