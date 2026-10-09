@@ -598,6 +598,7 @@
     obsidian
     ocamlPackages.ssl
     openssl
+    protonmail-desktop
     # openssl_3
     # openssl_legacy
     pamixer
