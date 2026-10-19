@@ -599,6 +599,7 @@
     ocamlPackages.ssl
     openssl
     protonmail-desktop
+    fetch
     # openssl_3
     # openssl_legacy
     pamixer
