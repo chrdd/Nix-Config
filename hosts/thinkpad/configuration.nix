@@ -240,6 +240,7 @@
     zip
     zoxide
     feishin
+    zed-editor
   ];
 
   programs.mtr.enable = true;

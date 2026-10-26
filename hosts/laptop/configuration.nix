@@ -122,7 +122,7 @@
     localsend
     lsd
     inputs.helium.packages.${system}.default
-
+    zed-editor
     # lutris
     # mailspring
     #moonlight-qt
