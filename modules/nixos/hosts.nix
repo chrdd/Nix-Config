@@ -25,6 +25,7 @@
     ./vscodium.nix
     ./wazuh.nix
     ./zsh.nix
+    ./home-manager.nix
   ];
 
   hostImports = {
