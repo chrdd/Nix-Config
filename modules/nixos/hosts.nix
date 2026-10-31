@@ -81,10 +81,14 @@
       docker.enable = lib.mkDefault true;
       fonts.enable = lib.mkDefault true;
       git.enable = lib.mkDefault true;
+      guacamole.enable = lib.mkDefault false;
       hip.enable = lib.mkDefault false;
+      homeManager.enable = lib.mkDefault true;
       hyprland.enable = lib.mkDefault false;
+      internet-sharing.enable = lib.mkDefault false;
       nfs.enable = lib.mkDefault true;
       nh.enable = lib.mkDefault true;
+      packet-tracer.enable = lib.mkDefault false;
       rdp.enable = lib.mkDefault false;
       steam.enable = lib.mkDefault true;
       sunshine.enable = lib.mkDefault true;
@@ -93,12 +97,9 @@
       tmux.enable = lib.mkDefault true;
       vivaldi.enable = lib.mkDefault true;
       vscodium.enable = lib.mkDefault true;
-      zsh.enable = lib.mkDefault true;
-      guacamole.enable = lib.mkDefault false;
-      zabbix-agent.enable = lib.mkDefault true;
       wazuh-agent.enable = lib.mkDefault true;
-      internet-sharing.enable = lib.mkDefault false;
-      packet-tracer.enable = lib.mkDefault false;
+      zabbix-agent.enable = lib.mkDefault true;
+      zsh.enable = lib.mkDefault true;
     };
 
     Thinkpad = {
