@@ -12,6 +12,7 @@
   };
   config = lib.mkIf config.homeManager.enable {
     home-manager = {
+      sharedModules = [inputs.plasma-manager.homeModules.plasma-manager];
       useGlobalPkgs = true;
       useUserPackages = true;
       backupFileExtension = "hm-backup";

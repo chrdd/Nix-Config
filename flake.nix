@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
-    nixpkgs-old.url = "github:NixOS/nixpkgs/c5dd43934613ae0f8ff37c59f61c507c2e8f980d";
 
     # hyprland = {
     #   type = "git";
@@ -19,10 +18,17 @@
     #   url = "github:hyprwm/hyprland-plugins";
     #   inputs.hyprland.follows = "hyprland";
     # };
+    #
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
 
     winapps = {
@@ -164,7 +170,5 @@
         path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.Thinkpad;
       };
     };
-
-    packages.x86_64-linux.shadps4-0_6_0 = pkgs-old.shadps4;
   };
 }

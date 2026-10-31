@@ -411,7 +411,7 @@
   # environment.etc."sane/gt68xx/PS1fw.usb".source = /home/octavian/Documents/sane/gt68xx/PS1fw.usb;
 
   #TeamViewer
-  services.teamviewer.enable = true;
+  # services.teamviewer.enable = true;
 
   # Samba
   # services.sambaClient.enable = true;
@@ -486,29 +486,127 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    # docker-compose
-    # rofi
-    # glfw-wayland
-    # kdePackages.xwaylandvideobridge
-    # openssl
-    # papirus-icon-theme
-    # rocmPackages.rocm-smi
-    # tesseract4
-    # linuxKernel.packages.linux_zen.xpadneo
+    # aquamarine
+    # arduino-ide
+    # arduino-ide
+    # audacity
+    # blender
     # bottles
+    # colloid-gtk-theme
+    # colloid-icon-theme
+    # colloid-kde
+    # cudaPackages.nvidia_driver
+    # davinci-resolve
+    # docker-compose
+    # droidcam
+    # fish
+    # flatpak
+    # git
+    # github-desktop
+    # glfw-wayland
     # gnome-keyring
+    # gnome-remote-desktop
+    # guacamole-server
+    # hyprland
     # inputs.self.packages.${pkgs.system}.shadps4-0_6_0
+    # jdk8
+    # jetbrains.idea-ultimate
+    # kdePackages.kdenlive
+    # kdePackages.xwaylandvideobridge
+    # kodi-wayland
+    # lact
+    # lact
+    # libGLU
+    # libglvnd
+    # libreoffice
+    # libsForQt5.kdeconnect-kde
+    # libsForQt5.libkscreen
+    # linuxKernel.packages.linux_zen.xpadneo
     # lutris
     # mailspring
+    # masterpdfeditor
+    # mathpix-snipping-tool
+    # maven
+    # mesa
+    # modelsim
+    # neatvnc
+    # nerd-fonts
+    # net-snmp
+    # nexusmods-app
+    # nixd
+    # nordic
+    # ollama-rocm
+    # onlyoffice-desktopeditors
+    # openssl
+    # openssl_3
+    # openssl_legacy
+    # papirus-icon-theme
+    # parsec-bin
     # pkgs-stable.bambu-studio
     # pkgs-stable.orca-slicer
+    # pkgs.dunst
+    # pkgs.nautilus
+    # pkgs.nemo-with-extensions
     # pkgs.polkit_gnome
+    # pkgs.waybar
+    # plasma5Packages.kdeconnect-kde
+    # prismlauncher
+    # python311
+    # rocmPackages.rocm-smi
+    # rofi
+    # rquickshare
+    # rustc
+    # rustup
+    # steam
+    # sublime
+    # swaylock
+    # tailscale
+    # tailscale
+    # tailscale
+    # tesseract4
+    # tigervnc
+    # tmux
     # todoist-electron
+    # v4l2loopback
+    # vencord
+    # vencord
+    # vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    # virtualbox
+    # vscode
+    # vscodium
+    # wayvnc
+    # wf-recorder
+    # wget
+    # whatsie
+    # winapps.packages."${system}".winapps
+    # winapps.packages."${system}".winapps-launcher # optional
+    # wl-paste
+    # xdg-dekstop-portal-kde
+    # xdg-desktop-portal-hyprland
+    # youtube-music
+    # z-lua
+    # zathura
     # zotero
-    signal-desktop
-    feishin
-    picard
+    # zoxide
+    # }))
+    #Java
+    #Sunshine
+    #btop
+    #cmake
+    #glu
+    #gnumake
+    #libstdcxx5
+    #ninja
+    #pkgs.zsh-history-substring-search
+    #poetry
+    #privateGPT dependencies
+    #stdenv.cc.cc.lib
+    #themes
+    #v4l2loopback
+    #vulkan
+    #zabbix.agent
+    #zabbix.web
+    #zabbixctl
     alacritty
     alejandra
     alsa-utils
@@ -530,6 +628,8 @@
     expat
     f3
     fastfetch
+    feishin
+    fetch
     ffmpeg
     ffmpegthumbnailer
     filezilla
@@ -568,20 +668,19 @@
     kdePackages.qtwayland
     kitty
     libGL
-    libglibutil
     libGLU
+    libXrandr
+    libglibutil
     libglvnd
     libnotify
     libva
     libva-utils
     libvdpau
-    libXrandr
     localsend
     lsd
     mesa
     mesa-demos
     meson
-    pkgs-stable.moonlight-qt
     mpv
     ncdu
     nix-diff
@@ -597,16 +696,14 @@
     obsidian
     ocamlPackages.ssl
     openssl
-    protonmail-desktop
-    fetch
-    # openssl_3
-    # openssl_legacy
     pamixer
     papirus-icon-theme
     pavucontrol
+    picard
     pineflash
     pkg-config
     pkgs-stable.freecad
+    pkgs-stable.moonlight-qt
     pkgs.cifs-utils
     pkgs.deluged
     pkgs.oh-my-zsh
@@ -621,6 +718,7 @@
     plex-desktop
     plexamp
     postman
+    protonmail-desktop
     protonup-qt
     python3
     qbittorrent-enhanced
@@ -628,11 +726,13 @@
     qt5.qtwayland
     quickemu
     ranger
+    ripgrep
     rivalcfg
     rpi-imager
     samba
     scrcpy
     sddm-astronaut
+    signal-desktop
     signal-desktop
     slurp
     smartmontools
@@ -650,6 +750,7 @@
     tor
     tor-browser
     tumbler
+    tutanota-desktop
     udev-gothic-nf
     unrar
     unzip
@@ -661,11 +762,10 @@
     vulkan-tools
     wayvnc
     weylus
-    # wf-recorder
     wget
     winboat
-    winetricks
     wineWow64Packages.waylandFull
+    winetricks
     wireplumber
     wl-clipboard
     wlogout
@@ -678,109 +778,8 @@
     yad
     yt-dlp
     zapzap
-    zoxide
     zed-editor
-    tutanota-desktop
-    # onlyoffice-desktopeditors
-    #   mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
-    # (pkgs.waybar.overrideAttrs (oldAttrs: {
-    # }))
-    # pkgs.waybar
-    # xdg-desktop-portal-hyprland
-    # winapps.packages."${system}".winapps
-    # winapps.packages."${system}".winapps-launcher # optional
-    #  wget
-    # aquamarine
-    # arduino-ide
-    # arduino-ide
-    # colloid-gtk-theme
-    # colloid-icon-theme
-    # colloid-kde
-    # libsForQt5.libkscreen
-    # audacity
-    # blender
-    # cudaPackages.nvidia_driver
-    # davinci-resolve
-    # droidcam
-    # fish
-    # flatpak
-    # git
-    # github-desktop
-    # gnome-remote-desktop
-    # guacamole-server
-    # hyprland
-    # jdk8
-    # jetbrains.idea-ultimate
-    # kdePackages.kdenlive
-    # kodi-wayland
-    # lact
-    # lact
-    # libGLU
-    # libglvnd
-    # libreoffice
-    # libsForQt5.kdeconnect-kde
-    # masterpdfeditor
-    # mathpix-snipping-tool
-    # maven
-    # mesa
-    # modelsim
-    # neatvnc
-    # nerd-fonts
-    # net-snmp
-    # nexusmods-app
-    # nixd
-    # nordic
-    # ollama-rocm
-    # parsec-bin
-    # pkgs.dunst
-    # pkgs.nautilus
-    # pkgs.nemo-with-extensions
-    # plasma5Packages.kdeconnect-kde
-    # prismlauncher
-    # python311
-    # rquickshare
-    # rustc
-    # rustup
-    # steam
-    # sublime
-    # swaylock
-    # tailscale
-    # tailscale
-    # tailscale
-    # tmux
-    # v4l2loopback
-    # vencord
-    # vencord
-    # virtualbox
-    # vscode
-    # vscodium
-    # wayvnc
-    # whatsie
-    # wl-paste
-    # xdg-dekstop-portal-kde
-    # youtube-music
-    # z-lua
-    # zathura
-    # zoxide
-    #btop
-    #cmake
-    #glu
-    #gnumake
-    #Java
-    #libstdcxx5
-    #ninja
-    #pkgs.zsh-history-substring-search
-    #poetry
-    #privateGPT dependencies
-    #stdenv.cc.cc.lib
-    #Sunshine
-    #themes
-    # tigervnc
-    #v4l2loopback
-    #vulkan
-    #zabbix.agent
-    #zabbix.web
-    #zabbixctl
+    zoxide
   ];
 
   # ZSH

@@ -27,5 +27,11 @@
       yaml-language-server
     ];
     nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+    userSettings = {
+      theme = {
+        mode = "system";
+        light = "Ayu Light";
+        dark = "Ayu Dark";
+      };
   };
 }

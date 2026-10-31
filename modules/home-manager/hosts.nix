@@ -5,6 +5,8 @@
 }: let
   commonImports = [
     ./zed.nix
+    ./zoxide.nix
+    ./zsh.nix
   ];
 
   hostImports = {
@@ -16,14 +18,20 @@
   hostConfig = {
     Acer = {
       zed.enable = lib.mkDefault true;
+      zoxide.enable = lib.mkDefault true;
+      zsh.enable = lib.mkDefault true;
     };
 
     Orion = {
       zed.enable = lib.mkDefault true;
+      zoxide.enable = lib.mkDefault true;
+      zsh.enable = lib.mkDefault true;
     };
 
     Thinkpad = {
       zed.enable = lib.mkDefault true;
+      zoxide.enable = lib.mkDefault true;
+      zsh.enable = lib.mkDefault true;
     };
   };
 in
