@@ -4,6 +4,7 @@
   ...
 }: let
   commonImports = [
+    # ./mumblemic.nix
     ./adb.nix
     ./autoupgrade.nix
     ./avahi.nix
@@ -12,7 +13,7 @@
     ./flatpak.nix
     ./fonts.nix
     ./git.nix
-    # ./mumblemic.nix
+    ./home-manager.nix
     ./network.nix
     ./nh.nix
     ./optimisation.nix
@@ -28,7 +29,14 @@
   ];
 
   hostImports = {
-    Acer = [./guacamole.nix ./razer.nix ./steam.nix ./wireguard-dev.nix ./zabbix-Acer.nix];
+    Acer = [
+      ./guacamole.nix
+      ./razer.nix
+      ./steam.nix
+      ./wireguard-dev.nix
+      ./zabbix-Acer.nix
+    ];
+
     Orion = [
       ./autologin.nix
       ./cast.nix
@@ -45,7 +53,15 @@
       ./suspend.nix
       ./zabbix-Orion.nix
     ];
-    Thinkpad = [./razer.nix ./rdp.nix ./vagrant.nix ./virtualbox.nix ./wireguard-dev.nix ./zabbix-Acer.nix];
+
+    Thinkpad = [
+      ./razer.nix
+      ./rdp.nix
+      ./vagrant.nix
+      ./virtualbox.nix
+      ./wireguard-dev.nix
+      ./zabbix-Acer.nix
+    ];
   };
 
   hostConfig = {
@@ -66,9 +82,9 @@
       tmux.enable = lib.mkDefault true;
       vivaldi.enable = lib.mkDefault true;
       vscodium.enable = lib.mkDefault true;
+      wazuh-agent.enable = lib.mkDefault false;
+      zabbix-agent.enable = lib.mkDefault false;
       zsh.enable = lib.mkDefault true;
-      zabbix-agent.enable = lib.mkDefault true;
-      wazuh-agent.enable = lib.mkDefault true;
     };
 
     Orion = {
@@ -80,10 +96,14 @@
       docker.enable = lib.mkDefault true;
       fonts.enable = lib.mkDefault true;
       git.enable = lib.mkDefault true;
+      guacamole.enable = lib.mkDefault false;
       hip.enable = lib.mkDefault false;
+      homeManager.enable = lib.mkDefault true;
       hyprland.enable = lib.mkDefault false;
+      internet-sharing.enable = lib.mkDefault false;
       nfs.enable = lib.mkDefault true;
       nh.enable = lib.mkDefault true;
+      packet-tracer.enable = lib.mkDefault false;
       rdp.enable = lib.mkDefault false;
       steam.enable = lib.mkDefault true;
       sunshine.enable = lib.mkDefault true;
@@ -92,12 +112,9 @@
       tmux.enable = lib.mkDefault true;
       vivaldi.enable = lib.mkDefault true;
       vscodium.enable = lib.mkDefault true;
+      wazuh-agent.enable = lib.mkDefault false;
+      zabbix-agent.enable = lib.mkDefault false;
       zsh.enable = lib.mkDefault true;
-      guacamole.enable = lib.mkDefault false;
-      zabbix-agent.enable = lib.mkDefault true;
-      wazuh-agent.enable = lib.mkDefault true;
-      internet-sharing.enable = lib.mkDefault false;
-      packet-tracer.enable = lib.mkDefault false;
     };
 
     Thinkpad = {
@@ -117,8 +134,8 @@
       vagrant.enable = lib.mkDefault false;
       vivaldi.enable = lib.mkDefault true;
       vscodium.enable = lib.mkDefault true;
-      wazuh-agent.enable = lib.mkDefault true;
-      zabbix-agent.enable = lib.mkDefault true;
+      wazuh-agent.enable = lib.mkDefault false;
+      zabbix-agent.enable = lib.mkDefault false;
       zsh.enable = lib.mkDefault true;
     };
   };
