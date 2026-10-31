@@ -680,7 +680,7 @@
     zapzap
     zoxide
     zed-editor
-    onlyoffice-desktopeditors
+    # onlyoffice-desktopeditors
     #   mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
     # (pkgs.waybar.overrideAttrs (oldAttrs: {
     # }))
