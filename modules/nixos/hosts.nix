@@ -4,6 +4,7 @@
   ...
 }: let
   commonImports = [
+    # ./mumblemic.nix
     ./adb.nix
     ./autoupgrade.nix
     ./avahi.nix
@@ -12,7 +13,7 @@
     ./flatpak.nix
     ./fonts.nix
     ./git.nix
-    # ./mumblemic.nix
+    ./home-manager.nix
     ./network.nix
     ./nh.nix
     ./optimisation.nix
@@ -25,11 +26,17 @@
     ./vscodium.nix
     ./wazuh.nix
     ./zsh.nix
-    ./home-manager.nix
   ];
 
   hostImports = {
-    Acer = [./guacamole.nix ./razer.nix ./steam.nix ./wireguard-dev.nix ./zabbix-Acer.nix];
+    Acer = [
+      ./guacamole.nix
+      ./razer.nix
+      ./steam.nix
+      ./wireguard-dev.nix
+      ./zabbix-Acer.nix
+    ];
+
     Orion = [
       ./autologin.nix
       ./cast.nix
@@ -46,7 +53,15 @@
       ./suspend.nix
       ./zabbix-Orion.nix
     ];
-    Thinkpad = [./razer.nix ./rdp.nix ./vagrant.nix ./virtualbox.nix ./wireguard-dev.nix ./zabbix-Acer.nix];
+
+    Thinkpad = [
+      ./razer.nix
+      ./rdp.nix
+      ./vagrant.nix
+      ./virtualbox.nix
+      ./wireguard-dev.nix
+      ./zabbix-Acer.nix
+    ];
   };
 
   hostConfig = {
@@ -67,9 +82,9 @@
       tmux.enable = lib.mkDefault true;
       vivaldi.enable = lib.mkDefault true;
       vscodium.enable = lib.mkDefault true;
+      wazuh-agent.enable = lib.mkDefault false;
+      zabbix-agent.enable = lib.mkDefault false;
       zsh.enable = lib.mkDefault true;
-      zabbix-agent.enable = lib.mkDefault true;
-      wazuh-agent.enable = lib.mkDefault true;
     };
 
     Orion = {
@@ -97,8 +112,8 @@
       tmux.enable = lib.mkDefault true;
       vivaldi.enable = lib.mkDefault true;
       vscodium.enable = lib.mkDefault true;
-      wazuh-agent.enable = lib.mkDefault true;
-      zabbix-agent.enable = lib.mkDefault true;
+      wazuh-agent.enable = lib.mkDefault false;
+      zabbix-agent.enable = lib.mkDefault false;
       zsh.enable = lib.mkDefault true;
     };
 
@@ -119,8 +134,8 @@
       vagrant.enable = lib.mkDefault false;
       vivaldi.enable = lib.mkDefault true;
       vscodium.enable = lib.mkDefault true;
-      wazuh-agent.enable = lib.mkDefault true;
-      zabbix-agent.enable = lib.mkDefault true;
+      wazuh-agent.enable = lib.mkDefault false;
+      zabbix-agent.enable = lib.mkDefault false;
       zsh.enable = lib.mkDefault true;
     };
   };

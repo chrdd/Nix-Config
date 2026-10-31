@@ -53,7 +53,6 @@
     self,
     nixpkgs,
     nixpkgs-stable,
-    nixpkgs-old,
     home-manager,
     nix-flatpak,
     # stylix,
@@ -71,11 +70,11 @@
       config.allowUnsupportedSystem = true;
     };
 
-    pkgs-old = import nixpkgs-old {
-      inherit system;
-      config.allowUnfree = true;
-      config.allowUnsupportedSystem = true;
-    };
+    # pkgs-old = import nixpkgs-old {
+    #   inherit system;
+    #   config.allowUnfree = true;
+    #   config.allowUnsupportedSystem = true;
+    # };
 
     secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
 

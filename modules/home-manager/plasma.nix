@@ -30,7 +30,7 @@
         pointSize = 10;
       };
 
-      configFile.kdeglobals.General.TerminalApplication = "ghostty";
+      configFile.kdeglobals.General.TerminalApplication = "alacritty";
     };
 
     # Default apps. Replace the IDs with the ones in your ~/.config/mimeapps.list

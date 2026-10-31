@@ -20,9 +20,11 @@
   };
   config = lib.mkIf config.zed.enable {
     # CLI linters, available in the shell as well
+    fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
       statix
       deadnix
+      nerd-fonts.jetbrains-mono
     ];
 
     programs.zed-editor = {
@@ -42,6 +44,8 @@
       ];
 
       userSettings = {
+        buffer_font_family = "JetBrainsMono Nerd Font";
+        terminal.font_family = "JetBrainsMono Nerd Font";
         languages = {
           Nix = {
             language_servers = ["nixd" "nil" "..."];
