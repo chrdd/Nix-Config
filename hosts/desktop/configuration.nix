@@ -62,6 +62,7 @@
       };
       timeout = 5;
     };
+    binfmt.emulatedSystems = ["aarch64-linux"];
     # CachyOS Kernel
     # kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
     kernelPackages = pkgs.linuxPackages_latest;

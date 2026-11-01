@@ -138,17 +138,17 @@
           ]
           ++ commonModules;
       };
-    };
 
-    Pi = nixpkgs.lib.nixosSystem {
-      specialArgs = {
-        inherit inputs;
-        hostName = "Pi";
+      Pi = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs;
+          hostName = "Pi";
+        };
+        modules = [
+          "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+          ./hosts/pi/configuration.nix
+        ];
       };
-      modules = [
-        "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-        ./hosts/pi/configuration.nix
-      ];
     };
 
     deploy.nodes.Orion = {
