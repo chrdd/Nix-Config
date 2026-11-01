@@ -12,6 +12,7 @@
         hover-zoom-plus = "pccckmaobkjjboncdfnnofkonhgpceea";
         new-tab-redirect = "icpgjfneehieebagbmdbhnlpiopdcmna";
         sponsorblock = "mnjggcdmjocbbbhaepdhchncahnbgone";
+        linkwarden-manager = "pbgogjmcdjfgmobonplkijmikhahppgc";
       };
       description = "Chrome Web Store extensions to install, as name = id";
     };

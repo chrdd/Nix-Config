@@ -72,9 +72,9 @@
     Pi = [
       ./git.nix
       ./home-manager.nix
+      ./searxng.nix
       ./tmux.nix
       ./zsh.nix
-      ./searxng.nix
     ];
   };
 
@@ -159,7 +159,7 @@
       homeManager.enable = lib.mkDefault true;
       tmux.enable = lib.mkDefault true;
       zsh.enable = lib.mkDefault true;
-      searxng.enable = lib.mkDefault true;
+      searxng.enable = lib.mkDefault false;
     };
   };
 in
