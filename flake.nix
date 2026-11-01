@@ -180,5 +180,13 @@
         path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.Thinkpad;
       };
     };
+    deploy.nodes.Pi = {
+      hostname = "pi.local";
+      profiles.system = {
+        sshUser = "octavian";
+        user = "root";
+        path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.Pi;
+      };
+    };
   };
 }
