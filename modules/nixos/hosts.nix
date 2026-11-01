@@ -74,6 +74,7 @@
       ./home-manager.nix
       ./tmux.nix
       ./zsh.nix
+      ./searxng.nix
     ];
   };
 
@@ -158,6 +159,7 @@
       homeManager.enable = lib.mkDefault true;
       tmux.enable = lib.mkDefault true;
       zsh.enable = lib.mkDefault true;
+      searxng.enable = lib.mkDefault true;
     };
   };
 in
