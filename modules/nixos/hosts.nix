@@ -137,6 +137,7 @@
       docker.enable = lib.mkDefault true;
       fonts.enable = lib.mkDefault true;
       git.enable = lib.mkDefault true;
+      homeManager.enable = lib.mkDefault true;
       nh.enable = lib.mkDefault true;
       razer.enable = lib.mkDefault false;
       rdp.enable = lib.mkDefault true;
