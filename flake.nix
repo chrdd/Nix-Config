@@ -140,6 +140,17 @@
       };
     };
 
+    Pi = nixpkgs.lib.nixosSystem {
+      specialArgs = {
+        inherit inputs;
+        hostName = "Pi";
+      };
+      modules = [
+        "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+        ./hosts/pi/configuration.nix
+      ];
+    };
+
     deploy.nodes.Orion = {
       hostname = "100.117.185.63";
       profiles.system = {
