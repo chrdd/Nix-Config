@@ -19,7 +19,7 @@
 
   nix.settings = {
     max-jobs = "auto";
-    cores = 4;
+    # cores = 4;
     trusted-users = ["root" "octavian"];
     auto-optimise-store = true;
     experimental-features = ["nix-command" "flakes"];
@@ -458,6 +458,11 @@
   # Enable nix-ld to run unpatched Linux binaries
   programs.nix-ld.enable = true;
 
+  services.tailscale = {
+    enable = true;
+    openFirewall = true; # UDP 41641, helps direct connections
+  };
+
   # Define the shared libraries that unpatched binaries will have access to
   programs.nix-ld.libraries = with pkgs; [
     stdenv.cc.cc.lib
@@ -561,7 +566,6 @@
     # steam
     # sublime
     # swaylock
-    # tailscale
     # tailscale
     # tailscale
     # tesseract4

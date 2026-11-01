@@ -57,5 +57,14 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [git vim htop];
+  services.tailscale = {
+    enable = true;
+    openFirewall = true; # UDP 41641, helps direct connections
+  };
+
+  environment.systemPackages = with pkgs; [
+    git
+    nano
+    btop
+  ];
 }

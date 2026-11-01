@@ -181,7 +181,7 @@
       };
     };
     deploy.nodes.Pi = {
-      hostname = "pi.local";
+      hostname = "100.115.253.82";
       profiles.system = {
         sshUser = "octavian";
         user = "root";
