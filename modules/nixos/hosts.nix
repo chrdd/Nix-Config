@@ -3,7 +3,7 @@
   hostName,
   ...
 }: let
-  commonImports = [
+  desktopImports = [
     # ./mumblemic.nix
     ./adb.nix
     ./autoupgrade.nix
@@ -29,38 +29,51 @@
   ];
 
   hostImports = {
-    Acer = [
-      ./guacamole.nix
-      ./razer.nix
-      ./steam.nix
-      ./wireguard-dev.nix
-      ./zabbix-Acer.nix
-    ];
+    Acer =
+      desktopImports
+      ++ [
+        ./guacamole.nix
+        ./razer.nix
+        ./steam.nix
+        ./wireguard-dev.nix
+        ./zabbix-Acer.nix
+      ];
 
-    Orion = [
-      ./autologin.nix
-      ./cast.nix
-      ./guacamole.nix
-      ./hip.nix
-      ./hyprland.nix
-      ./internet.nix
-      ./lact.nix
-      ./nfs.nix
-      ./packet-tracer.nix
-      ./rdp.nix
-      ./smartd.nix
-      ./steam.nix
-      ./suspend.nix
-      ./zabbix-Orion.nix
-    ];
+    Orion =
+      desktopImports
+      ++ [
+        ./autologin.nix
+        ./cast.nix
+        ./guacamole.nix
+        ./hip.nix
+        ./hyprland.nix
+        ./internet.nix
+        ./lact.nix
+        ./nfs.nix
+        ./packet-tracer.nix
+        ./rdp.nix
+        ./smartd.nix
+        ./steam.nix
+        ./suspend.nix
+        ./zabbix-Orion.nix
+      ];
 
-    Thinkpad = [
-      ./razer.nix
-      ./rdp.nix
-      ./vagrant.nix
-      ./virtualbox.nix
-      ./wireguard-dev.nix
-      ./zabbix-Acer.nix
+    Thinkpad =
+      desktopImports
+      ++ [
+        ./razer.nix
+        ./rdp.nix
+        ./vagrant.nix
+        ./virtualbox.nix
+        ./wireguard-dev.nix
+        ./zabbix-Acer.nix
+      ];
+
+    Pi = [
+      ./git.nix
+      ./home-manager.nix
+      ./tmux.nix
+      ./zsh.nix
     ];
   };
 
@@ -138,9 +151,16 @@
       zabbix-agent.enable = lib.mkDefault false;
       zsh.enable = lib.mkDefault true;
     };
+
+    Pi = {
+      git.enable = lib.mkDefault true;
+      homeManager.enable = lib.mkDefault true;
+      tmux.enable = lib.mkDefault true;
+      zsh.enable = lib.mkDefault true;
+    };
   };
 in
   {
-    imports = commonImports ++ (hostImports.${hostName} or []);
+    imports = hostImports.${hostName} or [];
   }
   // (hostConfig.${hostName} or {})

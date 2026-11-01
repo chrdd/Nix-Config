@@ -138,6 +138,18 @@
           ]
           ++ commonModules;
       };
+
+      Pi = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs;
+          hostName = "Pi";
+        };
+        modules = [
+          "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+          ./hosts/pi/configuration.nix
+          ./modules/nixos/hosts.nix
+        ];
+      };
     };
 
     deploy.nodes.Orion = {
@@ -167,6 +179,14 @@
         user = "root";
         interactiveSudo = true;
         path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.Thinkpad;
+      };
+    };
+    deploy.nodes.Pi = {
+      hostname = "100.115.253.82";
+      profiles.system = {
+        sshUser = "octavian";
+        user = "root";
+        path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.Pi;
       };
     };
   };
