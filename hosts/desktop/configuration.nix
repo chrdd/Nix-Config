@@ -630,6 +630,7 @@
     dos2unix
     dysk
     easyeffects
+    element-desktop
     expat
     f3
     fastfetch
