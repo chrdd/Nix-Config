@@ -147,6 +147,7 @@
         modules = [
           "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
           ./hosts/pi/configuration.nix
+          ./modules/nixos/hosts.nix
         ];
       };
     };

@@ -3,7 +3,7 @@
   hostName,
   ...
 }: let
-  commonImports = [
+  desktopImports = [
     ./alacritty.nix
     ./helium.nix
     ./plasma.nix
@@ -13,9 +13,13 @@
   ];
 
   hostImports = {
-    Acer = [];
-    Orion = [];
-    Thinkpad = [];
+    Acer = desktopImports ++ [];
+    Orion = desktopImports ++ [];
+    Thinkpad = desktopImports ++ [];
+    Pi = [
+      ./zoxide.nix
+      ./zsh.nix
+    ];
   };
 
   hostConfig = {
@@ -45,9 +49,14 @@
       zoxide.enable = lib.mkDefault true;
       zsh.enable = lib.mkDefault true;
     };
+
+    Pi = {
+      zoxide.enable = lib.mkDefault true;
+      zsh.enable = lib.mkDefault true;
+    };
   };
 in
   {
-    imports = commonImports ++ (hostImports.${hostName} or []);
+    imports = hostImports.${hostName} or [];
   }
   // (hostConfig.${hostName} or {})
