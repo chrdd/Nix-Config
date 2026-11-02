@@ -72,11 +72,13 @@
   };
 
   # Intel P-State for hybrid core scheduling (essential for 240H)
-  boot.kernelParams = [
-    "intel_pstate=active"
-    "elevator=none"
-  ];
-
+  boot = {
+    kernelParams = [
+      "intel_pstate=active"
+      "elevator=none"
+    ];
+    binfmt.emulatedSystems = ["aarch64-linux"];
+  };
   # Better power management for hybrid Intel CPU
   services.power-profiles-daemon.enable = false;
 
