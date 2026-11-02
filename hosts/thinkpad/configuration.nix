@@ -138,6 +138,8 @@
     ];
   };
 
+  boot.supportedFilesystems = ["nfs"];
+
   # Install firefox.
   # programs.firefox.enable = true;
 

@@ -14,6 +14,7 @@
     ./fonts.nix
     ./git.nix
     ./home-manager.nix
+    ./nas.nix
     ./network.nix
     ./nh.nix
     ./optimisation.nix
@@ -87,6 +88,7 @@
       fonts.enable = lib.mkDefault true;
       git.enable = lib.mkDefault true;
       guacamole.enable = lib.mkDefault true;
+      nas.enable = lib.mkDefault true;
       nh.enable = lib.mkDefault true;
       razer.enable = lib.mkDefault false;
       steam.enable = lib.mkDefault true;
@@ -115,6 +117,7 @@
       homeManager.enable = lib.mkDefault true;
       hyprland.enable = lib.mkDefault false;
       internet-sharing.enable = lib.mkDefault false;
+      nas.enable = lib.mkDefault true;
       nfs.enable = lib.mkDefault true;
       nh.enable = lib.mkDefault true;
       packet-tracer.enable = lib.mkDefault false;
@@ -139,6 +142,7 @@
       fonts.enable = lib.mkDefault true;
       git.enable = lib.mkDefault true;
       homeManager.enable = lib.mkDefault true;
+      nas.enable = lib.mkDefault true;
       nh.enable = lib.mkDefault true;
       razer.enable = lib.mkDefault false;
       rdp.enable = lib.mkDefault true;
