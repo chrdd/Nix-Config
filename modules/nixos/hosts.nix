@@ -72,6 +72,7 @@
     Pi = [
       ./git.nix
       ./home-manager.nix
+      ./searxng.nix
       ./tmux.nix
       ./zsh.nix
     ];
@@ -137,6 +138,7 @@
       docker.enable = lib.mkDefault true;
       fonts.enable = lib.mkDefault true;
       git.enable = lib.mkDefault true;
+      homeManager.enable = lib.mkDefault true;
       nh.enable = lib.mkDefault true;
       razer.enable = lib.mkDefault false;
       rdp.enable = lib.mkDefault true;
@@ -157,6 +159,7 @@
       homeManager.enable = lib.mkDefault true;
       tmux.enable = lib.mkDefault true;
       zsh.enable = lib.mkDefault true;
+      searxng.enable = lib.mkDefault false;
     };
   };
 in
