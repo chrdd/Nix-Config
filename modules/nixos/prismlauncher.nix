@@ -13,7 +13,7 @@
         pkgs-stable.jdk8
         zulu
         zulu17
-        zulu8
+        zulu21
       ];
     })
   ];

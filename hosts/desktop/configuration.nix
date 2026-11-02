@@ -778,7 +778,7 @@
     wlr-randr
     wlroots
     xbindkeys
-    xdg-desktop-portal-gtk
+    # xdg-desktop-portal-gtk
     xdotool
     xwayland
     yad
