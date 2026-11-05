@@ -96,6 +96,12 @@
     };
   };
 
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
   # Firmware updates (ThinkPad E16 is well-supported on LVFS)
   services.fwupd.enable = true;
 
