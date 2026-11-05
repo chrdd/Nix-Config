@@ -60,6 +60,8 @@
   # Intel CPU microcode
   hardware.cpu.intel.updateMicrocode = true;
 
+  services.teamviewer.enable = true;
+
   # Intel GPU / media acceleration
   hardware.graphics = {
     enable = true;
