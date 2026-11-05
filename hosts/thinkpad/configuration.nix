@@ -4,7 +4,7 @@
   lib,
   pkgs,
   pkgs-stable,
-  winapps,
+  # winapps,
   ...
 }: {
   imports = [

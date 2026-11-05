@@ -7,7 +7,7 @@
   pkgs,
   lib,
   pkgs-stable,
-  winapps,
+  # winapps,
   ...
 }: {
   imports = [
@@ -92,9 +92,9 @@
       libvdpau-va-gl
       rocmPackages.clr.icd # OpenCL support
     ];
-    extraPackages32 = with pkgs.pkgsi686Linux; [
-      # Remove mesa and libGL from here
-    ];
+    # extraPackages32 = with pkgs.pkgsi686Linux; [
+    #   # Remove mesa and libGL from here
+    # ];
   };
 
   programs.gamemode.enable = true;
@@ -371,11 +371,11 @@
     isNormalUser = true;
     description = "octavian";
     extraGroups = ["networkmanager" "wheel" "audio" "vboxusers" "dialout" "scanner" "lp" "docker"];
-    packages = with pkgs; [
-      # firefox
-      # kdePackages.kate
-      #  thunderbird
-    ];
+    # packages = with pkgs; [
+    #   # firefox
+    #   # kdePackages.kate
+    #   #  thunderbird
+    # ];
     # openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2etc/etc/etcjwrsh8e596z6J0l7 example@host" "ssh-ed25519 AAAAC3NzaCetcetera/etceteraJZMfk3QPfQ foo@bar" ];
   };
 
