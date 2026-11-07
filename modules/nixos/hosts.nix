@@ -51,6 +51,7 @@
         ./internet.nix
         ./lact.nix
         ./nfs.nix
+        ./ollama.nix
         ./packet-tracer.nix
         ./rdp.nix
         ./smartd.nix
@@ -120,6 +121,7 @@
       nas.enable = lib.mkDefault true;
       nfs.enable = lib.mkDefault true;
       nh.enable = lib.mkDefault true;
+      ollama.enable = lib.mkDefault true;
       packet-tracer.enable = lib.mkDefault false;
       rdp.enable = lib.mkDefault false;
       steam.enable = lib.mkDefault true;
