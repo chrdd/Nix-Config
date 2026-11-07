@@ -66,5 +66,6 @@
     nano
     btop
     lsd
+    tmux
   ];
 }
