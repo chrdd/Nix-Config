@@ -14,7 +14,11 @@
 
   hostImports = {
     Acer = desktopImports ++ [];
-    Orion = desktopImports ++ [];
+    Orion =
+      desktopImports
+      ++ [
+        ./aider.nix
+      ];
     Thinkpad = desktopImports ++ [];
     Pi = [
       ./zoxide.nix
@@ -33,6 +37,7 @@
     };
 
     Orion = {
+      aider.enable = lib.mkDefault true;
       alacritty.enable = lib.mkDefault true;
       helium.enable = lib.mkDefault true;
       plasma.enable = lib.mkDefault true;
