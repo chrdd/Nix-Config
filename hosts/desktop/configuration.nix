@@ -612,6 +612,7 @@
     #zabbix.agent
     #zabbix.web
     #zabbixctl
+    rustdesk
     alacritty
     alejandra
     alsa-utils
