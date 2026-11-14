@@ -6,10 +6,10 @@
     #   appId = "tv.plex.PlexDesktop";
     #   origin = "flathub";
     # }
-    {
-      appId = "tv.plex.PlexHTPC";
-      origin = "flathub";
-    }
+    # {
+    #   appId = "tv.plex.PlexHTPC";
+    #   origin = "flathub";
+    # }
     {
       appId = "com.github.tchx84.Flatseal";
       origin = "flathub";
@@ -19,7 +19,7 @@
     #   origin = "flathub";
     # }
     {
-      appId = "org.libreoffice.LibreOffice";
+      appId = "org.onlyoffice.desktopeditors";
       origin = "flathub";
     }
     # {
