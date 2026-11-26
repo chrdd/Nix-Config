@@ -192,27 +192,26 @@
     # rustdesk
     # tigervnc
     # virtualbox
+    # heroic
+    # howdy
+    # todoist-electron
     alacritty
     anki
     ansible
-    pkgs-stable.anydesk
-    pkgs-stable.bitwarden-desktop
     brightnessctl
     btop
     dig
     discord
     fastfetch
+    feishin
     ffmpeg
-    pkgs-stable.freecad
     gh
     ghostty
     git
     git-crypt
     gparted
-    # heroic
-    # howdy
-    inputs.zen-browser.packages."${system}".default
     inputs.helium.packages.${system}.default
+    inputs.zen-browser.packages."${system}".default
     kdePackages.plasma-browser-integration
     localsend
     lsd
@@ -223,12 +222,16 @@
     obs-studio
     obsidian
     openssl
+    pkgs-stable.anydesk
+    pkgs-stable.bitwarden-desktop
+    pkgs-stable.freecad
     plex-desktop
     plexamp
     powershell
     python315
     qbittorrent-enhanced
     rivalcfg
+    rustdesk
     scrcpy
     smartmontools
     splix
@@ -239,7 +242,6 @@
     thunderbird
     ticktick
     tmux
-    # todoist-electron
     unrar
     vivaldi
     vlc
@@ -249,10 +251,9 @@
     wireguard-tools
     wireguard-ui
     zapzap
+    zed-editor
     zip
     zoxide
-    feishin
-    zed-editor
   ];
 
   programs.mtr.enable = true;
