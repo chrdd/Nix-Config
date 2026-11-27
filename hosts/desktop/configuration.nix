@@ -710,7 +710,7 @@
     picard
     pineflash
     pkg-config
-    pkgs-stable.freecad
+    freecad
     pkgs-stable.moonlight-qt
     pkgs.cifs-utils
     pkgs.deluged
