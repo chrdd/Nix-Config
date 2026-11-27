@@ -619,6 +619,7 @@
     anki
     ansible
     anydesk
+    bc
     bitwarden-desktop
     bottom
     btop-rocm

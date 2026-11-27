@@ -198,6 +198,7 @@
     alacritty
     anki
     ansible
+    bc
     brightnessctl
     btop
     dig
